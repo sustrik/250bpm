@@ -1,0 +1,13 @@
+# Hard Things in Computer Science: Naming things
+
+
+
+1.  In natural languages we use existing dictionary to express our ideas. We never invent new words. That makes it easy for the listener to understand what we are saying.
+2.  In programming languages we are inventing new names all the time. To solve a problem you invent a new language, then use that language to describe the solution. Often this is done in multiple layers: Language A is constructed to describe language B which in turn describes the solution. This makes is super hard for another person to understand a program.
+3.  Natural languages have tens of thousands words which we learn as kids when the brain is still malleable. Learning a new language at later age is extremely hard. We can't mimic natural languages in computer science unless we are able to reduce the number of words to a manageable number.
+4.  Enter Semitic roots. Almost every Semitic word is based on a root of three consonants. The root conveys the basic meaning. So, for instance, in Arabic, root KTB has to do with writing. Then there are different "augmentations" of the root. Type I "kataba" means "to write". Type II "kattaba" means "make someone write something". Type III "kaataba" means "correspond with someone". Type IV "aktaba" means "dictate". And so on. More examples can be found [here](https://en.wikipedia.org/wiki/Arabic_verbs#Formation_of_derived_stems_.28.22forms.22.29). Each of this types can also be changed to its passive version. Also, for each type there are derived nouns. From nouns you can derive adjectives. From verbs you can derive adverbs. Even prepositions are mostly derived from the three letter roots.
+5.  Apply the above to the programming languages. With a standardized system of name derivations one would, when writing a program, have to invent only the names corresponding to core concepts of the problem domain. All the other names, function names, object names, argument names, and so on could be derived from those in a relatively deterministic manner.
+6.  When reading a program you would have to internalize the core concepts, say two or three of them, but after that you would be able to read the program without having to figure out what individual internally-used names mean. No more "How the hell does 'parse' function differ from 'parse2' function?"
+7.  It should be said that this is already used to some small extent. 'parse' is a function, 'parser' is an object. The relationship is relatively clear. Unfortunately, dictionaries of programs are typically based on English which is not very good at forming derived words.
+
+**Martin Sústrik, October 30th, 2017**

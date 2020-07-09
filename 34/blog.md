@@ -1,0 +1,69 @@
+# The Second Step Towards Immortality
+
+
+
+There have been some talk about achieving immortality via Internet. The idea was that if you store all your personal data, basically your stream of consciousness, in Facebook or Twitter (and, of course, NSA reconds), some of your identity, your memories, speach habits, sense of humour, survives even your death.
+
+While that seems to be a pretty diluted form of immortality, comparing it to the past reveals that it is actually a huge step forward. As for your great-grandparent born around 1900, you may own a single photograph, heard couple of heavily distorted stories and, if you care, you can check the records at the municipal office or at the church to get exact dates of birth, marriage and death.
+
+That's it.
+
+As for you, it will be possible to tell in the future what you were doing on Deceber 27th 2013, ten o'clock in the morning. Also, who were your friends at the time. What you were interested in on that particular day. Big data will mark the trends: Were you gradually growing distant with that particular friend? Who was becoming your new best friend? Have you felt happier than the year before?
+
+Even if you compare that with people traditionally considered "immortal" (writers, philosophers and such) thay are no match to you. You can re-construct a little of their thinking from their books, but it's sadly insufficient when compared to what's available about any young person nowadays.
+
+However, even with the vast amount of personal data stored in the net, calling it "immortality" seems too far-stretched. That kind of immortality is too mild, too passive to be seriously considered to be the real thing.
+
+Anyway, it's the first step.
+
+In this article I am going to talk about the second step, however, let me relate a little story first.
+
+Count Grazioso Enea Lanfranconi lived in second half of XIX. century and he was the person responsible for regulating Danube around Bratislava. Before him, Bratislava, or Pressburg as it was called back then, was plagued by periodic floods. Since him the floods are much less frequent. On the other hand, the process of regulation of the riverbed, as it continued throughout the XX. century, have destroyed the inland delta of Danube and turned the land of thousand islands into a straight and boring, easily-navigable canal.
+
+The story of count Lanfranconi interests us in a different kind of way though. Before we went insane and killed himself, he donated his land on the riverbank to the city so that it can be used for sporting and recreational activities. There was a sporting areal built, a marina, a botanical garden. However, in 1980's half of the botanical garden was destroyed and in its place a bridge was built across the Danube. In 1990's part of the land was sold to developers who built an housing estate there. In 2000's half of the marina was demolished. Today, there's a talk about building a dam on the Danube at that place.
+
+To be frank, I haven't researched to the story and it's based on what I've heard only. Anyway, the morale is clear enough: Once you are dead, nobody respects you anymore. They may pay you lip service, but there's nothing you can do to make people follow your orders.
+
+The concept is even embedded in the law (Slovak one at least): The last will may contain conditional clauses, but they have to be evaluated at the time when the testament is executed. You can't make the your will conditional on what happens later on. So, for example, you can bequeath the property to your child in case they are married at the time of the execution of the will, but you can't hold back the property till the time they get married, or pass the property on to the charity in case they get divorced.
+
+To get back to the topic of immortality, we are facing a problem here. While we may argue that "immortality" by storing the personal data in the net is not the real thing, that is is too "passive", and dive into deep metaphysical discussions about what "free will" actually means and whether it can be perpetuated after person's death, we are at the same time facing much more prosaic legal problem of person ceasing to be a person after death and having no legal recourse to impose their will.
+
+Enter Bitcoin.
+
+Specifically, this [article](https://en.bitcoin.it/wiki/Agents) on the Bitcoin wiki. It suggests that small programs should be created that would mine Bitcoins and use the money to buy the computer time to be run in the cloud. While your first reaction was probably: "Wow, this is finally the real artificial inteligence such as the one I've read about in Neuromancer!" in reality, there's nothing technically new about the concept. AI researchers are experimenting with such autonomous agents for literally decades. However, the real novelty is that the agent gets quasi-legal status of "person" or "willful entity", not by lawmakers somehow turning programs into citizens, but by the simple fact of owning money. If someone's able to pay you, you don't care whether it is a person, an alien, an animal or a computer program — you can simply carry out its will to make your living.
+
+I believe my point is clear at this point. You can perpetuate your will beyond the point of your death by creating a program that would "inherit" your money, in form of Bitcoins, and spend it according to the algorithm you've specified. Although strange, people are going to accept it because, as you may know, money speaks.
+
+There's of course the question whether it's possible to secure such program from being robbed by nefarious human owners of the computer infrastructure, but cryptography have already achieved weirder things, so I wouldn't bet against it.
+
+More to the point, the combination of avilability of years or decades of your stream of consciousness and diverse personal data (as stored in the net) and ability to carry on your will after your death (via cryptocurrency-owning autonomous agents) already goes a long way towards real, non-tongue-in-cheek immortality.
+
+What's missing? The ability to interconnect the two in a meaningful manner? Something else? What are the steps three and four on the path to immortality? There's a lot for us to think about.
+
+**EDIT:** _Several people have pointed out that making the program that carries out your will, even if it is endowed with your memories (as stored in the net) doesn't count as immortality because there's no transfer of consciousness from the human being to the program._
+
+_First of all, I don't suggest that the thing described above is immortality. What I am saying is that it's a step towards the goal._
+
+_Second, the consciosness argument is problematic and leads directly to a very vague metaphysical discussion. Consider the following gendankenexperiment:_
+
+_In XXII. century a teleporting device will be invented. It will work by scanning the state of all atoms in your body, moving the information via radio and re-creating the original configuration of atoms at the destination point. (That's how teleport in Star Trek is supposed to work, by the way.)_
+
+_The only problem with the device is that is basically makes a copy of you, leaving one body behind and creating a new one at the destination. To solve the problem of overpopulation, there's an annihilation device at the point of origin that painlessly disintegrates the original body as soon as successful transfer is confirmed._
+
+_Now, it's obvious that if you decide to use the teleportation device, you'll die. There will be a copy of you created elsewhere, but it's not like your consciousness will move from one body to another, you'll simply die, no tricks involved._
+
+_That will, of course, prevent you from using teleport. In the end, no one wants to die, right?_
+
+_Then, one day, someone you love will be in a danger and the only way to save them would be to use a teleport. You'll decide to use the teleport even if it means dying. Your life would have no purpose without the loved person anyway, so you'll just do it._
+
+_Once teleported, your new incarnation realises that the teleportation is pretty handy and painless way of transportation. There are no inconveniences involved whatsoever. Even from the moral point of view, it's not like killing yourself, given that you still exist after the fact. And the disintegration of your original self is done in the most humane way possible._
+
+_Thus, you start using teleport regularly, even for mundane tasks like going shopping. Or returning from the shop when you realise you've forgot your purse at home._
+
+_So, what exactly happened? You've started to think of teleporting as a transfer of consciousness rather than as of making a copy of yourself. All direct evidence supports that interpretation. Not using teleport would feel similar to refusing to eat or breath because the new atoms in your body would transform you into a different person, killing the old one._
+
+_In short, I am not trying to suggest that the teleported person is you or that it's not you. The question of identity would lead us astray into the realm of philosphy. What I am saying is that even a sceptic firmly believing that the copy is in some mystical way different from the original can be made to behave as if he believed the opposite, simply by being confronted by a technology such as teleport. Even more so, children using teleportation from an early age would have hard time imagining that the copy can somehow not be you._
+
+_What that means for the problem of replacing a person by the memories stored in the net and an active agent carrying out person's will is left as an exercise to the reader._
+
+**Martin Sústrik, Dec 27th, 2013**

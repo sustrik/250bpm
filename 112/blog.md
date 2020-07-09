@@ -1,0 +1,39 @@
+# Low Hanging Fruit of Programming Language Design
+
+
+
+Recently, I've read a paper about [code duplication](http://janvitek.org/pubs/oopsla17b.pdf). The authors analyzed GitHub repositiories for duplicate code. They've found an unexpectedly high amount of code duplication. In their own words:
+
+> This paper analyzes a corpus of 4.5 million non-fork projects hosted on GitHub representing over 428 million files written in Java, C++, Python, and JavaScript. We found that this corpus has a mere 85 million unique files. In other words, 70% of the code on GitHub consists of clones of previously created files.
+
+Then they analyze why and how the duplicates were made. The paper is worth reading in full, however, the point I want to focus on is that most of the duplication is systemic, not accidental. The amount of cases where the duplicate was made because someone stole someone else's CS course homework is low. Mostly, people were trying to solve legitimate technical problems. To understand how common such legitimate duplicates are let's focus only on the "auto-generated code" category. If you go into the lengths of generating code you are probably solving an actual problem. You may be solving an actual problem even if you duplicate the code by hand, but focusing on on auto-generated code will give us lower bound for the true technical problems being solved by duplicating code.
+
+Here are the numbers, as taken from section 6.2.3. of the paper: In Java, 70% of duplicates were due to code generation. For C++ is was 18%, for Python 85%, for JavaScript 70%.
+
+In short, in most cases people don't duplicate code because they are dumb, but because the duplication solves a real technical problem.
+
+If you think of code generation as a preliminary step to creating a programming language, like when first version of C++ just generated C code to be compiled by C compiler, it looks like there are quite a few languages waiting to be invented. Compiler itself is a code (bytecode or machine code) generator and thus, if the language would contain native idioms to express whatever the duplicated code at GitHub is meant to express all those duplicates would be rendered obsolete.
+
+Even more interesting lesson to learn here is that as a programming language designer you don't have to rely on your gut instinct or, even worse, just try to impose your pet way of doing things on programming public, but rather, you can adopt an evidence-based approach and start by analysis of the vast repository of real-world use cases that is GitHub.
+
+**Martin Sústrik, November 21st, 2017**
+
+**Addendum, November 24th**: Looking at the comments about this article on [Hacker News](https://news.ycombinator.com/item?id=15756054) it seems that people have misunderstood what I was saying in two ways.
+
+First, there is the idea that I am advocating creation of new DSLs. Like, if there turns out to be a lot of code generated in fish canning industry we should create a dedicated fish canning language. That's not what I meant. While DSLs may have their place I was really speaking about general-purpose languages.
+
+Second, there was a lot of discussion about macros. Once again, the idea was that code generation can be replaced by a language construct that would allow us to modify the language itself. However, from my point of view that's just code generation in disguise.
+
+What I was really interested in is the following question: Why haven't the authors implement their idea using the standard language constructs — functions, classes, whatever abstractions their chosen language provides? Why did they resort to code generation? There may be some cases where the authors were just dumb and standard language constructs would be fully sufficient. However, if we assume some basic competence and basic laziness (doing code generation is laborious) we can make an assumption that most of the generated code is generated for a reason. That there's some inadequacy in the language that prevents solving the problem in question using the standard language mechanisms without writing a lot of boilerplate.
+
+To give a concrete example: When implementing network protocols in C you have to resort to state machines. State machine implementations tends to be a highly repetitious and error-prone. Therefore, one is tempted to save themselves a trouble and generate the whole thing, either using macros or a full-blown code generator.
+
+Does that hint at an inadequacy in the language?
+
+Let's have a look at the problem in detail: Why do we need state machines at all? Well, because otherwise we would need one thread per connection. If there were 10,000 connections we would be 10,000 threads which may not be acceptable. Also, threads are not free. There's a cost to preemptive multitasking. If there are many threads competing for small number of CPUs it may take a long time till your particular thread is scheduled. State machines are basically super-lightweight threads, many of which can live on the top of a single OS thread. The memory requirements are low, context switching is extremely fast.
+
+So what if the language itself provided such lightweight threads? That would remove the need for state machines and, subsequently, for code generation.
+
+And that's exactly what Go did with goroutines. Also, I have personally written a [library](http://libdill.org/) that does a similar thing for C.
+
+Can a similar thing be done for other instances of code generation as found in GitHub? In my opinion, it is very likely.

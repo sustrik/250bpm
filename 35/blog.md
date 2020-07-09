@@ -1,0 +1,58 @@
+# Poor Man's Scientific Method
+
+
+
+I've had the following conversation with my girlfriend lately:
+
+A: "Let's vaccinate our kid."  
+B: "But I've heard that vaccination can cause autism!"  
+A: "It's a [hoax](https://en.wikipedia.org/wiki/Andrew_Wakefield). There's no scientific evidence for the claim. Use scientific method. Read the related papers."  
+B: "But I've searched for the papers on the Internet and I've found one that claims that vaccination causes autism."  
+A: "You've got the wrong one. There are others that prove there's no correlation between vaccination and autism."  
+B: "How am I supposed to know which one is right and which is wrong?"  
+A: "Look for the peer review."  
+B: "Huh?"  
+A: "OK. Right, that's beyond what you can do. Check then whether the paper was published in a respected journal. These enforce peer review as a matter of policy."  
+B: "How do I know which one is respected?"  
+A: "Well, you can have a look at the journal's impact factor. It's not an exact measure of quality but the ones with high impact factors are likely to have rigorous policies with respect to peer review."  
+B: "How do I know what is the impact factor of a particular journal?"  
+A: "Impact factors are calculated from numbers of citations. These are published annualy by Thomson Reuters…"  
+B: "So you are saying that I should trust Reuters rather than the neighbor of my cousin's boss, who said that his daughter became autistic after being vaccinated?"
+
+Got the morale? Unless you are a scientist and unless you are researching an issue from your narrow specialisation, the scientific method is based on trust. You are asked to believe. Same as in alternative medicine. Or in a religion. If you are a common person, there's no much conceptual difference between visiting a doctor and visiting your local shaman or a faith healer.
+
+The above has non-trivial consequences for the scientific method. Scientific method explicitly aims to avoid faith and use measurement and experimentation in its stead. Asking for trust in the scientific discourse signalises a problem. And the only way to address it is to admit that minutiae of academic publishing (and distribution of scientific knowledge in general) however arbitrary and insignificant they may seem to be are in fact an integral part of the scientific method.
+
+An obvious example: [Sokal hoax](https://en.wikipedia.org/wiki/Sokal_hoax). Physicist Alan Sokal have written an scientific article permeated with most obvious scientific nonsense and deliberate vagueness and managed to have it published in a scientific journal. You may consider the whole affair to be just poking fun at social scientists. However, there's a different point of view where the whole thing is a dead serious attempt at pointing at a flaw in the scientific method. As an extra bonus, the attempt was performed as an actual real-world experiment.
+
+Less obvious example: The current [fight](http://www.theguardian.com/science/2013/dec/09/nobel-winner-boycott-science-journals) between the scientists and the academic publishers. The whole thing looks like a economic, or maybe an political, struggle. However, there's a fully different point of view, where we are actually dealing with a broken scientific method and the fighting we see is a deliberate rational effort to fix it.
+
+However, what I would like to focus on in this article is distribution of the scientific knowledge to a common person rather than to the scientists. And remember: Even if you are a rocket scientist, you are a commoner from the point of view of medical science. Thus, I don't want to talk about delivering scientific knowledge to 99% but rather about delivering it to everyone except to a select handful that happens to be at home in particular micro-specialisation.
+
+To begin with, common people today generally do understand that science is good for them. Even if they believe in astrology, they still ask for science-based treatment at the hospital when they get ill. Even if they believe that the ancient civilisations had spiritual knowledge surpassing everything we know today they still use computers and mobile phones.
+
+The real problem the common person faces is how to distinguish actual evidence-based scientific knowledge from different scams that are ever more often disguised as science or, for what it's worth, "alternative" science.
+
+As demonstrated by the dialogue above, asking a non-scientist to research the scientific papers is not going to fly. People don't have enough time and background knowledge to do that. Moreover, they don't understand the scientific method (including the politics of academic publishing) well enough to reason about what they read. The only real option for them is either to trust or not to trust.
+
+Thus, we need trusted people who serve as "ambassadors of scientific method". And in the case of medicine this role is occupied by doctors.
+
+So, when you contract cold, you go to the doctor and you BELIEVE that the pill he prescribes won't hurt you and that it will actually help you. Asking a doctor for help is poor man's scientific method.
+
+The question, of course, is why do you trust the doctor? Well, because the profession is regulated by the state and the doctor obtains his license only after finishing a school (where he is taught scientific method along with any specific knowledge needed in his field of expertise), having some actual hands-on experience and taking the Hippocratic oath.
+
+Following the same argument as above, it can be seen that the process of licensing doctors is not only a regulatory issue, it's also an integral part of the scientific method.
+
+And same as with academic publishing, the process is broken in different ways. Consider homeopathy. Today, it's common that a licensed doctor prescribes a homeopathic medicine, which is scientifically known to be ineffective. What can the poor man infer from that? Either the doctor is incompetent in which case he shouldn't have finished the school at all. Or he is corrupt, i.e. paid by pharmaceutical companies to prescribe ineffectual drugs, in which case he's violating the Hippocratic oath. In both cases his license should be revoked by the state. Yet, the state's own healthcare system sponsors homeopathic drugs in some cases! That being the case, how is the common man supposed to believe that the doctor is a trustable representative of a scientific method? For all he knows, next time he may be prescribed, according to ancient chinese medicine, to drink mercury to purify the body.
+
+I could have ended the essay here, however, there are things about homeopathy that are almost entertaining, so let me make a little digression.
+
+First of all, homeopathic drugs are pure water, which makes them harmless. Compare that to other snake oil medicines which may be straighforwardly harmful (for example, intoxicants may be added to the drug to make it addictive). I am serious here, not sarcastic: Homeopathic drugs, given the very nature of homeopathic theory, are pure water and thus are guaranteed to be harmless. As long as they replace other harmful pseudo-medicines, the net effect is positive. It only becomes evil when used as a replacement for actual scientifically proven treatment.
+
+Second, I've heard that some doctors prescribe homeopathics instead of placebo. That sounds like a neat trick given that all the PR about homeopathics can make the patient confident about the drug and thus increase the placebo effect.
+
+On the other hand, I recall I've read about a study that showed that placebo effect kicks in even it the subject is aware that he is administered placebo! When you think about it a bit, it can in fact make sense: You know that you are on placebo but you also know about placebo effect. Thus you expect your condition to improve which is sufficient for placebo effect to take place. If that's true, even those aware that homeopathy is a sham can benefit from it. However, at the same time, if it's true, all the homeopathics can be replaced by a single generic drug called "Placebo" and everthing would work as well — without breaking the trust in the doctors as representatives of the scientific method.
+
+To get back to the original topic of this essay, we, as scientists and rationalists should make our best to present the issues of distribution of scientific knowledge (academic publishing, licensing of doctors etc.) as part of scientific rather than political discourse. If the political discourse everyone is going to aim for a political compromise. In scientific discourse, on the other hand, it's clear that there are good solutions and bad solutions. That we can quantify them, test them in experimental manner and either accept or reject them depending on the body of evidence collected during the experiments.
+
+**Martin Sústrik, Dec 31st, 2013**

@@ -1,0 +1,39 @@
+# On Intellectual Honesty
+
+
+
+In my life I met lots of smart people. I've also met few intellectually honest people. I value the latter more because they are much more rare.
+
+Intellectual honesty is a topic that I am interested in for a long time. What's fascinating about it is that it is a faculty that's crucial in such a wide range of endeavours. You need it in science. You need it in art. You need it in engineering.
+
+Let me give you few examples.
+
+The scientific one is easy to explain. Scientist even have formal code of conduct to promote intellectual honesty. They call it "scientific method". You are supposed to look critically at your results, pro-actively try to find problems, not massage your data until they prove what you want them to prove, submit your work for peer-review, welcome replication efforts and calmly accept if you were proven wrong.
+
+Engineers, unfortunately, don't have their own equivalent of scientific method but they face very much the same problems as scientists. Engineer is expected not to firmly commit to a particular design decision. If a better one is pointed out to him he should acknowledge its superiority and adopt it. He's supposed to look at the feedback data and incorporate the lessons learned from that into his next project.
+
+Artists are supposed to adhere to "artistic truth". The term is a bit vague but let me explain. It doesn't mean that a writer cannot write fiction which, by definition, doesn't speak about real events. It just means that the story should be internally consistent. Imagine, for example, that the writer, to advance her intended plot needs a character to perform an action that's psychologically implausible. She can behave dishonestly and say "To hell with psychology! I am going to conclude the plot and nobody's going to stop me." Or she can be intellectually honest and rethink the plot that collides with the psychology of the characters.
+
+It was only lately that I realized that I can phrase "intellectual honesty" in more precise fashion. That it can be defined as an ability (or willingness) to remain in the state of cognitive dissonance.
+
+WARNING: I am going to mess with social psychology here, so, instead of me writing a disclaimer, please read [this](http://slatestarcodex.com/2013/06/22/social-psychology-is-a-flamethrower/).
+
+Congnitive dissonance is the feeling you experience when holding two contradicting beliefs. Say "Smoking is harmful." vs. "I smoke two packs a day." The dissonance is unpleasant and one tries to get rid of it. In this case the subject could either drop smoking or start believing that smoking is not harmful after all. The latter approach is called self-justification.
+
+It's easy to see how scientists are confronted with cognitive dissonance. They've invested their time and credibility in this research and now there's this new paper that contradicts it. It they admit that the paper is right they are in essence admitting that they've been stupid before. Adn that's not a pleasant thing to do. It's much easier to dismiss the new research as stupid. Engineers encounter the same problem when their project fails. It was because the funding run out. Because the competition used nefarious means to discredit them. It's never because the design was flawed and the project, generally speaking, stupid. Artists have to face art criticism, or even worse, indifference on part of the public. "I was too far ahead of my time, you know."
+
+However, thinking about intellectual honesty as ability to withstand cognitive dissonance reveals that there are more professions that require intellectual honesty.
+
+Consider lawyers. If you are an attorney for a person you believe to be guilty you get a pretty severe case of cognitive dissonance. You believe in the guilt but you must act as if you didn't. If you fail to do so, you compromise the neutrality of the process. After all, it's prosecutor who should believe in defendant's guilt. If attorney believes in it as well the defendant won't stand a chance.
+
+Another such profession are actors. When you are playing a role you are expected to cast away all your beliefs, actually your entire personality, and adopt the personality and beliefs of a different person. A pretty hard thing to do. What makes actors particularly interesting is that this deliberately induced cognitive dissonance is the very essence of the profession. Actors just have to face the problem eye-to-eye. (Once I have some free time I am going to read a book on theory of acting, I promise.)
+
+All that being said, what can we do to be more intellectually honest?
+
+I assume I am intellectually dishonest a lot of times. Unfortunately, I have no way to know. It's a tautology: If I have spotted myself being dishonest I would have corrected it. So, in fact, the only way for me to be dishonest is to not be aware of it. So what should I do?
+
+Well, maybe I can't attack the problem directly, but I can train myself to remain in state of cognitive dissonance. I can try to read about scientific problems and read what both sides have to tell and try not to commit to either side. I can do the same thing with politics. I can read newspapers from both sides and try to understand what each side is saying without automatically dismissing it. I can follow people with different views on Twitter. I've followed Matt Ridley (the author of [The Red Queen](https://en.wikipedia.org/wiki/The_Red_Queen:_Sex_and_the_Evolution_of_Human_Nature)) and his views on climate change and Brexit put me into deep cognitive dissonance at least once a week. But I can also take a class of acting. I can write a book of fiction. I can follow lawsuits and try to empathize with the bad guys. I can ask people around me about what I did wrong and then try to cope with it. And hopefully, the more I exercise it the more at home I will feel in the state of cognitive dissonance.
+
+And maybe that will make me a better programmer. A better scientist. A better artist. And maybe even a better person.
+
+**Martin Sústrik, October 9th, 2017**

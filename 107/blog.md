@@ -1,0 +1,19 @@
+# Ontogeny Recapitulates Phylogeny
+
+
+
+You have surely heard about the idea that the development of embryo recapitulates stages in the evolution of the particular organism. The idea is no longer embraced by biologists. Still, human embryo does have slits that resemble gills and tadpole has a tail that it loses as it matures. The current uderstanding is that yes, development of embryo does reflect the course of evolution but the correspondence is so quirky and intricate that we can't really accept it as a law of nature.
+
+One may still ask why the resemblance exists at all. I am not an expert, but the answer seems obvious: When a new feature is evolved it's much easier to slap it on the end of existing embryonic development than to modify an intermediate stage where any change could cause cascading effects throughout the entire embryo.
+
+One though that I find interesting is that we see a similar pattern in software development. It's often easier to just add one more layer on top of the existing software than change the internal working of the legacy stack.
+
+But if that's the case do we have an equivalent of embryonic development in software, something that could serve as a window to software product's history?
+
+Well, we can look at the layering of the software. As we pass from the lowest layers upwards we see a petrified trace of what the product used to look like in earlier stages of its development. The lowest layers may have been in place for years and are rarely touched nowadays. There may be an old API deep in the stack that was once user-facing but today is just an internal interface user by upper layers of the product. And so on.
+
+Of course, we should apply the same caution that biologists do: The relationship between product's history and its layering may be intricate and quirky.
+
+Having said all that, it seems to me that the above perspective is interesting when researching the Internet network stack. Specifically, it is often said that "the waist of the hourglass" is moving up. In other words, the least common protocol is changing with time and it's moving up the stack. Where IP was once the common denominator, later the role moved to TCP and eventually to HTTP. And, one would guess, we are still not at the end of the road and we will see more protocols layered on top of HTTP becoming the accepted norm.
+
+**Martin Sústrik, October 15th, 2017**

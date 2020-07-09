@@ -1,0 +1,57 @@
+# The Clockwork inside Game of Thrones
+
+
+
+When Ned Stark got executed by the end of first season of the TV series everyone went like: Ugh! Not possible! He's the protagonist! He just cannot die like this in the middle of the story! Ridiculous! What's the next season going to be about?
+
+The deep sense of confusion that the event causes is he result of a completely new story-telling device invented G.R.R. Martin. And when I say "completely new" I don't mean it in the sense of "the best one this season" but rather as "I cannot think of such disruptive change to story telling technique without going back to the middle ages".
+
+Let me explain.
+
+Classic story-telling technique is based on building up the tension gradually until it reaches a climax, where it is dissolved. The higher the climax, the more captivating the story. After the climax the story ends. It's called "dramatic structure" and can be depicted like this:
+
+![game1.png](http://250bpm.wdfiles.com/local--files/blog:45/game1.png)
+
+The image gets a bit more complex when you consider that there may be several mini-climaxes on the way towards the main climax:
+
+![game4.png](http://250bpm.wdfiles.com/local--files/blog:45/game4.png)
+
+However, that's just a technical nuance. We can ignore it here.
+
+The important fact about the dramatic structure is that it doesn't fit to everything that happens in real life. Only a little part of life is actually "dramatic" in this sense…
+
+So, every writer must have at some time or other fancied writing a detective story where the protagonist is investigating a murder, clues are gathered, tension rises, it's finally becoming clear who the suspects are and then the detective is run over by bus. The end.
+
+![game2.png](http://250bpm.wdfiles.com/local--files/blog:45/game2.png)
+
+The story is entirely plausible, it can very well happen in the real life, but nobody have actually written it. A narrative where dramatic tensions are left unresolved is deeply unsatisfactory to the reader and writing such a story is a literary suicide.
+
+Given that classic dramatic structure is incapable of capturing a lot of what's going on in life, there have been multiple experimental attempts to break out of the box. To give just one example, let's mention the absurd drama. However, none of those experiments have made it to the mainstream literature (or, for what it's worth, to the movies). The lack of dramatic structure results in stories that are kind of unsatisfactory and disappointing. That makes it a taboo for those writers who actually care about their audience.
+
+Enter G.R.R. Martin.
+
+The death of Ned Stark marks the point where classic dramatic structure crumbles, yet the readers are eagerly reading on.
+
+So what's going on there?
+
+Mr. Martin is cleverly building the tension in the side plots in parallel with the main plot. So, when the main plot crashes in a terrible and unexpected manner, the reader may be dismayed, offended, confused or enraged, but they continue to read on as they still want to know how the side plot ends. At that point the side plot becomes the main plot. Here's a picture:
+
+![game3.png](http://250bpm.wdfiles.com/local--files/blog:45/game3.png)
+
+Note how the tension may drop occasionally, but it never drops below the level where the reader throws the book away in disgust.
+
+And that's not all. If it was, it would just be an intersting story-telling experiment. However, George Martin succeeds in turning this device into a positive generator of dramatic tension.
+
+In classic story the reader may be concerned about whether the protagonist dies, however, they are sure that if he does, it will happen by the end of the book. Which, obviously, lowers the tension: "No need to wory now! We still have 200 pages to go!"
+
+Not so in A Song of Ice and Fire. There's no guarantee than any character will survive next ten pages. The uncertainty the reader is deliberately kept in proves to be highly addictive. I guess it's the same kind of addiction one gets from gambling. The feeling that anything may happen.
+
+As a final note I would like to point out that although George Martin likes to slaughter his characters at a brisk pace, the technique is not limited to killing the protagonists. In fact, it is used all over the series, even if "spoiling the plot" is not always as obvious as a death of an important character and thus may go unnoticed by the reader.
+
+Take, for example, the part where Jaime Lannister is freed from captivity by Catelyn Stark and swears to go to King's Landing and exchange himself for lady Stark's daughters who are kept there as hostages. The dramatic tension stems from the fact that Jaime is generally considered to be an oath breaker. Is he going to keep the oath this time or will he just ignore it? The tension increases when he is freed from the escort loyal to lady Stark. Now he's free to do as he wills. He can just turn around and go elsewhere. What a temptation for an oath breaker!
+
+It's a great plot, cleverly built tension and all that. So how is it resolved in the end? Well, when Jamie arrives at King's Landing both lady Stark's daughters have already left. And Catelyn Stark and all her family was slaghtered in the meantime. So, even if Jamie decided to keep his oath, there would be nowhere to send the girls to. Jamie is effectively prevented from doing the dramatic decision! The story is ruined. Yuck! What kind of ending is that?
+
+All in all, this story-telling technique, although quite demanding on the writer (requiring to deliberately spoil carefully constructed plots) is a huge step forward and even if the popularity of Ice and Fire series fades in the future, G.R.R. Martin deserves to be remembered for inventing it.
+
+**Martin Sústrik, November 27th, 2014**

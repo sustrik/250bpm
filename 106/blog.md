@@ -1,0 +1,23 @@
+# A Thought on the AI Risk
+
+
+
+I am not an expert in the field so take this with a huge grain of salt…
+
+When we hit a sigularity I have no idea of what's going to happen. In fact, nobody else does. But until then there's a more mundane risk that worries me.
+
+What if we modify the problem this way: What if the algorithms remained as dumb as they are today, or even as dumb as they were in 1950's, but, to compensate, they would get an ability to control human behaviour?
+
+That would be pretty scarry, right? Nobody wants to be controlled by a tick-tack-toe program.
+
+Yet, we already have such algorithms. We call them smart contracts or, if you want to sound more clever, cryptoeconomic algorithms. Humans are inherent component of these algorithms. The algorithm is shaped in such a way as to drive particular human behaviour by giving clear economic incentives to do so. As an example, take Bitcoin. It was designed in such a way as to keep miners incentivized in mining, users incentivized in using it and so on.
+
+Now, it will take only one dumbass to devise an algorithm that will incentivize people to act in a way incompatible with the survival of the human race.
+
+And if history teaches us anything, people, if properly incentivised, would be thrilled to take part in such scheme.
+
+The problem has another, brighter, side though: If people are viewed as vital components of such algorithms, they are not necessarily adversarial to our eventual AI overlords, whether they are just dumb smart contracts or full blown post-singularity AIs. Rather, people would form a part of the system. Same way as nobody complains about their mitochondria (Hey, they were parasites/symbionts once!) and doesn't want to exterminate them, same way it would make no sense for the AI to disrupt the chain of mining raw materials, assembling electronics, running datacenters and supplying fresh information about the physical world via social media channels, all of which may be necessary prerequisites for the existence of silicon life.
+
+To put it in a different way, while there's research going on on "friendly AI", maybe we should also think, at least a little bit, about the "friendly human" problem.
+
+**Martin Sústrik, October 14th, 2017**

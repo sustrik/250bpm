@@ -1,0 +1,40 @@
+# Why Communication Infrastructure Should Use Permissive Licenses
+
+
+
+In past days I was challenged couple of times about my decision to publish [nanomsg](http://nanomsg.org) under MIT/X11 license. Other folks, on the other hand, were extremely happy about the license. So, I written this article to give a short explanation of the licensing choice.
+
+First, there are two different meanings of "freedom" in software world. No, I don't mean "free as in speech" vs. "free as in beer". What I mean is freedom as in "freedom to run, inspect the code, redistribute and modify" vs. freedom as in "Internet made us free".
+
+The former is, of course, four essential freedoms as defined by FSF. There's no need for more clarification. The latter is kind of vague, so let's try to define it:
+
+1.  The infrastructure is "free" if it is deliberately designed in a way to prevent any entity to exercise control over other entities; and
+2.  The infrastructure is "free" if it is accessible to everyone; and
+3.  The infrastructure is "free" it it is widely deployed.
+
+The first point means things like "there's no central control point that can be abused to control people at the edges", "The Internet interprets censorship as damage and routes around it" etc. This is obviously not a black-and-white property, but it's often pretty clear to which end of the spectrum individual technology gravitates. So, for example, Internet goes a long way towards being "free". Broker-based messaging, on the other hand, thanks to it's enterprise pedigree is firmly rooted in the non-free sphere.
+
+To finish the discussion of this point, let's say that both ZeroMQ and nanomsg projects were designed with the latter kind of freedom in mind.
+
+The second point means that people are not excluded from the use of the technology by their wealth, country of origin etc. Once, again, it's not black and white, but overall this means that the technology should be freely available even to poor people living from $2 a day. (This used to be a fantasy, but today, with mobile phones getting even into poorest areas in Africa, it is technically doable. China and North Korea are still a problem, of course.)
+
+Moreover, it means that the technology is based on open and free standards. If it was not, some people would be denied access, because they are running exotic hardware incapable of using existing sotware stacks or for similar reasons. If the standard was not open they would not be able to implement the stack themselves. (And yes, we are lacking open standards in the area and we should work hard on delivering them.)
+
+The third point is the most interesting one. The idea is that communication technology that is not deployed is close to useless. If Internet stack run on a dozen of boxes globally, it would bring us almost no freedom.
+
+So, what we need to make the technology free in this sense is to make it run on all operating systems, both free and proprietary, make it used by all kinds of applications, both free and commercial etc.
+
+To achieve this goal, GPL is not just not the right tool. It places an impenetrable barrier between GPL'd world on the one hand, and permissively licensed and proprietary world on the other. Yet, what we need to gain more "freedom" is to penetrate both of these worlds.
+
+Consider following use cases that would not be possible with GPL'd codebase:
+
+1.  Putting the technology into BSD kernel(s).
+2.  Incorporating the technology into Windows OS.
+3.  Providing the infrastructure on iPhones and iPads.
+4.  Even using ZeroMQ (LGPLv3) code in Linux (GPLv2) in-kernel implementation would be a problem.
+5.  Supporting the infrastructure inside networking hardware.
+6.  Plugging the proprietary products into the infrastructure (IBM's WebSphereMQ, anyone?)
+
+That, hopefully, should explain why nanomsg uses MIT/X11 license and why communication infrastructure, in general, should follow the same path.
+
+**Martin Sústrik, Jan 30th, 2013**

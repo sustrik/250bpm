@@ -1,0 +1,39 @@
+# The Pashalik Syndrome
+
+
+
+Ottoman Emptire was composed of administrative units called pashaliks (in the west) or eyalets (in the empire itself). Each pashalik was headed by pasha, a dignitary with absolute power within the confines of the territory. Pasha was in charge of military as well as of finance, police and justice. In other words, he was a little sultan within the pashalik.
+
+The only drawback of being a pasha was that the position was temporary. Pashas were appointed by sultan or grand vezier and could be removed from the office at any time.
+
+The combination of absolute power and its temporary duration have created the stereotypical approach to managing the pashalik: "Get rich before you are out of office." In practice it meant expoliting any resources at hand as fast as possible giving no though to the long-term sustainability.
+
+The system was obviously bad for the economy of Ottoman Empire and it can be even argued that today's unhealthy state of economy in Balkans can be at least to some extent attributed to the pashalik mindset still persisting a century after the Balkan wars were fought and Rumelia was transformed into national states.
+
+In my recent [article](/blog:29) I've discussed the tragedy of the commons parable and concluded that the scenario described therein doesn't in reality have much to do with the form of ownership (i.e. private land vs. commons), rather with how fast the overexploitation translates into personal financial failure.
+
+To make my point without obscuring the topic by unrelated matter I've made an implicit assumption that people actually strive for long-term sustainability and that it takes a literal idiot (or else the peer or economic pressure as in the tragedy of commons), to make people prefer short-term gain to long-term sustainability.
+
+In this article I've decided to introduce the pashalik parable to show that that's not always the case and in the real life even highly rational people can prefer short-term gain to sustainability.
+
+Once again, it may seem that it has to do with private property: If the land is yours, you want it to be sustainable. If it's only lent to you for a limited amount of time, you want to extract as much wealth from it as possible before the lease expires.
+
+However, if you think about it for couple of seconds more, the real difference seems to be in **perpetual** access to the resource rather than in whether it's private or not.
+
+It's easy to err by not making distinction between "private property" and "perpetual access to property" given that in the modern world (or in the West at least) the law concerning the private property tries to make it absolutely sure that private ownership of a resource grants you perpetual access to it.
+
+For example, in Slovakia (the country I am from) there's [statute of limitations](http://en.wikipedia.org/wiki/Period_of_prescription#Prescription) applied to various crimes that sets the maximum timespan after which legal proceedings may be initiated. If you are not tried within the period, you are automatically forgiven. In a very different manner, the claims to land never expire. If your great grandfather have got a piece of land by fraud and you inherited it, the heirs of the rightful owner can challenge you in court 100 years after the fact and still win the case.
+
+Back to the topic though: To get the feeling of how things actually work let's examine two corner cases: Private property with no guarantee of perpetual access and, on the other hand, public property with the perpetual access guaranteed.
+
+The first case is quite common in the regions with unstable political climate. You may own property and law may guarantee that nobody will take it from you, however, there are those communist guerillas in the woods that may eventually take over, hang you and pass your property to the People.
+
+As an concrete example, have a look what happened in Russia after the collapse of Soviet Union. Some people got extremely rich by privatising assets such as oilfields or mines. While these assets were treated as private property by law, in reality it could have happened that communists would get into the power again, or that some other crooks will manage to steal your property or, last but not least, that the way in which you've obtained your property will be investigated and the property will be seized from you in a legal or quasi-legal proceeding. The result was the pashalik mentality among the oligarchs, fast exploitation of resources and export of the wealth to foreign countries.
+
+To examine an opposite case, have a look at the Central Park in New York. It's a public property. The land is owned by the city. Still, the fact that the park remains public since 1857 is a pretty good guarantee that it will remain accessible to the public rather than be parceled into lots and sold to Wall Street executives.
+
+The guarantee of perpertual access in turn stimulates the investment in the property. As described in this [Wikipedia article](https://en.wikipedia.org/wiki/Central_Park_Conservancy) hundreds of millions of dollars and thousand of hours of volunteer work were already invested in Cental Park.
+
+As a conclusion I would say that while the pashalik syndrome is a big problem in almost every venue of life and privatisation seems to be an easy way to fight it, it can actually make the problem worse by not really guaranteeing perpetual ownership and at the same time making it easier to overexploit the resource. And the other way round, it is possible to fight pashalik syndrome even if the property is public assuming that sufficient guarantees are given that it will remain public in the future.
+
+**Martin Sústrik, Dec 8th, 2013**

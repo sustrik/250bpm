@@ -1,0 +1,29 @@
+# Reputation Engineering, part II
+
+
+
+As for this post, it's a follow up to the [Romeo and Juliet](http://250bpm.com/blog:92) post. In the post I showed how the feuding families of Montagues and Capulets could have solved the conflict via intermarriages. I've further showed how systems of marriages (known among anthropologists as "kinship systems") can be used to systematically align interests of different clans. Finally, I've observed that that this kind of incentive engineering is not unlike the reasoning you apply to cryptocurrency design.
+
+In what follows I am going to show how the mechanics outlined in the previous post can be applied to online reputation games.
+
+Imagine that head of Montague family has a Twitter account @MontaguePatriarch. Over the years he have amassed 10,000 followers. Capulet patriarch's account is @RealCapulet and has 11,000 followers.
+
+They can decide to become allies and use shared account @NobleFamiliesOfVerona. Both @MontaguePatriarch and @RealCapulet will redirect to @NobleFamiliesOfVerona. All the followers will be moved to the new account which will now have 21,000 followers. Any attempt to follow one of the old accounts will result in following the new one. Any tweet by either Montague or Capulet will appear as if posted by @NobleFamiliesOf Verona.
+
+Montague patriarch suddenly has only two options. Either he continues to build shared reputation (that is, follower base) with Capulets or he can refuse to cooperate and start a new Twitter account. But in the latter case he has to start anew with zero followers. In other words, he effectively gave Capulet family a present of 10,000 followers. This, obviously, creates a strong incentive to cooperate.
+
+I would leave the topic at this, but maybe it is so obscure and unfamiliar that implications are not immediately clear. Specifically, this is not the single possible hack of the reputation system. Rather, we enter an entire new field of "reputation engineering". To drive the point home let me present an example of a slightly more complex arrangement.
+
+Let's say Montagues and Capulets want to make an alliance but they don't want to join their Twitter accounts. What they can do is to sign a contract specifying that the accounts will be merged in one year's time. The contract may be secret, nobody may suspect that the alliance exists, yet, patriarchs' incentives will be aligned because, eventually, hurting the other family would result in hurting themselves.
+
+But wait! They don't want to merge their accounts, whereas this arrangement forces them to do so in the future.
+
+Well, they can add a clause to the contract allowing the merge to be postponed if and only if both parties agree. This way, they can delay the merging forever, but at the same time both sides are incentivized to cooperate because if they didn't the offended party could easily trigger the merge.
+
+And it goes without saying that all that was described above also applies to Facebook accounts, StackOverflow accounts or GitHub projects. It applies to any kind of token that can be used for accumulating reputation.
+
+Anyway, at this point you almost certainly have at least five ideas of reputation hacks of your own.
+
+But before going there and implementing them it's worth noting that this kind of thought experiments sheds light on the nature of reputation itself and of reputation tokens such as Twitter accounts or open source projects. I'll try to elaborate on that in one of next installments of this blog.
+
+**Martin Sústrik, July 13th, 2017**

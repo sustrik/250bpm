@@ -1,0 +1,57 @@
+# What Can Philosophers Learn from Programmers?
+
+### On Definitions
+
+At the college were studying a lot of maths. The books were quite boring. All they contained was a never-ending sequence of definitions, lemmas, theorems and proofs.
+
+Later on we've had lectures on logic where we learned how the sausage machine works. We've learned a lot of what's "true" and what's "false", what's a theorem and how to construct a proper proof.
+
+However, there was nothing about how to make a good definition.
+
+On occasions I spoke about this omission with random people and the answer was inevitably: "The definitions are just shortcuts. Abbreviations. They are not important. We could as well do without them. But it would be too tedious to spell everything out over and over again."
+
+And one can empathize with such sentiments. However, isn't it true that some definitions open fruitful areas of research while others do not? If we define "cyclic group" we'll get a ton of interesting results, applicability in cryptography and so on. If we define "double-prime" (a number that's a double of a prime) we likely won't discover anything interesting beyond what we already knew about the primes.
+
+### Riddle of Induction
+
+For a long time I've suspected I was just missing a point and that the definitions are really just abbreviations and that there's nothing to worry about.
+
+Then I've learned about Goodman's [new riddle of induction](https://en.wikipedia.org/wiki/New_riddle_of_induction). It goes like this:
+
+Imagine you see an emerald. It's green. Then you see another emerald. It's green again. After you see hundred emeralds and observe that all of them are green you formulate a theory that all emeralds are green.
+
+So far so good.
+
+Goodman then defines a new property called "grue". An object is grue if it is green before Jan 1st, 2030 or blue after Jan 1st, 2030. When you re-examine all the evidence you'll find out that all the emeralds you've ever seen were grue! Your new theory thus asserts that all emeralds are grue…
+
+The main idea of the riddle is that the thing is fully symmetric. If the sequence of steps that let's you induce that all emeralds are green is valid, then you can use exactly the same sequence of steps to prove that all emeralds are grue. Yet, one theory is obviously correct, while the other one is obviously wrong.
+
+So, it turns out, the way you make your definitions (green vs. grue) does not only affect fecundity of your research but, if done wrong, it can also result in patently wrong predictions!
+
+Goodman proposes to solve the problem by choosing the predicates based on their "entrenchedness". In other words, if the term "green" have served us well so far, we should use it and avoid dangerous, unproven novelties like "grue".
+
+### Ontologies and Programmers
+
+If we accept that choosing sane definitions is crucial for the success of a research enterprise, the question becomes: How should we choose our definitions? And how should we build our ontologies? What rules should we use to do that? Or, if there are no fixed rules, what are the rules of thumb? And, crucially: Who are the experts we can learn from?
+
+And I would argue that the experts you are looking for are programmers. Experts in the sense of a carpenter being an expert on the topic of wood. Carpenter may not know the chemical composition of wood, but has a lot of practical experience with how to deal with wood.
+
+Just look at programmer's typical daily routine! A complaint I hear often is that we almost never do what we've learned at school. Let's be generous and say we spend 2% of our time devising algorithms. What do we do in the remaining 98%? If we put aside the largest chunk that is [duct-taping](https://www.joelonsoftware.com/2009/09/23/the-duct-tape-programmer/), then it's mostly trying to decompose the problem into a set of interrelated concepts ("objects" in programming jargon) in such a way that we can deal with the problem effectively.
+
+In other words, we are building ontologies. If you see programmers arguing whether they should create "ShoppingCart" object and how should it relate to "User" and "Order" objects, they are devising an ontology.
+
+But even the largest chunk of our work, the abovementioned duct-taping, is in its turn the toil done to bridge different incompatible ontologies. That programmer there in the corner, cursing under his breath, struggling to get an existing Spring pipeline work with an external database written in Haskell — he is engaging in a painful ontology bridging.
+
+We do that eight hours a day, five days a week. We do it for years, some of us for decades. We may not be philosophers but after having spent so much time on it, we have pretty good intuitive understanding of what makes ontologies tick and what makes them suck.
+
+### Examples
+
+Consider Goodman's concept of "entrenchedness". We have our own equivalent of it, one that we haven't learnt from Goodman, but rather through our sweat and tears. It's called "Don't reinvent the wheel!" (Yes, our terms are more catchy that those invented by philosophers.) A person that doesn't follow the rule is said to suffer of "[NIH syndrome](https://en.wikipedia.org/wiki/Not_invented_here)". One that does follow it is practicing "[code reuse](https://en.wikipedia.org/wiki/Code_reuse)".
+
+Another example: Every semi-experienced programmer understands that the ontology is not a thing that is given and immutable, independent of the context it is used in. Rather, the ontology is determined by the problem you are tring to solve. If we work on a database of pets the concept of "animal" will not include the animal's DNA sequence. If we are working on a project for genetic laboratory it probably will. Heck, if we are working on pet database we can even safely ignore hippos. Nobody has a [pet hippo](https://www.nationalgeographic.com/animals/2018/09/colombia-cocaine-hippos-rewilding-experiment-news/). Arguing that hippo is in fact an animal and therefore our ontology should account for it completely misses the point. This principle is called YAGNI: "You ain't gonna need it!" If concept is not relevant to solving your problem, drop it. People who ignore this rule and try to overgeneralize things are called [architecture astronauts](https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/). Philosophers, by and large, tend to be architecture astronauts. Programmers' insight is that architecture astronauts fail. Or, maybe, they can succeed as in getting comfy job at IBM, but their designs don't translate into useful products.
+
+What else? After decades of pain, we have finally concluded that hierarchies of concepts don't work. That's not an obvious statement at all. After all, nobody gets fired from creating a hierarchy. In fact, Linnaeus got as far as being promoted to [type specimen of Homo Sapiens](http://iczn.org/content/who-type-homo-sapiens) for creating [the largest hierarchy ever](https://en.wikipedia.org/wiki/Tree_of_life_(biology)). But we have found that hierarchies lead to maintainability issues. Hierarchies are in our minds, they have no counterpart in the physical world. Thus, when creating a hierarchical ontology, we tend to bake in our assumptions about the world. When our understanding of the world changes it may be already too late. The ontology is already widely used and nobody's going to print new textbooks just because the ontology doesn't align nicely with the reality. Instead we start duct-taping the new knowledge into our old tired ontology. We get what [Imre Lakatos](https://en.wikipedia.org/wiki/Imre_Lakatos) calls "degenerative research programme".
+
+One more example: Consider [Conway's law](http://www.melconway.com/Home/Conways_Law.html). It says that design of the system copies the design of the organization that has created it. How is that different from what [sociologists of science](https://en.wikipedia.org/wiki/Sociology_of_scientific_knowledge) were trying to express? Except, with our preference for cute one-liners we express it succinctly as "If you have four groups working on a compiler, you'll get a 4-pass compiler."
+
+**September 28th, 2018**

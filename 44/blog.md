@@ -1,0 +1,115 @@
+# Bullshit jobs
+
+
+
+There have been a nice [article by anthropologist David Graeber](http://www.smh.com.au/national/public-service/the-modern-phenomenon-of-nonsense-jobs-20130831-2sy3j.html) about what he calls bullshit jobs.
+
+I recommend to read it in full, however, in case you don't, here's a short summary:
+
+In 1930's Keynes, reflecting on the improving productivity, predicted that by the turn of century we should be working only few hours a day.
+
+The productivity did in fact improve but, surprisingly, the working hours are longer today than they've used to be back then.
+
+So what's happening here?
+
+Mr. Graeber attributes the problem to the rise of "bullshit jobs".
+
+Bullshit job is a job that even the person performing it considers useless. Typically it involves clerical work, moving paperwork around, going to meetings, pretending to be productive and so on. In short, positions like "East Coast Strategic Vision Coordinator".
+
+To save myself the trouble of gathering anecdotal evidence I'll just point you to [this article](http://www.theatlantic.com/business/archive/2014/11/the-art-of-not-working-at-work/382121/?single_page=true).
+
+As for the hard evidence for existence of bullshit jobs, I don't have any. Maybe we'll get some data later on, when the phenomenon is actually investigated, but I would not bet my money on that: People are strongly motivated not to be too vocal about the fact that they are wasting their time in work, so collecting data is going to be a problem.
+
+Anyway, in the rest of the article I'll stick to the assumption that bullshit work is a phenomenon that actually exists in the real world. After all, if it does not, where do all the productivity gains disappear?
+
+The theory of bullshit jobs raises one extremely interesting question: How does it, for goodness' sake, manage to survive in the market economy?
+
+Surely the firms spending 20% of their costs on bullshit work would be outcompeted by their more efficient rivals.
+
+It's economics 101, right?
+
+To understand the gravity of the question, consider that what we see here is the most cherished value of capitalism, the profit, being sacrificed for reasons that are, mildly speaking, unclear. Firms are heavily investing in something that makes them less competitive! Just imagine how large a force we have to be dealing with here given that it's able to outbalance the fundamental force of profit seeking! The whole concept sounds just insane!
+
+Should we turn to conspiration theories then? Maybe the capitalists gathered in secret by the end of 60's and decided that all those hippies are far to dangerous to be left running around without any control and agreed to spend part of their profits to keep them at bay by overloading them with useless work?
+
+Well, conspiration theories rarely turn out to be true, so let's rather look for a systemic explanation of the phenomenon.
+
+And it's not that hard to see what's going on if you allow yourself to think a little bit outside of the box.
+
+Do you remember the neat trick from the evolutionary biology where altruism looks like a completely insane idea that nevertheless occurs in the nature — and how the apparent contradiction is suddenly resolved when you stop thinking about benefits to the organisms and start thinking about benefits to the individual genes?
+
+Can we do the same trick here and stop thinking about competing firms and rather start thinking about competing individuals?
+
+After all, firm isn't a person and can't really strive to maximise profits. Only people can.
+
+And when you look at the problem from the point of view of a rational individual, the situation is pretty clear: I need to work to feed myself and my family. If only 50% of population is needed to do all the necessary work, I have to cope with that. I have to accept a meaningless work if that's all I can get. If it's necessary to keep the work, I have to pretend and lie and cheat and support the whole edifice of bullshit work. Damn, I even have to beg, bribe and blackmail others to create a new bullshit position for me, if I can't get an existing one.
+
+So, in the end, large portion of the population, from CEOs to the lowliest interns, are trapped in bullshit jobs and none of them can really speak against it as they are all complicit and the only alternative they have is having no job and starving.
+
+The only people who can be opposed are those who do meaningful work — they will be needed no matter what happens. But even they have friends and family doing bullshit work and can't with good conscience ask the whole system to be dismantled.
+
+And that's it. The force that counter-balances the profit seeking is — surprise, surprise! — profit seeking, except that it is profit seeking by individuals rather than profit seeking by organisations.
+
+* * *
+
+What follows is a bag of minor observations about the system. If not particularly interested, feel free to skip it. All the important stuff have already been said, you are not going to miss any major point.
+
+##### 1\. Mechanisms
+
+Acknowledging the power of individual profit seeking as the main force behind bullshit jobs is a crucial step to understand the phenomenon. However, the question still remains about actual mechanisms that allow individual interests to prevail over interests of an organisation. Our political and societal system is after all explicitly designed to guarantee at least some efficiency of our institutions — and those built-in controls have to be somehow disabled or worked around to allow proliferation of bullshit work.
+
+##### 2\. Government
+
+Government and state administration is the primary suspect when looking for bullshit jobs.
+
+The feedback loop supposed to guarantee the efficiency is a political one, namely elections. If you are not happy with the efficiency of a particular department at the local tax office, vote for a different party next time.
+
+And when it is put this way, it's clear why it doesn't work. The feedback loop is so long and indirect that your vote has exactly zero effect on the staffing decisions of said department.
+
+Therefore, there is nothing to counterbalance the incentive for creating bullshit jobs.
+
+##### 3\. Companies
+
+Intuitively, one feels that firms should have better feedback loops than governments. First, they don't have absolute monopoly as the government does. Therefore, we can experiment with multiple of them at the same time and let the inefficient ones die. Second, "voting" is done on day-to-day basis by either buying or not buying their products, thus the feedback loop is much faster than the one provided by quadriennial elections.
+
+Still, the feedback loop is badly damaged. There's a disconnect between shareholders of the company which have incentive to make the company as efficient as possible and the management which is incentivised by individual profit — i.e. has tendency to create bullshit jobs. In the worst case the shareholders buy shares for speculative purposes (consider the case where shares are bought for millisecond intervals by high-frequency trading algortihms!) and don't care about internal working of the company. In such case the management is free to act with no outside control, driven only by the desire for individual profit.
+
+##### 4\. Network effects
+
+Let's now consider the case of a single-person company. The feedback loop is extremely short so there should be no space left for bullshit work, right?
+
+Well, having had a single-person company, I can attest that that's not the case.
+
+First, you are required to do non-trivial amount of paperwork by government. I have hired an external accountant to deal with that, but the fact that she was not a nominal part of the company and that she did it part-time only conceals the fact that she was doing non-trivial amount of bullshit work on behalf of my company.
+
+Second, if you have to deal with big companies you are sucked into their system of bullshit work. When, for example, trying to sell to them, you need a sales department to process all the RfPs and RfQs, to go to the meetings with the client and negotiate the terms, you need lawyers to write down contracts and so on.
+
+The bottom line is that because of network effects nobody is free from bullshit work (consider the amount of bullshit work unemployed are required to do!) unless, of course, they are living on a deserted island with no communication with the outside world.
+
+##### 5\. Social dynamics
+
+Having discussed why the traditional control mechanisms fail to push towards efficiency we still have to explain why the result is creating bullshit jobs rather than something else.
+
+I believe there are many possible scenarios and that the topic should be researched more extensively. For now, let me give you just one example of social dynamics that lead to creation of bullshit jobs:
+
+Imagine two departments, both having five employees, one headed by a good manager, other one by a bad one.
+
+The good manager keeps things in order, the department is working efficiently, all the work is done well and on time, there are no complains about the department.
+
+The bad manager fails to deliver good work, there are delays all the time and there are complaints from all over the place. The manager is, quite obviously, not going to blame his own inability and instead claims that he needs more people to do the work. Thus, more people are hired and not having much to do they try to validate their existence and invent more paperwork to deal with, organise more meetings and so on.
+
+Several years later there's an reorganisation going on and it turns out that the department headed by the good manager is still five people strong while the department headed by the bad manager has hundred employees now. Such imbalance seems irrational and thus the small department becomes part of the big one. The good manager becomes a subordinate of the bad manager and even his former department starts to swell.
+
+##### 5\. Conditioning
+
+One reason not to question the very existence of bullshit jobs is that they are so common. It's simply the way the world is. Nobody have ever experienced an alternative and thus it's kind of hard to even realise there's something wrong with the system. Even young people entering the workforce — which one would expect to be less biased than their elders — are already conditioned to accept the idea of meaningless work by spending a decade or two in shools. And the schools are ultimate bullshit job environments. Nothing you ever do in school is useful in any way. School is basically training you to do work for work's sake with the explicit goal of furthering your career (If you won't learn hard enough you'll end up as a garbage man!) rather than striving to do something meaningful.
+
+##### 6\. Reinforcement
+
+Doing bullshit work causes some amount of psychological unease and it seems that some mechanisms have evolved to deal with that. One that readily comes to mind is the constant back-patting to be seen in the environments with high amount of bullshit work. There's a constant flux of congratulations for achieving arbitrary milestones from managers to their subordinates, there are social events to celebrate the achievements and so on. And to stress the point that this is not some kind of plot by higher-level executives, but rather a system where everyone is complicit, there are also replies from the subordinates saying "Yes, we did it! Congratulations to you and the entire team!", apparently trying to ease the mangers' cognitive dissonance.
+
+##### 7\. Solutions
+
+Finally, one can imagine solutions to the problem. Guaranteed income, for example, would help. If everyone gets enough money to survive without having to work, the incentive to do bullshit work would be largely diminished. The problem with such measures is that it takes time and effort to implement them and until then everyone has to support the existing system just to be able to survive. So it's kind of a deadlock situation.
+
+**Martin Sústrik, November 27th, 2014**
