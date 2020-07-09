@@ -84,4 +84,4 @@ So, while re-implementing TCP functionality on top of TCP may seem like a silly 
 
 And hopefully, at some point, when everbody have already migrated to some future TCP-on-top-of-TCP-on-top-of-TCP-on-top-of-TCP-on-top-of-TCP protocol, we can create a shotcut and get rid of those good-for-nothing intermediate layers.
 
-**Martin Sústrik, April 24th, 2013**
+**April 24th, 2013**

@@ -44,4 +44,4 @@ In summary, 'go' can't be exactly as fast as 'if', but it can be comparable with
 
 Once that happens programmers will be free to use green threads to solve even the smallest problems — like those that we now solve using ifs and whiles — and to do so even in performance-critical environments.
 
-**Martin Sústrik, May 8th, 2016**
+**May 8th, 2016**

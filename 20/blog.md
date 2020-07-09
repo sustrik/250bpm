@@ -30,4 +30,4 @@ Luckily, "survey" pattern has exactly the behaviour we are looking for. It sends
 
 ![surrel2.png](http://250bpm.wdfiles.com/local--files/blog:20/surrel2.png)
 
-**Martin Sústrik, March 22nd, 2013**
+**March 22nd, 2013**

@@ -26,4 +26,4 @@ Anyway, at this point you almost certainly have at least five ideas of reputatio
 
 But before going there and implementing them it's worth noting that this kind of thought experiments sheds light on the nature of reputation itself and of reputation tokens such as Twitter accounts or open source projects. I'll try to elaborate on that in one of next installments of this blog.
 
-**Martin Sústrik, July 13th, 2017**
+**July 13th, 2017**

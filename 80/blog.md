@@ -56,4 +56,4 @@ Together with the fountains and hiking tracks and kids wandering around alone it
 
 I don't really know why I have written this down. Out of frustration maybe. But if there's one lesson to learn from all that let it be: If you don't want to see your children in concentration camps with numbers tattooed on their little arms, let them make decisions with possibly harmful consequences. Don't make them believe in nanny world.
 
-**Martin Sústrik, May 1st, 2016**
+**May 1st, 2016**

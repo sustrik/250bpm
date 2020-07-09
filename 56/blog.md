@@ -211,4 +211,4 @@ These final touches are left as an exercise for the reader. (If out of your wits
 
 Have fun and happy Swiss National Day everyone!
 
-**Martin Sústrik, August 1st, 2015**
+**August 1st, 2015**

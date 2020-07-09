@@ -26,4 +26,4 @@ First, the security agencies may decide to share the backdoor each with another.
 
 The second possibility is that the agencies won't share the backdoors, rather, they would decrypt data each for another ("spying as a service"). In such case, the order of encryption is important. The rule of the thumb is that the innermost level of encryption should not be the one created by the entity which threatens you the most, rather it should be the one crafted by its most direct enemy. That way we ensure that by decrypting data for others, you are basically cooperating on hurting yourself. After all, the one who will get the plaintext first is your most direct enemy. For example, if the files leaked by Snowden were encrypted in this way and if FSB asked NSA to decrypt it's part of the suite, NSA won't get any information, it wouldn't even know what it is decrypting, but in the end it would help WikiLeaks to get the files (assuming that WikiLeaks' encryption standard was used as the innermost one).
 
-**Martin Sústrik, September 11th, 2013**
+**September 11th, 2013**

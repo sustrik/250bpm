@@ -20,4 +20,4 @@ The problem has another, brighter, side though: If people are viewed as vital co
 
 To put it in a different way, while there's research going on on "friendly AI", maybe we should also think, at least a little bit, about the "friendly human" problem.
 
-**Martin Sústrik, October 14th, 2017**
+**October 14th, 2017**

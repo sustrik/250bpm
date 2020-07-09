@@ -66,4 +66,4 @@ The sustainability policies should thus be crafted in such a way as to speed the
 
 One can think of different measures to speed the failure. Privatisation is one such measure. It's not very efficient one though. It may still take years to fail on a private property. The really fast way to make the overexploiters fail is regulation: Fine them out of business once they start misbehaving. And, to get back to the topic of this essay, fines work equally well on commons and on private property.
 
-**Martin Sústrik, Nov 29th, 2013**
+**Nov 29th, 2013**

@@ -110,4 +110,4 @@ To throw in a bit of personal experience, I've done some coding with events alon
 
 While it is possible to use events without state machines (as already discussed) or state machines without events (using standard methods instead of events to drive the state machine) the combination of the two results in an extremely powerfull tool for implementing asynchronous systems. In the next blog post I would like to dive into technicalities of such implementation, including topics such as structuring of the code, handling of arguments and return values, nested state machines et c.
 
-**Martin Sústrik, August 1st, 2013**
+**August 1st, 2013**

@@ -34,4 +34,4 @@ Another tangential: Despite all the misguided focus on taxonomy there's one awes
 
 I've written about it [here](http://www.ppig.org/news/2006-06-01/linguistics-and-programming-languages). Bear in mind that it's an article from 2006 and talks about reserach done mostly in late 1990's. I have to write something more up-to-date: If nothing else, I should mention Go's approach to the problem.
 
-**Martin Sústrik, August 15th, 2015**
+**August 15th, 2015**

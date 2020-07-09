@@ -129,4 +129,4 @@ The problem behind the inefficiency is not in ZeroMQ code, nor is it an inherent
 
 _EDIT: Patrick Wyatt have written a more extensive blog post on intrusive lists. You can find it [here](http://www.codeofhonor.com/blog/avoiding-game-crashes-related-to-linked-lists)._
 
-**Martin Sústrik, Aug 30th, 2012**
+**Aug 30th, 2012**

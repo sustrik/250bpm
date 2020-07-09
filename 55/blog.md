@@ -30,4 +30,4 @@ Acknowledging the political nature of APIs also provides insight into the dynami
 
 I know that it's hard to get rid of the stereotype of API being a technical matter and to train yourself not to jump to the technical argument before the political issues are solved. However, if you do so, you'll save yourself many a headache and you'll also make the world a better place for the rest of us.
 
-**Martin Sústrik, July 28th, 2015**
+**July 28th, 2015**

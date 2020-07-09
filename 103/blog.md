@@ -28,4 +28,4 @@ To end on the brighter note, it seems that the Righteous fall essentially into t
 
 That makes me think that maybe behaving morally is as much a matter of chance as it is of personal moral power. Maybe when we behave morally in extreme situations it's not because we are some kind of moral supermen. Maybe it is because we are only slightly better than our neighbours who have sent the knocking Jews away. But also, maybe we have, unlike many others, got the privilege of life forcing upon us the moral dilemma that we would never dare to face voluntarily.
 
-**Martin Sústrik, October 7th, 2017**
+**October 7th, 2017**

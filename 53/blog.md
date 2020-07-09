@@ -98,4 +98,4 @@ It's good to understand why the latter example is more readable than the former 
 
 Here's my advice: When creating a new nested block, spend a second considering whether the same thing cannot be achieved by simply by using 'return', 'break' or 'continue'. It may require moving some bits around but the resulting flat and readable code is definitely worth the hassle.
 
-**Martin Sústrik, July 18th, 2015**
+**July 18th, 2015**

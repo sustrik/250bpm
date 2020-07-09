@@ -22,4 +22,4 @@ Just remember that I am your grandmother and you can't trick me by saying "it's 
 
 It's a week since I started to think about the problem and I still don't have a slightest clue. The only answer I was able to come with was an evolutionary one: The code that's good at reproducing reproduces. It doesn't have to be useful to be ubiquitous. But that's a defeatist answer. Surely there is at least some value for us programmers in those lines of code. But if so, what exactly is it?
 
-**Martin Sústrik, September 14th, 2015**
+**September 14th, 2015**

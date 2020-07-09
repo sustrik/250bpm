@@ -95,4 +95,4 @@ From this point of view there are many technical questions to consider such as: 
 
 I would like to consider these questions in the next part(s) of this article.
 
-**Martin Sústrik, November 1st, 2012**
+**November 1st, 2012**

@@ -32,4 +32,4 @@ Or are we going to give up on justice, crashing random small people under the wh
 
 And whatever your answer is, keep in mind that it applies both to the jail case and the Amazon case.
 
-**Martin Sústrik, August 19th, 2015**
+**August 19th, 2015**

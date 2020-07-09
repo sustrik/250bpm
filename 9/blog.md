@@ -130,4 +130,4 @@ Fortunately, the 'enclave' pattern saves the day here. When trying to compile th
 
 It is entirely possible that this pattern was already described elsewhere and I believe it is new only thanks to sheer ignorance. If so, let me know and I'll add the appropriate citation to this article.
 
-**Martin Sústrik, September 11th, 2012**
+**September 11th, 2012**

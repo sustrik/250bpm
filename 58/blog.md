@@ -60,4 +60,4 @@ If a component shows a lot of change code-wise but no change in documentation so
 
 Is one department having a significantly different documentation usage that another one? What's going on?
 
-**Martin Sústrik, August 9th, 2015**
+**August 9th, 2015**

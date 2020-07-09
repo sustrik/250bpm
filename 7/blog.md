@@ -80,4 +80,4 @@ As a conclusion I should say that I've deliberately started with the false assum
 
 There was a saying back in cold war times: "Where the fat one gets slim, the slim one dies." The idea was that by escalating the arms race you can economically ruin your adversary. Similarly, the goal of GPL is to hurt proprietary software more then it hurts free software. By adopting GPL you are trading less free software for even less proprietary software. And, as always, this trade-off is yours to make.
 
-**Martin Sústrik, Jun 27th, 2012**
+**Jun 27th, 2012**

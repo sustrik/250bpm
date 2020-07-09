@@ -54,4 +54,4 @@ Of course, removing the contexts has some repercussions on the semantics of the 
 
 While that may be considered a drawback in some ways, in other ways it is a desirable behaviour. For example, after socket is closed, the system resources allocated by the socket — such as TCP port or IPC file — are guaranteed to be released and thus ready to be re-used. However, that's a topic for another blog post.
 
-**Martin Sústrik, May 14th, 2013**
+**May 14th, 2013**

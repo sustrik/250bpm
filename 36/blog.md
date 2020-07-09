@@ -74,4 +74,4 @@ EDIT: Long functions with gotos are as bad a mess of little functions. Luckily t
 
 EDIT: The discussion about this article on Reddit gave me an idea of good example of a spaghetti domain: Imagine you are modelling buildings in software. First you model [Empire States Building](https://encrypted.google.com/search?tbm=isch&q=empire%20states%20building&tbs=imgo:1). It's rectangular, it has 103 stories, most of them almost identical. Individual features are repeated over and over. etc. It's a nice example of orderly domain. It can be described in few simple functions. Then you try to model [Kowloon Walled City](https://encrypted.google.com/search?tbm=isch&q=kowloon%20walled%20city&tbs=imgo:1). Any possible generic rule you try to make about it was violated by some poor chinese emmigrant trying to survive in the compound. No feature is repeated. Ever. In such case it's better to draw a map (as the japanese speleological team that explored the building did) and put every little detail in there.
 
-**Martin Sústrik, March 25th, 2013**
+**March 25th, 2013**

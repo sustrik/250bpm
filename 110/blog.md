@@ -10,4 +10,4 @@
 6.  When reading a program you would have to internalize the core concepts, say two or three of them, but after that you would be able to read the program without having to figure out what individual internally-used names mean. No more "How the hell does 'parse' function differ from 'parse2' function?"
 7.  It should be said that this is already used to some small extent. 'parse' is a function, 'parser' is an object. The relationship is relatively clear. Unfortunately, dictionaries of programs are typically based on English which is not very good at forming derived words.
 
-**Martin Sústrik, October 30th, 2017**
+**October 30th, 2017**

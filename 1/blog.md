@@ -55,4 +55,4 @@ In overall, I believe the future is bright for the project. It's slowly getting 
 
 So, while drinking the Champagne and eating the caviar I'm asking myself of four years ago about his opinion. And myself of four years ago replies: "Mission accomplished!"
 
-**Martin Sústrik, November 10th, 2011**
+**November 10th, 2011**

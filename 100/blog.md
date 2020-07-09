@@ -28,4 +28,4 @@ And given that "not coming from a worker family" was now a code word for having 
 
 My intention with this article was not to teach a moral lesson. Rather, I've realized that people from the west and even young people from the former Ostblock are often blind to these kinds of mechanics. Where a Eastern European goes "we fucking used to have this shit during communism" a person from the west tries to apply moral philosophy to find out whether the policy is fair or not. But it's not about morals. It's about social mechanics. If an instrument of power is left unguarded, not protected by checks and balances, it will be appropriated, repurposed and abused by the most reckless and selfish members of the society to further their own interests.
 
-**Martin Sústrik, August 20th, 2017**
+**August 20th, 2017**

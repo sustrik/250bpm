@@ -25,4 +25,4 @@ Source: Jorge Luis Borges, El idioma analítico de John Wilkins.
 
 Comment: Although this parody was written in mid XX. century, the impracticality of hierarchical organisation of concepts was pointed out in XVII. century, in Wilkins' own time, by no one less than Gottfried Leibniz. Despite of that, the idea re-emerged and gained popularity in late XX. century with the advent of so called "object-oriented design".
 
-**Martin Sústrik, October 5th, 2015**
+**October 5th, 2015**

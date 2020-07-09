@@ -42,4 +42,4 @@ We now have more understanding of one the "Separation of Powers" branches, the "
 
 It's Sunday tomorrow. I am taking a day off to think about how to solve the mess. Hopefully, nothing will blow up while I am away.
 
-**Martin Sústrik, Feb 7th, 2017**
+**Feb 7th, 2017**

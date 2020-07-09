@@ -84,4 +84,4 @@ However, if we get rid of select, the encapsulation suddenly starts working. Sen
 
 There's certainly more to be said in favour of select-free programming, but these two footnotes should give you at least a starting point for thinking about the problem.
 
-**Martin Sústrik, February 23rd, 2016**
+**February 23rd, 2016**

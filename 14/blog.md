@@ -85,4 +85,4 @@ To solve this problem nanomsg offers an alternative solution: Create different m
 
 Topology for "urgent" messages is drawn in red. Topology for "normal" messages is in black. Client sends request to either "urgent" or "normal" REQ socket, depending on the priority level it is interested in. Server polls on both REP sockets and processes messages from the "urgent" one first. Finally, given that the two topologies use two different TCP ports, it is possible to configure network switches and routers is such a way that they treat urgent messages in preference and that they allocate certain amount of bandwidth for them, so that network congestion caused by normal messages won't effect delivery of urgent messages.
 
-**Martin Sústrik, Jan 28th, 2013**
+**Jan 28th, 2013**

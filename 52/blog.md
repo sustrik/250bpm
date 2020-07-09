@@ -23,4 +23,4 @@ Perl: Nothing. Python: No macros. Ruby: Nada.
 
 If you are thinking of implementing a new programming language that will take over the world, give humble old macros a chance. Just take care to implement it in a sane way. After all, macro is just a function that returns a string that then gets inserted into the source code.
 
-**Martin Sústrik, July 5th, 2015**
+**July 5th, 2015**

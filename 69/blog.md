@@ -59,4 +59,4 @@ So, we can forget about state machines and use green threads instead, right?
 
 Unfortunately no. Green threads, even if they bring us a long way towards the goal, aren't sufficient to eliminate all state machines. In next blog post I'll dig into the remaining problems in more detail.
 
-**Martin Sústrik, January 5th, 2016**
+**January 5th, 2016**

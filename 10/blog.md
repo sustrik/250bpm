@@ -47,4 +47,4 @@ One concern here is that domain squatters may be the first to grab the lucrative
 
 In conclusion, it looks like implementing a fully decentralised domain name system free of any form of corporate and/or government control is a viable endeavour (what's needed is a couple of programmers and moderate amount of money) and chances of it getting traction and being widely adopted are good. There are some interesting unresolved problems, like handling compromised domain names (key is leaked) and dead domain names (key is lost), but these are in no way show-stoppers and can be resolved as we go.
 
-**Martin Sústrik, October 17th, 2012**
+**October 17th, 2012**

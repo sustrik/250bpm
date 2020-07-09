@@ -223,4 +223,4 @@ EDIT: The endeavour evolved into a new project called _nanomsg_ in the meantime.
 
 Read [part II of the article](/blog:8).
 
-**Martin Sústrik, May 10th, 2012**
+**May 10th, 2012**

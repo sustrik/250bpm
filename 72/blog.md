@@ -226,4 +226,4 @@ If language contains following features:
 
 Then there is no need for select statement.
 
-**Martin Sústrik, February 20th, 2016**
+**February 20th, 2016**

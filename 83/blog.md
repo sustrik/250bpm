@@ -38,4 +38,4 @@ And if that's not enough to impress you, consider that the desctructive impulse 
 
 Cryptography is the art of impossible made possible. It is the magic of modern age. It never ceases to fill me with awe.
 
-**Martin Sústrik, May 21th, 2016**
+**May 21th, 2016**

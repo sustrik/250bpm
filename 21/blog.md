@@ -192,4 +192,4 @@ Language binding authors should consider whether this kind of modularity is wort
 
 The rule of the thumb is: If the binging is simple enough and does little more than forwarding the calls from the user to the nanomsg library, the separation is not necessary. However, if the binding provides non-trivial functionality of its own, keeping the protocols separate makes sense to prevent accidental dependencies between the protocols.
 
-**Martin Sústrik, March 28th, 2013**
+**March 28th, 2013**

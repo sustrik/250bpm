@@ -36,4 +36,4 @@ Or you can look at artists, which also organise in loose communities and one's i
 
 Finally, if you want social experience, go to pub. I've spent ten years of my life in a pub and I liked it.
 
-**Martin Sústrik, November 14th, 2015**
+**November 14th, 2015**

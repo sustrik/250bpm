@@ -70,4 +70,4 @@ All the above begs a question: Given that the same mechanism can be identified i
 
 Maybe. Or maybe not. In any case, it's an interesting topic to investigate.
 
-**Martin Sústrik, August 12th, 2017**
+**August 12th, 2017**

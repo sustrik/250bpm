@@ -112,4 +112,4 @@ Doing bullshit work causes some amount of psychological unease and it seems that
 
 Finally, one can imagine solutions to the problem. Guaranteed income, for example, would help. If everyone gets enough money to survive without having to work, the incentive to do bullshit work would be largely diminished. The problem with such measures is that it takes time and effort to implement them and until then everyone has to support the existing system just to be able to survive. So it's kind of a deadlock situation.
 
-**Martin Sústrik, November 27th, 2014**
+**November 27th, 2014**

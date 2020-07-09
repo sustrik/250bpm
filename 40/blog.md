@@ -104,4 +104,4 @@ Think about it for a minute and you may spare yourself a lot of useless work.
 
 **EDIT:** There seems to be some confusion about what is "unit test" and what is "end-to-end test". In the context of this article, "end-to-end" test means test that uses external interface of the product (one that is visible to the end user). "Unit test", on the other hand, means test that uses internal interfaces within the product (those which are not visible to the end user).
 
-**Martin Sústrik, Jun 4th, 2014**
+**Jun 4th, 2014**

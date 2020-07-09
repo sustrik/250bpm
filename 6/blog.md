@@ -108,4 +108,4 @@ And our nuclear reactor example would now look like this:
 
 Makes more sense now, doesn't it?
 
-**Martin Sústrik, Jun 22th, 2012**
+**Jun 22th, 2012**

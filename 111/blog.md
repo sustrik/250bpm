@@ -16,4 +16,4 @@ Will humans evolve towards consuming less resources or having less kids so that 
 
 Also, market economy is a self-regulating system very much like evolution. Do we have a guarantee that free-running unregulated market economy is compatible with human survival? No. [The fact that it is self-regulating doesn't guarantee anything of the kind.](http://250bpm.com/blog:66) Look at the meningitidis bacterium again!
 
-**Martin Sústrik, November 3rd, 2017**
+**November 3rd, 2017**

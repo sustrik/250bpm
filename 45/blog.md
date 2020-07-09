@@ -54,4 +54,4 @@ It's a great plot, cleverly built tension and all that. So how is it resolved in
 
 All in all, this story-telling technique, although quite demanding on the writer (requiring to deliberately spoil carefully constructed plots) is a huge step forward and even if the popularity of Ice and Fire series fades in the future, G.R.R. Martin deserves to be remembered for inventing it.
 
-**Martin Sústrik, November 27th, 2014**
+**November 27th, 2014**

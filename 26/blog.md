@@ -84,4 +84,4 @@ Second, programmers of individual components connect to the topology by its name
 
 And that's it. As can be seen there are no configuration files, no need to distribute anything or install any additional software etc.
 
-**Martin Sústrik, September 10th, 2013**
+**September 10th, 2013**

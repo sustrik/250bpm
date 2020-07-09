@@ -38,4 +38,4 @@ The networking people, on the other hand don't generally feel the need for provi
 
 EDIT: An interesting historical fact is that early versions of ZeroMQ (versions 0.x and 1.x) contained a directory service mapping logical names to IP addresses — although it lived at the messaging layer. In version 2.0 I've dropped the feature as being mis-layered, something that should be rather implemented in the network stack.
 
-**Martin Sústrik, December 16th, 2012**
+**December 16th, 2012**

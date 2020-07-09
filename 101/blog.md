@@ -40,4 +40,4 @@ I think that the solution to the problem described above is, in many a project, 
 
 As already said, I am not sure whether this "feudalization of open source" interpretation is correct but it seems to explain at least some phenomena seen in the wild.
 
-**Martin Sústrik, September 12th, 2017**
+**September 12th, 2017**

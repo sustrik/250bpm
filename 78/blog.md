@@ -40,4 +40,4 @@ Welcome to the age of eschatological cults!
 
 TO BE CONTINUED.
 
-**Martin Sústrik, April 23rd, 2016**
+**April 23rd, 2016**

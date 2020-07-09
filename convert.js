@@ -21,6 +21,11 @@ for (var b = 1; b < 161; b++) {
   for(i = 1; i < lines.length; i++) {
      if(lines[i].startsWith("**Next:**")) continue
      if(lines[i].startsWith("**Previous:**")) continue
+
+     if(lines[i].startsWith("**Martin")) {
+         lines[i] = "**" + lines[i].substring(17).trim()
+     }
+
      md += lines[i] + "\n"
   }
   md = "# " + md.trim()

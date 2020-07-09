@@ -40,4 +40,4 @@ So, here's a proposal from myself: Let's polarize the discussion around represen
 
 I am not going to discuss merits of direct democracy vs. representative democracy here. However, let me say the following. While direct democracy, giving each single person a say in wide variety of topics, sounds like a liberal's dream, actual direct democracy, with most people being naturally conservative, tends to adopt relatively conservative policies. So, both sides would have to bite the bullet. At the same time, the prospect is attractive to both sides because it focuses directly on the problem of corruption. If the official's duty is to implement a policy adopted by a popular vote, there's little incentive to bribe them in the first place.
 
-**Martin Sústrik, Feb 6th, 2017**
+**Feb 6th, 2017**

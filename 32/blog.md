@@ -58,4 +58,4 @@ It doesn't look like any of the three options above (or any combination thereof)
 
 The fourth option would thus be to not even try to provide paid work for everyone, rather to introduce some kind of re-distribution scheme. The [basic income](https://en.wikipedia.org/wiki/Basic_income) policy (much discussed in the context of upcoming Swiss referendum about the topic) is a very crude tool, but it gives you an idea. However, it's a complex topic beyond the scope of this article. Hopefully, I'll get a chance to discuss it in more detail later on.
 
-**Martin Sústrik, Dec 15th, 2013**
+**Dec 15th, 2013**

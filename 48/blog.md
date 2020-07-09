@@ -73,4 +73,4 @@ And here's a piece of code that uses it. Note how printf — a system function w
         return 0;
     }
 
-**Martin Sústrik, April 19th, 2015**
+**April 19th, 2015**

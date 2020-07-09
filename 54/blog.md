@@ -46,4 +46,4 @@ However, I don't believe that tools Mr. Knuth and his associates have written wo
 
 I am still thinking about how to solve this problem. It's extremely interesting because it requires redefining the very interface between the machine and the programmer. Instead of programmer writing the program and machine executing it afterwards we now have them participating on a single continuous process, programmer providing his ability to deal with the unexpected, machine supplying the raw computational power. Such systems are not unheard of (Prolog, anyone?) but they've rarely went beyond being an academic exercise. And maybe it's time to change that.
 
-**Martin Sústrik, July 20th, 2015**
+**July 20th, 2015**

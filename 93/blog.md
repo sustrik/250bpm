@@ -22,4 +22,4 @@ One may argue that copyleft licenses introduce this kind of reciprocation, but t
 
 In short: Labeling open source communities as gift cultures is not helpful. It just muddles the understanding of what's actually going on. However, given that they are not exchange economies either, they probably deserve a name of their own, say, "reputation culture".
 
-**Martin Sústrik, July 5th, 2017**
+**July 5th, 2017**

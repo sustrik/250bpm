@@ -42,4 +42,4 @@ So, it seems, I am finally there.
 
 Please join me in my effort and do finish your projects. Your users will love you for that.
 
-**Martin Sústrik, June 9th, 2015**
+**June 9th, 2015**

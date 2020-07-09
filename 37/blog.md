@@ -191,4 +191,4 @@ In the rare case where we need to generate @{ sequence without the result actual
 
 **To be continued…**
 
-**Martin Sústrik, April 21st, 2014**
+**April 21st, 2014**

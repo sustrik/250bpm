@@ -30,4 +30,4 @@ Imagine yourself trying to rip it out: Can two callbacks be executed in parallel
 
 However, keep in mind that we've dissected only a part of the component's body. In reality, it is likely to have additional organs like, for example, a "first one is free" marketing strategy where license fees are extracted only after the hook is firmly attached and a circulatory system that brings the money back to sales & marketing which in turn boost its propagation rate.
 
-**Martin Sústrik, June 25th, 2015**
+**June 25th, 2015**

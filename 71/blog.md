@@ -249,4 +249,4 @@ Finally, integration with garbage collected languages may be tricky. Surely we d
 
 As a conclusion, I would like to say that this is a problem I was struggling with for years and this is the first time I feel I have a reasonable solution to it. Any feedback, criticism or simply ideas would be appreciated.
 
-**Martin Sústrik, February 7th, 2016**
+**February 7th, 2016**

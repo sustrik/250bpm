@@ -56,4 +56,4 @@ The little testing I've done with the new algorithm shows that for typical subsc
 
 Of course, if you've run tests of your own it would be great if you can share the results!
 
-**Martin Sústrik, March 9th, 2013**
+**March 9th, 2013**

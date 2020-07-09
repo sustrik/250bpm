@@ -44,4 +44,4 @@ Some additional comments:
 *   Running the system as a shared service makes it interesting for small publishers. If you have just few views per day, it's going to take a long time till you are able to mine a Bitcoin block. It becomes more of a lottery. However, if a shared service distributes the cash to all publishers evenly (proportionally to the of number of views) it turns it a much better, predictable proposition.
 *   Finally, it looks like the whole Bitcoin ecosystem could benefit by bringing much needed diversity to the mining pool. Eventually, one can imagine a world where people do Bitcoin transactions and at the same provide the CPU power to run the technology while accessing online content. The Bitcoin transaction fees are then passed to content creators on strictly vote-by-your-feet basis.
 
-**Martin Sústrik, September 15th, 2015**
+**September 15th, 2015**

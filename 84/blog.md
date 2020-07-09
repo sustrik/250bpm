@@ -16,4 +16,4 @@ This is an actual Slovak folk song.
 
 ![birch.png](http://250bpm.wdfiles.com/local--files/blog:84/birch.png)
 
-**Martin Sústrik, June 13th, 2016**
+**June 13th, 2016**

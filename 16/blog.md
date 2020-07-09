@@ -237,4 +237,4 @@ The code is relatively self-explanatory, so let me make one final remark. All th
 
 Following these instructions should make implementing network protocols in user space easy. Or, if not easy (network protocols rarely are) it at least allows developers to focus on the functionality of the protocol rather than force them to fight with constraints and deficiencies of the underlying operating system.
 
-**Martin Sústrik, February 8th, 2013**
+**February 8th, 2013**

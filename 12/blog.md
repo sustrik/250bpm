@@ -165,4 +165,4 @@ EDIT: It was suggested by Justin Cormack that _signalfd_ can be used to solve th
 
 EDIT: Ambroz Bizjak suggests to use pselect (and similar functions) to deal with the race condition above. The idea is that signals are blocked for a very short period of time before the blocking call. Once signals are blocked, the flags set by the handlers can be checked and pselect is called which unblocks the signals is an atomic manner. This trick is even applicable in libraries. If the library exposes a blocking function,you can extend it to expose a p\* variant of the function (for example, ZeroMQ could expose zmq\_precv in addition to zmq\_recv). User of the library can use this function to handle signals in a race-free way.
 
-**Martin Sústrik, November 5th, 2012**
+**November 5th, 2012**

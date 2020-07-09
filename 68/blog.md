@@ -29,4 +29,4 @@ In fact, you would still be able to ignore the error but you would have to make 
 
 Moreover, looking for ignored errors, which is really hard in C, given that there's no easy way to distinguish void function invocations from unchecked error codes, would become easy, both for human reviewers and for automated tools.
 
-**Martin Sústrik, December 19th, 2015**
+**December 19th, 2015**

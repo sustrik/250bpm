@@ -42,4 +42,4 @@ I believe that at the point when the situation get unbearable, the legislators w
 
 Therefore, we should take care what mechanisms and policies we are using. One day, they may become a law.
 
-**Martin Sústrik, May 16th, 2016**
+**May 16th, 2016**

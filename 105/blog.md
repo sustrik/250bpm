@@ -36,4 +36,4 @@ Well, maybe I can't attack the problem directly, but I can train myself to remai
 
 And maybe that will make me a better programmer. A better scientist. A better artist. And maybe even a better person.
 
-**Martin Sústrik, October 9th, 2017**
+**October 9th, 2017**

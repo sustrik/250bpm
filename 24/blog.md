@@ -122,4 +122,4 @@ If you are interested in the topic, there's a lot of literature about state mach
 
 Stay tuned.
 
-**Martin Sústrik, May 28th, 2013**
+**May 28th, 2013**

@@ -30,4 +30,4 @@ As a side note, periodic referendum on debt cancellation may be good "checks and
 
 In short, let's not get ourselves slaughtered like sheep and start campaigning for debt cancellation referendum now.
 
-**Martin Sústrik, July 25th, 2016**
+**July 25th, 2016**

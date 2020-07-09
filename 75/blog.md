@@ -49,4 +49,4 @@ They may even meet at a social event and boast about being rich. Each of them ha
 
 EDIT: After discussing the topic with couple of people it seems that mentioning a bank in the example was a mistake. The very word "bank" is guaranteed to cause emotional reaction. A progressive stops following the argument and starts swearing about evil banksters. A conservative stops following the argument and dismisses the whole thing as a leftist bullshit. In reality though, the argument is not about banks. If you allow for exchange of goods on one side and exchange of IOUs on the other, every market participant, however poor and humble, gets an option to create money out of nothing. If A, a plumber, lends $100 to B, a bus driver, they've just printed $100 worth of money.
 
-**Martin Sústrik, March 21th, 2016**
+**March 21th, 2016**

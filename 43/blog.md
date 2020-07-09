@@ -81,4 +81,4 @@ But I would argue that it makes the code less readable when compared to simply u
 
 As a conclusion: Don't treat magic numbers as bad coding style automatically. In some cases replacing magic numbers by symbolic constants makes the code pretty awful to read and maintain.
 
-**Martin Sústrik, November 27th, 2014**
+**November 27th, 2014**

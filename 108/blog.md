@@ -58,4 +58,4 @@ EDIT Oct 17th: Here's a [piece of news](https://www.theguardian.com/world/2017/o
 
 > “The task wasn’t to support Trump,” one of the factory’s employees told RBC. “We raised social issues and other problems that already existed in the US, and tried to shine as bright a light as possible on them.”
 
-**Martin Sústrik, October 16th, 2017**
+**October 16th, 2017**

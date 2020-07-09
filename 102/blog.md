@@ -63,4 +63,4 @@ Kaizen, the process of continual improvement, have degraded to Zen, the act of s
 
 So here I sit, with no idea what to do.
 
-**Martin Sústrik, October 4th, 2017**
+**October 4th, 2017**

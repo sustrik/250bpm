@@ -42,4 +42,4 @@ As an addendum, I would like to suggest an improvement to the technique:
 
 The "rage" tends to be a short-lived emotion. The cheater can unlock the deposit and forget about the transaction. After some time the victim would forget about the injustice and when faced with need for money he would unlock the deposit. At that point the cheater would turn out profit. To counter this scenario, the deposit should have a deadline after which it would not be possible to unlock it. Once again, measuring the time needed for the rage to wear down would be an interesting economic experiment.
 
-**Martin Sústrik, Dec 1st, 2013**
+**Dec 1st, 2013**

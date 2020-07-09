@@ -37,4 +37,4 @@ Consider following use cases that would not be possible with GPL'd codebase:
 
 That, hopefully, should explain why nanomsg uses MIT/X11 license and why communication infrastructure, in general, should follow the same path.
 
-**Martin Sústrik, Jan 30th, 2013**
+**Jan 30th, 2013**

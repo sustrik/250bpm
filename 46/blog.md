@@ -58,4 +58,4 @@ The only problem with that kind of approach is that you have to convince the min
 
 This is where the non-interactive zero knowledge proofs kick in. Similarly to Google proving that the adjacent nodes in the graph have different colours you can make a proof that the Bitcoin transaction you are attempting to do plays by the rules. The proof is then sent to the miners along with the transaction itself. Each miner can thus independently verify that the transaction is valid and deserves to be included into the ledger.
 
-**Martin Sústrik, December 7th, 2014**
+**December 7th, 2014**

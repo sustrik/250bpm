@@ -16,4 +16,4 @@ Of course, we should apply the same caution that biologists do: The relationship
 
 Having said all that, it seems to me that the above perspective is interesting when researching the Internet network stack. Specifically, it is often said that "the waist of the hourglass" is moving up. In other words, the least common protocol is changing with time and it's moving up the stack. Where IP was once the common denominator, later the role moved to TCP and eventually to HTTP. And, one would guess, we are still not at the end of the road and we will see more protocols layered on top of HTTP becoming the accepted norm.
 
-**Martin Sústrik, October 15th, 2017**
+**October 15th, 2017**

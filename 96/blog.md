@@ -74,4 +74,4 @@ Webpage
 
 Google page rank, Bing page rank
 
-**Martin Sústrik, July 17th, 2017**
+**July 17th, 2017**

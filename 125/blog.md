@@ -106,7 +106,7 @@ The person may, alternatively, decide to help. Once again, there's cognitive dis
 
 Also, this new understanding of himself as a moral and self-sacrificing person affects his future behavior. If asked for help again how can he possibly justify refusing the plea?
 
-**Martin Sústrik, April 29th, 2018**
+**April 29th, 2018**
 
 **Note from September 30th, 2018**: François Rochat and Andre Modigliani in their paper "[The Ordinary Quality of Resistance: From Milgram's Laboratory to the Milage of Le Chambon](http://faculty.buffalostate.edu/hennesda/obedience%20and%20disobedience%20-%20le%20chambon.pdf)" describe the collective effort in the sorroundings of the French village of Le Chambon that saved ~5000 people. While this is somewhat different to individual rescue efforts discussed in this article, the authors still point out the importance of gradual increase in individual involvement:
 

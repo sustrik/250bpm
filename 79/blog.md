@@ -16,4 +16,4 @@ Enjoy!
 
 ![3.png](http://250bpm.wdfiles.com/local--files/blog:79/3.png)
 
-**Martin Sústrik, April 26th, 2016**
+**April 26th, 2016**

@@ -133,4 +133,4 @@ If the cancellation mechanism is not this generic users would have to implement 
 
 I've been trying to design such a cancellation mechanism for several years and I have repeatedly failed. Finally, I believe I have a solution that may work. I am going to describe it in the next article.
 
-**Martin Sústrik, January 25th, 2016**
+**January 25th, 2016**

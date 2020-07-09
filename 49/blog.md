@@ -16,4 +16,4 @@ Let's call it Sustrik's law:
 
 The law seems almost impossible to beat. Are there any policies users can adopt to avoid the trap? Is there anything developers of nice components can do to avoid being replaced? I would love to hear any suggestions.
 
-**Martin Sústrik, June 2nd, 2015**
+**June 2nd, 2015**

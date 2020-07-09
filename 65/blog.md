@@ -42,4 +42,4 @@ I don't see it happening any time soon. There's still too much empty space to fi
 
 However, we shouldn't get desperate. Software isn't going to grow on forever. Consider steam engines. At their heyday one would say there was no end to their expansion. Yet, today, steam engines are a pretty small and stable niche seeing little growth. When we'll eventually get there, we'll finally have time to write some beautiful, well-designed and bug-less code.
 
-**Martin Sústrik, October 14th, 2015**
+**October 14th, 2015**

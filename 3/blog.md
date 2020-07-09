@@ -22,4 +22,4 @@ So, what do you think? Are we going to see Vikings rising to the power once agai
 
 Let us know!
 
-**Martin Sustrik, February 13th, 2012**
+**February 13th, 2012**

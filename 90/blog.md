@@ -60,4 +60,4 @@ Second, I am currently working on [BSD socket API revamp](https://github.com/sus
 
 On the other hand the API should support the existing, not fully reliable, protocols, most importantly, TCP. But that raises an API design problem: Given that there are so many ways to terminate a connection (forceful termination, single-step TCP-like close, two-step TCP-like termination with half-closes, full-blown three step termination as secribed above) how many shutdown APIs should there be? If there's close1(), close2(), close3() and close4(), it's going to get super confusing pretty quickly. If there's a single API, it can't give the same reliability guarantees for every protocol.
 
-**Martin Sústrik, Apr 7th, 2017**
+**Apr 7th, 2017**

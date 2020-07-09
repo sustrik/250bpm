@@ -38,4 +38,4 @@ But if not so, overcome your disgust and tolerate them.
 
 Because you can choose to be super virtuous and not tolerate a smallest bit of ideological impurity. You don't have to tolerate anyone, if that's what it takes. But then one day the Nazis will come for you and there will be nobody to fight for you.
 
-**Martin Sústrik, August 17th, 2017**
+**August 17th, 2017**

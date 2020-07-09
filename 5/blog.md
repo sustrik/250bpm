@@ -188,4 +188,4 @@ Give it a try and let us know your experience. Any feedback or comments on Surve
 
 EDIT: The survey pattern is also implemented in [nanomsg](http://nanomsg.org).
 
-**Martin Sústrik, May 15th, 2012**
+**May 15th, 2012**

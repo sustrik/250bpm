@@ -21,4 +21,4 @@ So, all in all, the deflation problem with Bitcoin is not as grave as it seems t
 
 We should rather think about how to fight inflation in decentralised environment. Maybe, when the problem hits, we can burn a little money with every transaction? If so, wouldn't it encourage hoarding as opposed to moving money around? Maybe governments should burn tax Bitcoins? But then, any government that does so puts itself into disadvantage as they bear the cost while everyone else profits. And so on.
 
-**Martin Sústrik, Dec 19th, 2013**
+**Dec 19th, 2013**

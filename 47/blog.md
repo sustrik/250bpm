@@ -32,4 +32,4 @@ Feel free to comment and post your suggestions below.
 
 Ready? Steady. Go!
 
-**Martin Sústrik, January 16th, 2015**
+**January 16th, 2015**

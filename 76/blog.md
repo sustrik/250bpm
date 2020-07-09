@@ -38,4 +38,4 @@ As one can observe, the uncertainty principle can be circumvented by defining a 
 
 However, given that such virtual goods are good for nothing by themselves, one has to exchange them for an actual good at some point and that's where the uncertainty principle kicks in again.
 
-**Martin Sústrik, March 23th, 2016**
+**March 23th, 2016**

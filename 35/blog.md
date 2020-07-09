@@ -55,4 +55,4 @@ On the other hand, I recall I've read about a study that showed that placebo eff
 
 To get back to the original topic of this essay, we, as scientists and rationalists should make our best to present the issues of distribution of scientific knowledge (academic publishing, licensing of doctors etc.) as part of scientific rather than political discourse. If the political discourse everyone is going to aim for a political compromise. In scientific discourse, on the other hand, it's clear that there are good solutions and bad solutions. That we can quantify them, test them in experimental manner and either accept or reject them depending on the body of evidence collected during the experiments.
 
-**Martin Sústrik, Dec 31st, 2013**
+**Dec 31st, 2013**

@@ -38,4 +38,4 @@ And here's the fix:
 
 The example above was deliberately trivial. It may seem at first glance that the different between "increment" and "get next" is insignificant. However, once the code grows sufficiently complex, such clarity in expressing the intent can make a world of difference.
 
-**Martin Sústrik, August 3rd, 2015**
+**August 3rd, 2015**

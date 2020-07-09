@@ -125,4 +125,4 @@ So, once again: I am not claiming that cartesian programming is a full-blown par
 
 What are the other objections? I would love to hear about them.
 
-**Martin Sústrik, Apr 30th, 2017**
+**Apr 30th, 2017**

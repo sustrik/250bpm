@@ -243,4 +243,4 @@ So, if we want to stretch the biological metaphor further, ribosome tool plays r
 1.  First step compiles .dna file into a code generator written in pure ruby (it has .rna extension!)
 2.  Second step runs the code generator to produce the actual generated code.
 
-**Martin Sústrik, April 27th, 2014**
+**April 27th, 2014**

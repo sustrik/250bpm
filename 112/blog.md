@@ -16,7 +16,7 @@ If you think of code generation as a preliminary step to creating a programming 
 
 Even more interesting lesson to learn here is that as a programming language designer you don't have to rely on your gut instinct or, even worse, just try to impose your pet way of doing things on programming public, but rather, you can adopt an evidence-based approach and start by analysis of the vast repository of real-world use cases that is GitHub.
 
-**Martin Sústrik, November 21st, 2017**
+**November 21st, 2017**
 
 **Addendum, November 24th**: Looking at the comments about this article on [Hacker News](https://news.ycombinator.com/item?id=15756054) it seems that people have misunderstood what I was saying in two ways.
 

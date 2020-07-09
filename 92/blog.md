@@ -42,4 +42,4 @@ Well, it's not that straightforward. My feeling is that there's a new kind of pr
 
 I have couple of practical ideas of how this may work but first one has to ponder what reputation means in the modern world and how exactly it functions. I'll try to write down some thoughts on that topic in the next instalment of this blog.
 
-**Martin Sústrik, July 2nd, 2017**
+**July 2nd, 2017**

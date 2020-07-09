@@ -112,4 +112,4 @@ No. Recall that we postulated that the two-kid meme spreads horizontally. The ch
 
 I am not claiming that any of the proposals above is going to directly help to solve the problem of inadequate equilibria. My only intention was to show that the situation is not as hopless as it my seem at the first sight. Maybe, this way, I can gain next 100 points in the game for the survival of the human race.
 
-**Martin Sústrik, December 4nd, 2017**
+**December 4nd, 2017**

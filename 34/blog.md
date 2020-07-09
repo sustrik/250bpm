@@ -66,4 +66,4 @@ _In short, I am not trying to suggest that the teleported person is you or that 
 
 _What that means for the problem of replacing a person by the memories stored in the net and an active agent carrying out person's will is left as an exercise to the reader._
 
-**Martin Sústrik, Dec 27th, 2013**
+**Dec 27th, 2013**

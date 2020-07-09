@@ -94,4 +94,4 @@ Multiplexing on top of TCP in overall fails to deliver the advantages it is assu
 
 The special case of multiplexing several services on the top of a single TCP port doesn't require actual multiplexing of the data. It can be achieved by passing separate TCP connections initiated on the same port to the different applications as appropriate.
 
-**Martin Sústrik, February 24th, 2013**
+**February 24th, 2013**

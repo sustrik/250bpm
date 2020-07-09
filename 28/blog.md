@@ -26,4 +26,4 @@ And that's it.
 
 I recall that when I was 10 years old, we've used to, with no adult guidance or encouragement whatsoever, invent different secret alphabets and simple substitution ciphers. I am pretty sure that if we've got our hands on a true cryptographically secure cipher — and an asymmetric one for that matter — we would be simply blown away. I certainly intend to show the trick to my son when he gets to that age.
 
-**Martin Sústrik, Oct 24th, 2013**
+**Oct 24th, 2013**

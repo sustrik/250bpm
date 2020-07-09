@@ -40,4 +40,4 @@ People being priced out of Silicon Valley may also sympathize.
 
 It can also explain the corrosion of democratic values that we are seeing nowadays: With intellectual elite being sucked out of poor areas there's a leadership vacuum left behind that is easily filled in by extremists. And if you look at electoral maps they very much support this interpretation.
 
-**Martin Sústrik, October 8th, 2017**
+**October 8th, 2017**

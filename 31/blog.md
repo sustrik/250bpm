@@ -36,4 +36,4 @@ The guarantee of perpertual access in turn stimulates the investment in the prop
 
 As a conclusion I would say that while the pashalik syndrome is a big problem in almost every venue of life and privatisation seems to be an easy way to fight it, it can actually make the problem worse by not really guaranteeing perpetual ownership and at the same time making it easier to overexploit the resource. And the other way round, it is possible to fight pashalik syndrome even if the property is public assuming that sufficient guarantees are given that it will remain public in the future.
 
-**Martin Sústrik, Dec 8th, 2013**
+**Dec 8th, 2013**

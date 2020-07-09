@@ -40,4 +40,4 @@ Then the theory 1 is correct: People get less complexity-tolerant as they grow m
 
 Then the theory 2 is correct: Some people are mathematicians while others are handymen. The latter love complexity. It has nothing to do with experience level.
 
-**Martin Sústrik, July 25th, 2014**
+**July 25th, 2014**

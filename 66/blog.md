@@ -22,4 +22,4 @@ We have solved the problem with the centrifugal governor: We may require the mec
 
 We may as well solve the inefficient market problem. Technically, it's only a question of adding more levels of (ideally self-regulating) control on the top of the basic mechanism. Ultimately though, it requires responsible human beings watching the whole system, raising questions about it and being able to implement fixes when things go wrong.
 
-**Martin Sústrik, October 25th, 2015**
+**October 25th, 2015**

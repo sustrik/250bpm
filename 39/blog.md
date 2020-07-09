@@ -172,4 +172,4 @@ This article proposes a PUB/SUB system with minimal bandwidth requirements as it
 
 The long-term goal is to reconcile this system with systems used by different messaging implementations and standardise it as an SP protocol.
 
-**Martin Sústrik, May 4th, 2014**
+**May 4th, 2014**

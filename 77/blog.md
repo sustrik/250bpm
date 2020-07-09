@@ -36,4 +36,4 @@ My mother-in-law used to work for a hedge fund. After she retired she settled at
 
 TO BE CONTINUED
 
-**Martin Sústrik, March 27th, 2016**
+**March 27th, 2016**

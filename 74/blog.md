@@ -62,4 +62,4 @@ Seriously, I'll tell you what happens: You become a species of your own.
 
 TO BE CONTINUED
 
-**Martin Sústrik, March 12th, 2016**
+**March 12th, 2016**

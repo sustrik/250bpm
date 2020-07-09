@@ -12,4 +12,4 @@ And, by the way, if I had to choose between a universe with limited computationa
 
 In any case, watch the video and wonder: [https://www.youtube.com/watch?v=boZyu6NhAcI](https://www.youtube.com/watch?v=boZyu6NhAcI)
 
-**Martin Sústrik, December 7th, 2017**
+**December 7th, 2017**

@@ -50,4 +50,4 @@ It also seems that Go's implicit interfaces were designed to avoid unnecessary a
 
 My final question is whether we are doing enough to limit the amount of abstraction we have to deal with. And do we have sufficient tools to do such limiting? While in many cases it seems that it's only a question of programmer's attitude, at least in the case of mocking it's the tooling itself that contributes to the problem.
 
-**Martin Sústrik, Nov 7th, 2016**
+**Nov 7th, 2016**

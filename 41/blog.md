@@ -21,4 +21,4 @@ For canonical info on libtool versioning look here:
 [http://www.gnu.org/software/libtool/manual/html\_node/Libtool-versioning.html](http://www.gnu.org/software/libtool/manual/html_node/Libtool-versioning.html)  
 [http://www.gnu.org/software/libtool/manual/html\_node/Updating-version-info.html](http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html)
 
-**Martin Sústrik, Jun 10th, 2014**
+**Jun 10th, 2014**

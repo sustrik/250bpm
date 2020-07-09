@@ -26,4 +26,4 @@ Until one day, it was in the fall of 1938, one guy accused of larceny explained 
 
 "We are even now."
 
-**Martin Sústrik, October 16th, 2017**
+**October 16th, 2017**

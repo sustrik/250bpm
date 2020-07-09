@@ -65,4 +65,4 @@ Finally, let's have a look how two partial buses can be joined into a single bus
 
 The above is the first attempt to formalise bus pattern as a scalability protocol. The solution may still have its shortcomings. Any help with identifying the deficiencies of the protocol would be appreciated!
 
-**Martin Sústrik, February 19th, 2013**
+**February 19th, 2013**

@@ -30,4 +30,4 @@ As a conclusion, you cannot have these three things at once: Broadcast and at-le
 
 And now it's time to play the trick that CAP theorem once did: Let's take the problem understood to be unsolvable by experts but generally expected to be solved by the software infrastrucure. Let's devise a explicit theorem (BAP theorem in our case) that proves that problem can't be solved. Finally, let's ridicule everyone that assumes the opposite until the theorem becomes general knowledge.
 
-**Martin Sústrik, September 6th, 2015**
+**September 6th, 2015**

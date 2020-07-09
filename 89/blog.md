@@ -60,4 +60,4 @@ EDIT(Oct 2017): In case you think that correspondence between codons and amino a
 
 Also, [fun column by Douglas Hofstadter](http://www.cs.uml.edu/~kim/580/SA_genetic_code.pdf).
 
-**Martin Sústrik, Feb 25th, 2017**
+**Feb 25th, 2017**

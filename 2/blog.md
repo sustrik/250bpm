@@ -54,4 +54,4 @@ In summary, I believe the current state of business messaging ecosystem is cause
 
 Happy Lunar New Year everybody!
 
-**Martin Sustrik, January 23rd, 2012**
+**January 23rd, 2012**
