@@ -1,0 +1,552 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>On Rigorous Error Handling - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:140";
+        OZONE.request.timestamp = 1594263596;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:140";
+        WIKIREQUEST.info.pageId = 359253885;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;On Rigorous Error Handling&quot;" href="/feed/page/comments-359253885.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            On Rigorous Error Handling
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em">
+<p>In my long career as a programmer I've seen a lot of projects with a lot of error handling practices and, sadly, almost none that actually worked.</p>
+<p>We are facing facing few high-level problems here:</p>
+<ol>
+<li>For many applications error handling is not critical.</li>
+<li>Error handling code is rarely executed. Consequently, it looks like it works until it doesn't.</li>
+<li>Programmers want to implement new features. Writing error handling is just an annoyance that slows them down.</li>
+</ol>
+<h3 id="toc0"><span>Who cares about error handling?</span></h3>
+<p>For many applications writing rigorous error handling code doesn't pay off.</p>
+<p>As long as you have some semi-decent way to deal with errors transparently (e.g. exceptions) you are fine. If there's a problem, throw an exception. On the top level catch all the exceptions and open a dialog box with the error message (in frontend applications) or write it to the log (on the server).</p>
+<p>The above, of course, means that you hope that, after the exception is processed, the application will we left in a consistent, functional state. Once again, you HOPE. You do not KNOW. You do not know because, when writing the application, you haven't thought about error handling at all.</p>
+<p>Now, don't get me wrong. I am not saying that you should never do this. It often makes sense from economic perspective. Writing rigorous error handling is expensive. If the worst thing that can happen is that a frontend application crashes once in a long while making user curse and restart it, then it's totally not worth doing.</p>
+<p>However, there is also a different kind of application. There are medical application where the patient dies if they misbehave. There are space probes that crash into planets, taking millions of dollars of investment as well as scientific careers down with them. There are HFT application which can generate bazillion of dollars of loss for every minute of downtime.</p>
+<p>In these cases it's definitely worth writing rigorous error handling code.</p>
+<p>That much everybody agrees with.</p>
+<p>However, it is often not explicitly understood that whenever you are writing a piece of infrastructure (as opposed to a client-facing application) you are always in the latter category.</p>
+<p>A piece of infrastructure can be used in a medical application, in a space probe, in a high-frequency trading system, but unless it's a commercial product and you take care not to sell it to anyone who looks too important to fail, then you have no way to prevent that.</p>
+<p>Ergo, if you are doing infrastructure, you should always do rigorous error handling.</p>
+<h3 id="toc1"><span>Error handling code is never executed</span></h3>
+<p>The mainstream attitude to fixing bugs at the moment is &quot;run it, see what fails, then fix it&quot;. That's why we write tests. Tests make the code run and, hopefully, fail if there's a problem. That's why we have user-facing issue trackers. If a bug gets past testing, it will fail for the user and user will fill in a bug report &#8212; or so we hope, at least.</p>
+<p>But the error handling code is, almost by definition, executed only rarely. And code that is triggered by two concurrent problems is executed almost never at all.</p>
+<p>Therefore, tests are not likely to help. User reports may catch the issue, but are often closed with &quot;cannot reproduce&quot; status.</p>
+<p>There are alternative approaches, like formal verification or fuzzing, but almost nobody uses those.</p>
+<p>In the end, we want programmers to write error handling code that works on the first try, without any testing.</p>
+<p>And that is, of course, impossible to do. But, on the other hand, it's not black and white. Errors are rare and if the bugs in error handling code get rare as well then you can increase the reliability of the system from, say, three nines to five nines. And as medical applications go, adding one nine of reliability saves some actual human lives.</p>
+<h3 id="toc2"><span>The dilemma</span></h3>
+<p>So here we are. We have programmers who want to spend no time on error handling, who just want to move on and implement cool new features, and we want them to write perfect error handling code on the first try, without testing.</p>
+<p>Even worse, attempts to solve the first problem (to make error handling invisible) often make the second problem (failure-proof error handling) even more complex. And given that everyone is writing new code all the time, but errors are rare, the solutions to the first problem are going to proliferate even at the expense of making the second problem harder or even impossible to solve.</p>
+<h3 id="toc3"><span>An example</span></h3>
+<p>Let's have a look at OpenSSL API. I don't want to pick on OpenSSL, mind you. You'll encounter similar kind of problem with almost any library, but I happened to work with OpenSSL lately so that's what I'll use as an example. Also note that OpenSSL is notoriously underfunded, so instead of getting angry at them, do your bit and send them a donation.</p>
+<p>Anyway, when an OpenSSL function fails it reports that it failed and you can have a look at the &quot;error queue&quot;. Error queue is effectively a list of integer error codes. The list of error codes can be found <a href="https://docs.huihoo.com/doxygen/openssl/1.0.1c/include_2openssl_2err_8h.html#a5cfe189318fb9136f9beffc6d4c6b53d">here</a>.</p>
+<p>Note how documentation of an error code invariably looks like this:</p>
+<div class="code">
+<pre>
+<code>#define ERR_R_BAD_GET_ASN1_OBJECT_CALL   60
+
+Definition at line 296 of file err.h.</code>
+</pre></div>
+<p>Yes, you get a cryptic string, a cryptic number, and a reference to the line in the source code. If you look at the source code you'll find a cryptic string and a cryptic number again. No explanation of what the error means whatsoever.</p>
+<p>Now think for a second about how you would, as a user, handle such an error. It's a multidimensional beast and it's not even clear whether order of errors matters or not. And each error is itself chosen from a large set of cryptic errors with no explicit associated semantics at all. Needless to say, the set of error codes is going to expand in newer versions, so even if you handled every single one of them correctly you can still get a nasty failure at some point in the future.</p>
+<p>So what I've ended up doing was logging all the errors from the queue for debugging purposes and converting the entire thing into a single &quot;OpenSSL failed&quot; error. I am not proud of that but I challenge you to come up with a better solution.</p>
+<p>And no, passing the monstrosity to the caller, who has even less context about how to handle it than you have, and breaking the encapsulation properties along the way, is not an option.</p>
+<p>The takeaway from the example is that even if you are willing to do rigorous error handling, the underlying layers often give you no chance but to go the easy and sloppy way.</p>
+<p>As a side note, OpenSSL's system of reporting errors is by no means the worst of all. Consider typical exceptions as they appear in most languages. Exception is not a list of error codes. It's an object. In other words, it can be a list, a map, a binary tree or whatever you want, really. There's absolutely no way to deal with this Turing-complete beast is a systemic way.</p>
+<h3 id="toc4"><span>What's needed</span></h3>
+<p>When you look at it from the point of view of the user of the API, the requirements are suddenly crystal-clear. If you are to do rigorous error handling you want a small amount of well-defined failure modes.</p>
+<p>A function may succeed. Or it may, for example, fail because of disconnected backend. Or it may time out. And that's it. There are only two failure modes and they are documented as a part of the API. Once you have that, the error handling becomes obvious:</p>
+<div class="code">
+<pre>
+<code>int err = some_library_function();
+if(err != 0) {
+    swich(err) {
+    case ECONNRESET:
+        ...
+    case ETIMEDOUT:
+        ...
+    default:
+        assert(0); // the function violates its specification
+    }
+}</code>
+</pre></div>
+<p>Some libraries are closer to this ideal state, some are further away.</p>
+<p>As already mentioned, classic exceptions are the worst. You get an object, or worse, just an interface that you can (the horror!) downcast to an actual exception class. All bets are off.</p>
+<p>OpenSSL's approach is somewhat better. You still get a list of error codes, but at least you know it's a list and not a map or something else.</p>
+<p>Some libraries go further in the right direction and return a single error, but the list of error codes is long, poorly documented and subject to the future growth. Moreover, there's no clear association between a function and the error codes it can return. You have to expect any error code when calling any function. Often, the rigorous error handling code, as show above, would have to have dozens if not hundreds of error codes in the switch statement.</p>
+<p>When possible errors are part of the function specification, on the other hand, we are almost OK. This is the case with <a href="https://en.wikipedia.org/wiki/POSIX">POSIX</a>. I've also tried to used the same approach with my own libraries, such as <a href="http://libdill.org/documentation.html">libdill</a>. However, even in this case it's possible to do it wrong. The list of possible errors in POSIX specification of <a href="https://pubs.opengroup.org/onlinepubs/009695399/functions/connect.html">connect() API</a> lists more than a dozen of possible errors which in turn disincentivizes the user from doing rigorous error handling.</p>
+<p>In the best of the cases, the list of errors is small not only for a particular function, but also for the library as a whole. In my experience, it's entirely possible to do with as little as 10-15 different error codes for the entire library.</p>
+<p>The advantage of that approach is twofold.</p>
+<p>First, the user, as they use the library, will eventually learn those error codes and what they mean by heart. That in turn makes writing rigorous error handling code much less painful.</p>
+<p>Second, a limited set of error codes makes the implementer of the library to actually think about the failure modes. If he can just define a new error code for every error condition he encounters, it's an easy way out with no need to do much thinking. If, on the other hand, he has to choose one of the 10 possible error codes, he has to think about which of them matches the semantics of the error the best. Which in turn results in a better, more consistent library, which it is joy to use.</p>
+<p><strong>November 17th, 2018</strong></p>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 8647195;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-4297273">
+                      
+		<div class="post" id="post-4297273">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4297273)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4297273">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=efeadc3a2af14d61abbc282dae9b3e08&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>lsem (guest)</span> <span class="odate time_1562162285 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Jul 2019 13:58</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4297273">
+									
+
+<p>I used to work on a project where all functions that can fail return bool indicating success or failures. In addition to that, each unit (not a class or function, but unit, leaving in separate file and responsible for doing some meaningful work) declared a list of error identifiers together with error messages. In unit implementation unit can set not single error but entire stack. Whenever one feels he or she can handle error (function returned false), you can get error from stack, otherwise if you want, push error to the top of the stack and do `return false`.</p>
+<p>I like that approach and that was a serious, carefully written succesfull realtime system for automation control industry.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4297273)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4297273)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4297273" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4297273)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4297273)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=efeadc3a2af14d61abbc282dae9b3e08&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>lsem (guest)</span>, <span class="odate time_1562162285 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Jul 2019 13:58</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="8647195"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

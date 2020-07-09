@@ -1,0 +1,1252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Structured Concurrency in High-level Languages - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:124";
+        OZONE.request.timestamp = 1594263588;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:124";
+        WIKIREQUEST.info.pageId = 74173112;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;Structured Concurrency in High-level Languages&quot;" href="/feed/page/comments-74173112.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            Structured Concurrency in High-level Languages
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em">
+<h3 id="toc0"><span>Introduction</span></h3>
+<p>I've recently stumbled upon Nathaniel Smith's <a href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/">article</a> about structured concurrency. It's very nice, very readable and explains the entire problem from the basics, so if you have no idea what structured concurrency is go and read it.</p>
+<p>I've been dealing with the problem for many years and addressed it in several <a href="http://250bpm.com/blog:71">blog posts</a>. However, I've always tried to keep it down to earth, very low level, partially because I was playing with it in C (maybe with a bit of assembly mixed in) and partly because I feel uneasy about discussing the grand high-level concepts before the low-level details are sorted out.</p>
+<p>However, Nathaniel's blog post and the subsequent <a href="https://news.ycombinator.com/item?id=16921761">discussion</a> made me realize that maybe it's already time to look a bit higher up the stack, to go beyond C's &quot;if you don't do by hand it won't be done&quot; approach and think about how would structured concurrency look like if it was natively supported by a high-level language.</p>
+<p>What follows are some raw thoughs in no particular order.</p>
+<h3 id="toc1"><span>A coroutine is like a control construct</span></h3>
+<p>Forget parallelism for a second. We are talking <a href="https://www.youtube.com/watch?v=cN_DpYBzKso">concurrency</a> here:</p>
+<p>Very much like control constructs (&quot;if&quot;, &quot;for&quot;, &quot;while&quot;, &quot;function call&quot; and such) a coroutine is just a nice trick to hide the ugly old goto. When you launch a coroutine you jump to its code. When coroutine gets to a point where it would block, it jumps to the code of a different coroutine. And so on.</p>
+<p>If implemented properly, coroutines can even get close to the classic control structures in the terms of performance.</p>
+<h3 id="toc2"><span>But coroutine is also like a variable</span></h3>
+<p>Coroutine has a state (its entire stack and whatnot). &quot;if&quot; statement does not. That sounds like they are fundamentally different. But look at &quot;for&quot; statement. It does have the control variable. In C89 it's even declared outside of the construct:</p>
+<div class="code">
+<pre>
+<code>int i;
+for(i = 0; i != 10; ++i) {
+    ...
+}</code>
+</pre></div>
+<p>The control variable is stored on the stack. Maybe we can do the same with coroutines? And actually, yes, libdill does allow for that kind of thing:</p>
+<div class="code">
+<pre>
+<code>void foo() {
+   int x;
+   int y;
+   ...
+}
+
+int a;
+char stk[10000];
+int b;
+go_mem(foo(), stk, sizeof(stk));</code>
+</pre></div>
+<p>The stack would then look like this:</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:124/stack.png" alt="stack.png" class="image" /></div>
+<p>The remaining problem is to make sure that foo() is not running any more when the scope the stack was declared in is exited. If it was still running, it would use memory on the stack below the stack pointer. If the stack grew again the new stack frames and the coroutine would overwrite each other.</p>
+<p>It looks like we'll have to solve some scoping issues before we have a functional high-level concurrency model.</p>
+<h3 id="toc3"><span>A coroutine can't be orphaned</span></h3>
+<p>There are many good arguments for not allowing coroutines to be orphaned (not allowing a child coroutine to run after the parent coroutine exits). You can find them in <a href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/">Nathaniel's article</a>.</p>
+<p>The example of the stack-based coroutines is just a more drastic example of the same: Not only are orphaned coroutines bad design they will also cause memory corruption and undefined behavior.</p>
+<p>And once you accept the fact that there will be no orphan coroutines you can imagine introducting concurrency into a programming language as a move from the dumb old linear call stack to a call tree.</p>
+<p>See the animation below, but be warned. Once you see it you cannot unsee it. I've envisaged it some years ago and since then I have a hard time thinking of concurrency in any other way.</p>
+<p>Each box in the picture is a stack frame:</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:124/calltree.gif" alt="calltree.gif" class="image" /></div>
+<h3 id="toc4"><span>A coroutine can be orphaned</span></h3>
+<p>Despite of what was said above there is a use case for orphaned coroutines. Specifically, sometimes you want a coroutine to be a part of an object allocated on the heap. Imagine, for example, a TCP socket object which contains a coroutine to send keepalives. The socket is created by one coroutine but it can be easily passed to a different, unrelated coroutine. If we do that we don't want the keepalives stop being sent just because the original coroutine exited.</p>
+<p>And here we are back to &quot;coroutine is like a variable&quot; idea.</p>
+<p>While variables are mostly nicely nested in the call stack, that's not always true. Every now and then you need to allocate variables on the heap. And C actually provides two mechanisms to access variables. If the variable lives on the stack you can address it as &quot;a&quot;. When it lives on the heap you address it via a pointer &quot;p-&gt;a&quot;.</p>
+<p>Can we do the same thing with coroutines? Sure, why not? We can extend the language, for example, like this:</p>
+<p>On the stack. The coroutine will be canceled when the scope is exited:</p>
+<div class="code">
+<pre>
+<code>go(foo());</code>
+</pre></div>
+<p>On the heap. The coroutine will be canceled when p is freed:</p>
+<div class="code">
+<pre>
+<code>p-&gt;go(foo());</code>
+</pre></div>
+<h3 id="toc5"><span>Coroutines naturally aggregate into pools</span></h3>
+<p>This principle comes from the observation that often there is an arbitrary number of coroutines doing the same thing. For instance, a network server will probably have one coroutine per connection. All those coroutines are exactly the same. And you, as a programmer, want to deal with all of them in a unified way rather than having to care about each one separately. In the end of the day, you want a single handle that points to that bundle of coroutines rather than many handles, each pointing to a different coroutine.</p>
+<div class="code">
+<pre>
+<code>int b = bundle();
+while(1) {
+    int s = tcp_accept(listener);
+    bundle_go(b, handle_tcp_connection(s));
+    if(shutdown_requested()) break;
+}
+close(b); /* All the TCP handlers are canceled here. */</code>
+</pre></div>
+<p><a href="http://libdill.org">libdill</a> calls this concept a &quot;bundle&quot;. Nathaniel Smith's <a href="https://trio.readthedocs.io">Trio</a> calls it a &quot;nursery&quot;. Both names suck. The former becuase it's too generic (bundle of what?) and likely to name-clash with unrelated concepts, the latter because it's, for a such fundamental concept, too long (3 sylables!) and because the semantic relation between the name and the thing it represents is quite vague. Maybe we can do better? (Edited here: I've proposed &quot;rope&quot; but that name is <a href="https://en.wikipedia.org/wiki/Rope_(data_structure)">already taken</a>.)</p>
+<h3 id="toc6"><span>There are different types of cancellation</span></h3>
+<p>Off the top of my head:</p>
+<ul>
+<li>Cancel all threads in the bundle.</li>
+<li>Block until all threads in the bundle exit.</li>
+<li>Block until at least one thread in the bundle exits. Cancel all the other threads.</li>
+</ul>
+<p>The last one is not completely intuitive but we should take it seriously given that it seems to solve a bunch of pesky problems, like timeouts and Ctrl+C handling.</p>
+<p>Consider this code:</p>
+<div class="code">
+<pre>
+<code>int b = bundle(ANY);
+bundle_go(b, foo());
+bundle_go(b, sleep(10));
+bundle_go(b, wait_for_ctrlc());
+close(b);</code>
+</pre></div>
+<p>If foo() finishes, it cancels both the timer and the Ctrl+C waiter. If timeout expires, foo() is canceled as well as the Ctrl+C waiter. If Ctrl+C is pressed, foo() is canceled as well as the timer. Exactly the semantics we want.</p>
+<p>All that being said, the different kinds of cancellation seem to be profoundly different, in the way that may require different syntax.</p>
+<p>For example, &quot;cancel all threads&quot; will be probably used to handle errors. You encounter an error and during the cleanup you just cancel the threads. That in turn means that you can't say whether you'll use &quot;cancel&quot; or &quot;all&quot; mechanism in advance, when you are creating the bundle. You don't know beforehand whether there will be an error or not.</p>
+<p>As for &quot;wait for all&quot; and &quot;wait for any&quot;, these you do want to specify in advance, because they are part of the business logic of the application. Having a single bundle that can be terminated as &quot;any&quot; in some cases and as &quot;all&quot; in other cases sounds like sloppy programming.</p>
+<p>But even &quot;all&quot; and &quot;any&quot; don't seem to be two fully equal options. Some more thinking needed&#8230;</p>
+<h3 id="toc7"><span>There are even more types of cancellation</span></h3>
+<p>Consider the accept loop example above. We have a bundle of worker threads with &quot;all&quot; semantics. All threads have to finish before the bundle can be closed.</p>
+<p>Now imagine that we want to shut down the bundle but we want to give the worker threads 10 seconds to finish gracefully.</p>
+<p>We would have to somehow wrap the all-style bundle of worker threads into a any-style bundle together with a new timeout coroutine.</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:124/nesting.png" alt="nesting.png" class="image" /></div>
+<p>One can even imagine three or four levels of such nesting.</p>
+<h3 id="toc8"><span>Is a thread part of the bundle it creates?</span></h3>
+<p>As for &quot;no&quot; alternative, we've seen the examples above. User creates a bundle and adds threads into it. Parent continues executing as normal:</p>
+<div class="code">
+<pre>
+<code>int b = bundle(ALL);
+while(1) {
+    int s = tcp_accept(listener);
+    bundle_go(b, handle_tcp_connection(s));
+    if(shutdown_requested()) break;
+}
+close(b);</code>
+</pre></div>
+<p>It's not clear how could the &quot;yes&quot; alternative be nicely designed. The first thread gets a priviliged position automatically, simply because it's part of the creator function. Let's say we introduce all{} construct that will treat all the coroutines created within its context (including the main one) as belonging to an implicit bundle. Note how foo() and bar() feel different from the code within the all{} construct:</p>
+<div class="code">
+<pre>
+<code>void foo() {
+   ...
+}
+
+void bar() {
+   ...
+}
+
+all {
+    go(foo());
+    go(bar());
+    i = i + 1;
+}</code>
+</pre></div>
+<p>Also, consider how would similar any{} construct work. Given that if any thread in the bundle finishes, all the other threads are canceled, the code within the any{} construct can be canceled at any point when sleep() exits:</p>
+<div class="code">
+<pre>
+<code>any {
+    go(sleep(10));
+    bar();
+    baz(); /* Canceled here after 10s, goto end of the scope. */
+    quux();
+}</code>
+</pre></div>
+<p>One way to solve this kinds of problems would be to simply block the main coroutine while bundle is executing:</p>
+<div class="code">
+<pre>
+<code>void bar() {
+    ...
+}
+
+void foo() {
+    go(bar());
+    ...
+}
+
+r = all(foo());
+/* We get here only after both foo and bar are done. */</code>
+</pre></div>
+<p>The solution is kind of neat. However, one thing I don't like about it is that it's the main coroutine which decides whether foo() should be treated as &quot;all&quot; or &quot;any&quot; bundle. Whereas, in fact, the distinction is part of foo's business logic.</p>
+<h3 id="toc9"><span>Conclusion</span></h3>
+<p>Implementing structured concurrency in higher-level languages is not entirely trivial and poses some hard design questions.</p>
+<p>Any opinion on the topic is welcome.</p>
+<p><strong>April 28th, 2018</strong></p>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 5804007;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-3783627">
+                      
+		<div class="post" id="post-3783627">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3783627)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3783627">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=af293f3fe77093fbf9299d59448d4602&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>nymous (guest)</span> <span class="odate time_1524920350 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 12:59</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3783627">
+									
+
+<p>Intervals are a similar concept to Trio. There's several research papers by Nicholas Matsakis.<br />
+They are perhaps more constrained than trio, but allow for more sanity checking. They also have a story about shared resources. I've only used them for toys (with threads and coroutines), but the idea seems very promising.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3783627)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3783627)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3783627" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3783627)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3783627)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=af293f3fe77093fbf9299d59448d4602&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>nymous (guest)</span>, <span class="odate time_1524920350 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 12:59</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-3783744">
+                      
+		<div class="post" id="post-3783744">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3783744)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3783744">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d99444d8dc6e9b8ddab6b7eeaacd375e&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Jeremy (guest)</span> <span class="odate time_1524930759 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 15:52</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3783744">
+									
+
+<p>Maybe &quot;spool&quot; would be a good name instead of bundle. While the analogy may not work as well as rope it's maybe closer than bundle.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3783744)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3783744)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3783744" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3783744)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3783744)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d99444d8dc6e9b8ddab6b7eeaacd375e&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Jeremy (guest)</span>, <span class="odate time_1524930759 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 15:52</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-3783765">
+                      
+		<div class="post" id="post-3783765">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3783765)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3783765">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263587" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1524932341 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:19</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3783765">
+									
+
+<p>Thanks! I haven't even know the word. I also like the rhyme of &quot;thread pool&quot; and &quot;thread spool&quot;.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3783765)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3783765)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3783765" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3783765)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3783765)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263587" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1524932341 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:19</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-3783784">
+                      
+		<div class="post" id="post-3783784">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3783784)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3783784">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=543aa6927dff4ba4a1bd6f3ecd4e9571&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>yxhuvud (guest)</span> <span class="odate time_1524934039 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:47</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3783784">
+									
+
+<p>There is an active thread in the trio repo about renaming the concept away from &quot;nursery&quot;. That could be a place to follow (and/or engage in) so that you can choose the same name and minimize confusion :)</p>
+<p><a href="https://github.com/python-trio/trio/issues/504">https://github.com/python-trio/trio/issues/504</a></p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3783784)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3783784)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3783784" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3783784)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3783784)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=543aa6927dff4ba4a1bd6f3ecd4e9571&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>yxhuvud (guest)</span>, <span class="odate time_1524934039 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:47</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-3783771">
+                      
+		<div class="post" id="post-3783771">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3783771)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3783771">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=c6d26f59209331de838a02d77f23aefd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Dan (guest)</span> <span class="odate time_1524933019 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:30</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3783771">
+									
+
+<p>Maybe a &quot;cohort&quot; of coroutines?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3783771)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3783771)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3783771" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3783771)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3783771)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=c6d26f59209331de838a02d77f23aefd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Dan (guest)</span>, <span class="odate time_1524933019 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:30</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-3783780">
+                      
+		<div class="post" id="post-3783780">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3783780)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3783780">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263587" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1524933683 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:41</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3783780">
+									
+
+<p>Looking in thesaurus I've also found &quot;wad&quot;: A small mass of cotton, wool, or other fibrous or soft material, used for stuffing, padding, packing, etc.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3783780)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3783780)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3783780" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3783780)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3783780)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263588" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1524933683 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:41</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-3784228">
+                      
+		<div class="post" id="post-3784228">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3784228)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3784228">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=5c52e210dd7c5696d2a0de568849d8a5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>stephen (guest)</span> <span class="odate time_1524992771 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2018 09:06</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3784228">
+									
+
+<p>I would caution against &quot;wad&quot;: it's slang for ejaculate/semen in a lot of places</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3784228)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3784228)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3784228" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3784228)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3784228)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=5c52e210dd7c5696d2a0de568849d8a5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>stephen (guest)</span>, <span class="odate time_1524992771 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2018 09:06</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-3783789">
+                      
+		<div class="post" id="post-3783789">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3783789)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3783789">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=dba4ed6a1a7648401f8bd4689b2556b5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Brandon Bloom (guest)</span> <span class="odate time_1524934666 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:57</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3783789">
+									
+
+<p>I like the any/all constructs. My proposed names: join and race.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3783789)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3783789)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3783789" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3783789)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3783789)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=dba4ed6a1a7648401f8bd4689b2556b5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Brandon Bloom (guest)</span>, <span class="odate time_1524934666 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 16:57</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-3783827">
+                      
+		<div class="post" id="post-3783827">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3783827)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3783827">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=b6f606c3198bdc4d0e6b1d490b51ee9c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Tony Garnock-Jones (guest)</span> <span class="odate time_1524938164 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 17:56</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3783827">
+									
+
+<p>Martin, I can't recall if I've pointed out my dissertation work to you before, but in case not, you might find the idea of &quot;facets&quot; interesting in this connection. (See <a href="http://syndicate-lang.org/tonyg-dissertation/html/#x_2_5_0_0_25">chapter 2</a> but also <a href="http://syndicate-lang.org/tonyg-dissertation/html/#x_5_0_0_0_4">chapter 5</a> and the examples in <a href="http://syndicate-lang.org/tonyg-dissertation/html/#CHAP:IDIOMATIC-SYNDICATE">chapter 8</a>.)</p>
+<p>Each actor has (one or more) facets, which nest to form a tree similar to your &quot;call tree&quot;, except they're ~reactive rather than ~sequential. Facet trees have nice properties in the face of the different kinds of cancellation you mention, and compose quite nicely; some discussion of cancellation per se is in <a href="http://syndicate-lang.org/tonyg-dissertation/html/#sec:The-cancellation-pattern">chapter 9</a>.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3783827)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3783827)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3783827" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3783827)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3783827)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=b6f606c3198bdc4d0e6b1d490b51ee9c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Tony Garnock-Jones (guest)</span>, <span class="odate time_1524938164 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2018 17:56</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-3784210">
+                      
+		<div class="post" id="post-3784210">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3784210)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3784210">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263588" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1524987992 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2018 07:46</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3784210">
+									
+
+<p>Yes, I still have it on my reading list. With the work and family it's getting hard to read anything that's more than one page long :(</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3784210)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3784210)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3784210" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3784210)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3784210)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263588" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1524987992 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2018 07:46</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-3785549">
+                      
+		<div class="post" id="post-3785549">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3785549)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3785549">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1e5cc1bedf74e6b759ff54072d5846e8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Tom Johnson (guest)</span> <span class="odate time_1525116056 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Apr 2018 19:20</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3785549">
+									
+
+<p>How is this different than Dart's async calls?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3785549)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3785549)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3785549" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3785549)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3785549)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1e5cc1bedf74e6b759ff54072d5846e8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Tom Johnson (guest)</span>, <span class="odate time_1525116056 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Apr 2018 19:20</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-3785927">
+                      
+		<div class="post" id="post-3785927">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3785927)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3785927">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263588" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1525152147 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 May 2018 05:22</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3785927">
+									
+
+<p>I am not familiar with Dart, but from quick research it looks like it has only the standard async/await construct. Am I missing anything?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3785927)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3785927)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3785927" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3785927)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3785927)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263588" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1525152147 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 May 2018 05:22</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-3786586">
+                      
+		<div class="post" id="post-3786586">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3786586)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3786586">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1e5cc1bedf74e6b759ff54072d5846e8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Tom Johnson (guest)</span> <span class="odate time_1525197748 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 May 2018 18:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3786586">
+									
+
+<p>Nice animation. Thanks.</p>
+<p>Your concept of a bundle appears to be an interesting abstraction above a Dart isolate.</p>
+<p>All Dart code runs in isolates, which is essentially is a thread with a separated-out heap and communication exclusively via message-passing (like Erlang Actors but seemingly without network transparency). From the main Dart isolate it is possible to create one or more new isolates to implement parallel code. Within one isolate it is possible to create tasks (single threaded concurrency) or use the async/await construct. First-class functions allow isolate-pools to be created. If you do a google search for &quot;load_balancer.dart&quot; you will find an interesting example of an experimental load_balancer that can run a function on multiple isolates in parallel based on some quantifiable load estimation.</p>
+<p>There is lots more there. A parent isolate can be notified of child isolate errors. If you are targeting the DartVM and use spawn to create child isolates, you can pass objects back and forth. If targeting Javascript then only primitives (or maps or lists of primitives) can be passed.</p>
+<p>My interest is soft real-time applications.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3786586)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3786586)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3786586" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3786586)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3786586)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1e5cc1bedf74e6b759ff54072d5846e8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Tom Johnson (guest)</span>, <span class="odate time_1525197748 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 May 2018 18:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4001618">
+                      
+		<div class="post" id="post-4001618">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4001618)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4001618">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9d6fe34198ca526b4a21342e63fe8306&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>John Belmonte (guest)</span> <span class="odate time_1537778041 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">24 Sep 2018 08:34</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4001618">
+									
+
+<p>not sure why you'd want to fix cancellation options etc. as syntax in the language</p>
+<p>e.g. here is wait_all and wait_any in Trio. It's very useful to be able to encapsulate various behaviors like this as functions.</p>
+<div class="code">
+<pre>
+<code>async def wait_all(*args):
+    async with trio.open_nursery() as nursery:
+        for f in args:
+            nursery.start_soon(f)
+
+async def wait_any(*args):
+    async with trio.open_nursery() as nursery:
+        cancel = nursery.cancel_scope.cancel
+        for f in args:
+            nursery.start_soon(_wait_and_call, f, cancel)</code>
+</pre></div>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4001618)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4001618)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4001618" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4001618)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4001618)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9d6fe34198ca526b4a21342e63fe8306&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>John Belmonte (guest)</span>, <span class="odate time_1537778041 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">24 Sep 2018 08:34</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="5804007"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

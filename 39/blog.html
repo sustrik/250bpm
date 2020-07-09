@@ -1,0 +1,551 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Design of PUB/SUB subsystem in ØMQ - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:39";
+        OZONE.request.timestamp = 1594263537;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:39";
+        WIKIREQUEST.info.pageId = 22162468;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;Design of PUB/SUB subsystem in ØMQ&quot;" href="/feed/page/comments-22162468.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            Design of PUB/SUB subsystem in ØMQ
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em"><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:38">Code Generation &amp; Visual Smog in Code (part II)</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:40">Unit Test Fetish</a></p>
+</div>
+    
+    
+    
+    </div>
+<p><strong>This article was originally written on June 23rd 2011. As there was some discussion of subscription forwarding on nanomsg mailing list, I am republishing an enhanced version of the article it in this blog.</strong></p>
+<h1 id="toc0"><span>Introduction</span></h1>
+<p>PUB/SUB (publish/subscribe) is a messaging pattern used to distribute data to arbitrary number of subscribers. In context of ØMQ the focus with PUB/SUB is on scalability, ie. on ability to add more subscribers to the system without overloading it.</p>
+<h1 id="toc1"><span>Minimising Network Traffic</span></h1>
+<p>Aside of the data distribution itself, the main design goal for PUB/SUB subsystem is to minimise the network traffic. Afterall, what PUB/SUB boils down to is multicasting which is notorious for overloading the networks. Thus, the design described herewith is based on the following requirement:</p>
+<p><em>If there's no subscriber for a particular message in a specific portion of the distribution tree the data should not even traverse associated network segments.</em></p>
+<p>While the requirement seems to be self-obvious, it is often not honoured in messaging systems in use today. In most broker-based systems consumers subscribe for messages with the broker, however, there's no way for broker to subscribe for messages with the publisher. So, even if there is no consumer interested in the message it is still passed from the publisher to the broker, just to be dropped there:</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/pubsub/ps1T.png" alt="ps1T.png" class="image" /></div>
+<p>What we want to achieve instead is a system where the message nobody is interested in is dropped as soon as possible, presumably even before being sent to the network:</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/pubsub/ps2T.png" alt="ps2T.png" class="image" /></div>
+<p>We also want this property to be transitive, ie. even if there are multiple intermediary nodes (brokers, devices) between publisher and consumer, the unneeded messages should still be dropped as soon as possible:</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/pubsub/ps3T.png" alt="ps3T.png" class="image" /></div>
+<p>More generically, we want message to travel only through those lattices in the message distribution tree that lead to consumers interested in the message:</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/pubsub/ps4T.png" alt="ps4T.png" class="image" /></div>
+<p>Additionally, it would be preferable to pass message through any edge of the graph once only even if there are multiple consumers down that branch of the tree. In other words, message duplication should happen as far away down the stream as possible &#8212; in this case in the node D rather than in the node P.</p>
+<h2 id="toc2"><span>Subscription Forwarding</span></h2>
+<p>To achieve this kind of design subscriptions have to be passed to the upstream nodes so that the upstream nodes can use them to avoud sending messages to the paths where there are no interested subscribers. The property should be transitive, ie. upstream node should forward the subscription to its parent which in turn should pass it to its parent etc.</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/pubsub/ps5T.png" alt="ps5T.png" class="image" /></div>
+<p>So, when consumer application subscribes to a topic the subscription, in addition to applying locally, hops up the stream until it reaches the ultimate producer(s).</p>
+<p>The technical difficulty with this model is how to pass the subscription through the intermediate devices. Recall that a device is just a pair of ØMQ sockets connected by user code. Thus, there's no way to implement subscription forwarding in devices without user code taking part in the process. And that's what XPUB/XSUB sockets are for.</p>
+<p>XPUB is similar to a PUB socket, except that you can receive messages from it. The messages you receive are the subscriptions traveling upstream. XSUB is similar to SUB except that you subscribe by sending a subscription message to it.</p>
+<p>Subscription messages are composed of a single byte, 0 for unsubscription and 1 for subscription, followed by the subscription itself, ie. the prefix we want to check the messages for.</p>
+<p>This makes implementation of a device quite simple: Use XPUB/XSUB sockets instead of PUB/SUB, pass all the messages from XSUB to XPUB (data flow) and all the messages from XPUB to XSUB (subscription flow):</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/pubsub/ps6T.png" alt="ps6T.png" class="image" /></div>
+<h1 id="toc3"><span>Disconnections and Reconnections</span></h1>
+<p>To avoid storing stale subscriptions in individual nodes, disconnection of a peer should result in automatic generation all the relevant unsubscriptions to be passed upstream. For example, if XPUB socket has a single peer who subscribed for topic &quot;A&quot;, disconnection of that peer should result in generation of unsubscription &quot;A&quot; that will hop upstream until it reaches terminal producer(s).</p>
+<p>The other way round, when reconnection happens, XSUB socket should send all its subscriptions to the reconnected peer to reestablish the message flow. Recall that the peer (XPUB) have generated unsubscriptions when disconnection happened. By re-sending the subscriptions the routing tables on the publisher side are renewed and the message distribution continues to work as expected.</p>
+<h1 id="toc4"><span>Message routing &amp; filtering</span></h1>
+<p>Let's assume the subscriptions are correctly distributed within the message distibution tree. Let's now have a look at how they should be used by individual nodes to route the messages downstream.</p>
+<p>The routing in (X)PUB socket is pretty straightforward: If message matches any subscription received from a particular peer, send it to that peer. Care should be taken to send the message once only even if it matches several subscriptions.</p>
+<p>It's less obvious whether messages should be filtered in the (X)SUB socket. There are three aspects to take into account:</p>
+<ol>
+<li>In case of uni-directional transports such as PGM, the PUB socket does no filtering. Thus, SUB socket gets the whole feed of messages and has to filter out unneeded messages itself.</li>
+<li>When user unsubscribes from a certain topic, the unsubscription is sent upstream and once it reaches the terminal producer, the producer won't sent any corresponding messages downstream. However, this operation takes time. In the meanwhile messages that match the no longer existent subscription keep flowing downstream.</li>
+<li>Device reads messages from XSUB socket and passes them to XPUB socket. Thus, the filtering would be done twice in a row is filtering is implemented in both XPUB and XSUB socket.</li>
+</ol>
+<p>To address these problems, ØMQ filters messages in SUB socket, but not in XSUB socket.</p>
+<h1 id="toc5"><span>Subscription Forwarding and Uni-directional Transports</span></h1>
+<p>One specific problem with the above model is that it requires bi-directional communication: data are passed one way, subscriptions are passed the other way. Thus, we have to reconcile this model with uni-directional transports such as PGM (reliable multicast).</p>
+<p>The solution at the moment is not to forward subscriptions upstream from PGM consumer socket to the PGM publisher. Additionally XPUB socket would send a &quot;subscribe to all&quot; subscriptions upstream once it is bound to PGM transport. That way every message from upstream is multi-casted and filtering happens in the XSUB socket.</p>
+<p>This solution is clearly not minimal. Messages are passed on the network even though nobody is subscribed to them. This can be &#8212; and often is &#8212; considered acceptable with multicast transports. However, if there's need to optimise this scenario further future work can focus on two areas:</p>
+<ol>
+<li>Using IGMP as a way to pass subscriptions upstream via PGM. This would of course limit the filtering capabilities to &quot;subscribe to this multicast group&quot; instead of &quot;subscribe to all messages starting with this prefix&quot;. It should also be noted that IGMP passes subscriptions only from consumer to the network switch/router. They aren't passed any further (from the switch to the publisher).</li>
+<li>Creating an additional data flow from PGM subscriber to PGM publisher (via TCP, UDP or whatever) thus basically turning uni-directional transport into a bi-directional one.</li>
+</ol>
+<h1 id="toc6"><span>Subscription Aggregation</span></h1>
+<p>There's is one additional scalability bottleneck with the above model.</p>
+<p>Imagine the case of global TV broadcast over ØMQ. All the viewers are subscribing to different channels, some of them are changing channels in pretty high rate etc. If all the subscriptions were forwarded all the way up to the ultimate broadcasting server, the server would spend all its time processing subscriptions with no time remaining to broadcast the content itself. Or, more likely, it would collapse under the weight of all the (un)subscriptions coming in.</p>
+<p>To make the PUB/SUB model really scalable we have to aggregate the subscriptions in such a way that subscription traffic at each lattice of the distribution tree is roughly the same.</p>
+<p>To achieve that we can send just the diffs rather than passing each individual subscription. That way we can ensure that the subscription traffic at publisher won't grow exponentially with depth of the tree. The current implementation does so by eliminating duplicate (un)subscriptions.</p>
+<p>Imagine an XPUB socket. Consumer connects and subscribes for messages starting with &quot;A&quot;. XPUB socket forwards the subscription upstream. Then another consumer connects and subscribes for &quot;A&quot;. This time, XPUB socket increases the reference count on it's internal represenation of the subscription, but doesn't send the subscription upstream &#8212; it's already there so why bother?</p>
+<p>The other way round, when the first consumer unsubscribes or disconnects, XPUB socket decrements the reference count on the topic, but doesn't forward anything upstream. There's still the second consumer that needs the &quot;A&quot; messages anyway. Only when the second consumer disconnects as well, the unsubscription is sent upstream.</p>
+<p>The algorithm above is clearly not optimal and can be improved in the future.</p>
+<p>If there an &quot;A&quot; subscription, &quot;AB&quot; subscription is still passed upstream even though it is subsumed by &quot;A&quot;. We could simply drop the &quot;AB&quot; subscription and everything would work as expected. We would have to compensate for the optimisation during unsubscription from &quot;A&quot; though. Instead of sending <em>unsubscribe(A)</em> up the stream we would have to send sequence of <em>subscribe(AB)</em> and <em>unsubscribe(A)</em>.</p>
+<p>You can imagine different optimisations to the aggregation algorithm.</p>
+<p>However, the crucial point is that the PUB/SUB protocol is designed in such a way that the actual aggregation algorithm doesn't matter. Every node in the distribution tree can use its own aggregation algorithm and the whole distribution tree would still work as expected. Hopefully, different implementations of scalability protocol can take advantage of the fact and differentiate on the basis of more or less efficient subscription aggregation algorithms.</p>
+<h1 id="toc7"><span>Plugging into the Subscription Mechanism</span></h1>
+<p>Imagine the case where producing a message is a CPU-intensive task. Producer would like to eliminate the work in case there's nobody interested in the message. To do that it has to be aware of the subscriptions issued by the downstream nodes.</p>
+<p>Luckily, this is exactly what XPUB socket allows it to do. It can open an XPUB socket and start listening for the subscriptions. If a message is about to be generated, the producer will check its list of subscriptions and proceed only if there's an appropriate subscription present.</p>
+<p>Another scenario for plugging into subscription mechanism is creating bridges to other messaging implementations, both generic and ad hoc in-house systems.</p>
+<p>Let's take an example of ØMQ/AMQP bridge. The bridge can create an XPUB socket to send messages from AMQP to ØMQ. The other way round it can read the subscriptions from the socket and send them as <em>queue.bind</em> commands to the AMQP system:</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/pubsub/ps7T.png" alt="ps7T.png" class="image" /></div>
+<p>The same way, bridges can be built to interface with other messaging systems: JMS, STOMP, PubSubHubbub, Redis etc.</p>
+<h1 id="toc8"><span>Subscription Forwarding as an Local Optimisation</span></h1>
+<p>Conceptually, I find it useful to think of forwarding subscriptions to publishers as of an optimisation:</p>
+<p>In the beginning you have the distribution tree, the messages flow from the publisher to each subscriber. The ultimate subscribers may choose to drop some of the messages. That's how it's implemented in nanomsg at the moment.</p>
+<p>Then, some parts of the tree may implement local optimisation by subscriber letting the publisher know that it won't need some messages.</p>
+<p>Looking at the problem from this point of view is pretty useful, as it allows us to think of multicast parts of the tree not as some kind of oddity, but rather fully standard nodes which happen not to implement the optimisation.</p>
+<h1 id="toc9"><span>Different Matching Algorithms</span></h1>
+<p>Sometimes, we don't want to match using a prefix of the message, as it is done in both ØMQ and nanomsg. Instead, we would like to match using regular expressions, SQL-like queries of whatever other matching mechanisms you can think of. This functionality was part of Crossroads (now defunct fork of ØMQ) and should be taken into the consideration when standardising the SP PUB/SUB protocol.</p>
+<p>Note that treating the subscription forwarding as an optional optimisation allows the system to ignore subscriptions of unknown types and treat them as &quot;send me everything&quot; subscriptions.</p>
+<h1 id="toc10"><span>Issues</span></h1>
+<p>There's one fundamental problem with subscription forwarding:</p>
+<p>PUB/SUB allows for multiple publisher/single consumer topologies.</p>
+<p>What it means is that the subsription are sent to multiple destinations. At the same time, the mechanism for passing subscriptions has to be fully reliable (losing a subscription is not an option as it would result in faulty business logic).</p>
+<p>And as I've tried to explain in many places reliable transmission to multiple destinations is possible only if you accept the fact that a slow/stuck/hung-up destination can cause the whole distribution tree to slow down or grind to the halt.</p>
+<p>Obviously, we cannot accept that in PUB/SUB protocol.</p>
+<p>There were many solutions for the problem discussed, all of them badly lacking in one or an other way:</p>
+<ol>
+<li>Don't allow more that one publisher per subscriber.</li>
+<li>If there's more than one publisher, turn the subscription forwarding off.</li>
+<li>Allow for forwarding subscriptions only one hop upstream, thus limiting the possible damage to a single tier of subscribers.</li>
+<li>One solutions that is typically mentioned is &quot;kill the connection to the slow/hung-up publisher&quot;. The problem with that is the connection will be re-connected in a short time and then all the subscriptions will be resent, making the congestion situation even worse (you can think of it as a connection-based equivalent of retransmit storm).</li>
+</ol>
+<p>One solution that looks like it may work is to limit the number of subscriptions from a single consumer to a small number (say 32) and subscribe to the full message feed if any further subscription is issued.</p>
+<h1 id="toc11"><span>Conclusion</span></h1>
+<p>This article proposes a PUB/SUB system with minimal bandwidth requirements as it is currently implemented in ØMQ/3.0.</p>
+<p>The long-term goal is to reconcile this system with systems used by different messaging implementations and standardise it as an SP protocol.</p>
+<p><strong>Martin Sústrik, May 4th, 2014</strong></p>
+<div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:38">Code Generation &amp; Visual Smog in Code (part II)</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:40">Unit Test Fetish</a></p>
+</div>
+    
+    
+    
+    </div>
+<div style="height:2em"></div>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 857275;
+</script>
+
+
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="857275"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

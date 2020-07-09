@@ -1,0 +1,1961 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>EINTR and What It Is Good For - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:12";
+        OZONE.request.timestamp = 1594263449;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:12";
+        WIKIREQUEST.info.pageId = 14902262;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;EINTR and What It Is Good For&quot;" href="/feed/page/comments-14902262.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            EINTR and What It Is Good For
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em"><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:11">The Merit of AMQP (part I)</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:13">Location-independent Addressing with Messaging Middleware</a></p>
+</div>
+    
+    
+    
+    </div>
+<p>EINTR is one of the POSIX errors that you can get from different blocking functions (send, recv, poll, sem_wait etc.) The POSIX standard unhelpfully describes it as &quot;Interrupted function.&quot; Googling for EINTR returns mainly random questions like &quot;I am getting teh EINTR error. What now?&quot; answered mostly by &quot;Just restart the interrupted function.&quot;</p>
+<p>None of this helps much when you want to correctly handle EINTR, actually understand what you are doing and why. In this blog post I'll try to explain what EINTR is good for and how to handle it in your code.</p>
+<p>To understand the rationale behind EINTR, let's do a little coding exercise. Let's write a simple event loop that performs some action for every byte it receives from a socket. And let's pretend there's no EINTR and recv just continues waiting for data whatever happens:</p>
+<div class="code">
+<pre>
+<code>void event_loop (int sock)
+{
+    while (1) {
+        char buf [1];
+        recv (sock, buf, 1, 0);
+        printf (&quot;perform an action\n&quot;);
+    }
+}</code>
+</pre></div>
+<p>The above program works great. However, interrupting the program using Ctrl+C kills it immediately, which may be a problem if we want to do some clean-up, for example, release some system-wide resources.</p>
+<p>To handle Ctrl+C in a custom way we have to implement a signal handler:</p>
+<div class="code">
+<pre>
+<code>volatile int stop = 0;
+
+void handler (int)
+{
+    stop = 1;
+}
+
+void event_loop (int sock)
+{
+    signal (SIGINT, handler);
+
+    while (1) {
+        if (stop) {
+            printf (&quot;do cleanup\n&quot;);
+            return;
+        }
+        char buf [1];
+        recv (sock, buf, 1, 0);
+        printf (&quot;perform an action\n&quot;);
+    }
+}</code>
+</pre></div>
+<p>Ok. Looks good. What's the problem with that?</p>
+<p>The problem is that recv is a blocking function. If Ctrl+C is pressed while the event loop is blocked in recv, you'll get a kind of deadlock: Signal handler is executed as expected, it sets 'stop' to 1, but then the execution blocks. The event loop is stuck in recv and has no opportunity to check whether 'stop' was set to 1.</p>
+<p>The deadlock unblocks only when new data arrive via the socket. Then 'stop' is checked and the program exits decently. However, there's no guarantee that new data will arrive in a reasonable time, so pressing Ctrl+C may seem to have no effect. The program is probably going to terminate at some later point, but at the moment it's just stuck.</p>
+<p>Enter EINTR.</p>
+<p>POSIX specification defines that when signal (such as Ctrl+C) is caught, recv returns EINTR error. That allows the event loop to wrap over and check the 'stop' variable:</p>
+<div class="code">
+<pre>
+<code>volatile int stop = 0;
+
+void handler (int)
+{
+    stop = 1;
+}
+
+void event_loop (int sock)
+{
+    signal (SIGINT, handler);
+
+    while (1) {
+        if (stop) {
+            printf (&quot;do cleanup\n&quot;);
+            return;
+        }
+        char buf [1];
+        int rc = recv (sock, buf, 1, 0);
+        if (rc == -1 &amp;&amp; errno == EINTR)
+            continue;
+        printf (&quot;perform an action\n&quot;);
+    }
+}</code>
+</pre></div>
+<p>The above code works more or less like expected. When you press Ctrl+C, program exits performing the clean-up beforehand.</p>
+<p>EDIT: Please note that to make blocking fuctions like recv return EINTR you may have to use <em>sigaction()</em> with SA_RESTART set to zero instead of <em>signal()</em> on some operating systems.</p>
+<p>The morale of this story is that common advice to just restart the blocking function when EINTR is returned doesn't quite work:</p>
+<div class="code">
+<pre>
+<code>volatile int stop = 0;
+
+void handler (int)
+{
+    stop = 1;
+}
+
+void event_loop (int sock)
+{
+    signal (SIGINT, handler);
+
+    while (1) {
+        if (stop) {
+            printf (&quot;do cleanup\n&quot;);
+            return;
+        }
+        char buf [1];
+        while (1) {
+            int rc = recv (sock, buf, 1, 0);
+            if (rc == -1 &amp;&amp; errno == EINTR)
+                continue;
+            break;
+        }
+        printf (&quot;perform an action\n&quot;);
+    }
+}</code>
+</pre></div>
+<p>When Ctrl+C is pressed in this case, signal handler is executed, 'stop' is set to 1, recv returns EINTR, but the program just calls recv again and blocks. 'stop' is thus not checked and the program gets stuck. Ouch.</p>
+<p>Instead of remembering these intricacies you can just remember a simple rule of thumb: When handling EINTR error, check any conditions that may have been altered by signal handlers. Then restart the blocking function.</p>
+<p>Additionally, If you are implementing a blocking function yourself, take care to return EINTR when you encounter a signal.</p>
+<p>To give you a real world example of incorrectly implemented blocking function, here's a problem we encountered with ZeroMQ couple of years ago: Ctrl+C did not work when ZeroMQ library was used from Python (via <em>pyzmq</em> language binding). After some investigation, it turned out that Python runtime works more or less like the examples above. If Ctrl+C signal is caught, it sets a variable in the handler and continues the execution until it gets to a point where signal-induced conditions are checked.</p>
+<p>However, ZeroMQ library used to have a blocking recv function, that (oops!) haven't returned EINTR and rather ignored the signals.</p>
+<p>What happened was that user called ZeroMQ's recv function from Python, which started waiting for incoming data. Then the user pressed Ctrl+C. Python's signal handler handled the signal by marking down that the process should be terminated as soon as possible. However, the execution was blocked inside ZeroMQ's recv function which never returned back to the Python runtime and thus the termination never happened.</p>
+<p>Exiting the recv function with EINTR in case of signal solved the problem.</p>
+<p>Finally there are few fine points to be aware of:</p>
+<p>First, there's no EINTR on Windows. My assumption is that blocking functions cannot be combined with Ctrl+C and with decent clean-up on Windows. Maybe there's some esoteric API to handle this kind of situation, but I am personally not aware of it and I would be grateful for suggestions.</p>
+<p>Second, even some POSIX blocking functions don't return EINTR in case of a signal. Specifically, this is the case for pthread_cond_wait and pthread_mutex_lock. pthread_mutex_lock is not often a problem as it is generally not used to block for arbitrary amount of time. Mutexes are normally locked only for a very short time until some simple atomic operation is performed. pthread_cond_wait is more of a problem. My suggestion would be to use sem_wait (which returns EINTR) instead of pthread_cond_wait. Once again, if anybody knows how to perform clean shutdown when pthread_cond_wait gets into its way, let me know!</p>
+<p>Third, even EINTR is not completely water-proof. Check the following code:</p>
+<div class="code">
+<pre>
+<code>volatile int stop = 0;
+
+void handler (int)
+{
+    stop = 1;
+}
+
+void event_loop (int sock)
+{
+    signal (SIGINT, handler);
+
+    while (1) {
+        if (stop) {
+            printf (&quot;do cleanup\n&quot;);
+            return;
+        }
+
+        /*  What if signal handler is executed at this point? */
+
+        char buf [1];
+        int rc = recv (sock, buf, 1, 0);
+        if (rc == -1 &amp;&amp; errno == EINTR)
+            continue;
+        printf (&quot;perform an action\n&quot;);
+    }
+}</code>
+</pre></div>
+<p>As can be seen, if the signal handler is executed after checking the 'stop' variable and before invoking the recv, the program will still be stuck. However, this is not a serious problem. For starters, the period between the check and the recv is extremely short and it is thus very unlikely that the signal handler gets executed precisely at that point. And even if that happens, pressing Ctrl+C for the second time sorts the problem out.</p>
+<p>EDIT: It was suggested by Justin Cormack that <em>signalfd</em> can be used to solve the last problem. However, keep in mind that first two problems remain: it doesn't work with Windows and it doesn't work with pthread_cond_wait. Moreover, it makes your program non-portable (works only on Linux). Finally, signalfd is not a good option when you are implementing a library. By using signalfd (or, for what it's worth, your own signal handler) you are messing with the signal handling algorithm of the main application. If, for example, the main application already has a signalfd handling Ctrl+C signal, creating a new signalfd in the library causes the signal to be delivered alternatively to the main application and to the library (first Ctrl+C is sent to the library, second one to the application, third to the library etc.) Which, of course, brings the problem back: You have to press Ctrl+C twice to exit the program.</p>
+<p>EDIT: Ambroz Bizjak suggests to use pselect (and similar functions) to deal with the race condition above. The idea is that signals are blocked for a very short period of time before the blocking call. Once signals are blocked, the flags set by the handlers can be checked and pselect is called which unblocks the signals is an atomic manner. This trick is even applicable in libraries. If the library exposes a blocking function,you can extend it to expose a p* variant of the function (for example, ZeroMQ could expose zmq_precv in addition to zmq_recv). User of the library can use this function to handle signals in a race-free way.</p>
+<p><strong>Martin Sústrik, November 5th, 2012</strong></p>
+<div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:11">The Merit of AMQP (part I)</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:13">Location-independent Addressing with Messaging Middleware</a></p>
+</div>
+    
+    
+    
+    </div>
+<div style="height:2em"></div>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 583059;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-1607405">
+                      
+		<div class="post" id="post-1607405">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1607405)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1607405">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=56e914fab4943f1e4d3221d3617e3c8d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Frank (guest)</span> <span class="odate time_1352134338 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">05 Nov 2012 16:52</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1607405">
+									
+
+<p>Shouldn't &quot;stop&quot; be sig_atomic_t?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1607405)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1607405)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1607405" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1607405)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1607405)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=56e914fab4943f1e4d3221d3617e3c8d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Frank (guest)</span>, <span class="odate time_1352134338 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">05 Nov 2012 16:52</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+                      
+    <div class="post-container" id="fpc-1607418">
+                      
+		<div class="post" id="post-1607418">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1607418)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1607418">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352135490 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">05 Nov 2012 17:11</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1607418">
+									
+
+<p>Yep. I've tried to keep the examples simple. Cache coherence related questions are kind of out of scope of the article.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1607418)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1607418)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1607418" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1607418)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1607418)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352135490 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">05 Nov 2012 17:11</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1608507">
+                      
+		<div class="post" id="post-1608507">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608507)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608507">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352243835 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">06 Nov 2012 23:17</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608507">
+									
+
+<p>There's also pselect/ppoll/epoll_pwait, which can be used together with non-blocking I/O to catch signals without race conditions.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608507)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608507)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608507" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608507)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608507)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352243835 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">06 Nov 2012 23:17</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1608822">
+                      
+		<div class="post" id="post-1608822">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608822)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608822">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352282300 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:58</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608822">
+									
+
+<p>How exactly would you use it to deal with the Ctrl+C problem described in the article?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608822)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608822)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608822" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608822)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608822)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352282300 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:58</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1608856">
+                      
+		<div class="post" id="post-1608856">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608856)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608856">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352287139 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 11:18</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608856">
+									
+
+<div class="code">
+<pre>
+<code>set file descriptor to non-blocking;
+sigprocmask() to block SIGINT;
+if (stop) { // handle it }
+while (1) {
+    pselect() with sigmask argument which doesn't block SIGINT;
+    if (stop) { // handle it }
+    recv();
+}</code>
+</pre></div>
+<p>The magic here is that signals are blocked except during the pselect(), and pselect() atomically unblocks them when it's called and blocks them when it returns. As a result, the signal handler can only execute during the pselect(), so it is safe to only check the flag after pselect() returns.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1608856)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608856" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608856)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608856)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352287139 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 11:18</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1608858">
+                      
+		<div class="post" id="post-1608858">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608858)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608858">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352287415 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 11:23</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608858">
+									
+
+<p>From linux.die.ne t/man/2/pselect</p>
+<p>The reason that pselect() is needed is that if one wants to wait for either a signal or for a file descriptor to become ready, then an atomic test is needed to prevent race conditions. (Suppose the signal handler sets a global flag and returns. Then a test of this global flag followed by a call of select() could hang indefinitely if the signal arrived just after the test but just before the call. By contrast, pselect() allows one to first block signals, handle the signals that have come in, then call pselect() with the desired sigmask, avoiding the race.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1608858)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608858" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608858)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608858)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352287415 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 11:23</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1608876">
+                      
+		<div class="post" id="post-1608876">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608876)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608876">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352290378 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:12</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608876">
+									
+
+<p>As far as I understand, then the Ctrl+C would not work when we don't happen to be waiting in a blocking function. That seems even worse than doing it the other way round.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1608876)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608876" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608876)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608876)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352290378 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:12</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1608883">
+                      
+		<div class="post" id="post-1608883">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608883)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608883">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352291007 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:23</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608883">
+									
+
+<p>The only blocking function here is pselect(). If you get Ctrl+C during a pselect(), it will immediately return (because you have unblocked signals with the sigmask argument to pselect). On the other hand, if you get Ctrl+C while you're not in pselect(), the signal handler will not run until you call pselect() (because signals are blocked), and when you finally call pselect(), it will run and pselect() will return.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1608883)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608883" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608883)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608883)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352291007 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:23</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1608889">
+                      
+		<div class="post" id="post-1608889">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608889)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608889">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352291174 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:26</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608889">
+									
+
+<p>I think you're misinterpreting the meaning of &quot;blocked&quot;. If signals are blocked, and a signal happens, it is queued, not discarded. When you unblock it, the handler will execute.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1608889)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608889" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608889)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608889)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352291174 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:26</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1608891">
+                      
+		<div class="post" id="post-1608891">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608891)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608891">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352291309 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:28</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608891">
+									
+
+<p>Yes. In the tight event loop it would work OK.</p>
+<p>However, consider this example (pretty common ZeroMQ use case): User calls zmq_recv (a blocking function) to get some work. Then he processes the work. With the pselect solution, the program would be interruptible while waiting for a message (say 0.1 sec) but not interruptible while processing the work (say 1 hour).</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1352291336 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:28</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1608891)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1608891)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608891" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608891)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608891)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352291309 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:28</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1608896">
+                      
+		<div class="post" id="post-1608896">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608896)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608896">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352291727 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:35</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608896">
+									
+
+<p>I don't see a need to keep signals blocked outside zmq_recv(). When zmq_recv() is called:</p>
+<p>1. block signals<br />
+2. check if signal is pending (this is atomic because signals are blocked)<br />
+3. pselect()<br />
+5. recv()<br />
+6. if we need more data, goto 2 (yes, 2, so we don't miss a signal)<br />
+7. else unblock signals and return data to user</p>
+<p>It can never happen that a signal is received and we wait indefinitely in pselect().</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1608896)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608896" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608896)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608896)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352291727 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:35</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1608898">
+                      
+		<div class="post" id="post-1608898">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608898)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608898">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352291830 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:37</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608898">
+									
+
+<p>By &quot;check if signal is pending&quot; I mean check the flag, not some posix functions to get the pending signals mask&#8230;</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1608898)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608898" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608898)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608898)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352291830 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:37</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1608904">
+                      
+		<div class="post" id="post-1608904">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608904)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608904">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352293085 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:58</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608904">
+									
+
+<p>Nice! I wasn't aware of the trick. I'll mention it in the article.</p>
+<p>Still, it doesn't work for libraries. Unless, of course, ZeroMQ would expose zmq_precv (&#8230;, const sigset_t *sigmask) in addition to standard zmq_recv.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608904)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608904)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608904" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608904)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608904)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352293085 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:58</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1608810">
+                      
+		<div class="post" id="post-1608810">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608810)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608810">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=dd001572ef01005cf4a27107e971638a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andrea (guest)</span> <span class="odate time_1352280818 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:33</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608810">
+									
+
+<p>Huh?? How is the 3rd listing supposed to behave differently from the 2nd one??<br />
+You've just added a check on the return value &amp; errno, but if the recv call is exiting with EINTR, you should have exact the same behaviour in both listings regardless of if you check its return value or not.<br />
+Besides that, this doesn't seem to work anyway. Both on a Linux (Debian) and a Darwin (OSX) system, recv doesn't seem to exit with EINTR once a signal handler has been installed, so I still get the same &quot;stuck-until-some-data-arrives&quot; condition.<br />
+Am I missing something?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608810)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608810)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608810" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608810)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608810)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=dd001572ef01005cf4a27107e971638a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andrea (guest)</span>, <span class="odate time_1352280818 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:33</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1608818">
+                      
+		<div class="post" id="post-1608818">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608818)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608818">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352282025 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:53</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608818">
+									
+
+<p>The assumption for the two first listings is &quot;let's pretend there's no EINTR and recv just continues waiting for data whatever happens&quot;.</p>
+<p>The first two listings are trying to explain why EINTR error exists at all and explore what would happen if it doesn't exist. EINTR is considered only from 3rd listing on.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608818)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608818)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608818" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608818)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608818)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352282025 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:53</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1608814">
+                      
+		<div class="post" id="post-1608814">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608814)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608814">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=dd001572ef01005cf4a27107e971638a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andrea (guest)</span> <span class="odate time_1352281620 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:47</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608814">
+									
+
+<p>Ok, I think I found the problem: it seems that if you install a signal handler without setting the SA_RESTART flag to 0 (which you can only do if you use sigaction to install the handler) then at the exit of the signal handler, any interruptible syscall (such as recv) is restarted automatically instead of exiting with EINTR.<br />
+So, I think the example should be expanded showing how to install the SIGINT handler by using sigaction. In any case, I insist that listing2 and listing3 have no different behavior.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608814)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608814)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608814" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608814)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608814)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=dd001572ef01005cf4a27107e971638a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andrea (guest)</span>, <span class="odate time_1352281620 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:47</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1608817">
+                      
+		<div class="post" id="post-1608817">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608817)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608817">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352281998 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:53</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608817">
+									
+
+<p>How would SA_RESTART help? The problem here is that you have to somehow force the blocking function to exit when signal happens. Setting SA_RESTART does the exact opposite.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608817)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608817)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608817" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608817)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608817)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352281998 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 09:53</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1608831">
+                      
+		<div class="post" id="post-1608831">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608831)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608831">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352283480 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 10:18</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608831">
+									
+
+<p>Ah, sorry. I've misunderstood you. Yes, you are right. SA_RESTART has to be set to 0 to get the EINTR behaviour. I'll make a note in the article.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1352283501 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 10:18</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1608831)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608831)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608831)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608831" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608831)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608831)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352283480 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 10:18</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1608860">
+                      
+		<div class="post" id="post-1608860">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608860)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608860">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352287825 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 11:30</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608860">
+									
+
+<p>Another solution is to use the so-called &quot;self-pipe trick&quot; where you have the signal handler write a byte to a pipe. You use non-blocking sockets and in the select() you always monitor your sockets and the read end of the pipe. There is no race condition - when your signal happens, you very soon be able to read from this pipe (next time you call select, or immediately if select is being called). However, be sure to set both ends of the pipe to non-blocking. Otherwise the signal handler could block if the pipe buffer fills up and the program would deadlock.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608860)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608860)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608860" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608860)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608860)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352287825 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 11:30</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1608861">
+                      
+		<div class="post" id="post-1608861">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608861)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608861">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1352288292 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 11:38</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608861">
+									
+
+<p>But this is of course only applicable to your Python problem if there is a way to change what the signal handler does. Or if you're very evil you can try to override the signal handler temporarily.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608861)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608861)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608861" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608861)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608861)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1352288292 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 11:38</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1608878">
+                      
+		<div class="post" id="post-1608878">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1608878)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1608878">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352290582 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:16</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1608878">
+									
+
+<p>Yes, that would work if you are in control of the handler (send is in the POSIX list of signal-safe functions). Unfortunately, that's not the case for libraries.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1352290618 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:16</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1608878)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1608878)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1608878)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1608878" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1608878)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1608878)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352290582 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 12:16</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1654884">
+                      
+		<div class="post" id="post-1654884">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1654884)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1654884">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d12b4a0e6b76d5b05907d9af1217f8e4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Nico (guest)</span> <span class="odate time_1355695491 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Dec 2012 22:04</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1654884">
+									
+
+<p>write(2) a single byte to a pipe file descriptor from the signal handler and use whatever async I/O tech in your event loop (select(2), poll(2), libev, libevent, &#8230;.).</p>
+<p>Or give up on portability and use some API that solves this proble, like, say, Solaris event ports (just post an event from the handler, or put the port into alert mode from the handler).</p>
+<p>As for condition variables&#8230; if only pthread_mutex_lock() were async-signal-safe&#8230; then you could acquire the mutex, signal/broadcast on the cv, and drop the lock. But it's not, so you can't. What you can do is resort to having a thread waiting for events on a pipe written to by the signal handler (see above!) then have that thread signal/broadcast on you condition variable.</p>
+<p>See? The trick is to transmogrify async signals into events that you can wait for with traditional async I/O APIs.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1654884)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1654884)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1654884" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1654884)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1654884)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d12b4a0e6b76d5b05907d9af1217f8e4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Nico (guest)</span>, <span class="odate time_1355695491 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Dec 2012 22:04</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1654886">
+                      
+		<div class="post" id="post-1654886">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1654886)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1654886">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d12b4a0e6b76d5b05907d9af1217f8e4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Nico (guest)</span> <span class="odate time_1355695551 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Dec 2012 22:05</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1654886">
+									
+
+<p>FYI, this technique goes back a long time. It's used in OpenSSH, for example, and has been for many years now.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1654886)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1654886)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1654886" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1654886)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1654886)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d12b4a0e6b76d5b05907d9af1217f8e4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Nico (guest)</span>, <span class="odate time_1355695551 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Dec 2012 22:05</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1654888">
+                      
+		<div class="post" id="post-1654888">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1654888)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1654888">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1355695634 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Dec 2012 22:07</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1654888">
+									
+
+<p>Except that messing with signal handlers is not an option when you are implementing a library. Signal handlers are set by the main module and should not be changed randomly in the background by the libraries.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1355695666 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Dec 2012 22:07</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1654888)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1654888)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1654888)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1654888" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1654888)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1654888)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1355695634 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Dec 2012 22:07</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2136360">
+                      
+		<div class="post" id="post-2136360">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2136360)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2136360">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=e923b6d926337ad67e143e2b5440c52a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Alex (guest)</span> <span class="odate time_1413898807 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">21 Oct 2014 13:40</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2136360">
+									
+
+<p>On Windows this is done with SetConsoleCtrlHandler() call.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2136360)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2136360)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2136360" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2136360)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2136360)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=e923b6d926337ad67e143e2b5440c52a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Alex (guest)</span>, <span class="odate time_1413898807 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">21 Oct 2014 13:40</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2154094">
+                      
+		<div class="post" id="post-2154094">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2154094)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2154094">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=f7e2d03099f08fec8aac80b1331362d8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ulf Samuelsson (guest)</span> <span class="odate time_1415718531 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">11 Nov 2014 15:08</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2154094">
+									
+
+<p>Receive is the easy case.<br />
+What happens if you have a protocol where you call &quot;write&quot;.</p>
+<p>Is there any guarantee that you cannot get EINTR if the packet has been transmitted?</p>
+<p>If you retry sending the packet, then it is sent TWICE, which may confuse the other end.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2154094)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2154094)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2154094" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2154094)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2154094)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=f7e2d03099f08fec8aac80b1331362d8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ulf Samuelsson (guest)</span>, <span class="odate time_1415718531 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">11 Nov 2014 15:08</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2154156">
+                      
+		<div class="post" id="post-2154156">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2154156)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2154156">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1415722059 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">11 Nov 2014 16:07</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2154156">
+									
+
+<p>True. As far as I know there is no guarantee that the operation haven't [partially] succeeded when EINTR is returned.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,2154156)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2154156" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2154156)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2154156)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263449" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1415722059 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">11 Nov 2014 16:07</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-3758472">
+                      
+		<div class="post" id="post-3758472">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3758472)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3758472">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=c91c1f49300358f53248a68f00aa4cee&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>John Schultz (guest)</span> <span class="odate time_1522804534 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">04 Apr 2018 01:15</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3758472">
+									
+
+<p>If a write/send has already sent some data, then the function will return early with a short count (the same is usually true for read/recv too). I'm not sure if EINTR will be set in errno is such cases, but the caller is unlikely to check it anyway.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3758472)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3758472)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3758472" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3758472)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3758472)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=c91c1f49300358f53248a68f00aa4cee&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>John Schultz (guest)</span>, <span class="odate time_1522804534 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">04 Apr 2018 01:15</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2480701">
+                      
+		<div class="post" id="post-2480701">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2480701)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2480701">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=118e4917870cf9957851a6f33cd5f03f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Iurie Solomon (guest)</span> <span class="odate time_1459185692 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Mar 2016 17:21</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2480701">
+									
+
+<p>in alternative, u can use the fcntl (filedes, F_SETFL, new_flags) with the O_NONBLOCK macro: check here: <a href="https://www.aquaphoenix.com/ref/gnu_c_library/libc_141.html">https://www.aquaphoenix.com/ref/gnu_c_library/libc_141.html</a></p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2480701)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2480701)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2480701" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2480701)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2480701)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=118e4917870cf9957851a6f33cd5f03f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Iurie Solomon (guest)</span>, <span class="odate time_1459185692 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Mar 2016 17:21</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-3757926">
+                      
+		<div class="post" id="post-3757926">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3757926)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3757926">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a881864ed5eab0904baf16594a2ad37c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Jürgen Veidt (guest)</span> <span class="odate time_1522763852 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Apr 2018 13:57</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3757926">
+									
+
+<p>Windows has some support for this, at least for the Winsock interface. There is an error code WSAEINTR 0x2714 &quot;A blocking operation was interrupted by a call to WSACancelBlockingCall.&quot;<br />
+And, as you can guess, a Winsock API function WSACancelBlockingCall is used to indicate the &quot;interrupt&quot;. closesocket (Winsock close for sockets) seems to use this function internally.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3757926)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3757926)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3757926" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3757926)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3757926)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a881864ed5eab0904baf16594a2ad37c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Jürgen Veidt (guest)</span>, <span class="odate time_1522763852 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Apr 2018 13:57</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  block ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

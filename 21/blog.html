@@ -1,0 +1,592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>How to Write a Language Binding for nanomsg - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:21";
+        OZONE.request.timestamp = 1594263511;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:21";
+        WIKIREQUEST.info.pageId = 17017094;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;How to Write a Language Binding for nanomsg&quot;" href="/feed/page/comments-17017094.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            How to Write a Language Binding for nanomsg
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em"><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:20">Using Survey Protocol for High Availability</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:22">TCP and heartbeats</a></p>
+</div>
+    
+    
+    
+    </div>
+<table style="margin:0; padding:0">
+<tr>
+<td style="margin:0; padding:0">
+<div id="toc">
+<div id="toc-action-bar"><a href="javascript:;" onclick="WIKIDOT.page.listeners.foldToc(event)">Fold</a><a style="display: none" href="javascript:;" onclick="WIKIDOT.page.listeners.unfoldToc(event)">Unfold</a></div>
+<div class="title">Table of Contents</div>
+<div id="toc-list">
+<div style="margin-left: 1em;"><a href="#toc0">Reusing ZeroMQ bindings</a></div>
+<div style="margin-left: 1em;"><a href="#toc1">Forking ZeroMQ bindings</a></div>
+<div style="margin-left: 1em;"><a href="#toc2">Writing a new binding</a></div>
+<div style="margin-left: 2em;"><a href="#toc3">Plug-ins vs. native code</a></div>
+<div style="margin-left: 2em;"><a href="#toc4">Plug-ins</a></div>
+<div style="margin-left: 2em;"><a href="#toc5">Native code</a></div>
+<div style="margin-left: 2em;"><a href="#toc6">Run-time retrieval of constants</a></div>
+<div style="margin-left: 2em;"><a href="#toc7">Managing socket lifetime</a></div>
+<div style="margin-left: 2em;"><a href="#toc8">Sending and receiving messages</a></div>
+<div style="margin-left: 2em;"><a href="#toc9">Zero-copy</a></div>
+<div style="margin-left: 2em;"><a href="#toc10">Error codes</a></div>
+<div style="margin-left: 2em;"><a href="#toc11">Handling EINTR</a></div>
+<div style="margin-left: 2em;"><a href="#toc12">Polling</a></div>
+<div style="margin-left: 2em;"><a href="#toc13">Modularity</a></div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+<p>Language bindings are pieces of infrastructure that allow nanomsg to be used from different programming languages. This article is meant to provide some hints that may be helpful for binding developers.</p>
+<h1 id="toc0"><span>Reusing ZeroMQ bindings</span></h1>
+<p>The easiest way to access nanomsg from various languages would be to simply reuse <a href="http://www.zeromq.org/bindings:_start">ZeroMQ language bindings</a> (there are approximately 40 of them at the moment). To help with that, nanomsg provides a ZeroMQ compatibility mode which produces a fake ZeroMQ library that simply forwards the function invocations to nanomsg.</p>
+<div class="code">
+<pre>
+<code>$ mkdir build
+$ cd build
+$ cmake -DZMQ_COMPAT=ON ..
+$ make
+$ sudo make install</code>
+</pre></div>
+<p>Although the library is fully ABI-compatible with ZeroMQ, there are differences in functionality between two libraries &#8212; nanomsg provides more messaging patterns etc.</p>
+<p>Of course, original ZeroMQ bindings are not aware of the new functionality and lack definitions for the new constants. Thus, the user has to enter the constants by their numeric values. For details have a look at <a href="http://nanomsg.org/v0.0.0/nn_zmq.7.html">nn_zmq(7)</a> manual page. However, if the language binding uses enums instead of ints for socket types, socket options etc., there's little the user can do to access the new nanomsg functionality. The binding won't just allow unknown constants to be passed to the functions.</p>
+<h1 id="toc1"><span>Forking ZeroMQ bindings</span></h1>
+<p>The above discussion indicates that using native ZeroMQ bindings with nanomsg's ZeroMQ compatibility mode is pretty rough and unreliable way for accessing the library.</p>
+<p>The alternative is, of course, to build a native nanomsg binding. And the easiest way to do that, given that API/ABI of ZeroMQ and nanomsg are very similar is to fork the existing ZeroMQ binding and convert it into nanomsg binding.</p>
+<p>When doing so, you should be careful about the license. While nanomsg is licensed under MIT which allows it to be combined with any other possible license (you can, for example, close source and sell the binding), the license of the original ZeroMQ binding may be more restrictive. For example, if the ZeroMQ binding is licensed under LGPL, the derived nanomsg binding has to be licensed under LGPL as well.</p>
+<p>Also, don't stop reading here and check the comments below about writing a new nanomsg language binding. Some of those may prove useful even when converting existing ZeroMQ binding to use nanomsg.</p>
+<h1 id="toc2"><span>Writing a new binding</span></h1>
+<h2 id="toc3"><span>Plug-ins vs. native code</span></h2>
+<p>There are two broad categories of language bindings. Some languages allow you to implement a binary module (in most cases written in C) that is then loaded and used by the language runtime. This is the case, for example, of Java JNI. Other languages provide a way to define the library's ABI in language-specific way. This definition then allows the nanomsg functions to be accessed directly from the language. This is the case of, for example, Ruby FFI. Quite a few languages allow for both approaches. In such case it is important to understand that they are not necessarily equivalent in terms of performance and you should take that into account when deciding on the implementation strategy. For example, one experiment done in the past (performed by Gonzalo Diethelm) showed that Java binding based on JNI is much faster than one based on JNA.</p>
+<h2 id="toc4"><span>Plug-ins</span></h2>
+<p>Plug-ins are simply shared libraries that provide an API to interface with the language runtime.</p>
+<p>Given that almost all such plug-ins are written in C, the implementation of the plug-in has access to all the symbols defined in nanomsg C header files.</p>
+<p>One particular symbol that is of interest is NN_VERSION. It is a macro indicating the current version of the library. It allows the binding to be compiled with different versions of nanomsg. Imagine that new function nn_foo() is added to nanomsg in version 1.2.3. When support for this function is it added to the binding, it should be activated only for version equal to or higher than 1.2.3, this way:</p>
+<div class="code">
+<pre>
+<code>#if NN_VERSION &gt;= NN_MAKE_VERSION(1,2,3)
+/*  Implement wrapper for nn_foo() here. */
+#endif</code>
+</pre></div>
+<p>While some languages may require the constants (such as NN_PUB or NN_SNDBUF) to be available at the compile time, other languages may permit populating the set of constants in run-time. The latter is the preferred option as it allows binding to remain unchanged even if the library evolves and defines new constants. For details of implementing the runtime retrieval of constants see the dedicated section below.</p>
+<h2 id="toc5"><span>Native code</span></h2>
+<p>Some languages allow to define and use the library ABI in a native way. Say, with Lua FFI (by Evan Wies and Pierre Chapuis), nn_socket() function is defined like this:</p>
+<div class="code">
+<pre>
+<code>ffi.cdef([[
+    int nn_socket (int domain, int protocol);
+]])</code>
+</pre></div>
+<p>While the fact that there's no need for additional binary component is nice, the obvious problem with this approach is versioning. If there happens to be an old nanomsg library installed on a box, the newer binding may attempt to access non-existent symbols.</p>
+<p>To take care of this, binding should use nn_symbol() function to retreive the version info (NN_VERSION) constant and check whether the library isn't older than expected. Alternatively, binding may decide to support multiple versions of nanomsg and decently downgrade the functionality if an old version of library is encountered.</p>
+<h2 id="toc6"><span>Run-time retrieval of constants</span></h2>
+<p>If the language allows to define new constants in the runtime, binding should prefer doing it that way to copy-pasting all the constants from nanomsg header files to the binding. That way, if set of constants in main nanomsg library changes (e.g. by adding a new socket option) the binding will still work without a need to be modified or re-built.</p>
+<p>To retrieve the constants in run-time, use <a href="http://nanomsg.org/v0.0.0/nn_symbol.3.html">nn_symbol()</a> function. Here is how it's done by Ruby binding (implemented by Chuck Remes):</p>
+<div class="code">
+<pre>
+<code>  index = 0
+  while true
+    value = FFI::MemoryPointer.new(:int)
+    constant_string = LibNanomsg.nn_symbol(index, value)
+    break if constant_string.nil?
+    const_set(constant_string, value.read_int)
+    index += 1
+  end</code>
+</pre></div>
+<h2 id="toc7"><span>Managing socket lifetime</span></h2>
+<p>While nanomsg API provides functions for creating and closing sockets (nn_socket and nn_close respectively), object-oriented language may prefer to implement socket as an object and call nn_close() function from the destructor.</p>
+<p>If so, it's important to consider that nn_close() is a blocking function &#8212; it may wait for period specified by NN_LINGER socket option while any pending outbound data are sent. If blocking in destructor would cause serious problems to the language runtime, such as entirely blocking the garbage collection process, you should consider exposing nn_close() function directly to the user.</p>
+<h2 id="toc8"><span>Sending and receiving messages</span></h2>
+<p>Wrapping most nanomsg functions is pretty straightforward. Special care, however, should be taken of nn_send and nn_recv.</p>
+<p>These functions deal with messages. Message, from the point of view of nanomsg, is an uninterpreted binary BLOB, in other words, just an arbitrarily long sequence of bytes. The binding should decide how to represent such an object in the native language. For example, in some languages, the &quot;string&quot; type may not be the right option as the strings can only be used to store text in UTF-8 format. In most cases the language does have a datatype suitable for representing a BLOB. If that's not the case, the last resort solution is to represent messages as strings containing Base64-encoded binary data.</p>
+<p>nn_sendmsg() and nn_recvmsg() functions provide an option to use C gather/scatter arrays (passing data in several non-continuous memory chunks). Many languages don't have a native concept of gather/scatter or, for what it's worth, of a memory buffer. Trying to expose this functionality in such languages doesn't make sense. Instead, send/recv functions should deal with exactly one message at a time.</p>
+<p>Finally, receiving a message into preallocated buffer &#8212; as done by nn_recv() function &#8212; doesn't make sense in many languages. Instead, the binding implementation should use nn_recv in combination with NN_MSG flag to get a buffer allocated by nanomsg library, then copy the buffer into native object and finally deallocate the buffer returned by nn_recv(). Here's an example of such implementation:</p>
+<div class="code">
+<pre>
+<code>object *recv (int s, int flags)
+{
+    int rc;
+    void *buf;
+    object *msg;
+
+    rc = nn_recv (s, &amp;buf, NN_MSG, flags);
+    msg = create_object (&quot;BLOB&quot;);
+    memcpy (getbuffer (object), buf, rc);
+    nn_freemsg (buf);
+    return msg;
+}</code>
+</pre></div>
+<h2 id="toc9"><span>Zero-copy</span></h2>
+<p>The rule of thumb with zero-copy is: If you don't need it and/or don't fully understand how it works, just don't do it.</p>
+<p>Zero-copy means that the application has to deal directly with different native memory buffers, for example with blocks of shared memory, or memory pinned down to physical memory address (so as to be accessible by zero-copy CPU-bypass techniques) and so on. This is hard, and sometimes even impossible, to get working with languages with automatic garbage collection.</p>
+<p>If you still want to provide zero-copy, make sure to discuss it on the nanomsg mailing list or IRC channel in advance to avoid possible pitfalls.</p>
+<h2 id="toc10"><span>Error codes</span></h2>
+<p>nanomsg uses POSIX error codes to indicate errors (EINVAL, EMFILE etc.)</p>
+<p>While numeric values of these errors may be available in the native language, they are also provided by nn_symbol() function.</p>
+<p>There are few subtle points to take into consideration when working with error codes:</p>
+<ul>
+<li>There is couple of non-POSIX error codes defined by nanomsg library itself (ETERM, EFSM).</li>
+<li>Some POSIX error codes are not available on all platforms (Windows) and thus are defined by nanomsg library.</li>
+<li>The numeric values of individual errors differ on various platforms. To make a binding portable, never use numeric values instead of symbolic names of the errors.</li>
+</ul>
+<h2 id="toc11"><span>Handling EINTR</span></h2>
+<p>EINTR error is used to return the control to the language runtime when Ctrl+C is pressed during a blocking call to nanomsg library, such as nn_recv().</p>
+<p>The right way to handle EINTR is dependent on the specifics of signal handling as implemented by the language runtime. However, if the binding is implemented in the native language (rather than as a module written in C) simply re-starting the interrupted function should be (in most cases) the right way to handle the error.</p>
+<h2 id="toc12"><span>Polling</span></h2>
+<p>Polling mechanism, given that it is a glue between disparate types of subsystems (file systems, networking stack, etc.) must be defined by the platform rather than by any individual subsystem (such as nanomsg). Thus, binding developer should try to integrate nanomsg into the native polling mechanism. File descriptors retrieved from the socket using NN_SNDFD and NN_RCVFD socket options can be used for this purpose.</p>
+<p>If the language doesn't provide a native polling mechanism or if it doesn't provide a way to plug arbitrary file descriptors into the native polling mechanism, then the binding should do the second best thing and implement a polling function/object itself.</p>
+<h2 id="toc13"><span>Modularity</span></h2>
+<p>nanomsg implements multiple scalability protocols. To be super-consistent it should have been split into multiple separate libraries, however, that would be a management burden. So, instead of multiple libraries, nanomsg, provides the common API (basically just generic BSD sockets) in nn.h header and defines a specific header file for each protocol. These headers define any constants or functions specific to the individual protocols. For example &quot;NN_PUB&quot; socket type and &quot;NN_SUB_SUBSCRIBE&quot; socket option are specifc to pub/sub protocol and thus they are defined in &lt;nanomsg/pubsub.h&gt; header file.</p>
+<p>This separation prevents nanomsg developers to unintentionally drag in any inter-protocol dependencies and keeps every scalability protocol usable even in absence of its siblings.</p>
+<p>Language binding authors should consider whether this kind of modularity is worth implementing in the binding.</p>
+<p>The rule of the thumb is: If the binging is simple enough and does little more than forwarding the calls from the user to the nanomsg library, the separation is not necessary. However, if the binding provides non-trivial functionality of its own, keeping the protocols separate makes sense to prevent accidental dependencies between the protocols.</p>
+<p><strong>Martin Sústrik, March 28th, 2013</strong></p>
+<div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:20">Using Survey Protocol for High Availability</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:22">TCP and heartbeats</a></p>
+</div>
+    
+    
+    
+    </div>
+<div style="height:2em"></div>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 637889;
+</script>
+
+
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="637889"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

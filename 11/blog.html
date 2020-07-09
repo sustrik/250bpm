@@ -1,0 +1,1146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>The Merit of AMQP (part I) - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:11";
+        OZONE.request.timestamp = 1594263448;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:11";
+        WIKIREQUEST.info.pageId = 14868226;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;The Merit of AMQP (part I)&quot;" href="/feed/page/comments-14868226.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            The Merit of AMQP (part I)
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em"><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:10">Getting Rid of Domain Registrars Using Bitcoin Algorithm</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:12">EINTR and What It Is Good For</a></p>
+</div>
+    
+    
+    
+    </div>
+<p>Couple of <a href="http://www.amqp.org">AMQP</a>-related blog posts have arrived lately. Reading it, I've realised that although I've been involved with AMQP from the very beginning I've never explicitly expressed my thoughts on it, on the split between AMQP/0-9-1 and AMQP/1-0 and related technical issues. Also, I believe that designing ZeroMQ gave me a pretty unique point of view on AMQP, that some of the readers may find interesting to explore.</p>
+<h1 id="toc0"><span>8 Years in Making</span></h1>
+<p>To start with, the goal of AMQP was breaking the IBM and TIBCO duopoly in enterprise messaging market and commoditisation of messaging middleware products. Both companies have charged exorbitant prices for the software and even wannabe competitor products were extremely costly. The idea was to define an interoperable messaging protocol and thus allow enterprises to switch messaging implementations without breaking the existing applications. Therefore, if incumbent vendor would go rogue with the licensing fees, the enterprise could smoothly migrate to a different vendor with more favourable pricing scheme.</p>
+<p>By the time the work on AMQP have begun (2004) there was already an established API standard for enterprise messaging called Java Message Service, or <a href="https://en.wikipedia.org/wiki/Java_Message_Service">JMS</a> for short. Of course, JMS works only with Java, but at least it defines a reasonable set of functionality to be supported by enterprise messaging product. Thus, the real challenge of AMQP was to define a wire protocol that could work as a communication medium between JMS clients and servers. And early versions of AMQP did just that. The protocol was basically reverse-engineered from JMS. You could browse through the specification and map AMQP concepts to JMS concepts in straightforward 1:1 manner. AMQP/0-9-1 standard (as used, for example, by RabbitMQ) is still very much JMS gone binary.</p>
+<p>There's one digression to make here: The 1:1 mapping between JMS and AMQP/0-9-1 is somewhat obscured by replacement of JMS' Queue and Topic model with AMQP's Exchange-Binging-Queue model. The refactoring seemed to make sense at the time as it clearly separated the routing functionality (exchanges) from message queueing functionality (queues). From today's perspective though, I would say that Exchange-Binding-Queue model is rather a leakage of internal broker architecture (separate modules to route and queue messages) into the protocol. While the model allows for novel ways of interlinking different routing and queueing behaviours, in practice there are only two models that actually make sense: request/reply model embodied in JMS' &quot;Queue&quot; concept and publish/subscribe model modelled as &quot;Topic&quot; in JMS. All the additional flexibility provided by Exchange-Binding-Queue model is more or less good only for letting the user shoot himself in the foot.</p>
+<p>Anyway, back to the story: By the end of 2007 I've started working on ZeroMQ. ZeroMQ had different goals from AMQP. Instead of trying to provide interoperability for traditional enterprise messaging (IBM WebSphereMQ and various copycat products) it rather tried to address the low-latency messaging market (TIBCO RendezVous, 29 West's LBM and alike) as well as messaging in 'common' rather than 'enterprise' scenarios. At first I've tried to use AMQP/0-9-1 model in ZeroMQ. I've even written a <a href="http://www.zeromq.org/whitepapers:messaging-enabled-network">whitepaper</a> about it. However, AMQP never aligned well with the goals of ZeroMQ and I've finally dropped the AMQP support when releasing version 2.0 of ZeroMQ.</p>
+<p>In 2008 AMQP/1-0 emerged. I was not much involved with AMQP working group by then so I have no idea why it have entirely dumped the previous versions of the protocol and sent all the work done by early adopters of the protocol down the drain.</p>
+<p>The most puzzling aspect is that such a move seriously undermines the credibility of AMQP as a standard. After all, why should you invest in AMQP/1-0 if the working group is going to do the same thing next year, dump AMQP/1-0, publish completely unrelated AMQP/2-0 and make your investment worthless? It sounds counter-intuitive. Why would members of AMQP Working Group want to destroy the credibility of their standard?</p>
+<p>There's one conspiration theory that comes to mind: Around the time AMQP/1-0 was first discussed, Microsoft joined the AMQP working group. By that time AMQP Working Group consisted of users of messaging technology (banks and alike) and few small messaging vendors. Red Hat was part of the group, but its Qpid product was relatively new, not established and have already strayed away from the original standard. RabbitMQ had an AMQP implementation, but back then it was not yet acquired by VMware and was thus a small and insignificant member of the group. Same applies to iMatix with its OpenAMQ implementation. Thus, the thinking of those in power in the Working Group may have been that credibility gained by getting established messaging vendor like Microsoft (DCOM, MSMQ, SOAP, WCF etc.) on board would compensate for the loss of credibility caused by ruining the investments made be early adopters.</p>
+<p>The question, of course, is why not get Microsoft on board and preserve the standard at the same time. The answer seems quite obvious once you think of Microsoft joining the AMQP Working Group as of economic transaction. Microsoft offers credibility that goes with its membership in the standards group. The standard groups offers the &quot;AMQP-compliant&quot; stamp. Thus, to make the transaction acceptable by both parties, existing Microsoft products have to be stamped as &quot;AMQP-compliant&quot;.</p>
+<p>The facts seem to support the above explanation. Most importantly, the whole &quot;broker model&quot; part of the specification was dropped. AMQP doesn't define how the message broker should behave any more. It deals mostly with what happens on the wire between two TCP endpoints. As long as the bytes on wire are syntactically correct, broker is free to do anything and still be called AMQP-compliant. In practice it means the vendor can take an existing messaging product, implement a stand-alone well-encapsulated AMQP adaptor and there he goes without a need to re-write the whole product. If the broker model stayed in place, Microsoft would have to either create a new AMQP-compliant messaging technology or heavily re-factor its existing technologies. Both options are extremely expensive, not only in terms of the development cost, but primarily in the terms of credibility. New non-compatible product would dilute the credibility accumulated in the existing technologies. Refactoring existing deployed technologies means offending the customers. None of the two is acceptable, thus, AMQP standard has to be shoehorned to comply with existing Microsoft products.</p>
+<p>The downside of dropping the broker model, of course, is that user can't rely on standardised semantics of the broker any more. Thus, if one AMQP-compliant broker implementation is replaced by another, the application will most likely break. The fact that original goals of AMQP project, interoperability and avoidance of vendor lock-in, are missing from the current official <a href="http://amqp.org/product/solve">statement of goals</a> is in line with the above explanation.</p>
+<p>Recently, I've seen couple of comments from Working Group members asserting that broker model is to be added to the specification in the future. Although there's no much point in discussing vapourware, there are three possible outcomes: First and most probably, the broker model never materialises. Second, the new broker model could be shoehorned to fit a particular Microsoft technology, say WCF. Third and least likely, if another big vendor, such as IBM, joins the group there's a non-zero chance that a normal standardisation process driven by multiple parties will emerge.</p>
+<h1 id="toc1"><span>Anatomy of Messaging: Connection vs. Broker</span></h1>
+<p>Having shortly reviewed the history of AMQP, let's now have a closer look at it from technical point of view.</p>
+<p>If you look at any messaging protocol from 10,000 feet perspective, you'll almost always see two functionally distinct layers.</p>
+<p>The lower one deals with what happens between exactly two TCP endpoints. It basically defines a &quot;better TCP&quot; to build the messaging solution on top of. This layer consists of features like initial handshaking, authentication, message delimitation, multiplexing, heartbeating etc.</p>
+<p>Second layer deals with communication between more than two endpoints and is often referred to as &quot;broker model&quot; (although this is a misnomer: ZeroMQ implements this layer without a need for broker). Broker model defines the behaviour of queues shared between multiple connections as well as algorithms to route messages from clients to the shared queues and vice versa.</p>
+<p>The following table may be of interest. I've compiled the list of better-known messaging standards and marked whether they deal with connection layer or the broker model layer:</p>
+<table class="wiki-content-table">
+<tr>
+<th></th>
+<th>Connection Layer</th>
+<th>Broker Model</th>
+</tr>
+<tr>
+<th><a href="http://www.amqp.org/specification/0-9-1/amqp-org-download">AMQP/0-9-1</a></th>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<th><a href="http://www.amqp.org/resources/download">AMQP/1-0</a></th>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<th><a href="http://www.zeromq.org">ZeroMQ</a></th>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<th><a href="http://xmpp.org/">XMPP</a></th>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<th><a href="http://www.ibm.com/developerworks/webservices/library/ws-mqtt/index.html#N10084">MQTT</a></th>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<th><a href="http://stomp.github.com/">STOMP</a></th>
+<td>Yes</td>
+<td>No</td>
+</tr>
+</table>
+<p>Remark: ZeroMQ is a product and does not define a protocol. I've included it into the list as it is the only example of &quot;broker model&quot; running straight on top of raw TCP, with no intermediate &quot;connection layer&quot;. (You may consider <a href="/concepts">this article</a>, where I've defined some basic concepts of distributed messaging, to be an initial step towards a formal protocol.)</p>
+<h1 id="toc2"><span>Merit of AMQP/1-0</span></h1>
+<p>To assess the merit of AMQP, it can't judged based on its original goals. With no broker model the goal of interoperability was not reached and we would have to write the protocol off as a failure. There would be nothing to blog about.</p>
+<p>However, let's assume that the new goal (although not officially stated) is to standardise the connection layer (&quot;better TCP&quot;) and that AMQP is thus a competitor to <a href="https://en.wikipedia.org/wiki/SCTP">SCTP</a> rather then to full-blown messaging protocols like XMPP or MQTT.</p>
+<p>From this point of view there are many technical questions to consider such as: How does AMQP deal with back-pressure? Does channelling work? What added benefit it brings over raw TCP? Is heartbeating defined is a versatile way or is it just a niche solution? What about reliability guarantees?</p>
+<p>I would like to consider these questions in the next part(s) of this article.</p>
+<p><strong>Martin Sústrik, November 1st, 2012</strong></p>
+<div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:10">Getting Rid of Domain Registrars Using Bitcoin Algorithm</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:12">EINTR and What It Is Good For</a></p>
+</div>
+    
+    
+    
+    </div>
+<div style="height:2em"></div>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 580542;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-1604175">
+                      
+		<div class="post" id="post-1604175">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604175)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604175">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/mato" onclick="WIKIDOT.page.listeners.userInfo(11772); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=11772&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="mato" style="background-image:url(http://www.wikidot.com/userkarma.php?u=11772)"/></a><a href="http://www.wikidot.com/user:info/mato" onclick="WIKIDOT.page.listeners.userInfo(11772); return false;" >mato</a></span> <span class="odate time_1351799049 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Nov 2012 19:44</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604175">
+									
+
+<p>Martin, thanks for this. An interesting perspective - I never thought of Exchange-Binding-Queue as a leakage of the internal broker design. It makes sense when I remember how we built OpenAMQ.</p>
+<p>You mention two recent articles on AMQP, I presume one of them is <a href="http://kellabyte.com/2012/10/20/clarifying-amqp/">this one</a> by @kellabyte, what's the other one?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604175)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604175)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604175" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604175)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604175)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/mato" onclick="WIKIDOT.page.listeners.userInfo(11772); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=11772&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="mato" style="background-image:url(http://www.wikidot.com/userkarma.php?u=11772)"/></a><a href="http://www.wikidot.com/user:info/mato" onclick="WIKIDOT.page.listeners.userInfo(11772); return false;" >mato</a></span>, <span class="odate time_1351799049 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Nov 2012 19:44</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+                      
+    <div class="post-container" id="fpc-1604711">
+                      
+		<div class="post" id="post-1604711">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604711)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604711">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1351834819 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 05:40</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604711">
+									
+
+<p>There was @kellabytes' article and one by Pieter in past few days.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604711)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604711)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604711" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604711)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604711)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1351834819 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 05:40</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1604248">
+                      
+		<div class="post" id="post-1604248">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604248)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604248">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=99&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="pieterh" style="background-image:url(http://www.wikidot.com/userkarma.php?u=99)"/></a><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;" >pieterh</a></span> <span class="odate time_1351803382 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Nov 2012 20:56</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604248">
+									
+
+<p>Nice article, Martin. Very interesting analysis of the reasons for dumbing down AMQP, and one I'd agree with. Ironic that AMQP was once meant to run on top of SCTP. I'm impatient to read your next piece&#8230;</p>
+
+							</div>
+
+										<div class="signature">
+					<hr class="signature-separator"/>
+					
+
+<p><a href="http://ipocracy.wikidot.com/main:portfolio">Portfolio</a></p>
+
+				</div>
+					
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604248)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604248)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604248" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604248)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604248)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=99&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="pieterh" style="background-image:url(http://www.wikidot.com/userkarma.php?u=99)"/></a><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;" >pieterh</a></span>, <span class="odate time_1351803382 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Nov 2012 20:56</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1604286">
+                      
+		<div class="post" id="post-1604286">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604286)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604286">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=99&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="pieterh" style="background-image:url(http://www.wikidot.com/userkarma.php?u=99)"/></a><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;" >pieterh</a></span> <span class="odate time_1351804703 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Nov 2012 21:18</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604286">
+									
+
+<p>One thing about the exchange-binding-queue refactor is that it let us plug in arbitrary routing logic as exchanges, which did prove useful. There have been quite a few different exchanges, and this model also made it trivial (in the sense of taking several years to find the simple answer) to do pattern-independent federation, which was impossible with the JMS semantics, and missing from the 0MQ patterns.</p>
+
+							</div>
+
+										<div class="signature">
+					<hr class="signature-separator"/>
+					
+
+<p><a href="http://ipocracy.wikidot.com/main:portfolio">Portfolio</a></p>
+
+				</div>
+					
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604286)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604286)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604286" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604286)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604286)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=99&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="pieterh" style="background-image:url(http://www.wikidot.com/userkarma.php?u=99)"/></a><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;" >pieterh</a></span>, <span class="odate time_1351804703 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Nov 2012 21:18</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1604722">
+                      
+		<div class="post" id="post-1604722">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604722)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604722">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1351836302 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 06:05</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604722">
+									
+
+<p>Yes. As I said, the model made sense back then. The amount of different use cases just asked for some flexible model. It's pretty easy to spot that something is not flexible enough. Spotting that it is too flexible can take years.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604722)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604722)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604722" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604722)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604722)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1351836302 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 06:05</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1604373">
+                      
+		<div class="post" id="post-1604373">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604373)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604373">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d67216c2433a2f9e836e4491ff72a3ad&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>alexis (guest)</span> <span class="odate time_1351809984 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Nov 2012 22:46</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604373">
+									
+
+<p>This is an excellent piece. My only criticism is that you speculate about motivations. This does not add to your analysis.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604373)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604373)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604373" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604373)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604373)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d67216c2433a2f9e836e4491ff72a3ad&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>alexis (guest)</span>, <span class="odate time_1351809984 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Nov 2012 22:46</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1604719">
+                      
+		<div class="post" id="post-1604719">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604719)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604719">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1351836060 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 06:01</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604719">
+									
+
+<p>True. It's a conspiration theory and thus worthless. Unfortunately, that's the best I have. Loosening the standard to accommodate vendors (not necessarily Microsoft) seems to be the only plausible explanation of what happened. Also, I don't believe people actually conspired to loosen the standard. It probably just followed from social dynamics of the working group.</p>
+<p>By the way, the described scenario is nothing unheard of in standards development. In fact, it exists, to some extent, in any standardisation effort. See, for example, here: <a href="http://hueniverse.com/2012/07/oauth-2-0-and-the-road-to-hell/">http://hueniverse.com/2012/07/oauth-2-0-and-the-road-to-hell/</a> The only aspect where AMQP stands out is the scope of the phenomenon (dropping the whole semi-established standard).</p>
+<p>I'd be curious to hear an alternative explanation though.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604719)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604719)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604719" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604719)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604719)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1351836060 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 06:01</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1604683">
+                      
+		<div class="post" id="post-1604683">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604683)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604683">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=811abcf8e9082f3279edcc6d5bc0e926&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andreas Mueller (guest)</span> <span class="odate time_1351830844 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 04:34</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604683">
+									
+
+<p>As a JMS vendor I can tell you that you're wrong with your statement that 0.9.1 is 1:1 JMS. 0.9.1 is quite incompatible with JMS and - beside that it is a version looking quite amateurish and lacking many features like exactly-once delivery, flow control and ack windowing - was the reason why existing messaging systems like those from Microsoft and JMS vendors did not implement it. This has changed with AMQP 1.0. We have now 2 JMS implementations (SwiftMQ and ActiveMQ) implementing it, we have a JMS-compliant client from Qpid (which passed the JMS TCK running against SwiftMQ and Qpid Java Broker over AMQP) and others will follow. I'm very confident now since the Department of Homeland Security joined the club. If you want to do business with them in future, be sure to provide AMQP 1.0, which, by the way, should not be a problem as we will have Proton which is a AMQP 1.0 toolkit which makes it a snap to add AMQP 1.0 support to anything in any popular language.</p>
+<p>I don't know whether Microsoft was the reason to abandon the 0.9.1 model but you may be right here. Market power is what is important and if Microsoft initiated the move then I can only pass a big thanks to them. I don't think, however, that AMQP 1.0 will be changed that much in future. It is an OASIS Standard and it took about a year for the transition from the AMQP Working Group release with only editorial changes in the spec (no functional or protocol changes). Next step is the ISO Standard so every new release has to go through these stages. But even a change to make a protocol better is no problem for a versioned protocol.</p>
+<p>Beside personal-psychological or business reasons to save an existing user base I really don't get why there is such a hate against AMQP 1.0. Don't spend your time with such a negative stuff. Instead be part of the move and just add AMQP 1.0 support to ZeroMQ and your fork. ;-)</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604683)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604683)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604683" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604683)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604683)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=811abcf8e9082f3279edcc6d5bc0e926&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andreas Mueller (guest)</span>, <span class="odate time_1351830844 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 04:34</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1604718">
+                      
+		<div class="post" id="post-1604718">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604718)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604718">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=99&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="pieterh" style="background-image:url(http://www.wikidot.com/userkarma.php?u=99)"/></a><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;" >pieterh</a></span> <span class="odate time_1351835690 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 05:54</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604718">
+									
+
+<p>@Andreas, I think one of Martin's points was exactly how easy it is to add AMQP/1.0 support to old products like SwiftMQ and ActiveMQ, and how little value that gives those who expected interoperability. You kind of underscored that argument.</p>
+
+							</div>
+
+										<div class="signature">
+					<hr class="signature-separator"/>
+					
+
+<p><a href="http://ipocracy.wikidot.com/main:portfolio">Portfolio</a></p>
+
+				</div>
+					
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604718)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604718)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604718" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604718)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604718)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=99&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="pieterh" style="background-image:url(http://www.wikidot.com/userkarma.php?u=99)"/></a><a href="http://www.wikidot.com/user:info/pieterh" onclick="WIKIDOT.page.listeners.userInfo(99); return false;" >pieterh</a></span>, <span class="odate time_1351835690 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 05:54</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1604725">
+                      
+		<div class="post" id="post-1604725">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1604725)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1604725">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1351836922 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 06:15</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1604725">
+									
+
+<p>I was not trying to be negative, just to summarise the history of AMQP as I remember it. Anyway, politics is boring. Hopefully, part II will be more interesting as I want to focus on technical aspects of messaging protocols in general and AMQP in particular.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1604725)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1604725)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1604725" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1604725)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1604725)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1351836922 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Nov 2012 06:15</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1609083">
+                      
+		<div class="post" id="post-1609083">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1609083)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1609083">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=bf5ab23ce60c688a514ebdd84758cd89&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Gordon Sim (guest)</span> <span class="odate time_1352309774 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 17:36</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1609083">
+									
+
+<p>(1) Your assertion that AMQP 1.0 does not address the 'broker model' layer<br />
+is false; it does.</p>
+<p>The specification defines a 'distribution node' as 'a node that stores<br />
+messages for distribution', along with the logical message states<br />
+through which messages pass as they are distributed and two<br />
+'distribution modes' corresponding to competing and non-competing<br />
+consumer patterns.</p>
+<p>There is therefore a standardised aproach to the basic pub-sub and<br />
+shared queue functionality ('Topics' and 'Queues' in JMS parlance).</p>
+<p>(2) <em>&quot;I would say that Exchange-Binding-Queue model is rather a leakage<br />
+of internal broker architecture&quot;</em></p>
+<p>It is indeed! That is precisely the reason 1.0 moved away from that<br />
+model, to avoid tying the protocol to a particular internal<br />
+architecture.</p>
+<p>Allowing existing messaging products to support the protocol without<br />
+having to undertake a complete rewrite seems to me perfectly<br />
+reasonable given the original goal as you describe it.</p>
+<p>We are already seeing the fruits of that with new implementations of<br />
+AMQP offered or in the pipeline. Greater adoption provides users with<br />
+greater choice which is exactly what AMQP is supposed to achieve.</p>
+<p>(3) <em>&quot;JMS [&#8230;] defines a reasonable set of functionality [&#8230;] the<br />
+real challenge of AMQP was to define a wire protocol that could<br />
+work as a communication medium between JMS clients and<br />
+servers. And early versions of AMQP did just that. The protocol<br />
+was basically reverse-engineered from JMS. You could browse<br />
+through the specification and map AMQP concepts to JMS concepts in<br />
+straightforward 1:1 manner.&quot;</em></p>
+<p>This is a misleading picture. Early versions of AMQP were poor in<br />
+their support for JMS. The 'basic' class was a very naive translation<br />
+of the JMS API into an RPC-ish 'protocol' without sufficient<br />
+consideration of the functionality JMS offers. As more fully<br />
+functional JMS implementations were developed, the limitations became<br />
+clear.</p>
+<p>I would argue the central 'concept' in JMS is that of the<br />
+'Destination', a symmetric redezvous point to which messages can be<br />
+sent and from which they can be received. The mapping of this to the<br />
+'distribution node' model is much more straightforward than it was to<br />
+the 'Exchange-Binding-Queue' model.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1609083)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1609083)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1609083" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1609083)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1609083)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=bf5ab23ce60c688a514ebdd84758cd89&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Gordon Sim (guest)</span>, <span class="odate time_1352309774 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Nov 2012 17:36</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1611633">
+                      
+		<div class="post" id="post-1611633">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1611633)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1611633">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1352546481 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 Nov 2012 11:21</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1611633">
+									
+
+<p>Hi Gordon!</p>
+<p>Well, yes, there's the 'distribution mode' bit, but calling that a broker model is a bit exaggerated. Same way, ZeroMQ does a simple message delimitation on top of TCP, but I am not calling it a 'connection layer' just because of that.</p>
+<p>And yup, early versions of AMQP had many deficiencies. However, it's not clear how AMQP/1-0, by stressing the connection layer and ignoring the broker model does a better job.</p>
+<p>I would say that people working on messaging should focus on defining a generic, consistent and scalable broker model, but for some reason nobody is doing that. We are still stuck with JMS model. JMS is 11 years old now and the concepts it standardises are ~20 years old. No progress seems to happen. (Just recall how the Internet changed during that time!)</p>
+<p>If you have any idea of how to move the broker model forward into XXI. century, I would love to discuss it with you. I have some ideas myself. I'll try to express them in a paper at some point.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1611633)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1611633)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1611633" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1611633)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1611633)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263448" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1352546481 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 Nov 2012 11:21</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1614267">
+                      
+		<div class="post" id="post-1614267">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1614267)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1614267">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=bf5ab23ce60c688a514ebdd84758cd89&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Gordon Sim (guest)</span> <span class="odate time_1352814193 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Nov 2012 13:43</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1614267">
+									
+
+<p>Surely a standardised approach for queues (including browsing) and topics (in the pub-sub sense) *does* count as a 'broker model' under your definition? If not I think you need to more clearly describe the criteria by which you are excluding it.</p>
+<p>Fundamental to any 'broker model' is a message abstraction and a standard way for producers and consumers/subscribers to interact with the broker. After all, the purpose of brokering in many cases is to decouple the producers and consumers so the producer shouldn't have to care what the broker does with the messages it sends. (It may of course want to verify that certain capabilities are supported on the node to which it is sending, and a means of doing this both for producers and consumers is important).</p>
+<p>On top of this foundation you can then describe the behaviour of different node types (nodes are simply the sources/sinks for messages, i.e. the rendezvous points). For example you want to specify how a broker will allocate messages published to a node that has multiple subscribers - whether the subscribers compete for the message (as in typical queue behaviour) or whether they each get a copy (fanout or pub-sub behaviour). You will want to specify a set of states and transitions for messages through which storage models can be described (e.g. classic store and forward, reliable pub-sub). AMQP 1.0 does all this. In addition you would likely want selective subscriptions, where subscribers to the same node can specify interest in a subset of the messages published to that node (e.g. the wildcard matching in a pre 1.0 'topic exchange' as compared to the 'fanout exchange' or JMS style selectors). And of course there are other aspect of behaviour (nodes that retain the last value for a certain key, nodes that honour message priority when choosing which message to deliver etc).</p>
+<p>Now, in my view, not every 'broker' is going to need/want to support all the same behaviours (e.g. with the pre 1.0 AMQP model support for transaction, durability or priorities was optional, as was support for the topic exchange type. Moreover some implementations decided not to support acknowledgements but to specialise in uses cases that didn't require them etc). I don't think the job of the standard is to force them to do so, but rather to provide standardised approaches for and expanding set of behaviours (perhaps aggregated into profiles for easing comparisons).</p>
+<p>The 1.0 specification does provide a way to register extensions. This allows a catalogue of existing behaviours to be built up that then provides a good basis for further standardisation efforts, hopefully driven by real needs and working solutions. I suspect the first thrust here will be on the filters required for the JMS mapping. I can also see initiatives launched to standardise some of the existing extensions from ActiveMQ, SwiftMQ, Qpid etc (message groups, last value 'queues', sticky consumers, probably informally through the respective communities to begin with.</p>
+<p>Also relevant here - a different dimension of 'broker' behaviour - is global addressing and standards for creating networks for co-operating components.</p>
+<p>I'd certainly be very keen to hear your thoughts on what might be needed for a more 'modern' broker model!</p>
+<p>(PS: Sorry this is rather a long post! as someone famous once said, I didn't have time to write a shorter one!).</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1614267)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1614267)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1614267" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1614267)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1614267)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=bf5ab23ce60c688a514ebdd84758cd89&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Gordon Sim (guest)</span>, <span class="odate time_1352814193 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Nov 2012 13:43</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  block ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

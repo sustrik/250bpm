@@ -1,0 +1,892 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Two Approaches to Structured Concurrency - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:139";
+        OZONE.request.timestamp = 1594263596;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:139";
+        WIKIREQUEST.info.pageId = 298166698;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;Two Approaches to Structured Concurrency&quot;" href="/feed/page/comments-298166698.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            Two Approaches to Structured Concurrency
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em">
+<p>I am the author of <a href="http://libdill.org/">libdill</a>, a library that brings <a href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/">structured concurrency</a> to C language. However, the concept of structured concurrency is still evolving and we haven't yet reached the final consensus on what's the right way of doing it.</p>
+<p>To broaden my horizon, I've recently played with <a href="https://trio.readthedocs.io/en/latest/">Trio</a>), a library for strucutured concurrency in Python. Also, to be able to compare the two approaches I've <a href="https://github.com/sustrik/libdill/blob/master/happyeyeballs.c">implemented</a> Happy Eyeballs algorithm (<a href="https://tools.ietf.org/html/rfc8305">RFC 8305</a>) using libdill, so that it can be compared to <a href="https://github.com/python-trio/trio/blob/1095e373cd7b2207948e0cb90d059dd7ee2e98f7/trio/_highlevel_open_tcp_stream.py">Trio's implementation</a>. Unfortunately, Trio doesn't implement asynchronous DNS queries, which lead to some of the most interesting concurrent scenarios, but in spite of that the comparison highlighted some interesting differences between the two approaches. I am going to cover what I've learned in this article.</p>
+<p>First, let's look at libdill's approach. It's a kind of old-school, boring approach that you would expect from a C library: When you want to execute code concurrently you create a bundle object. Bundle is a container to hold green threads. From the API perspective it looks very much like a thread pool. You can launch green threads (coroutines) in the bundle.</p>
+<p>As for cancellation, threads as such have no identifiers so it's not possible to cancel a single thread. However, bundles do have handles that you can use to cancel all the threads in the bundle. The rationale for this design is that there can be arbitrary number of threads running in the bundle and this way the user doesn't have to keep track of all the threads, whether any particular thread has already terminated or not and so on. Instead, you manipulate the bundle as a single entity, irrespective of how many threads are running within it. And of course, there can be a single thread in the bundle, so in the end you can cancel a single thread, albeit in a somehow indirect way.</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:139/sc8.png" alt="sc8.png" class="image" /></div>
+<div class="code">
+<pre>
+<code>coroutine void worker(void) {
+    ...
+}
+
+int main(void) {
+    int bndl = bundle();
+    bundle_go(bndl, worker());
+    bundle_go(bndl, worker());
+    bundle_go(bndl, worker());
+    hclose(bndl);
+    return 0;
+}</code>
+</pre></div>
+<p>The main idea of the design is the strict separation between the main thread (owner of the bundle) and the worker threads (running inside the bundle).</p>
+<p>Trio's approach is different. The central idea of the design is that all the threads running concurrently are equal. There's no distinction between the main thread (or at least the part of it that runs in the particular scope) and the worker threads.</p>
+<p>Technically, you open a &quot;nursery&quot; scope (nursery is Trio's equivalent of a thread bundle). Both the code in the nursery scope and the worker threads are considered to live in the nursery.</p>
+<p>When the scope is about to close it waits for all the threads to finish. The main thread execution is resumed when that happens.</p>
+<p>As for explicit cancellations, any thread can cancel the scope. That in turn causes each thread in the nursery to raise an exception, which bubbles to the top level and terminates all the threads. Once done, main thread can resume execution.</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:139/sc7.png" alt="sc7.png" class="image" /></div>
+<div class="code">
+<pre>
+<code>async def worker(nursery):
+    ...
+    nursery.cancel_scope.cancel()
+    ...
+
+async with trio.open_nursery() as nursery:
+    nursery.start_soon(myfunc, nursery)
+    nursery.start_soon(myfunc, nursery)
+    nursery.start_soon(myfunc, nursery)</code>
+</pre></div>
+<p>Now that we have the idea how both approaches work, let's look at the implementation of Happy Eyeballs algorithm. The algorithm is meant to create a TCP connection and deal with the case where the destination hostname resolves to multiple IP addresses. In simple terms, the algorithm starts connecting to the first IP address. If the connection is not yet established after 300ms it starts connecting to the second IP addresses. If none of the previous connection attempts succeeds in the next 300ms connection to the third address is attempted. And so on. Once any of the connection attempts succeeds all other attempts are canceled and the newly created connection is returned to the user.</p>
+<p>Libdill's implementation has the main thread which launches a connection attempt and waits for 300ms to get a reply. If there's no reply it launches another attempt and waits for the reply from either of the two. After next 300ms it launches the third attempt and so on. Once it get a reply it cancels all the attempts and moves on.</p>
+<p>The scenario very much matches the libdill diagram above.</p>
+<p>Trio's approach is different. The main thread launches the first attempt and exits the nursery scope. This makes it wait until all the attempt threads exit.</p>
+<p>The attempt thread waits for 300ms (this is skipped for the first attempt), then it launches another attempt thread and starts connecting to the first IP address. The second attempt, similarly, waits for 300ms, then launches the third attempt and starts connecting to the second IP address. And so on, until one of the attempts succeeds. When that happens the successful attempt saves the new connection and cancels the nursery. That in turn causes all other threads throw an exception which bubbles up to the top level, making the threads exit. When all threads exit the main thread can finally exit the nursery scope and return the saved connection to the user.</p>
+<p>Once again, the scenario pretty much matches the Trio diagram above.</p>
+<p>At this point I have to say that I like libdill's approach better. I am biased of course, libdill is my child after all, but let me explain.</p>
+<p>First, Trio posits that all threads, including the main thread, are equal. But as we've already seen the main thread is special, even in Trio's implementation of Happy Eyeballs. It does different stuff. It is different semantically, but also syntactically &#8212; the main thread is the block of code inside the nursery scope, the attempt thread code is a separate async function.</p>
+<p>That may be subliminally troubling, but not troubling enough to discard the design. What's more troubling though is the effect it has on ownership relations and encapsulation.</p>
+<p>In libdill's implementation the ownership relations are unambiguous. Main thread owns all the attempt threads and that's it.</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:139/sc9.png" alt="sc9.png" class="image" /></div>
+<p>In Trio's implementation there are two different ways to think about the ownership.</p>
+<p>If we define ownership as &quot;whoever executes the nursery scope owns all the threads running in the nursery then the design is basically the same as in libdill: The main thread owns the attempt threads.</p>
+<p>However, if we define ownership as &quot;whoever launches a thread owns it&quot; then we get a different picture: The main thread owns the first attempt thread. The first attempt thread owns the second attempt thread and so on.</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:139/sc10.png" alt="sc10.png" class="image" /></div>
+<p>This kind of ambiguity, I think, can be confusing.</p>
+<p>But that still may not be a reason to discard the design. It's only a matter of mindset after all. The programmers should learn that the first definition of ownership is the correct one and the second one shouldn't be used at all.</p>
+<p>But now we get to the matter of encapsulation and that's the thing that makes me feel really uncomfortable.</p>
+<p>The thing is that any thread is a nursery gets complete control over the nursery. It can use it to launch new threads. It can cancel the entire shebang.</p>
+<p>That breaks the assumptions I wanted to get from the structured concurrency in the first place:</p>
+<p>When I call a function, I want to be ignorant about whether the function launches any threads internally or not. If it does it should cancel those threads before exiting. I, as a caller, want to be sure that there are no lingering threads afterward, running in the background and doing mischief. But once I pass the nursery as a parameter to a function, that assumption goes out of the window.</p>
+<p>Same argument extends to cancellations. I may believe that as the main thread I am in full control of the worker threads and that those threads have no control over me, but once those threads have access to the nursery, they can cancel it and thus cancel myself. The control relationship becomes blurry.</p>
+<p>All that being said, it seems to me that the problem is not a fundamental problem with Trio's design. What it really boils down to is that Trio's implementation of Happy Eyeballs uses nursery as a synchronization primitive. Main thread waits for the reply from attempt threads by exiting the nursery scope. And if you want to do that, the design of one attempt thread launching another naturally follows.</p>
+<p>Libdill, on the other hand, can avoid that kind of thing because it uses Golang-style channels for synchronization among threads.</p>
+<p>But it seems that addition of channels to Trio is <a href="https://github.com/python-trio/trio/issues/719">being considered</a>. Once the channels are available the Happy Eyeballs algorithm can be rewritten to use a simple &quot;main thread owns all worker threads&quot; model.</p>
+<p>At that point, the topic of the two approaches to structured concurrency should be revisited.</p>
+<p><strong>October 31st, 2018</strong></p>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 8315383;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-4056539">
+                      
+		<div class="post" id="post-4056539">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4056539)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4056539">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=72f04c23021f35486da80c0c2048e7b2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>M R (guest)</span> <span class="odate time_1542012278 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">12 Nov 2018 08:44</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4056539">
+									
+
+<p>I really like the libdill/libmill idea and would like to know two things:<br />
+- have you considered porting libdill to embedded ARM (Cortex-M3-M7)?<br />
+- do you know Erlang's approach to starting/cancellation problem (<a href="http://erlang.org/doc/design_principles/sup_princ.html">http://erlang.org/doc/design_principles/sup_princ.html</a>)</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4056539)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4056539)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4056539" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4056539)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4056539)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=72f04c23021f35486da80c0c2048e7b2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>M R (guest)</span>, <span class="odate time_1542012278 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">12 Nov 2018 08:44</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+                      
+    <div class="post-container" id="fpc-4057034">
+                      
+		<div class="post" id="post-4057034">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4057034)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4057034">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span> <span class="odate time_1542058938 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">12 Nov 2018 21:42</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4057034">
+									
+
+<p>As for the embedded ARM thing, do you mean supporting ARM instruction set, or rather running without full libc support?</p>
+<p>As for the Erlang, I think the problem is much easier there as the language is stateless. In C on the other hand, you have to care about consistency, clean up etc.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4057034)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4057034)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4057034" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4057034)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4057034)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span>, <span class="odate time_1542058938 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">12 Nov 2018 21:42</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-4065198">
+                      
+		<div class="post" id="post-4065198">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4065198)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4065198">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=72f04c23021f35486da80c0c2048e7b2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>M R (guest)</span> <span class="odate time_1542895361 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">22 Nov 2018 14:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4065198">
+									
+
+<p>For ARM I mean both - running with ARM instruction set and without full libc. I think adding ASM stubs for ARM should be fairly easy, but I'm not sure how to emulate file descriptors and polling/multiplexing mechanism. Another solution would be to port it to FreeRTOS.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,4065198)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4065198" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4065198)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4065198)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=72f04c23021f35486da80c0c2048e7b2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>M R (guest)</span>, <span class="odate time_1542895361 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">22 Nov 2018 14:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-4065689">
+                      
+		<div class="post" id="post-4065689">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4065689)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4065689">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263595" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1542956729 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">23 Nov 2018 07:05</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4065689">
+									
+
+<p>I have no experience there, sorry. It's up to you :)</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4065689)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4065689)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4065689" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4065689)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4065689)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263595" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1542956729 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">23 Nov 2018 07:05</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4142230">
+                      
+		<div class="post" id="post-4142230">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4142230)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4142230">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=97c543aca1ac7bbcfb5279d0300c8330&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Nathaniel J. Smith (guest)</span> <span class="odate time_1549347736 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">05 Feb 2019 06:22</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4142230">
+									
+
+<p>Heh, funny you should mention that! I only just happened to see this months later, but&#8230;</p>
+<p>In early days of Trio, we actually had a restriction that the parent task/thread was *required* to get to the end of the nursery and block ASAP. In retrospect this was obviously the wrong approach, but well, it takes a while to figure these things out :-). We <a href="https://trio.readthedocs.io/en/latest/history.html#id16">got rid of that ages ago now</a>, but, I originally implemented happy eyeballs using that old version of Trio, and I never stopped to re-think whether having the parent task/thread available opened up any new ways to structure the algorithm&#8230;</p>
+<p>In the mean time, Sam Mason did <a href="https://github.com/python-trio/trio/pull/809">re-think this</a>, and if you look at the <a href="https://github.com/python-trio/trio/blob/319327d48dd2a6c143072f4627b82c42f1adfac9/trio/_highlevel_open_tcp_stream.py#L266">production implementation of happy eyeballs in Trio now</a>, it looks more like your libdill version than the version I presented in the talk.</p>
+<p>In some ways this is a bit of a shame. One of the nice things about the original example is that it really exercised every single feature in Trio – cancel scope nesting, nurseries, the ability to pass nurseries around if you have to, etc. Not passing the nursery around definitely leads to nicer code, but not necessarily a nicer pedagogical example :-). Oh well!</p>
+<blockquote>
+<p>Trio doesn't implement asynchronous DNS queries</p>
+</blockquote>
+<p>You mean, you can't process the A and AAAA response packets separately as they arrive? You actually totally can – just do &#8216;await getaddrinfo(&quot;hostname.com&quot;, port, family=AF_INET)` to do the A query, and `await getaddrinfo(&quot;hostname.com&quot;, port, family=AF_INET6)` to do the AAAA query. We have <a href="https://github.com/python-trio/trio/issues/762">an issue open</a> to think about whether we can do anything clever with this, like Apple does in RFC 8305, but the answer is probably not, for a silly reason: mainstream OSes let sysadmins configure a preference for IPv4 vs IPv6, and the RFC 8305 algorithm relies on this preference. But, mainstream OSes don&#8217;t give regular programs any way to query this configuration, except to do a regular dual-protocol `getaddrinfo` and then follow the address ordering it gives back :-(. It might still be fun to implement the full RFC 8305 algorithm anyway, just to see how it looks.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4142230)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4142230)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4142230" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4142230)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4142230)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=97c543aca1ac7bbcfb5279d0300c8330&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Nathaniel J. Smith (guest)</span>, <span class="odate time_1549347736 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">05 Feb 2019 06:22</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-4144666">
+                      
+		<div class="post" id="post-4144666">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4144666)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4144666">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263595" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1549517863 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2019 05:37</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4144666">
+									
+
+<p>Thanks for the update!</p>
+<blockquote>
+<p>In the mean time, Sam Mason did re-think this, and if you look at the production implementation of happy eyeballs in Trio now, it looks more like your libdill version than the version I presented in the talk.</p>
+</blockquote>
+<p>Good to know.</p>
+<blockquote>
+<p>In some ways this is a bit of a shame. One of the nice things about the original example is that it really exercised every single feature in Trio – cancel scope nesting, nurseries, the ability to pass nurseries around if you have to, etc. Not passing the nursery around definitely leads to nicer code, but not necessarily a nicer pedagogical example :-). Oh well!</p>
+</blockquote>
+<p>I would personally that passing nurseries around is an anti-pattern, diluting the concept of coroutine ownership. Do we have any use cases where it is strictly necessary?</p>
+<blockquote>
+<p>But, mainstream OSes don’t give regular programs any way to query this configuration, except to do a regular dual-protocol `getaddrinfo` and then follow the address ordering it gives back :-(</p>
+</blockquote>
+<p>Yes, that's what I meant. I've used dns.c to get true concurrent DNS queries which in turn made it possible to implement full (kind-of) implementation of Happy Eyeballs. The intricacies involved in coordinating the async DNS queries with connection attempts were very instructive, at least to me. But Python is out of luck here, I guess.</p>
+<p>Btw, after my talk about structured concurrency at FOSDEM I've was approached by few people and it turned out that different language communities are chewing on the concept. (Java, Golang, Nim.) I'll set up a mailing list for a cross-language discussion of the topic and see whether it gets any traction.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4144666)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4144666)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4144666" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4144666)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4144666)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263595" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1549517863 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2019 05:37</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4146914">
+                      
+		<div class="post" id="post-4146914">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4146914)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4146914">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=97c543aca1ac7bbcfb5279d0300c8330&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Nathaniel J. Smith (guest)</span> <span class="odate time_1549678237 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 Feb 2019 02:10</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4146914">
+									
+
+<blockquote>
+<p>I'll set up a mailing list for a cross-language discussion of the topic and see whether it gets any traction.</p>
+</blockquote>
+<p>Heh, funny you should say&#8230; I actually just set this up, and the reason I came back to your blog now was to figure out how to invite you to join :-). (I'm enjoying these discussions in the comments, but not getting notified when you reply is brutal for carrying on a conversation&#8230;)</p>
+<p>Actually instead of a mailing list, I made a subforum on Trio's new Discourse forum: <a href="https://trio.discourse.group/c/structured-concurrency">https://trio.discourse.group/c/structured-concurrency</a></p>
+<p>So basically a mailing list, except with markdown support and support for lots of different forms of notification (including pure email workflows if that's what you're into). What do you think?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4146914)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4146914)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4146914" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4146914)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4146914)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=97c543aca1ac7bbcfb5279d0300c8330&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Nathaniel J. Smith (guest)</span>, <span class="odate time_1549678237 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 Feb 2019 02:10</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4324338">
+                      
+		<div class="post" id="post-4324338">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4324338)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4324338">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=4782c0e06aabcfa6b262698b0e4fa3bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Yanis Batura (guest)</span> <span class="odate time_1565179633 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Aug 2019 12:07</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4324338">
+									
+
+<p>In your Trio code example, the worker function is called <tt>worker</tt>, but passed to <tt>nursery.start_soon</tt> as <tt>myfunc</tt>. Is this a typo or I'm missing something?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4324338)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4324338)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4324338" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4324338)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4324338)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=4782c0e06aabcfa6b262698b0e4fa3bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Yanis Batura (guest)</span>, <span class="odate time_1565179633 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Aug 2019 12:07</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="8315383"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

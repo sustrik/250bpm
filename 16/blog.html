@@ -1,0 +1,1808 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Implementing Network Protocols in User Space - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:16";
+        OZONE.request.timestamp = 1594263451;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:16";
+        WIKIREQUEST.info.pageId = 16336732;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;Implementing Network Protocols in User Space&quot;" href="/feed/page/comments-16336732.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            Implementing Network Protocols in User Space
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em"><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:15">Why Communication Infrastructure Should Use Permissive Licenses</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:17">Bus Messaging Pattern</a></p>
+</div>
+    
+    
+    
+    </div>
+<p>Implementing network protocols in user space is not as uncommon as it may seem. The advantages when compared to implementing them in the kernel space range from easier development, more freedom to experiment and greater portability to less hassle with the distribution (the pain of getting the patch into the mainline kernel vs. simply uploading a user space library to GitHub), improved performance thanks to kernel by-pass and no way to provide a kernel space implementation for proprietary platforms like Windows.</p>
+<p>While my experience in the area is based on my work on <a href="http://www.zeromq.org">ZeroMQ</a> and more recently on <a href="http://nanomsg.org">nanomsg</a>, there are many other libraries that share the same challenge. One may mention, for example, <a href="https://code.google.com/p/openpgm">OpenPGM</a> (reliable multicast, RFC 3208), <a href="http://udt.sourceforge.net/">UDT</a> (bulk transfer protocol) or <a href="http://www.openonload.org/">OpenOnload</a> (Solarflare's kernel by-pass networking).</p>
+<p>This article gives an overview of technical challenges of designing an idiomatic APIs for network protocols implemented in user space and provides a background for my recent <a href="https://lkml.org/lkml/2013/2/8/67">EFD_MASK patch to Linux kernel</a>.</p>
+<p>When implementing a network protocol in user space you will almost certainly start with some kind of clone of BSD sockets API:</p>
+<div class="code">
+<pre>
+<code>struct myproto_sock {
+    ...
+};
+
+struct myproto_addr {
+    ...
+};
+
+struct myproto_sock *myproto_socket (void);
+int myproto_close (struct myproto_sock *s);
+int myproto_bind (struct myproto_sock *s, myproto_addr *addr);
+int myproto_connect (struct myproto_sock *s, myproto_addr *addr);
+ssize_t myproto_send (struct myproto_sock *s,
+    const void *buf, size_t len, int flags);
+ssize_t myproto_recv (struct myproto_sock *s,
+    void *buf, size_t len, int flags);</code>
+</pre></div>
+<p>However, when implementing anything except for the simplest client applications this API is not sufficient. To handle more than one socket in parallel, you need polling. For example, your server application may want to wait until at least one of several myproto sockets becomes readable.</p>
+<p>Once again, the most obvious solution is to fork the polling API from BSD sockets:</p>
+<div class="code">
+<pre>
+<code>struct myproto_pollfd {
+    struct myproto_sock *fd;
+    short events;
+    short revents;
+};
+
+int myproto_poll (struct myproto_pollfd *fds, nfds_t nfds, int timeout);</code>
+</pre></div>
+<p>The next stumbling block is combining classic TCP or UDP sockets with myproto sockets in a single pollset. What if the server application wants to handle a set of myproto sockets along with a set of TCP sockets? The above API doesn't support that kind of thing. We have to modify the myproto_pollfd prototype to allow for using either myproto_sock pointer or regular OS-level file descriptor:</p>
+<div class="code">
+<pre>
+<code>/*  rawfd field is used instead of fd when the latter is set to NULL */
+struct myproto_pollfd {
+    struct myproto_sock *fd;
+    int rawfd;
+    short events;
+    short revents;
+};</code>
+</pre></div>
+<p>The API is getting a little ugly, but it's still more or less usable. Unfortunately, it's not yet the end of the trouble. Actually, this is the point where things start to get hairy. Let's inspect the next use case.</p>
+<p>There are many widely used asynchronous networking frameworks out there. Their main goal is to shield the user from the complexity of handling many connections in parallel. Obviously, central piece of each such framework is a loop polling on a set of sockets and invoking user-supplied handlers when the poll reports a network event. The polling itself is done via one of the system-level polling mechanisms, such as select, poll, epoll, kqueue, IOCP, or /dev/poll.</p>
+<p>However, myproto sockets require a special polling function (myproto_poll) and thus cannot be integrated with such frameworks.</p>
+<p>In theory, the framework can be modified to use myproto_poll instead of the system poll, but such a patch is never going to get into the mainline. The most obvious reason is that it makes the framework dependent on the myproto library, but the real problem occurs when there's a need to handle two different user space protocols. One asks the framework to use myproto_poll function, other one asks it to use someoneelsesproto_poll. There's no way to reconcile the two.</p>
+<p>In short, protocol developer's only option is to somehow provide a native file descriptor for the frameworks to poll on. It can be done, for example, in the following way. This example assumes that myproto is a protocol built directly on top of IP layer:</p>
+<div class="code">
+<pre>
+<code>struct myproto_fd {
+    int raw; /*  underlying IP (SOCK_RAW) socket */
+    ...
+};
+
+int myproto_getfd (struct myproto_fd *s)
+{
+    return s-&gt;raw;
+}</code>
+</pre></div>
+<p>The user is expected to retrieve the underlying system file descriptor from myproto_fd (via myproto_getfd function) and use it for actual polling (select, poll, epoll etc.)</p>
+<p>The problem with this approach is that the underlying file descriptor signals individual poll events depending on what's happening on IP layer, rather than on the myproto layer. For example, if a myproto control packet with no embedded user data arrives, the file descriptor will signal POLLIN, however, subsequent myproto_recv will return no data.</p>
+<p>To solve this problem we have to implement a new function that will check whether the socket is <strong>really</strong> readable. Something like this:</p>
+<div class="code">
+<pre>
+<code>struct myproto_fd {
+    int raw; /*  underlying IP (SOCK_RAW) socket */
+    uint8_t rx_buffer [128 * 1024]; /* receive buffer */
+    size_t bytes_in_rx_buffer; /* amount of user data in reveive buffer */
+    ...
+};
+
+int myproto_getfd (struct myproto_fd *s)
+{
+    return s-&gt;raw;
+}
+
+int myproto_can_recv (struct my_proto_fd *s)
+{
+    if (s-&gt;bytes_in_rx_buffer &gt; 0)
+        return 1;
+    else
+        return 0;
+}</code>
+</pre></div>
+<p>The intended usage is as follows:</p>
+<ol>
+<li>Retrieve the raw file descriptor form myproto socket.</li>
+<li>Poll on it.</li>
+<li>When POLLIN is signaled, use myproto_can_recv to find out whether the socket is really readable.</li>
+<li>If so, receive the data via myproto_recv. The call is now guaranteed to return at least 1 byte.</li>
+</ol>
+<p>That's already pretty ugly. In the real world the API tends to get even worse. There are multiple reasons for that: The need to report special conditions like POLLERR, POLLPRI or POLLHUP. Using multiple underlying raw sockets. Handling underlying raw sockets in a background thread. Etc.</p>
+<p>Let's consider the example of ZeroMQ. With ZeroMQ underlying sockets are managed by a worker thread. Worker thread communicates with user thread by sending it events via a socketpair. One event may mean, for example, &quot;new messages have arrived&quot;. However, for efficiency reasons the event is not sent for every single arrived message, only when there was no message in the rx buffer beforehand. This kind of approach is called edge-triggering.</p>
+<p>So, when user thread wants to poll on ZeroMQ socket it retrieves its internal file descriptor (receive side of the socketpair) and uses it for polling. Given that it is edge triggered, user has to deal with edge-triggering in the application. And it turns out that edge triggering is very counter-intuitive for most users and that it is seen as adding significant complexity to the API and leading to subtle bugs in the applications.</p>
+<p>If you want to have a closer look at the convoluted API, check documentation for zmq_poll as well as for ZMQ_FD and ZMQ_EVENTS socket options. OpenPGM gets into pretty similar situation &#8212; see PGM_SEND_SOCK, PGM_RECV_SOCK, PGM_PENDING_SOCK and PGM_REPAIR_SOCK socket options. UDT implementation, if I recall correctly, just gives up and doesn't provide any generic polling mechanism at all. OpenOnload, on the other hand, hijacks the whole system socket API and replaces it with its own implementation.</p>
+<p>As can be seen, all the possible solutions are basically ugly hacks. The question thus is, what can be done to fix the problem in a systematic manner.</p>
+<p>Here's where proposed EFD_MASK patch for Linux kernel kicks in.</p>
+<p>The fundamental idea is that it should be possible to create a system-level file descriptor to work as a placeholder for a socket implemented in the user space. Additionally, user space should be able to specify which events will be returned when the descriptor is polled on.</p>
+<p>And as it turns out, Linux already offers an object that almost fits the bill. It's called eventfd.</p>
+<p>For those not familiar with eventfd, it is basically a counter. By writing data to the eventfd you increase the counter, by reading data from eventfd you decrease the counter. When you poll on eventfd, it signals POLLIN when counter contains a value greater than zero. POLLOUT is signaled all the time except for the case when the counter reaches value of 0xffffffffffffffff.</p>
+<p>There are couple of things missing though:</p>
+<ol>
+<li>There's no way to associate user space data (socket state) with eventfd.</li>
+<li>While eventfd is great for signaling POLLIN and more or less viable for signaling POLLOUT, you can't force it to signal special events, such as POLLHUP or POLLPRI.</li>
+<li>You can't even make it signal all possible combinations of POLLIN and POLLOUT. Specifically, there's no way to signal neither POLLIN nor POLLOUT, which is pretty common condition that can occur quite easily in network protocols (when receive buffer is empty and send buffer is full).</li>
+</ol>
+<p>To solve these problems we need to, first, associate an opaque pointer with the eventfd, and second, replace eventfd's counter semantics with mask semantics, i.e. network protocol implementation should be able to explicitly specify the mask of events to be signaled when the file descriptor is polled on.</p>
+<p>At the moment, the addition to the existing Linux eventfd API looks like this:</p>
+<div class="code">
+<pre>
+<code>#define EFD_MASK 2
+
+struct efd_mask {
+    uint32_t events;
+    union {
+        void *ptr;
+        uint32_t u32;
+        uint64_t u64;
+    };
+} __attribute__ ((__packed__));</code>
+</pre></div>
+<p>You can use <strong>eventfd</strong> system call in combination with EFD_MASK flag to create a special type of eventfd object with mask semantics:</p>
+<div class="code">
+<pre>
+<code>s = eventfd (0, EFD_MASK);</code>
+</pre></div>
+<p>You can use <strong>write</strong> system call to set events and opaque data to the eventfd:</p>
+<div class="code">
+<pre>
+<code>struct efd_mask mask;
+mask.events = POLLIN | POLLHUP;
+mask.u32 = 1234;
+write (s, &amp;mask, sizeof (mask));</code>
+</pre></div>
+<p>Afterwards, you can use <strong>read</strong> system call to get currently set events and opaque data from the eventfd:</p>
+<div class="code">
+<pre>
+<code>struct efd_mask mask;
+read (s, &amp;mask, sizeof (mask));
+assert (mask.u32 == 1234);</code>
+</pre></div>
+<p>Finally, when you poll on the eventfd using <strong>select</strong>, <strong>poll</strong> or <strong>epoll_wait</strong> function, you'll get the events specified by last events written to eventfd:</p>
+<div class="code">
+<pre>
+<code>struct pollfd pfd;
+pfd.fd = s;
+pfd.events = POLLIN | POLLOUT;
+int cnt = poll (&amp;pfd, 1, -1);
+assert (cnt == 1);
+assert (pfd.revents == POLLIN | POLLHUP);</code>
+</pre></div>
+<p>What follows is an example on a network protocol implemented in user space. It takes advantage of EFD_MASK functionality to provide socket-like behaviour to the user. There's are only three functions (opening socket, closing socket and receive) in the example. Other functions (send, setsockopt, connect, bind etc.) are left as an exercise for the reader:</p>
+<div class="code">
+<pre>
+<code>struct myproto_state
+{
+     /*  Undelying raw sockets go here, protocol state machine etc. */
+};
+
+int myproto_socket (void)
+{
+    int s;
+    struct myproto_state *state;
+    struct efd_mask mask;
+
+    /*  Create the file descriptor to represent the new myproto socket. */
+    s = eventfd (0, EFD_MASK);
+
+    /*  Create socket state and associate it with eventfd. */
+    state = malloc (sizeof (struct myproto_state));
+    mask.events = 0;
+    mask.ptr = state;
+    write (s, &amp;mask, sizeof (mask));
+
+    return s;
+}
+
+int myproto_close (int s)
+{
+    struct efd_mask mask;
+    struct myproto_state *state;
+
+    /*  Retrieve the state. */
+    read (s, &amp;mask, sizeof (mask));
+    state = mask.ptr;
+
+    /*  Deallocate the state and close the eventfd. */
+    free (state);
+    close (s);
+
+    return 0;
+}
+
+ssize_t myproto_recv (int s, void *buf, size_t len, int flags)
+{
+    struct efd_mask mask;
+    struct myproto_state *state;
+
+    /*  Retrieve the state. */
+    read (s, &amp;mask, sizeof (mask));
+    state = mask.ptr;
+
+    ... move data from protocol's rx buffer to the user's buffer ...
+
+    /*  If there are no more data in rx buffer, unsignal POLLIN. */
+    if (state-&gt;rx_buffer_size == 0)
+        mask.events &amp;= ~POLLIN;
+
+    /*  Store the modified poll flags. */
+    write (s, &amp;mask, sizeof (mask));
+
+    return nbytes;
+}</code>
+</pre></div>
+<p>The code is relatively self-explanatory, so let me make one final remark. All the socket functions (except for socket creation and termination) follow the same pattern:</p>
+<ol>
+<li>Read from eventfd to get the socket state</li>
+<li>Do actual work. Modify the poll flags in the process, if needed.</li>
+<li>Write the state to the eventfd.</li>
+</ol>
+<p>Following these instructions should make implementing network protocols in user space easy. Or, if not easy (network protocols rarely are) it at least allows developers to focus on the functionality of the protocol rather than force them to fight with constraints and deficiencies of the underlying operating system.</p>
+<p><strong>Martin Sústrik, February 8th, 2013</strong></p>
+<div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:15">Why Communication Infrastructure Should Use Permissive Licenses</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:17">Bus Messaging Pattern</a></p>
+</div>
+    
+    
+    
+    </div>
+<div style="height:2em"></div>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 623379;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-1709408">
+                      
+		<div class="post" id="post-1709408">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709408)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709408">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1cdde586642e1e97bf206e9427145c18&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Emil (guest)</span> <span class="odate time_1360754382 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:19</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709408">
+									
+
+<p>What is wrong with the approach from OpenSSL, Postgres and probably more libraries:</p>
+<p>For non-blocking I/O you basically do this:</p>
+<div class="code">
+<pre>
+<code>ssize_t ret = myproto_recv(s, buf, BUFLEN));
+
+if (ret &gt;= 0) {
+  /* yay! everything went well.
+     now do something with the
+     first ret bytes of buf,
+     0 means connection closed.
+  */
+  return;
+}
+
+switch (ret) {
+case MYPROTO_WANT_READ:
+  wait_for(myproto_getfd(s), POLLIN);
+  break;
+
+case MYPROTO_WANT_WRITE:
+  wait_for(myproto_getfd(s), POLLOUT);
+  break;
+
+default:
+  /* ohh noes! a protocol error occured */
+  break;
+}</code>
+</pre></div>
+<p>Once you detect POLLIN or POLLOUT you just run the code above again. This isn't much different from using raw sockets in non-blocking mode.</p>
+<p>Also this should be doable in userspace. If your myproto implementation uses threads in the background, you just return a pipe or an eventfd filedescriptor that you control the other end of.<br />
+For blocking I/O it should be even simpler since myproto_recv() will only return<br />
+something positive or a protocol error.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1709408)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1709408)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709408" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709408)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709408)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1cdde586642e1e97bf206e9427145c18&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Emil (guest)</span>, <span class="odate time_1360754382 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:19</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1709410">
+                      
+		<div class="post" id="post-1709410">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709410)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709410">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360754869 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:27</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709410">
+									
+
+<p>&quot;just return a pipe or an eventfd filedescriptor that you control the other end of&quot;</p>
+<p>Well, exactly. However, there's no way for pipe or eventfd to signal !POLLIN &amp; !POLLOUT.</p>
+<p>Also there's no way to signal POLLERR, POLLHUP, POLLPRIO etc.</p>
+<p>That's what the kernel patch allows you to do.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1709410)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1709410)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709410" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709410)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709410)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360754869 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:27</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1709432">
+                      
+		<div class="post" id="post-1709432">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709432)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709432">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1cdde586642e1e97bf206e9427145c18&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Emil (guest)</span> <span class="odate time_1360758675 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 12:31</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709432">
+									
+
+<p>Right, so what I can't seem to find in your post is why it is important that poll() returns POLLERR or POLLPRI and it is not enough that myproto_recv() or myproto_write() returns an error or something like MYPROTO_GOT_PRIORITY_MESSAGE.</p>
+<p>That's just another case in the switch above.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1709432)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1709432)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709432" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709432)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709432)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1cdde586642e1e97bf206e9427145c18&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Emil (guest)</span>, <span class="odate time_1360758675 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 12:31</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1709438">
+                      
+		<div class="post" id="post-1709438">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709438)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709438">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360759203 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 12:40</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709438">
+									
+
+<p>There's no problem with read and write themselves. They are fully implemented by the library and can do whatever the library implementer wants them to do.</p>
+<p>The problem is with poll/select. These functions are global, not protocol-specific, i.e. they span across all the possible protocols: TCP, UDP, SCTP, myproto, yourproto etc.</p>
+<p>What that means is that you, as the library implementer, have no control of how they work. Still, you need your protocol implementation to be pollable.</p>
+<p>To do that you need a native file descriptor (poll/select won't accept anything else.)</p>
+<p>The only ways to create file descriptors in user space is pipe, socketpair and eventfd (Linux-only). All of them suffer of the same problems:</p>
+<ol>
+<li>There's no way to signal !POLLIN &amp; !POLLOUT</li>
+<li>There's no way to signal special conditions, such as POLLHUP or POLLERR</li>
+</ol>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1360759240 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 12:40</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1709438)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1709438)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709438" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709438)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709438)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360759203 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 12:40</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1709448">
+                      
+		<div class="post" id="post-1709448">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709448)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709448">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360760202 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 12:56</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709448">
+									
+
+<p>Yet one more try:</p>
+<p>Imagine that you protocol implementation needs to both read and write more. Thus, the first function in your example returns MYPROTO_WANT_READ|MYPROTO_WANT_WRITE. The user retreives the file descriptor (which is pipe under the cover) and polls for POLLIN|POLLOUT.</p>
+<p>However, there's no way to signal !POLLIN &amp;&amp; !POLLOUT on the pipe. So, at least one of the two events must be signaled at any time. Thus, the poll(POLLIN|POLLOUT) is never going to block!</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1360760259 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 12:57</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1709448)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1709448)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709448" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709448)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709448)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360760202 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 12:56</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1709451">
+                      
+		<div class="post" id="post-1709451">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709451)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709451">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1cdde586642e1e97bf206e9427145c18&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Emil (guest)</span> <span class="odate time_1360760559 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 13:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709451">
+									
+
+<p>Yes, but this still doesn't explain why you need to signal !POLLIN &amp; !POLLOUT in the first place.</p>
+<p>In other words my question is this: Why isn't enough to have POLLIN mean &quot;please call my library as soon as you can&quot; and !POLLIN mean &quot;chill&quot;? Then after the user calls your library you can return all sorts of messages to the caller, like &quot;EGAIN&quot; or &quot;you've got a new priority message&quot; or &quot;the other end hung up unexpectedly&quot; etc.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1709451)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709451" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709451)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709451)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1cdde586642e1e97bf206e9427145c18&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Emil (guest)</span>, <span class="odate time_1360760559 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 13:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1709557">
+                      
+		<div class="post" id="post-1709557">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709557)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709557">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360772036 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 16:13</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709557">
+									
+
+<p>Well, that's what everybody is doing. I've implemented that several times myself&#8230;</p>
+<p>So it starts with this:</p>
+<p>struct myproto_socket {<br />
+int in_pipe [2];<br />
+int out_pipe [2];<br />
+int err_pipe [2];<br />
+int hup_pipe [2];<br />
+&#8230;<br />
+};</p>
+<p>One problem with that is the amount of fds used. Users start to hit the system fd limit pretty quickly.</p>
+<p>So you change to implementation to use just one pipe and set of functions to test readability/writeability/error/hangup etc. That's rather weird API, but users are mostly still able to cope with it.</p>
+<p>Then you start hitting performance limits, so you start using the pipe in edge-triggered mode rather than level triggered mode. So, the users have to cope with edge triggered mode. At this point most users are profoundly confused.</p>
+<p>I can point out many discussions in ZeroMQ mailing list where people are confused about this API. I think I just saw one such email yesterday.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1709557)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709557" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709557)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709557)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360772036 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 16:13</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1710287">
+                      
+		<div class="post" id="post-1710287">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1710287)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1710287">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1cdde586642e1e97bf206e9427145c18&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Emil (guest)</span> <span class="odate time_1360833232 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 09:13</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1710287">
+									
+
+<p>I see. So basically the idea is to cram 3 or 4 different kinds of events into a single fd instead of 1. I just don't see why this code:</p>
+<div class="code">
+<pre>
+<code>void my_read_cb(int fd, void *data)
+{
+  struct myproto *s = data;
+  /* handle POLLIN */
+}
+
+void my_write_cb(int fd, void *data)
+{
+  struct myproto *s = data;
+  /* handle POLLOUT */
+}
+
+void my_err_cb(int fd, void *data)
+{
+  struct myproto *s = data;
+  /* handle POLLERR */
+}</code>
+</pre></div>
+<p>is much easier than this</p>
+<div class="code">
+<pre>
+<code>void my_cb(int fd, void *data)
+{
+  struct myproto *s = data;
+
+  while (1) {
+    switch (myproto_what(s)) {
+    case MYPROTO_READ:
+      /* handle POLLIN */
+      break;
+
+    case MYPROTO_WRITE:
+      /* handle POLLOUT */
+      break;
+
+    case MYPROTO_ERR:
+      /* handle POLLERR */
+      break;
+
+    case MYPROTO_EAGAIN:
+      return;
+    }
+  }
+}</code>
+</pre></div>
+<p>And surely if you have performance problems with the last bit of code, you'll have the same problems with the first bit. It'll just be the eventloop's job fan out the codepaths depending on the event flags rather than the switch. Right?</p>
+<p>Also the second version can easily be extended to protocols that have more interesting events than the TCP/stream derived POLLIN, POLLERR, POLLPRI and POLLHUP.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1710287)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1710287" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1710287)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1710287)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=1cdde586642e1e97bf206e9427145c18&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Emil (guest)</span>, <span class="odate time_1360833232 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 09:13</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1710295">
+                      
+		<div class="post" id="post-1710295">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1710295)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1710295">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360834643 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 09:37</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1710295">
+									
+
+<p>First of all, this post is about *API* problem. I am not arguing the thing cannot be done with pipe/socketpair/eventfd. What I am saying is that when doing so the API is convoluted and confusing. Check ZeroMQ mailing list for messages from confused users using the API.</p>
+<p>What I want to achieve is to enable user of the library to write the following code:</p>
+<div class="code">
+<pre>
+<code>int s = myproto_socket ();
+struct pollfd fd = {s, POLLIN, 0};
+poll (&amp;fd, 1, -1);
+assert (fd.revents &amp; POLLIN);
+...</code>
+</pre></div>
+<p>Note the the above is pure POSIX, something that everyone is familiar with.</p>
+<p>To put it in a different way: Thanks to this patch, user-space implementations of network protocols can expose exactly the same API to the user as kernel-space implementations.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1360834919 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 09:41</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1710295)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1710295)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1710295)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1710295" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1710295)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1710295)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360834643 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 09:37</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1709417">
+                      
+		<div class="post" id="post-1709417">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709417)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709417">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1360755746 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:42</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709417">
+									
+
+<p>I think the best approach is to define an abstraction of a notification API, like a simplified version of libevent etc, and allow the user of your library to implement it. For example, the library would define this:</p>
+<div class="code">
+<pre>
+<code>#define EVENT_READ (1 &lt;&lt; 0)
+#define EVENT_WRITE (1 &lt;&lt; 1)
+
+struct MyLibEventLoop {
+    /**
+     * Registers a new file descriptor for notification of the given events.
+     * When events are detected, implemented calls handler. The returned value
+     * is an abstract handle for use in modify_fd and remove_fd.
+     */
+    void * (*add_fd) (struct MyLibEventLoop *el, int fd, int events, void (*handler) (void *arg, int events), void *arg);
+
+    /**
+     * Modifies the notification events for a file descriptor registered using add_fd.
+     */
+    void (*modify_fd) (struct MyLibEventLoop *el, void *fd_handle, int events);
+
+    /**
+     * Unregisters a file descriptor registered using add_fd.
+     */
+    void (*remove_fd) (struct MyLibEventLoop *el, void *fd_handle);
+
+    /**
+     * Registers a timer. When it expires, the handler is called, and at this point
+     * the timer is automatically removed. The timer can additionally be removed
+     * before it has expired using remove_timer. Returns an abstract handle for use
+     * in remove_timer.
+     */
+    void * (*add_timer) (struct MyLibEventLoop *el, int milliseconds, void (*handler) (void *arg), void *arg);
+
+    /**
+     * Removes a running timer added using add_timer. After this is called it is guaranteed
+     * that the timer's handler will not be called.
+     */
+    void (*remove_timer) (struct MyLibEventLoop *el, void *timer_handle);
+};</code>
+</pre></div>
+<p>Then make everything in your library do I/O via this abstract API. On the other side, the user of the library is free to implement the API however he wishes, be it an existing event loop library (libevent, libev, glib, Qt) or his own creation.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1709417)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1709417)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709417" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709417)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709417)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1360755746 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:42</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1709420">
+                      
+		<div class="post" id="post-1709420">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709420)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709420">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360756353 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:52</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709420">
+									
+
+<p>Well, you are definitely free to define such abstraction. The only problem is that for it to be useful it has to be standardised and widely adopted. Which, of course, is hard to achieve :)</p>
+<p>Anyway, we have one such standardised and widely adopted abstraction called &quot;file descriptors&quot;. They work perfectly OK and there's no technical need to replace them by a different standard. There's only a little piece missing, namely the ability to create fully functional file descriptors in user space. My kernel patch solves this problem.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1360756391 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:53</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1709420)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1709420)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1709420)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709420" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709420)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709420)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360756353 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 11:52</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1709842">
+                      
+		<div class="post" id="post-1709842">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709842)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709842">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1360792607 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 21:56</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709842">
+									
+
+<p>Yes, you need a kernel patch - on every operating system you want to support, and every user would need to have it. On the other hand I just want working software, now, on existing systems.</p>
+<p>In the end, if you want your library to be completely portable, i.e. independent of any particular operating system and using only the C/C++ language, such user-implementable interfaces are the only way. For that you would need a higher I/O level interface instead of file descriptors, since file descriptors are OS-specific.</p>
+<p>Some real libraries use such interfaces. For example take NSS/NSPR - you can use the NSS library to do SSL on top of absolutely anything as long as you can make it appear like TCP (reliable stream), in non-blocking mode (I've done it, it works).</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1709842)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1709842)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709842" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709842)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709842)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1360792607 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 21:56</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1710179">
+                      
+		<div class="post" id="post-1710179">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1710179)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1710179">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360817222 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 04:47</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1710179">
+									
+
+<p>&quot; On the other hand I just want working software, now, on existing systems.&quot;</p>
+<p>I have the working solution now. No problem with that. The problem is that it's ugly and confusing for the end users. That's what I am trying to solve.</p>
+<p>&quot;Yes, you need a kernel patch - on every operating system you want to support, and every user would need to have it.&quot;</p>
+<p>Exactly. Linux seems to be a good starting point as it is rather widely deployed.</p>
+<p>&quot;For that you would need a higher I/O level interface instead of file descriptors, since file descriptors are OS-specific.&quot;</p>
+<p>Why so? File descriptors are defined in POSIX. (Unless you are speaking of Windows, but nothing works as expected on Windows, so there's little point in caring.)</p>
+<p>&quot;For example take NSS/NSPR - you can use the NSS library to do SSL on top of absolutely anything as long as you can make it appear like TCP (reliable stream), in non-blocking mode (I've done it, it works).&quot;</p>
+<p>AFAICS the only way to make user-space implementation of the protocol behave exactly like TCP is to use the kernel patch. OK, there is still another option: Re-implement the whole BSD socket API in a library and overload the system functions by linking with library. Some products do that (SDP, OpenOnload) but it's kind of a brute-force approach.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1710179)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1710179" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1710179)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1710179)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360817222 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 04:47</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1710351">
+                      
+		<div class="post" id="post-1710351">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1710351)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1710351">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1360846789 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 12:59</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1710351">
+									
+
+<blockquote>
+<p>Why so? File descriptors are defined in POSIX.</p>
+</blockquote>
+<p>Yes, I have systems other than POSIX in mind. Including Windows, and systems with no operating systems at all like microcontrollers. A library that can't work on top of abstract interfaces is useless in such cases.</p>
+<blockquote>
+<p>AFAICS the only way to make user-space implementation of the protocol behave exactly like TCP</p>
+</blockquote>
+<p>It isn't the point to make it appear *exactly* like TCP. After all SSL isn't defined to work on top of TCP. From RFC 5246: &quot;At the lowest level, layered on top of some reliable transport protocol (e.g., TCP), is the TLS Record Protocol.&quot;</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1710351)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1710351" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1710351)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1710351)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1360846789 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 12:59</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1710352">
+                      
+		<div class="post" id="post-1710352">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1710352)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1710352">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1360846922 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 13:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1710352">
+									
+
+<p>Kernel implementations of protocols utilizing such abstract libraries also come to mind.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1710352)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1710352" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1710352)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1710352)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1360846922 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 13:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1711198">
+                      
+		<div class="post" id="post-1711198">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1711198)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1711198">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360921639 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">15 Feb 2013 09:47</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1711198">
+									
+
+<p>Ah, OK, I see.</p>
+<p>Anyway, we've gone pretty far away from the topic of the original article. It was only about slighlty extending POSIX to make implementing protocols in user space easier. Implementing protocols in non-POSIX environment is a different, although extremely interesting, topic.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1711198)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1711198)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1711198" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1711198)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1711198)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360921639 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">15 Feb 2013 09:47</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1709847">
+                      
+		<div class="post" id="post-1709847">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1709847)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1709847">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span> <span class="odate time_1360793007 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 22:03</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1709847">
+									
+
+<blockquote>
+<p>The only problem is that for it to be useful it has to be standardised and widely adopted.</p>
+</blockquote>
+<p>I strongly disagree with this. Sure, you need to implement the interface - but this is actually pretty easy as long as your program is not broken by design. If you use an existing event loop like libevent, implementing this interface is literally trivial.</p>
+<p>Having such an interface standardized sure would be nice, but any interface is much better than no interface at all. It could be the difference between using an existing library by writing a hundred or so lines of glue code, and reinventing whatever you need just because the developers of the library didn't have such abstract usage in mind.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1709847)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1709847)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1709847" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1709847)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1709847)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=225429bee670de56fadefc4ce4e2dbf5&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ambroz Bizjak (guest)</span>, <span class="odate time_1360793007 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">13 Feb 2013 22:03</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1710183">
+                      
+		<div class="post" id="post-1710183">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1710183)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1710183">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1360817539 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 04:52</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1710183">
+									
+
+<p>I think we are not on the same line here.</p>
+<p>Specifics being put aside, the problem discussed is about generic interface for communication between different protocol implementations and different applications. It's a standardisation problem. It only works when all parties agree on the same interface.</p>
+<p>I've opted for file descriptors because that's what everybody uses anyway and enhanced it to support one up to now unsupported corner case (user-space to user-space signaling). You can, of course, go for a different interface, but the more obscure it is, the less useful it will be.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1360844439 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 12:20</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1710183)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1710183)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1710183)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1710183" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1710183)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1710183)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262569" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1360817539 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2013 04:52</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1791128">
+                      
+		<div class="post" id="post-1791128">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1791128)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1791128">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=630a337d6a74b54a6da3279c2d3d5fcb&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Mohamed (guest)</span> <span class="odate time_1370519261 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">06 Jun 2013 11:47</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1791128">
+									
+
+<p>Hi Martin,</p>
+<p>Actually I'm trying to implement a network protocol Geonetworkin in the user-space level and to make it working over the 802.11 Mac layer. I found that your post can be very helpful. still I want to know;<br />
+1- If the patch &quot; EFD_MASK patch to Linux kernel&quot; has to be installed first.<br />
+2- Is the patch compatible with the linux-2.6.38 kernel.<br />
+3- If yes, are there any recommended parameters to enable in .config file before compiling the kernel.<br />
+4- If possible to provide me with the remaining functions not implemented in this post (send, setsockopt, connect, bind ).<br />
+5- small description how the send() and receive() will communicate with the low level handlers of the sk_buff structure in PHY and MAC level.<br />
+6- Finally, It will be very helpful if you have an already implemented example you can give.</p>
+<p>Thanks a lot.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1791128)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1791128)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1791128" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1791128)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1791128)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=630a337d6a74b54a6da3279c2d3d5fcb&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Mohamed (guest)</span>, <span class="odate time_1370519261 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">06 Jun 2013 11:47</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1791134">
+                      
+		<div class="post" id="post-1791134">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1791134)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1791134">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span> <span class="odate time_1370519994 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">06 Jun 2013 11:59</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1791134">
+									
+
+<p>Hi,</p>
+<p>The patch can be found at LKML (<a href="https://lkml.org/lkml/2013/2/8/67">https://lkml.org/lkml/2013/2/8/67</a>). I has not yet been merged in the mainline kernel as I don't have much time to actively push it. If you want to help with that, it would be great.</p>
+<p>So yes, at the moment you have to apply the patch by hand and build the kernel yourself.</p>
+<p>The patch was developed with 3.x kernel, but I guess backporting it to 2.6.38 should be easy, maybe even with no work needed, except for applying the patch.</p>
+<p>No, nothing special has to be done with .config</p>
+<p>Send, setsockopt etc. are not covered by the patch as you can implement those in user space easily with no special support from the kernel: just use geonetworking_send(), geonetworking_setsockopt() etc.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1791134)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1791134)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1791134" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1791134)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1791134)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span>, <span class="odate time_1370519994 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">06 Jun 2013 11:59</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="623379"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Hull: An alternative to shell that I&#039;ll never have time to implement - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:153";
+        OZONE.request.timestamp = 1594263618;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:153";
+        WIKIREQUEST.info.pageId = 760377487;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;Hull: An alternative to shell that I'll never have time to implement&quot;" href="/feed/page/comments-760377487.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            Hull: An alternative to shell that I'll never have time to implement
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em">
+<p>Here's an idea. It's kind of crazy but it's also fun to think about.</p>
+<p>Imagine a language which has every piece of its state stored in the filesystem.</p>
+<p>Yes, I know it sounds weird but do read on!</p>
+<h3 id="toc0"><span>Datatypes</span></h3>
+<p>Let's say we do this:</p>
+<div class="code">
+<pre>
+<code>a = 1</code>
+</pre></div>
+<p>What will happen under the covers is that file &quot;a&quot; will be created that contains nothing but &quot;1&quot;.</p>
+<p>Lists could be represented as files where each line corresponds to an item.</p>
+<div class="code">
+<pre>
+<code>b = [1, 2, 3]</code>
+</pre></div>
+<p>The above would simply create file &quot;b&quot; with the following content:</p>
+<div class="code">
+<pre>
+<code>1
+2
+3</code>
+</pre></div>
+<p>Filesystem also provides hash tables out of the box. They are called directories.</p>
+<div class="code">
+<pre>
+<code>c = {
+  foo: 1,
+  bar: {
+    quux: 3
+  }
+}</code>
+</pre></div>
+<p>Which would create a directory &quot;c&quot; with file &quot;foo&quot; (containing &quot;1&quot;) and directory &quot;bar&quot; containing file &quot;quux&quot; which would in turn contain &quot;2&quot;.</p>
+<p>Fun idea: For map indexing use operator / instead of []. So, to access &quot;quux&quot; you would write &quot;c/bar/quux&quot; which happens to be the path to the file in question.</p>
+<h3 id="toc1"><span>Call stack</span></h3>
+<p>Of course, state of the program is not just about variables. We would have to represent the call stack in some way.</p>
+<p>Easy to do! For each stack frame create a directory called &quot;nextframe&quot;. The call stack would then look like a sequence of embedded directories:</p>
+<div class="code">
+<pre>
+<code>main
+|-- a # contains 1
+|-- b # contains 1\n2\n3
+`-- nextframe
+    |-- c
+    |   |-- foo # contains 1
+    |   `-- bar
+    |       `-- quux  # contains 2
+    `-- nextframe
+        `-- a # contains 2</code>
+</pre></div>
+<p>In such a model, scoping is easy. If you want to access &quot;b&quot; in the innermost frame, just walk up the directory tree until you find a file (or directory) named &quot;b&quot;.</p>
+<p>Also, overrides work as expected. If you ask for &quot;a&quot; in the innermost frame, you'll get &quot;2&quot;, not &quot;1&quot;.</p>
+<h3 id="toc2"><span>Instruction pointer</span></h3>
+<p>Now you are probably wondering how would one persist the instruction pointer. The language needs to know which command is the next to execute after all and not making this information persistent defeats the entire point of the language.</p>
+<p>Let's make it work this way:</p>
+<p>When program is started, a copy of the source file is created. We'll call it a &quot;todo&quot; file.</p>
+<p>Then the first line of the &quot;todo&quot; file is executed. Then it is removed from the file.</p>
+<p>We'll do the same with the second and every subsequent line.</p>
+<p>That way the &quot;todo&quot; file always contains a list of commands that are yet to be executed.</p>
+<p>But hey, you cry, if there's a loop in the source code we can't just delete a command within the loop! We will still need it in the next iteration!</p>
+<p>Easy to fix! Let's make each iteration of the loop create a new stack frame (we would want that anyway, to get proper variable scoping). The body of the loop would be then copied to the &quot;todo&quot; file of the new frame and executed. Once there's nothing left in the inner &quot;todo&quot; file the scope would be exited, the stack frame deleted and the parent could start new iteration of the loop with a new copy of the loop body. Finally, when there's no more iterations to do the parent will delete the entire loop construct, including the loop body and move on.</p>
+<p>Let's have a look at an example:</p>
+<div class="code">
+<pre>
+<code>b = [1, 2, 3]
+for i in b:
+  echo i</code>
+</pre></div>
+<p>Once the first line is executed we end up with the following state on the disk:</p>
+<div class="code">
+<pre>
+<code>main
+|-- b # contains &quot;1\n2\n3&quot;
+`-- todo # contains &quot;for i in b:\n  echo i&quot;</code>
+</pre></div>
+<p>First iteration of the loop is started. Interpreter creates a new stack frame and populated both the &quot;i&quot; variable and the local &quot;todo&quot; file:</p>
+<div class="code">
+<pre>
+<code>main
+|-- b # contains &quot;1\n2\n3&quot;
+|-- todo # contains &quot;for i in b:\n  echo i&quot;
+`-- nextframe
+    |-- i # contains &quot;1&quot;
+    `-- todo #contains &quot;echo i&quot;</code>
+</pre></div>
+<p>Now the echo command can be executed which will print &quot;1&quot; and remove the statement from the &quot;todo&quot; file:</p>
+<div class="code">
+<pre>
+<code>main
+|-- b # contains &quot;1\n2\n3&quot;
+|-- todo # contains &quot;for i in b:\n  echo i&quot;
+`-- nextframe
+    |-- i # contains &quot;1&quot;
+    `-- todo #contains &quot;&quot;</code>
+</pre></div>
+<p>&quot;todo&quot; file is empty now so we can exit and delete the scope:</p>
+<div class="code">
+<pre>
+<code>main
+|-- b # contains &quot;2\n3&quot;
+`-- todo # contains &quot;for i in b:\n  echo i&quot;</code>
+</pre></div>
+<p>Note how the &quot;for&quot; construct deleted the first element of &quot;b&quot;. This may or may not be a good idea, but it's simple, so let's go with it for now.</p>
+<p>At this point we can do the entire dance described above for element &quot;2&quot;, then for element &quot;3&quot;.</p>
+<p>Finally, there are no more elements in &quot;b&quot; and &quot;for&quot; construct is considered done. It can be deleted from the &quot;todo&quot; file.</p>
+<div class="code">
+<pre>
+<code>main
+|-- b # contains &quot;&quot;
+`-- todo # contains &quot;&quot;</code>
+</pre></div>
+<p>As there's nothing more to do, the entire program can now exit.</p>
+<h3 id="toc3"><span>Why the hell?</span></h3>
+<p>I mean, it's a fun exercise, but why would anyone want to use such a language?</p>
+<p>But once you start playing with concept a little you'll find out that it has some interesting properties.</p>
+<h3 id="toc4"><span>Debugging</span></h3>
+<p>For starters, it kind of feels like being in a debugger although there's no debugger anywhere in sight.</p>
+<p>It's entirely possible to execute just one statement at a time. The entire state of the program is on the disk, so once you've executed one command you can execute the next one and so on.</p>
+<p>In the process you can inspect all the variables: Remember? They are just files in the filesystem.</p>
+<div class="code">
+<pre>
+<code>$ hull next
+done: b = [1, 2, 3]
+$ cat b
+1
+2
+3</code>
+</pre></div>
+<h3 id="toc5"><span>Time travel</span></h3>
+<p>Given that the entire state of the program resides in a directory, you can backup the directory and proceed with the debugging. Then, when you want to return to the previous point, you just restore it from the backup and you are set to go.</p>
+<h3 id="toc6"><span>Laziness</span></h3>
+<p>Once again: Given that the entire state of the program is stored on the disk, it means that you can execute it partially, then do something else, then resume the execution.</p>
+<p>For example, a parent program may be interested only in the first line of your program's output. It can run the interpreter until the first line is produced, then suspend it and go on with it's own stuff. When it needs the second line it would just resume your program and so on.</p>
+<p>In this way it works very much like python generators. Or, for that matter, like unix pipes.</p>
+<p>And it's also a bit like Haskell: No code has to be executed unless you actually need the results.</p>
+<h3 id="toc7"><span>Concurrency</span></h3>
+<p>Given that programs are interruptible, you can launch many of them and then schedule them as you wish. The scheduling can be driven by commands such as &quot;give me the next line of output&quot;.</p>
+<p>To put it in a different way: Forking is easy. Just copy the directory and run second instance of the interpreter.</p>
+<p>Here we are getting into the area of CSP, goroutines and channels.</p>
+<h3 id="toc8"><span>Remote execution</span></h3>
+<p>Want to move the program to a different machine?</p>
+<p>Easy! Just scp the directory to the machine in question. Then ask the interpreter to resume the execution where it has ended.</p>
+<p><strong>April 28th, 2019</strong></p>
+<p>EDIT May 4th 2019: Typesystem based on file extensions, including polymorphism: frobnicate(foo.json) can have different implementation than frobnicate(foo.xml)</p>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 11431850;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-4232097">
+                      
+		<div class="post" id="post-4232097">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4232097)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4232097">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a7ced3a61ce474cd66b8675b2b1a8d80&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>frr (guest)</span> <span class="odate time_1556448610 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2019 10:50</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4232097">
+									
+
+<p>Idea not bad, but please read ruby.<br />
+grammar are not usefull. Please change this to similar ruby<br />
+object.method ()</p>
+<p>[1,2,3].each{|e| puts e} or similar</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4232097)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4232097)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4232097" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4232097)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4232097)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a7ced3a61ce474cd66b8675b2b1a8d80&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>frr (guest)</span>, <span class="odate time_1556448610 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2019 10:50</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+                      
+    <div class="post-container" id="fpc-4232279">
+                      
+		<div class="post" id="post-4232279">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4232279)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4232279">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=e973ff95de565971a5363746e81b5a32&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Noruby (guest)</span> <span class="odate time_1556465925 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2019 15:38</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4232279">
+									
+
+<p>I think Ruby syntax is ugly and hard to read</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4232279)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4232279)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4232279" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4232279)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4232279)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=e973ff95de565971a5363746e81b5a32&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Noruby (guest)</span>, <span class="odate time_1556465925 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2019 15:38</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-4232398">
+                      
+		<div class="post" id="post-4232398">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4232398)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4232398">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=03d1d1f259bae95d0e0135b448081b7b&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>rubyhater (guest)</span> <span class="odate time_1556479501 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2019 19:25</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4232398">
+									
+
+<p>Indeed. Ruby is pretty awful</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,4232398)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4232398" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4232398)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4232398)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=03d1d1f259bae95d0e0135b448081b7b&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>rubyhater (guest)</span>, <span class="odate time_1556479501 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2019 19:25</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-4233265">
+                      
+		<div class="post" id="post-4233265">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4233265)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4233265">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=68711520ef3f7da7b2bc8aef8bf040f0&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Tango (guest)</span> <span class="odate time_1556559736 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 17:42</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4233265">
+									
+
+<p>Username checks out!</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4233265)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4233265)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4233265" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4233265)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4233265)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=68711520ef3f7da7b2bc8aef8bf040f0&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Tango (guest)</span>, <span class="odate time_1556559736 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 17:42</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4232442">
+                      
+		<div class="post" id="post-4232442">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4232442)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4232442">
+																		I&#039;m surprised I&#039;ve never come across this idea before
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/offby1" onclick="WIKIDOT.page.listeners.userInfo(5327424); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=5327424&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="offby1" style="background-image:url(http://www.wikidot.com/userkarma.php?u=5327424)"/></a><a href="http://www.wikidot.com/user:info/offby1" onclick="WIKIDOT.page.listeners.userInfo(5327424); return false;" >offby1</a></span> <span class="odate time_1556487364 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2019 21:36</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4232442">
+									
+
+<p>I dunno if it'd be _useful_ but it sure sounds intriguing.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4232442)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4232442)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4232442" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4232442)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4232442)">I&#039;m surprised I&#039;ve never come across this idea before</a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/offby1" onclick="WIKIDOT.page.listeners.userInfo(5327424); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=5327424&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="offby1" style="background-image:url(http://www.wikidot.com/userkarma.php?u=5327424)"/></a><a href="http://www.wikidot.com/user:info/offby1" onclick="WIKIDOT.page.listeners.userInfo(5327424); return false;" >offby1</a></span>, <span class="odate time_1556487364 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Apr 2019 21:36</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4232517">
+                      
+		<div class="post" id="post-4232517">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4232517)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4232517">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=cde200a45fb3901ba412c2f822e9b962&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>CorkyAgain (guest)</span> <span class="odate time_1556497059 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 00:17</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4232517">
+									
+
+<p><em>Given that the entire state of the program is stored on the disk</em></p>
+<p>Of course, the disk in question might actually be a ramdisk.</p>
+<p>Or the filesystem might be distributed across a network, like in Plan 9. ;)</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4232517)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4232517)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4232517" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4232517)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4232517)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=cde200a45fb3901ba412c2f822e9b962&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>CorkyAgain (guest)</span>, <span class="odate time_1556497059 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 00:17</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4232752">
+                      
+		<div class="post" id="post-4232752">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4232752)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4232752">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=109b177588ef5824800e1eb2c3549566&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Mario (guest)</span> <span class="odate time_1556520562 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 06:49</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4232752">
+									
+
+<p>Haha, this is a fun idea. I would like to try implementing it when I have the time, it's a good and fun practice project.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4232752)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4232752)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4232752" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4232752)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4232752)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=109b177588ef5824800e1eb2c3549566&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Mario (guest)</span>, <span class="odate time_1556520562 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 06:49</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-4233641">
+                      
+		<div class="post" id="post-4233641">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4233641)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4233641">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1556603985 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Apr 2019 05:59</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4233641">
+									
+
+<p>Go for it!</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4233641)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4233641)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4233641" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4233641)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4233641)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1556603985 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Apr 2019 05:59</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4232788">
+                      
+		<div class="post" id="post-4232788">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4232788)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4232788">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=4760982bce87813e29fbac9630499ca9&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Asmodehn (guest)</span> <span class="odate time_1556523335 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 07:35</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4232788">
+									
+
+<p>I have been toying with the same idea recently&#8230; so I ll give some input to further the reflexion :<br />
+- files and directory hierarchy is very well understood by the masses, so I see such a language as a very good introduction to programming for total beginners. With IoT around the corner it seems a good fit, if it eventually becomes actually useful.<br />
+- there is a possibility here to do something right, as in, mix the shell concept and the programming language concept, they should be one and the same (the shell is a just a repl)<br />
+- category theory seems a good theoritical framework for such a language&#8230; it s all about structure and composition. So I personnally would have a more functional approach to this topic&#8230;<br />
+- Data in the files could also be some kind of hierarchy or even graph to some level, not just lines. have a look at <a href="https://ogdl.org/">https://ogdl.org/</a></p>
+<p>Maybe you wont have time to implement it alone, but with a few more people, we just might be able to.<br />
+Dont hesistate to send me an email if you want to talk it out further ;-)</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4232788)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4232788)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4232788" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4232788)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4232788)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=4760982bce87813e29fbac9630499ca9&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Asmodehn (guest)</span>, <span class="odate time_1556523335 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 07:35</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-4233043">
+                      
+		<div class="post" id="post-4233043">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4233043)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4233043">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=620f58022f1948ae05ddbed89f636b8f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andy (guest)</span> <span class="odate time_1556544141 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 13:22</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4233043">
+									
+
+<p>I also have been toying with an idea along these lines&#8230; basically a programming language whose objects/structs/records could (at least potentially) be directories in the filesystem and bytes of data are the files.</p>
+<p>I've been toying around with how one might implement a type system (beyond directories vs files). For example, a C-style struct is a bit like a directory with known filenames each with known size, or whatever.</p>
+<p>I agree that being filesystem compatible is extremely good for the masses and great for playing and debugging. I'll also note the success of systems like git which are very filesystem based but let you store the data in another way. Though I think sometimes you need to go beyond a &quot;traditional&quot; filesystem - to execute bare-metal code over stack-allocated structs, or to access a distributed database - so I'm wondering if there are abstractions to be made so that you can use the same programming language (haha&#8230; shell script!) to interact with any of these?</p>
+<p>(As an aside, I'd love to see an operating system that supports the concept of arrays in the filesystem, in addition to files and directories. The example of text separated by newlines stashed inside a file seems specific to certain types of data - elements which are text of unknown length and containing no newlines, for example - it would seem better if the filesystem provided the abstraction instead of everyone coming up with a different encoding).</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4233043)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4233043)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4233043" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4233043)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4233043)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=620f58022f1948ae05ddbed89f636b8f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andy (guest)</span>, <span class="odate time_1556544141 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 13:22</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-4233644">
+                      
+		<div class="post" id="post-4233644">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4233644)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4233644">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1556604138 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Apr 2019 06:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4233644">
+									
+
+<p>Mainframes used to have that kind of thing: <a href="https://en.wikipedia.org/wiki/Virtual_Storage_Access_Method">https://en.wikipedia.org/wiki/Virtual_Storage_Access_Method</a></p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4233644)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4233644)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4233644" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4233644)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4233644)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1556604138 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Apr 2019 06:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4233282">
+                      
+		<div class="post" id="post-4233282">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4233282)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4233282">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=140c172be34a81d70d242a606aee156f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Anon (guest)</span> <span class="odate time_1556561491 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 18:11</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4233282">
+									
+
+<p>Making all your state as files and directories is pure UNIX brain damage. This isn't only terrible from a design perspective, but also from tothe fact UNIX treats all file systems as a tape drive. You can kiss goodbye good performance.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4233282)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4233282)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4233282" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4233282)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4233282)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=140c172be34a81d70d242a606aee156f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Anon (guest)</span>, <span class="odate time_1556561491 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">29 Apr 2019 18:11</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-4233646">
+                      
+		<div class="post" id="post-4233646">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4233646)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4233646">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1556604181 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Apr 2019 06:03</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4233646">
+									
+
+<p>Yes, you'll need some kind of intermediate in-memory caching layer to make it work at reasonable speed.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4233646)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4233646)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4233646" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4233646)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4233646)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1556604181 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Apr 2019 06:03</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4236718">
+                      
+		<div class="post" id="post-4236718">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4236718)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4236718">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=cd752a3c9b031de2c9819544c15bd653&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>karim_manaouil (guest)</span> <span class="odate time_1556834733 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 May 2019 22:05</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4236718">
+									
+
+<p>That's just a marvelous idea, considering that the underlying filesystem is RAM based, a good and smart implementation can make a real success. Thanks for this idea.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4236718)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4236718)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4236718" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4236718)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4236718)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=cd752a3c9b031de2c9819544c15bd653&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>karim_manaouil (guest)</span>, <span class="odate time_1556834733 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 May 2019 22:05</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4237481">
+                      
+		<div class="post" id="post-4237481">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4237481)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4237481">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=aaea46c2f1e396851ca4fe2b340f3148&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Jarkko Hietaniemi (guest)</span> <span class="odate time_1556894822 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 May 2019 14:47</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4237481">
+									
+
+<p>While the idea of persisting data objects certainly sounds intriguing, I am not entirely convinced that for example arrays and newline-separated lines map well to each other. For the record I am Unix zealot so I see how the idea works; it is just that I work too much with binary data and more complex data these days.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4237481)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4237481)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4237481" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4237481)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4237481)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=aaea46c2f1e396851ca4fe2b340f3148&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Jarkko Hietaniemi (guest)</span>, <span class="odate time_1556894822 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 May 2019 14:47</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4237597">
+                      
+		<div class="post" id="post-4237597">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4237597)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4237597">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a710315fd7299810b75750109cb2bb9e&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>kristallo (guest)</span> <span class="odate time_1556903295 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 May 2019 17:08</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4237597">
+									
+
+<p>Cool idea, and could be expanded into other areas like first-class functions or continuations. Unfortunately, not all state can be saved into the todo / nextframe files, so you have to make some (considerable) sacrifices. It starts getting more complicated when you think about executing other code (eg. native binaries) which for a shell is a pretty common task.</p>
+<blockquote>
+<p>Note how the &quot;for&quot; construct deleted the first element of &quot;b&quot;. This may or may not be a good idea, but it's simple, so let's go with it for now.</p>
+</blockquote>
+<p>I imagine it wouldn't be difficult to create a pointer into the list in scope of the for-loop. This pointer could for example be a file containing the name of the sequence and index, eg. <tt>b</tt> and <tt>1</tt>. This way you could preserve <tt>b</tt> in its original form and use it in the loop. But then we run into other sorts of complications, and after giving it some thought it seems that maybe the right way to do it would be to translate the Pythonic <tt>for i in b</tt> into a more low-level while-loop with incrementing index and access the elements of <tt>b</tt> using this index.</p>
+<blockquote>
+<p>Here we are getting into the area of CSP, goroutines and channels.</p>
+</blockquote>
+<p>This is where it gets interesting. If the underlying system supports sockets or named pipes, this could help with IPC (shared memory / mutual exclusion / synchronization, <tt>select</tt> and so on), <em>but</em> again, as with executing native binaries or other programs, you cannot properly preserve the state if you are using sockets or pipes. And more importantly, you will not be able to debug correctly &#8212; once you read the data from the shared object manually (during debugging), it's gone and will not be available to the program. All in all, I think you not only will not have time to implement this shell, but if you want it to do anything meaningful, you most likely won't be able to do it at all, at least not properly. But I suppose you know all the caveats&#8230;</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4237597)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4237597)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4237597" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4237597)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4237597)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a710315fd7299810b75750109cb2bb9e&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>kristallo (guest)</span>, <span class="odate time_1556903295 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 May 2019 17:08</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-4238045">
+                      
+		<div class="post" id="post-4238045">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4238045)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4238045">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1556945358 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">04 May 2019 04:49</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4238045">
+									
+
+<p>There are definitely challenges and integrating with existing pipe-based programs seems to be the most daunting of them.</p>
+<p>That being said, the hardware has changed since 1970, we have much more memory and much more disk nowadays and thus a large subset of the use cases can be solved by simply getting the entire output of the binary and saving it to a file (ls, grep and such).</p>
+<p>What remains is a.) handling very large datasets b.) handling binaries with infinite output (e.g. yes).</p>
+<p>As for a.) I am not sure that shell-like language is the good option for this kind of stuff in the first place.</p>
+<p>As for b.) these can dealt with as a process running in a background and a named pipe. That will, if course, break once you restart the system, but until then it'll work.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4238045)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4238045)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4238045" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4238045)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4238045)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594263618" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1556945358 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">04 May 2019 04:49</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-4246623">
+                      
+		<div class="post" id="post-4246623">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,4246623)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-4246623">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=b0733f8ecc7fc163b5a7c9d4531a50f8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Julian (guest)</span> <span class="odate time_1557678831 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">12 May 2019 16:33</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-4246623">
+									
+
+<p>It reminds me of a different idea implemented at an Australian university in the early 1990s.</p>
+<p>They couldn't afford an OODBMS - they were still expensive at the time, so they implemented their own where each row was a Unix text file, each table was a directory, and queries were done with Unix shell commands.</p>
+<p>Unbearably slow, missing key concepts like transactions and security, but sufficient to allow them to try out experimental ideas.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,4246623)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,4246623)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-4246623" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,4246623)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,4246623)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=b0733f8ecc7fc163b5a7c9d4531a50f8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Julian (guest)</span>, <span class="odate time_1557678831 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">12 May 2019 16:33</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="11431850"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

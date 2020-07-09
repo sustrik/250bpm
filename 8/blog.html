@@ -1,0 +1,3293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Why should I have written ZeroMQ in C, not C++ (part II) - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:8";
+        OZONE.request.timestamp = 1594263446;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:8";
+        WIKIREQUEST.info.pageId = 14170931;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;Why should I have written ZeroMQ in C, not C++ (part II)&quot;" href="/feed/page/comments-14170931.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            Why should I have written ZeroMQ in C, not C++ (part II)
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em"><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:7">Does GPL hurt free software?</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:9">Enclave Pattern</a></p>
+</div>
+    
+    
+    
+    </div>
+<p>In my <a href="/blog:4">previous blog post</a> I've discussed how the need for rigorous error handling in low-level infrastructure software prevents the usage of many fundamental C++ features (exceptions, constructors, destructors). The conclusion was that with such a severely limited feature set, writing the program in C yields shorter and more readable codebase. A side effect is eliminating the dependency on C++ runtime library, which shouldn't be easily dismissed, especially in embedded environments.</p>
+<p>In this blog post I would like to explore the problem from a different point of view. Namely: Are there any performance implications in using C++ vs. C ?</p>
+<p>In theory, the two languages should be equivalent. Object-orientedness is after all just a syntactic sugar on the top of procedural language, making the code more understandable to the human brain which seems to have evolved natural ability to deal with objects at the expense of dealing with entities such as flows, relations etc.</p>
+<p>While the above is true &#8212; every C++ program can be automatically translated into an equivalent C program &#8212; the very ideology of the object-orientedness makes developers think in specific ways and design their algorithms and data structures accordingly. That in turn can have performance implications.</p>
+<p>Let's compare how a C++ programmer would implement a list of objects:</p>
+<p><em>EDIT: Assume that the object to be contained in the list is non-Assignable as is the case with any non-trivial objects, for example those holding large memory buffers, file descriptors, threads etc. If the object is Assignable simple std::list&lt;person&gt; would do and there is no problem.</em></p>
+<div class="code">
+<pre>
+<code>class person
+{
+    int age;
+    int weight;
+};
+
+std::list &lt;person*&gt; people;</code>
+</pre></div>
+<p>C programmer would rather solve the same problem in the following way:</p>
+<div class="code">
+<pre>
+<code>struct person
+{
+    struct person *prev;
+    struct person *next;
+    int age;
+    int weight;
+};
+
+struct
+{
+    struct person *first;
+    struct person *last;
+} people;</code>
+</pre></div>
+<p>Now, let's compare how this solutions look like in the memory:</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:8/cpp1.png" alt="cpp1.png" class="image" /></div>
+<p>First thing to note is that the C++ solution allocates twice the number of memory chunks compared to the C solution. For each element of the list there's a little helper object created. When there are lots of containers in the program the amount of these helper objects proliferates.</p>
+<p>For example, in ZeroMQ creating and connecting a socket results in dozens of memory allocations. In the C rewrite of the library I am working on at the moment, creating a socket requires one memory allocation and connecting it results in yet one more allocation.</p>
+<p>Obviously, the number of allocations has performance consequences. The time spent allocating the memory chunks may be irrelevant &#8212; in ZeroMQ it is out of critical path anyway &#8212; however, the amount of memory used and the memory fragmentation that ensues is pretty important. It has direct impact on how CPU caches are filled and, consequently, on cache miss rate. Recalling that access to physical memory is by far the slowest operation in modern computers may give you an idea what the performance impact would be.</p>
+<p>That's not where it ends though.</p>
+<p>The solution chosen has direct impact on the complexity of the algorithms. In C++ solution erasing an object from the list has O(n) complexity:</p>
+<div class="code">
+<pre>
+<code>void erase_person (person *ptr)
+{
+    for (std::list &lt;person*&gt;::iterator it = people.begin ();
+          it != people.end (); ++it)
+        if (*it == ptr)
+            people.erase (it);
+}</code>
+</pre></div>
+<p>In the C solution, erasure of the object can be done in constant time (simplified version):</p>
+<div class="code">
+<pre>
+<code>void erase_person (struct person *ptr)
+{
+    ptr-&gt;next-&gt;prev = ptr-&gt;prev;
+    ptr-&gt;prev-&gt;next = ptr-&gt;next;
+    ptr-&gt;next = NULL;
+    ptr-&gt;prev = NULL;
+}</code>
+</pre></div>
+<p>Is this lack of efficiency just an artefact of std::list&lt;&gt; implementation or is it inherent to the object-oriented paradigm as such?</p>
+<p>Let's have a closer look at the problem.</p>
+<p>The real reason why any C++ programmer won't design the list in the C way is that the design breaks the encapsulation principle: The implementer of the &quot;person&quot; class has to know that its instances will be eventually stored in &quot;people&quot; list. Moreover, if a 3rd party chooses to store it in a different list, the implementation of the person would have to be change. This is an anti-pattern that OO programmers learned to avoid.</p>
+<p>However, if we can't place the &quot;prev&quot; and &quot;next&quot; fields into &quot;person&quot; class, we have to put them elsewhere. Thus, there's no other option but to allocate a helper object, the way std::list&lt;&gt; does.</p>
+<p>Moreover, while helper object contains pointer to the &quot;person&quot; object, &quot;person&quot; object cannot contain pointer to the helper object. If it did, it would break the encapsulation &#8212; &quot;person&quot; would have to be aware of the container(s) it resides in. Consequently, we can convert pointer to the helper object (&quot;iterator&quot;) to the pointer to &quot;person&quot;, but not vice versa. That's the underlying reason why erasing an element from std::list&lt;&gt; requires full scan of the list, in other words, why it is O(n)-complex.</p>
+<p>In short, if we follow the object-oriented paradigm we can't implement a list with all operations being O(1)-complex. To do that we have to break the encapsulation principle.</p>
+<p><em>EDIT: A lot of people point out that iterator should be used instead of pointer. However, imagine the object is contained in 10 different lists. You would have to pass structure containing 10 iterators around instead of the pointer. Morever, it doesn't solve the encapsulation problem, just moves it elsewhere. Instead of modifying &quot;person&quot; object every time you would want to add it to a new type of container you would have to modify the iterator tuple structure.</em></p>
+<p>That could be the conclusion of this blog post. However, the topic is interesting enough to ask one more question: Is the deficiency we are seeing inherent to object-oriented design as such or is it specific to C++ language? Can we imagine an object-oriented language that would allow for list with all associated operations being O(1) complex?</p>
+<p>To answer the question we have to understand the underlying problem. And the problem turns out to be the very definition of term &quot;object&quot;. In C++ &quot;class&quot; is just a synonym for C &quot;struct&quot;. Both keywords can be used almost interchangeably. The implication is that &quot;object&quot; is a collection of data located in a continuous chunk of memory.</p>
+<p>That is an automatic assumption that C++ programmers don't even start to question. However, let's try to examine the &quot;object&quot; from a different point of view.</p>
+<p>Let's say that object is a collection of logically related data that has to be guarded by the same critical section to ensure its consistency in multi-threaded program. This definition radically changes our understanding of the architecture. The picture below shows the C person/people program (as listed above) and marks the data fields that should be guarded by a list-level critical section (yellow) vs. data fields to be guarded by element-level critical section (green):</p>
+<div class="image-container aligncenter"><img src="http://250bpm.wdfiles.com/local--files/blog:8/cpp2.png" alt="cpp2.png" class="image" /></div>
+<p>For a person with object-oriented world view it's a pretty exotic picture. The &quot;people&quot; object is composed not only of the fields in &quot;people&quot; struct itself, but contains also some of the fields (&quot;prev&quot; and &quot;next&quot;) in the &quot;person&quot; struct.</p>
+<p>However unexpected, the decomposition makes perfect technical sense:</p>
+<ol>
+<li>Guarding all the yellow fields by a list-level critical section ensures consistency of the list. On the other hand, the critical section doesn't guard the green fields (&quot;age&quot; and &quot;weight&quot;) thus allowing personal data to be changed without locking the entire list.</li>
+<li>The yellow fields should be accessed only by methods of &quot;people&quot; class even though memory-layout-wise they belong to the &quot;person&quot; struct.</li>
+<li>If the programming language would allow to declare yellow fields within &quot;people&quot; class, the encapsulation would not be broken. In other words, adding &quot;person&quot; to another list won't require to change the definition of &quot;person&quot; class.</li>
+</ol>
+<p>Finally, let's do a thought experiment and extend C++ to allow this kind of architecture. Note that goal here is not to offer a perfectly designed language extension, rather to show that the thing is at all possible.</p>
+<p>That being said, let me introduce &quot;private in X&quot; construct. It can be used within class definition. The data members following &quot;private in X&quot; would physically become part of structure X, however, they would be accessible only from the class being defined:</p>
+<div class="code">
+<pre>
+<code>class person
+{
+public:
+    int age;
+    int wieght;
+};
+
+class people
+{
+private:
+    person *first;
+    person *last;
+private in person:
+    person *prev;
+    person *next;
+};</code>
+</pre></div>
+<p>In conclusion, if ZeroMQ was written in C it would require less memory allocations, there would be less memory fragmentation and some of the algorithms would have O(1) complexity instead of O(n) or O(log n).</p>
+<p>The problem behind the inefficiency is not in ZeroMQ code, nor is it an inherent flaw of object-oriented methodology. Rather it is a deficiency in the design of C++ language. And to be fair to C++, the same problem exists in most &#8212; if not all &#8212; object-oriented languages.</p>
+<p><em>EDIT: Patrick Wyatt have written a more extensive blog post on intrusive lists. You can find it <a href="http://www.codeofhonor.com/blog/avoiding-game-crashes-related-to-linked-lists">here</a>.</em></p>
+<p><strong>Martin Sústrik, Aug 30th, 2012</strong></p>
+<div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:7">Does GPL hurt free software?</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:9">Enclave Pattern</a></p>
+</div>
+    
+    
+    
+    </div>
+<div style="height:2em"></div>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 556302;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+<div class="pager"><span class="pager-no">page 1 of 4</span><span class="current">1</span><span class="target"><a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadPostsModule.listeners.updateList(2)">2</a></span><span class="target"><a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadPostsModule.listeners.updateList(3)">3</a></span><span class="target"><a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadPostsModule.listeners.updateList(4)">4</a></span><span class="target"><a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadPostsModule.listeners.updateList(2)">next &raquo;</a></span></div>
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551797">
+                      
+		<div class="post" id="post-1551797">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551797)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551797">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9d140075e75663dad50a83c319f838eb&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Semi Essessi (guest)</span> <span class="odate time_1346343914 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:25</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551797">
+									
+
+<p>This isn't so much a design flaw in C++ as STL. Using templates to embed the data type in the nodes (creating an intrusive style list) removes the problem of allocation count and allows the address of the data to be turned into a node address to fix up pointers without any fancy iterator stuff. e.g. template &lt; class DataType &gt; class ListNode { ListNode* next; ListNode* prev; DataType data; /* &#8230; */ };</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551797)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551797)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551797" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551797)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551797)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9d140075e75663dad50a83c319f838eb&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Semi Essessi (guest)</span>, <span class="odate time_1346343914 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:25</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+                      
+    <div class="post-container" id="fpc-1552150">
+                      
+		<div class="post" id="post-1552150">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1552150)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1552150">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=6e5930cfbeea4b0e207d9eb00c107e30&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>wapper (guest)</span> <span class="odate time_1346367425 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 22:57</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1552150">
+									
+
+<p>No it's not. It's an STL compromise, where the simplest possible case becomes slightly more complex and inefficient in C++ versus a custom-coded C solution. And for a linked-list this works.</p>
+<p>For a non-trivial datastructure, like any kind of binary tree, a map, or even a simple vector, I would argue that C++ gains the advantage.</p>
+<p>Plus look at maintainability afterwards. Modifying List&lt;Person*&gt; into Vector&lt;Person*&gt; in C++ &#8230; that's 5 minutes work, tops. In C you'll be coding all afternoon to make this change unless you're extremely practiced, and you still won't get it in 5 minutes. Making a red-black tree out of it in C is very likely to contain at least one hard-to-find bug, whilst for C++ you'll be done in minutes.</p>
+<p>Macros can solve this, but that's like smearing yourself with honey and diving butt-naked in an ant's nest.</p>
+<p>I just realized that the &quot;standard&quot; linked list implementation in C : glib's double linked list (google for the docs, I can't post links) &#8230; does exactly the same thing as the C++ implementation, losing type safety. Glib uses a helper object with a void* pointer in there.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1552150)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1552150)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1552150" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1552150)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1552150)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=6e5930cfbeea4b0e207d9eb00c107e30&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>wapper (guest)</span>, <span class="odate time_1346367425 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 22:57</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1553450">
+                      
+		<div class="post" id="post-1553450">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1553450)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1553450">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346478719 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Sep 2012 05:51</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1553450">
+									
+
+<p>+1</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1553450)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1553450" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1553450)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1553450)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346478719 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Sep 2012 05:51</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1597290">
+                      
+		<div class="post" id="post-1597290">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1597290)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1597290">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9177b14b30f517bbfd8061ee7d4dc578&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Alex (guest)</span> <span class="odate time_1351142088 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Oct 2012 05:14</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1597290">
+									
+
+<p>GLib basically just craps itself when it runs of memory, making it laughable from the perspective of resilient code. Their attitude is:</p>
+<p>&quot;If any call to allocate memory fails, the application is terminated. This also means that there is no need to check if the call succeeded.&quot;</p>
+<p>&quot;no need&quot; - OMG. So, every single program using GLib can fail at any time, either through its own stupidity or any *other* program's attempt to grab too much RAM. The irony is that the other program may not be using GLib, and could easily survive and go on to use the memory freed up by the GLib program imploding. Which offers an easy to to get more RAM - grab all that's left and wait for a bit voila! More memory.</p>
+<p>GLib's memory exhaustion handling is a joke.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1597290)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1597290" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1597290)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1597290)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9177b14b30f517bbfd8061ee7d4dc578&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Alex (guest)</span>, <span class="odate time_1351142088 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Oct 2012 05:14</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1597308">
+                      
+		<div class="post" id="post-1597308">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1597308)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1597308">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1351144683 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Oct 2012 05:58</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1597308">
+									
+
+<p>There's nothing else they can do. Modern OSes allow for memory overcommitment anyway, which means that allocation may succeed even if there isn't sufficient memory available.</p>
+<p>Even if that wasn't the case, what would you do if out-of-memory condition happened? Any attempt to recover may run out of memory itself. For example, years ago I've seen closing a file fail in low-memory conditions.</p>
+<p>Additionally, when you are running out of memory, OOM killer is probably already in progress and it may very well choose your application to be killed.</p>
+<p>In short, memory allocation errors are the primary candidates for &quot;fail fast&quot; strategy.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1597308)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1597308" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1597308)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1597308)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1351144683 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Oct 2012 05:58</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1935934">
+                      
+		<div class="post" id="post-1935934">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1935934)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1935934">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=075988a54d04aa2366ba50cb6c001157&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Roy Pfingsten (guest)</span> <span class="odate time_1389725693 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Jan 2014 18:54</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1935934">
+									
+
+<p>This is a practical work-around, not a theoretical solution, but FWIW, you could allocate a &quot;spare&quot; memory pool you can borrow from when memory exhaustion becomes a problem.</p>
+<p>It will not protect against all conditions, especially not a memory leak in another running process, but it could keep things going long enough to print dire warnings to the console, stderr, etc, and optimistically, allow your app to survive long enough to realloc() to restore the size of the &quot;spare&quot; memory pool.</p>
+<p>What it will do is give you something useful to do to recover from malloc() when it returns a null - namely realloc() &quot;spare&quot; to something smaller to free up the memory you need. Hopefully.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1935934)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1935934)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1935934" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1935934)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1935934)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=075988a54d04aa2366ba50cb6c001157&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Roy Pfingsten (guest)</span>, <span class="odate time_1389725693 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Jan 2014 18:54</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2058601">
+                      
+		<div class="post" id="post-2058601">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2058601)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2058601">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=caf2a8ad67fb2c98d2ffeb1bb5700f15&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Rado (guest)</span> <span class="odate time_1403730891 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jun 2014 21:14</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2058601">
+									
+
+<p>To cut reasoning short, if you managed in your C++ part of the code achieve O(N) where O(1) is expected, you got something badly wrong. Correct your design, and for free you will get rid of the nonsense &quot;not-really-C++&quot; code above.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2058601)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2058601)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2058601" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2058601)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2058601)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=caf2a8ad67fb2c98d2ffeb1bb5700f15&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Rado (guest)</span>, <span class="odate time_1403730891 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jun 2014 21:14</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551798">
+                      
+		<div class="post" id="post-1551798">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551798)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551798">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=2769e2583506188a4141c10bd676c33b&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Mark (guest)</span> <span class="odate time_1346343952 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:25</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551798">
+									
+
+<p>As a writer of low-level C++ code which often avoids std:: containers in places where it matters, I think the problem is somewhat correctable. Boost (and I don't count my self as a big fan) intrusive attempts to solve this problem by allowing some fields into your structures. My attempts to do this (yes, involving templates) are often less sophisticated than boost intrusive, but perhaps a little closer to the metal and simpler.</p>
+<p>Often complaints about a language really boil down to complaints about the commonly used libraries in that language. I think its fair to say that std::list is a mainstream choice for solving the problem. But if you really care about counting your allocations and using thread aware allocators, memory pools, and optimization &#8212; looking beyond the mainstream seems necessary. In my opinion C++ is not the problem, its the libraries. If the libraries for language are awful, that is a great reason to not use the language (since we don't have time to contribute libraries which fix the problem &#8212; right?).</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551798)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551798)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551798" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551798)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551798)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=2769e2583506188a4141c10bd676c33b&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Mark (guest)</span>, <span class="odate time_1346343952 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:25</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1896363">
+                      
+		<div class="post" id="post-1896363">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1896363)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1896363">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=998a2eae11fae36af066f5d63f50f36d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Cleroth (guest)</span> <span class="odate time_1384871413 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">19 Nov 2013 14:30</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1896363">
+									
+
+<p>Quite honestly, std::list should be avoided in most code, as other containers will usually outperform it nowadays in all aspects, and even when it doesn't (like when coding a networking library, or applications requiring heavy I/O), then you'd be better off using your own linked list.</p>
+<p>Conclusion&#8230; never use std::list. But to go as backwards as to use C&#8230; I think it's taking it a bit far.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1896363)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1896363)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1896363" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1896363)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1896363)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=998a2eae11fae36af066f5d63f50f36d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Cleroth (guest)</span>, <span class="odate time_1384871413 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">19 Nov 2013 14:30</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551800">
+                      
+		<div class="post" id="post-1551800">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551800)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551800">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9877b8aead736d33145d6e76bc7a9abf&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Hugo Peixoto (guest)</span> <span class="odate time_1346344104 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:28</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551800">
+									
+
+<p>The problem is not having used C++ instead of C, but having used some containers when they weren't appropriate. The main difference between your two approaches here are intrusive vs non intrusive containers, and that doesn't depend on the language.</p>
+<p>In your C case, you built an intrusive list. If you build it like that, you'll have to reimplement a list every time you want to make a list of something other than a person.</p>
+<p>In your C++ example you used a non-intrusive list. They have their advantages (if you want to use the same pointers to people in multiple lists, it's easier to do so in a non-intrusive list.</p>
+<p>You could have used an intrusive list in C++ (see boost for an implementation if you do not want to roll your own), and with the help of templates you could have an intrusive implementation that wouldn't have to be rewritten for each listable class. So using C++ would have been an actual advantage, while maintaining the performance/memory usage of your C example.</p>
+<p>The mere fact that std::list exists makes it easier for one to use it for all cases, and it leads to possible wrong design decisions such as the one you pointed in the article. They are appropriate for some use cases, and inappropriate for others. So I wouldn't blame it on C++, not in this case.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551800)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551800)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551800" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551800)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551800)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9877b8aead736d33145d6e76bc7a9abf&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Hugo Peixoto (guest)</span>, <span class="odate time_1346344104 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:28</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1555825">
+                      
+		<div class="post" id="post-1555825">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1555825)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1555825">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=6aea6e2f57f2a7b1cd6870375fbdc42f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ivan (guest)</span> <span class="odate time_1346765579 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">04 Sep 2012 13:32</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1555825">
+									
+
+<p>my crystal ball says : in 99% of the cases using std::list for making arguments about C++ vs C is trolling or ignorance.<br />
+llvm dot org/docs/ProgrammersManual.html#dss_list</p>
+<p>But as a C++ dev I can give you examples of C++ sucking compared to c:<br />
+vector&lt;vector&lt;&#187; :&#8230;</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1555825)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1555825)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1555825" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1555825)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1555825)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=6aea6e2f57f2a7b1cd6870375fbdc42f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ivan (guest)</span>, <span class="odate time_1346765579 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">04 Sep 2012 13:32</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1896365">
+                      
+		<div class="post" id="post-1896365">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1896365)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1896365">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=998a2eae11fae36af066f5d63f50f36d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Cleroth (guest)</span> <span class="odate time_1384871478 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">19 Nov 2013 14:31</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1896365">
+									
+
+<p>Fixed in C++11.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1896365)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1896365)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1896365" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1896365)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1896365)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=998a2eae11fae36af066f5d63f50f36d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Cleroth (guest)</span>, <span class="odate time_1384871478 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">19 Nov 2013 14:31</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551801">
+                      
+		<div class="post" id="post-1551801">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551801)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551801">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d91d022b71c2c4c44c396f9bf8da0bff&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>AGWA (guest)</span> <span class="odate time_1346344118 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:28</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551801">
+									
+
+<p>The solution to the first problem is to use a list of Persons, not Person pointers (i.e. <tt>std::list&lt;Person&gt;</tt>). Then the template-generated linked list node will look something like this:</p>
+<div class="code">
+<pre>
+<code>struct Node {
+   Person person;
+   Node* prev;
+   Node* next;
+};</code>
+</pre></div>
+<p>No double memory allocation. In fact, it's almost exactly like the &quot;private in X&quot; construct that you're proposing.</p>
+<p>Then, to refer to list elements, use a <tt>std::list&lt;Person&gt;::iterator</tt> instead of a <tt>Person*</tt>. You can pass this to the list erase function for constant-time erasure. If you think about it, an iterator is equivalent to a pointer (* and -&gt; get you a Person), but it also lets the implementation access the linked list node.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551801)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551801)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551801" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551801)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551801)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d91d022b71c2c4c44c396f9bf8da0bff&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>AGWA (guest)</span>, <span class="odate time_1346344118 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:28</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1551832">
+                      
+		<div class="post" id="post-1551832">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551832)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551832">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346345707 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:55</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551832">
+									
+
+<p>Thanks. I've already edited the text to make it clear that &quot;person&quot; is non-assignable.</p>
+<p>As for using iterators instead of pointers, imagine the object is contained in two lists. You would have to pass pair of iterators around. If it's contained in 10 lists, you would have to pass structure containing 10 iterators around. And you are back to encapsulation problem: For every new list you would have to adjust the &quot;iterator tuple&quot; object.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551832)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551832)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551832" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551832)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551832)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346345707 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:55</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1551857">
+                      
+		<div class="post" id="post-1551857">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551857)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551857">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=6c3424fcbaa40c0fa45b87c19a79d2f0&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>ah... (guest)</span> <span class="odate time_1346347317 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:21</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551857">
+									
+
+<p>That argument doesn't hold.</p>
+<p>If a person were in 10 lists then in your c-implementation you would need 10 pairs of prev and next&#8230; That would be an even worse design choice for so many reasons, I think!</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1551857)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551857" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551857)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551857)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=6c3424fcbaa40c0fa45b87c19a79d2f0&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>ah... (guest)</span>, <span class="odate time_1346347317 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:21</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1551866">
+                      
+		<div class="post" id="post-1551866">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551866)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551866">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346348409 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:40</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551866">
+									
+
+<p>Yep. That's the way it is done in Linux kernel for example.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1551866)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551866" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551866)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551866)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346348409 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:40</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1551891">
+                      
+		<div class="post" id="post-1551891">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551891)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551891">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d91d022b71c2c4c44c396f9bf8da0bff&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>AGWA (guest)</span> <span class="odate time_1346349841 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 18:04</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551891">
+									
+
+<p>Yes, I think it was definitely a defect in the STL that list elements had to be assignable. They could have had a version of push_back() that took no arguments and instead default constructed a new element (then you could use back() to get to it) but they didn't.</p>
+<p>C++11 fixed this by adding emplace_back(), which also uses new C++11 features to let it take any number of arguments which are forwarded to the element's constructor. Given how new C++11 is, I can understand why this might not be an option for most people.</p>
+<p>Regarding the iterators, I don't think the C version would have better encapsulation - the encapsulation problem is just elsewhere. I suppose it's a matter of taste where you'd rather have that problem.</p>
+<p>The &quot;private in X&quot; idea could solve the encapsulation problem, I suppose, but only if you made a distinct type for each of the 10 lists which a person could be part of - otherwise the compiler wouldn't know to add 10 prev/next pointers.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1551891)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551891" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551891)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551891)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d91d022b71c2c4c44c396f9bf8da0bff&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>AGWA (guest)</span>, <span class="odate time_1346349841 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 18:04</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1551902">
+                      
+		<div class="post" id="post-1551902">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551902)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551902">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346350639 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 18:17</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551902">
+									
+
+<p>And that's the cause in most cases, isn't it? Having same object in the same list twice is pretty rare.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1551902)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551902" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551902)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551902)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346350639 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 18:17</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1551930">
+                      
+		<div class="post" id="post-1551930">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551930)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551930">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d91d022b71c2c4c44c396f9bf8da0bff&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>AGWA (guest)</span> <span class="odate time_1346352452 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 18:47</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551930">
+									
+
+<p>I'm talking types, not instances of a type. Having the same object twice in the same list <em>instance</em> is rare, but if you have the same object in 10 different list instances, what would the type of each list instance be? You probably want it to be <tt>people</tt> in every case, but then the compiler would add only one next/prev pointer to the <tt>person</tt> type, which isn't enough. There's no way for the compiler to know that at runtime the <tt>person</tt> will be stored on 10 different lists.</p>
+<p>I'm not sure there's a good way to store an element on multiple lists without breaking encapsulation <em>somewhere</em>.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1551930)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551930" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551930)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551930)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d91d022b71c2c4c44c396f9bf8da0bff&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>AGWA (guest)</span>, <span class="odate time_1346352452 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 18:47</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1551956">
+                      
+		<div class="post" id="post-1551956">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551956)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551956">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346353292 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 19:01</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551956">
+									
+
+<p>Ah. I see. What we are representing then is an relation between two types of entities. Some kind of 2D bitmap or similar would be more appropriate then rather then a set of lists.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551956)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551956)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551956" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551956)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551956)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346353292 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 19:01</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551802">
+                      
+		<div class="post" id="post-1551802">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551802)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551802">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=76785f570346bea0867a02ae25c7bd7a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Justin (guest)</span> <span class="odate time_1346344246 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:30</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551802">
+									
+
+<p>Did you try std::list&lt;person&gt; ?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551802)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551802)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551802" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551802)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551802)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=76785f570346bea0867a02ae25c7bd7a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Justin (guest)</span>, <span class="odate time_1346344246 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:30</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551803">
+                      
+		<div class="post" id="post-1551803">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551803)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551803">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=6125b9e3bcdeee16338751361c3d0eb9&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>knz (guest)</span> <span class="odate time_1346344292 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:31</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551803">
+									
+
+<p>This is exactly the point of the Boost &quot;Intrusive&quot; containers, which are both delicious and exceedingly simple to use. Check them out!</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551803)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551803)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551803" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551803)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551803)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=6125b9e3bcdeee16338751361c3d0eb9&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>knz (guest)</span>, <span class="odate time_1346344292 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:31</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1551867">
+                      
+		<div class="post" id="post-1551867">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551867)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551867">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346348475 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:41</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551867">
+									
+
+<p>Yes. They break the encapsulation principle as well. My point was that in C++ you can't have an &quot;intrusive&quot; container and proper encapsulation at the same time.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551867)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551867)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551867" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551867)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551867)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346348475 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:41</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1552102">
+                      
+		<div class="post" id="post-1552102">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1552102)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1552102">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d053db643bf17c7f384fb351d99b0e37&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Justin Alan Ryan (guest)</span> <span class="odate time_1346363914 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 21:58</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1552102">
+									
+
+<p>What you're talking about is containment, and it's entirely possible to implement containment without breaking encapsulation, but your code looks more like composition.</p>
+<p>You and other parties don't have to know about each others' implementations if you agree that containment might be important and agree on a containment protocol.</p>
+<p>Read the GoF! ;)</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1552102)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1552102" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1552102)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1552102)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d053db643bf17c7f384fb351d99b0e37&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Justin Alan Ryan (guest)</span>, <span class="odate time_1346363914 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 21:58</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1553448">
+                      
+		<div class="post" id="post-1553448">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1553448)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1553448">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346478575 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Sep 2012 05:49</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1553448">
+									
+
+<p>If you believe it's possible, please post a short code snippet of person &amp; people classes that doesn't break the encapsulation.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1553448)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1553448)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1553448" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1553448)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1553448)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346478575 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Sep 2012 05:49</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551811">
+                      
+		<div class="post" id="post-1551811">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551811)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551811">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=c510febb9bed68b5cc4a09f076701e0f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Anon (guest)</span> <span class="odate time_1346344657 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:37</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551811">
+									
+
+<p>Listen, if you're going to write C++ in the manner one would write C, you're going to run into these problems. C and C++, though they share similar syntax and semantics, are fundamentally different languages. You appear to be writing C++ as one would write C, and this appears to have caused you an unnecessary amount of grief.</p>
+<blockquote>
+<p>Excessive allocations for a list of people.</p>
+</blockquote>
+<p>Simply put, a sane C++ programmer would simply use a `list&lt;Person&gt;` instead of a `list&lt;Person*&gt;`. This yields a memory layout that is almost exactly equivalent to the C version. Dereferencing an iterator compiles down to an add instruction.</p>
+<blockquote>
+<p>Element removal from a list is an O(n) operation</p>
+</blockquote>
+<p>Yeah, I can do it incorrectly in C as well.</p>
+<p>In C++, you should iterate through lists using the appropriate const-ness iterator, e.g.</p>
+<p>for (ListT::const_iterator i = list.begin() ; i != list.end() ; ++i) {<br />
+&#8230;<br />
+}</p>
+<p>You can then use &#8216;list.remove(i)` to remove a specific element in constant time. This is equivalent to your C code. You shouldn&#8217;t be wrapping it up into a function which discards all context (and if you must remove elements by-value, at least use std::list&lt;&gt;::remove).</p>
+<p>Yes, this means you cannot wrap your C++ into C-like interfaces and expect good performance. You can't wrap your C into Python-like interfaces and expect good performance either.</p>
+<p>To conclude, ZeroMQ shouldn't have been written in C++, not because of the performance characteristics of the language, but because the author refuses to write C++ in a performant manner. If you're going to write in C, by all means, actually use C.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551811)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551811)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551811" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551811)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551811)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=c510febb9bed68b5cc4a09f076701e0f&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Anon (guest)</span>, <span class="odate time_1346344657 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:37</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1554948">
+                      
+		<div class="post" id="post-1554948">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1554948)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1554948">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=f476bf9cef4b8ed6858f2c360dd730a4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>t0bi (guest)</span> <span class="odate time_1346672510 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 11:41</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1554948">
+									
+
+<p>wow, nice comment :)<br />
+I, being a developer with java background, was scratching my head thinking &quot;c++ definitely has a way to remove an element in constant time&quot;. Thanks for clearing that up.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1554948)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1554948)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1554948" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1554948)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1554948)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=f476bf9cef4b8ed6858f2c360dd730a4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>t0bi (guest)</span>, <span class="odate time_1346672510 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 11:41</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1840147">
+                      
+		<div class="post" id="post-1840147">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1840147)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1840147">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=62cbccd70f76424ff9ae8cda490b9e95&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>hualuogeng (guest)</span> <span class="odate time_1377517850 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Aug 2013 11:50</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1840147">
+									
+
+<p>The complexity of std::list&lt;&gt;::remove is not constant, but linear in container size (comparisons).</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1840147)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1840147)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1840147" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1840147)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1840147)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=62cbccd70f76424ff9ae8cda490b9e95&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>hualuogeng (guest)</span>, <span class="odate time_1377517850 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Aug 2013 11:50</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1840198">
+                      
+		<div class="post" id="post-1840198">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1840198)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1840198">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1377524403 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Aug 2013 13:40</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1840198">
+									
+
+<p>How come?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1840198)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1840198" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1840198)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1840198)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1377524403 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Aug 2013 13:40</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1988817">
+                      
+		<div class="post" id="post-1988817">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1988817)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1988817">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=fbf0beb050a79dca8838b8f5d3e4eef4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>erapert (guest)</span> <span class="odate time_1394555840 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">11 Mar 2014 16:37</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1988817">
+									
+
+<p>Linked lists almost always suck compared to vectors because the way they lay out memory causes a lot of cache misses and because iterating through them is so expensive.<br />
+<a href="http://www.youtube.com/watch?v=YQs6IC-vgmo">http://www.youtube.com/watch?v=YQs6IC-vgmo</a></p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1988817)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1988817" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1988817)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1988817)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=fbf0beb050a79dca8838b8f5d3e4eef4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>erapert (guest)</span>, <span class="odate time_1394555840 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">11 Mar 2014 16:37</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1988840">
+                      
+		<div class="post" id="post-1988840">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1988840)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1988840">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1394557358 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">11 Mar 2014 17:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1988840">
+									
+
+<p>Yes. But vectors are pretty bad a resizing. It's a trade-off.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1988840)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1988840" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1988840)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1988840)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1394557358 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">11 Mar 2014 17:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2009576">
+                      
+		<div class="post" id="post-2009576">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2009576)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2009576">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=5cc380d3aa34a863217170ef37cadcf8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Vitali (guest)</span> <span class="odate time_1397072569 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 Apr 2014 19:42</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2009576">
+									
+
+<p>It sounds like you're pretty much against C++ regardless of any actual corrections to misunderstandings you may have about it (C++11 fixes quite a few defects). I agree that it's a complicated language and it's easier to shoot yourself in the foot than with other languages (however this is even more true with C).</p>
+<p>First, I'm not sure what you mean by bad at resizing. What particularly about it is bad?</p>
+<p>Re vector vs list, cache misses are a drastically significantly more important performance impact than anything else these days &amp; you're guaranteed them when using a list unless you do lots of jumping through hoops to allocate everything in a contiguous array (but then why not vector?).</p>
+<p>I highly recommend you watch <a href="http://channel9.msdn.com/Events/Build/2014/2-661">http://channel9.msdn.com/Events/Build/2014/2-661</a> (the performance stuff starts roughly around the 20 minute mark) &amp; is language agnostic (true for C++/C/Java, etc).</p>
+<p>Additionally, in C++11, if you declare your move constructors noexcept (or use the default one or omit destructor, move/copy contructors &amp; move/copy assignment operators), then resizes of vectors can be much faster (if the move constructor is faster than the copy one) since the container doesn't need to copy your objects, it'll just move them.</p>
+<p>C++11 lets you also express your non-assignable types without resorting to pointers by declaring the type to be move only (thus Person can live on the stack or moved to live in the heap):</p>
+<div class="code">
+<pre>
+<code>class Person {
+public:
+    ~Person();
+    Person(const Person&amp; o) = delete;
+    Person(Person&amp;&amp; o) noexcept
+        : // initialize member variables with the resources from o
+    {
+        // modify o so that it no longer owns any resources
+        // but leave it in a destructible state
+    }
+
+    Person&amp; operator=(const Person&amp;) = delete;
+    Person&amp; operator=(Person&amp;&amp; o) noexcept
+    {
+        Person tmp(std::move(o));
+        swap(*this, tmp);
+        return *this;
+    }
+private:
+    friend void swap(Person&amp;p1, Person&amp; p2) noexcept;
+};</code>
+</pre></div>
+<br />
+Additionally, it's unlikely that Person would actually own anything. Instead you can omit all the constructors:
+<div class="code">
+<pre>
+<code>class Person {
+public:
+    Person();
+
+    // don't specify destructor or move/copy constructors/assignment operators
+    // &amp; this type is implicitly move-only due to _data being move-only, it's exception-safe
+    // &amp; everything is automatically annotated noexcept for you
+private:
+    std::unique_ptr&lt;PersonData&gt; _data;
+};</code>
+</pre></div>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2009576)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2009576)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2009576" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2009576)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2009576)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=5cc380d3aa34a863217170ef37cadcf8&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Vitali (guest)</span>, <span class="odate time_1397072569 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 Apr 2014 19:42</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551812">
+                      
+		<div class="post" id="post-1551812">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551812)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551812">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a9a91aadfbb8f75c9991127dde6e6075&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ken (guest)</span> <span class="odate time_1346344657 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:37</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551812">
+									
+
+<p>This post again shows that you are the problem, not the language. Why are you using &quot;std::list &lt;person*&gt; people;&quot; instead of much simpler &quot;std::list &lt;person&gt; people;&quot;? If you are worried about construction cost, use emplace_back.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551812)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551812)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551812" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551812)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551812)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a9a91aadfbb8f75c9991127dde6e6075&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ken (guest)</span>, <span class="odate time_1346344657 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:37</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551818">
+                      
+		<div class="post" id="post-1551818">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551818)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551818">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=01a4d8965782c6c63e921b5f0993906b&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Guy (guest)</span> <span class="odate time_1346344952 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:42</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551818">
+									
+
+<p>You should rather:<br />
+std::list &lt;person&gt; people;</p>
+<p>The equivalent of the pointer in your C program is an iterator std::list&lt;person&gt;::iterator which *does* allow erasing in O(1). What you don't show in your C code is how you got the pointer to the element in the first place, traversing the list?</p>
+<p>Now you get the same or better performance with more safety/higher level of abstraction.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551818)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551818)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551818" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551818)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551818)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=01a4d8965782c6c63e921b5f0993906b&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Guy (guest)</span>, <span class="odate time_1346344952 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:42</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-1551825">
+                      
+		<div class="post" id="post-1551825">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551825)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551825">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=5682179f6924a43d371803f892fc8265&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>whalebot.helmsman (guest)</span> <span class="odate time_1346345169 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:46</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551825">
+									
+
+<p>Your cpp and c snippets not equivallent. Results of using them are different in case when list contains same pointer twice(for whatever reason).</p>
+<p>This statement is incorrect: In C++ solution erasing an object from the list has O(n) complexity<br />
+This one correct: In C++ solution erasing an object from the list has O(n) complexity <strong>by object value</strong></p>
+<p>In C++ solution you should use iterator, not pointer. Erasing an object from list has O(1) complexity <strong>by iterator</strong></p>
+<p>P.S. you have an error in C++ snippet. <tt>people.erase(it)</tt> method invalidates iterator, so <tt>++it</tt> it is undefined behavior</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551825)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551825)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551825" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551825)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551825)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=5682179f6924a43d371803f892fc8265&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>whalebot.helmsman (guest)</span>, <span class="odate time_1346345169 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 16:46</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+                      
+    <div class="post-container" id="fpc-1551837">
+                      
+		<div class="post" id="post-1551837">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551837)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551837">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346346117 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:01</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551837">
+									
+
+<p>Text modified to address both comments.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,1551837)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,1551837)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551837" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551837)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551837)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346346117 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:01</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-1551860">
+                      
+		<div class="post" id="post-1551860">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551860)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551860">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=acbd243b5659bc4e5282ae65552fcff4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>concerned cppitizen (guest)</span> <span class="odate time_1346347683 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:28</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551860">
+									
+
+<p>Did you update the C implementation to allow for person to be in multiple lists?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1551860)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551860" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551860)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551860)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=acbd243b5659bc4e5282ae65552fcff4&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>concerned cppitizen (guest)</span>, <span class="odate time_1346347683 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:28</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1551863">
+                      
+		<div class="post" id="post-1551863">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1551863)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1551863">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346348216 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:36</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1551863">
+									
+
+<p>Nope, but it looks like this:</p>
+<p>struct person<br />
+{<br />
+struct person *list1_prev;<br />
+struct person *list1_next;<br />
+struct person *list2_prev;<br />
+struct person *list2_next;<br />
+int age;<br />
+int eight;<br />
+}</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1551863)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1551863" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1551863)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1551863)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346348216 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">30 Aug 2012 17:36</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1554977">
+                      
+		<div class="post" id="post-1554977">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1554977)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1554977">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9805f4a2be4e3be4c489773f4e52b2e6&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Rob G (guest)</span> <span class="odate time_1346675966 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 12:39</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1554977">
+									
+
+<p>1. That multiply-linked list element is truly horrible and non-scalable, if you need to later add another list, you're going to have to keep adding next/prev pairs.</p>
+<p>2. If you've got an object in 10 lists, why on earth are you iterating all of them together? That sounds horribly like a contrived reply to valid criticisms.</p>
+<p>I come away with the feeling that you've not invested the time to learn C++ design properly, and then blame the language for your horrible implementation.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1554977)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1554977" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1554977)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1554977)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9805f4a2be4e3be4c489773f4e52b2e6&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Rob G (guest)</span>, <span class="odate time_1346675966 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 12:39</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1554981">
+                      
+		<div class="post" id="post-1554981">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1554981)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1554981">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346676843 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 12:54</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1554981">
+									
+
+<p>1. is the point of the article. Due to the described encapsulation problem there's no way to scale the solution in C++.</p>
+<p>The &quot;private in&quot; construct would solve that. I am also said that Scala has a similar construct.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1346676907 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 12:55</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,1554981)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1554981)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1554981" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1554981)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1554981)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346676843 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 12:54</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1555003">
+                      
+		<div class="post" id="post-1555003">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1555003)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1555003">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=274be5ad2863cd7efbdfbc8209038f83&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Stefan (guest)</span> <span class="odate time_1346678899 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 13:28</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1555003">
+									
+
+<p>If I understood your explanation correctly, &quot;Private in&quot; is called &quot;friend&quot; in C++. Please look up the syntax in the C++ book/site of your preference.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1555003)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1555003" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1555003)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1555003)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=274be5ad2863cd7efbdfbc8209038f83&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Stefan (guest)</span>, <span class="odate time_1346678899 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 13:28</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1555006">
+                      
+		<div class="post" id="post-1555006">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1555006)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1555006">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1346679481 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 13:38</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1555006">
+									
+
+<p>It's not. Please, re-read the article.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1555006)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1555006" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1555006)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1555006)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1346679481 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">03 Sep 2012 13:38</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1694035">
+                      
+		<div class="post" id="post-1694035">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1694035)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1694035">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span> <span class="odate time_1359065612 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">24 Jan 2013 22:13</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1694035">
+									
+
+<p>sure you can keep encapsulation, write idiomatic C++ and not be left with the overhead of any superfluous run-time overhead:</p>
+<p>Find code on codepad (dot) org (slash) MqAloPgJ</p>
+<p>and whats more you get list elements that remove themselves when they are deleted resulting in cleaner, safer code.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1694035)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1694035" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1694035)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1694035)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span>, <span class="odate time_1359065612 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">24 Jan 2013 22:13</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1694074">
+                      
+		<div class="post" id="post-1694074">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1694074)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1694074">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1359067807 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">24 Jan 2013 22:50</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1694074">
+									
+
+<p>From the article: &quot;The real reason why any C++ programmer won't design the list in the C way is that the design breaks the encapsulation principle: The implementer of the &quot;person&quot; class has to know that its instances will be eventually stored in &quot;people&quot; list. Moreover, if a 3rd party chooses to store it in a different list, the implementation of the person would have to be change. This is an anti-pattern that OO programmers learned to avoid.&quot;</p>
+<p>See, the object needs to know that it will be part of the list:</p>
+<p>class important_object: public list_node&lt;important_object&gt;</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1694074)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1694074" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1694074)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1694074)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1359067807 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">24 Jan 2013 22:50</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1694507">
+                      
+		<div class="post" id="post-1694507">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1694507)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1694507">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span> <span class="odate time_1359103192 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 08:39</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1694507">
+									
+
+<p>I was wary about using the word &quot;encapsulation&quot; to describe the OO-ness that the code preserves.</p>
+<p>The point is, you can write an intrusive list that is not intrusive in your client code. Yes you have to inherit from the node class but (my implementation is not full, but Google it someone has probably done it), but the important point is if you were to need to change the design and re-factor your code it would be relatively easy, depending what you are doing of course you will probably only have to touch the class definitions not the client code. It does not &quot;degenerate to C style&quot;</p>
+<p>Talking about what &quot;a C++ programmer&quot; would do is really a straw man argument. The point is C++ generics provide the tools to represent any abstraction you might think of and do so without any run-time overhead. Yes the implementation of the patterns can look pretty scary (in large part to the verbose template syntax) but usage usually has acceptable to good syntax.</p>
+<p>I have been reading a lot of language specifications and papers on different type systems and programming paradigms recently and the biggest surprise that I have had from the whole project is that it turns out most of the ideas can be implemented in a usable way as a C++ library. Think very carefully before you say something can't be done.</p>
+<p>Finally if you have a case where your code is easier to read and maintain and more efficient in C style then do it, it certainly doesn't mean that your whole project has to &quot;degenerate&quot;.</p>
+<p>Why do I care enough to write this?<br />
+answer 1: C++ provides the tools to let you deal with abstractions at compile-time, C doesn't. In C you must therefore either do without the abstraction or use run-time abstractions leading to just the sort of indirection this article seeks to avoid.<br />
+answer 2: I'm a geek<br />
+answer 3: someone is wrong on the internet ;¬)</p>
+<p>PS I have very much enjoyed using ZeroMQ</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1694507)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1694507" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1694507)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1694507)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span>, <span class="odate time_1359103192 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 08:39</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1694560">
+                      
+		<div class="post" id="post-1694560">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1694560)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1694560">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1359111711 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 11:01</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1694560">
+									
+
+<p>:)</p>
+<p>Ok, I guess you are into a more theoretical discussion. Here's my take then:</p>
+<p>What OOP delivers is a way to decompose the universe into well-delimited objects. The appeal is that human brain is wired to deal with well-delimited objects and thus OOP allows common sense to kick-in (rather than pseudo-scientific reasoning required by non-object-oriented code).</p>
+<p>In other words, if there's a box of chocolates, common sense assumes that these are two well-delimited objects and there's nothing chocolate-like about the box and nothing box-like about the chocolates.</p>
+<p>So far so good. There's nothing wrong about OOP paradigm.</p>
+<p>Enter C++. C++ have evolved from C and re-used C &quot;struct&quot; construct to define classes. What that means is that &quot;well-delimited object&quot; maps to &quot;continuous chunk of memory&quot; in C++.</p>
+<p>This tight coupling between &quot;object&quot; and &quot;memory allocation&quot; works well in most cases, however, in few special cases it goes astray. When thinking about lists, the only way to separate box properties from chocolate properties is to allocate 2 memory chunks instead of a single one per chocolate in the box. That's basically what STL does.</p>
+<p>Intrusive containers merge the two chunks into a single one, but then some of the properties of the box (prev,next) leak into chocolate object. Which, of course, violates the basic promise of the OOP paradigm (well-delimited objects).</p>
+<p>I would say there's no way out, unless the language doesn't enforce tight coupling between objects and memory allocations.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1694560)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1694560" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1694560)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1694560)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1359111711 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 11:01</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1694932">
+                      
+		<div class="post" id="post-1694932">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1694932)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1694932">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span> <span class="odate time_1359140574 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 19:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1694932">
+									
+
+<p>&quot;but then some of the properties of the box (prev,next) leak into chocolate object&quot;<br />
+Intrusive containers' helper objects (the equivalent to my list_node) can quite easily make their methods private but share them by friendship with the list and iterator classes so that the appear from the outside as a normal container class. say &quot;intrusive but not obtrusive&quot;</p>
+<p>&quot;I would say there's no way out, unless the language doesn't enforce tight coupling between objects and memory allocations.&quot;<br />
+Not necessarily but it is the easiest way of telling the compiler how the data should be laid-out. If you break the coupling between object and memory structure you will end up having to look up every property like Ruby and its dynamic bretheran, and that is a _lot_ slower.</p>
+<p>Could you point me to the actual code where this is a problem. Talking in the abstract and with toy examples can end up going 'round in circles.</p>
+<p>I wager I can find a C++ solution that will deliver better encapsulation, making your code safer, more expressive and easier to maintain, without compromising runtime performance when compared to the bare C solution you describe. And that even in this case to which you feel C++ is particularly unsuited.</p>
+<p>I say this with all humility, knowing I am not an equal to you as a software engineer.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1694932)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1694932" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1694932)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1694932)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span>, <span class="odate time_1359140574 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 19:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1694938">
+                      
+		<div class="post" id="post-1694938">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1694938)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1694938">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1359141037 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 19:10</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1694938">
+									
+
+<p>Ok, let's go for it! :)</p>
+<p>My problem is as follows:</p>
+<p>I have many classes in the project, each has many members. I have also few mutexes. Each mutex synchronises some (but not all) members in some classes. Say mutex 1 synchronises A::a, A::b, B::i and C::x, while mutex 2 synchronises A::c and C::y etc.</p>
+<p>Now, the challenge is:</p>
+<ol>
+<li>How to keep track of which mutex synchronises which variables</li>
+<li>If possible, make compile complain when synchronisation is done incorrectly</li>
+</ol>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1694938)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1694938" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1694938)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1694938)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1359141037 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 19:10</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1694942">
+                      
+		<div class="post" id="post-1694942">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1694942)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1694942">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1359141191 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 19:13</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1694942">
+									
+
+<p>&quot;can quite easily make their methods private but share them by friendship&quot; &#8212; I've actually written a blog post about this: <a href="http://www.250bpm.com/blog:9">http://www.250bpm.com/blog:9</a></p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1694942)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1694942" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1694942)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1694942)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1359141191 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 19:13</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1695164">
+                      
+		<div class="post" id="post-1695164">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1695164)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1695164">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span> <span class="odate time_1359151357 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 22:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1695164">
+									
+
+<p>&quot;My problem is as follows:&#8230;.&quot;<br />
+Can I see the actual code? I searched zeroMQ for use of std:list and came up empty handed.</p>
+<p>&quot;I've actually written a blog post about this&quot;<br />
+Something like that but the next and previous pointers in the helper class need to point to person objects because you can't get to the person class from the helper class and all you are left with is a linked list of helpers (I guess strictly you could probably do some black magic where you find the offset of the helper data I'm assuming that's not what you wanted to do).</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1695164)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1695164" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1695164)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1695164)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span>, <span class="odate time_1359151357 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">25 Jan 2013 22:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1695488">
+                      
+		<div class="post" id="post-1695488">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1695488)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1695488">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1359181920 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Jan 2013 06:32</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1695488">
+									
+
+<p>0MQ code is to convoluted to be discussed here, but try adding proper encapsulation to this:</p>
+<div class="code">
+<pre>
+<code>class A
+{
+    mutex m; /* uses and synchronises C::i and D::i */
+};
+
+class B
+{
+    mutex m; /* uses and synchronises C::j and D::j */
+};
+
+class C /* doesn't use C::i or C::j */
+{
+    int i;
+    int j;
+};
+
+class D /* doesn't use D::i or D::j */
+{
+    int i;
+    int j;
+};</code>
+</pre></div>
+<p>As for the black magic, casting from member to the container is a standard way of doing things in C. Check e.g. Linux kernel sources.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1695488)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1695488" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1695488)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1695488)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1359181920 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Jan 2013 06:32</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1695821">
+                      
+		<div class="post" id="post-1695821">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1695821)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1695821">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span> <span class="odate time_1359231114 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Jan 2013 20:11</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1695821">
+									
+
+<p>black magic: that's interesting - does that allow you to access a member of a struct via a pointer to another member as efficiently as if you had a pointer to the struct itself or is there another step involved? I would also be interested to find out whether in any circumstances this sort of trick prevents optimizations by obfuscating what we are doing to the compiler&#8230; very interesting.</p>
+<p>&quot;If possible, make compile complain when synchronisation is done incorrectly&quot;<br />
+that sounds like a job for typestate. Implementing some approximation of this with C++ metaprogramming sounds like a very interesting project (and as I think of it, some new C++11 features, in particular type erasure and variadic templates might help a lot)</p>
+<p>&quot;0MQ code is to convoluted to be discussed here, but try adding proper encapsulation to this&quot;<br />
+I'm sorry I just don't have the context to understand the problems with this sort of example. If you can point me to where I can find the code, which classes in particular are problematic (what corresponds to A B C and D) then I will try to deal with the complexity or admit defeat.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1695821)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1695821" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1695821)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1695821)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span>, <span class="odate time_1359231114 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Jan 2013 20:11</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1695833">
+                      
+		<div class="post" id="post-1695833">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1695833)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1695833">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1359232306 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Jan 2013 20:31</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1695833">
+									
+
+<p>black magic: It compiles into a single subtraction operation, so it's very quick. Also, it's done on regular basis in linux kernel so my guess is there is no serious performance problem like messing with optimiser. If there was, it would have been fixed long time ago.</p>
+<p>&quot;that sounds like a job for typestate. Implementing some approximation of this with C++ metaprogramming sounds like a very interesting project (and as I think of it, some new C++11 features, in particular type erasure and variadic templates might help a lot)&quot;</p>
+<p>Go for it. It would be interesting to see what C++11 has to offer in terms of decoupling memory layout from accessibility settings.</p>
+<p>&quot;I'm sorry I just don't have the context to understand the problems with this sort of example. If you can point me to where I can find the code, which classes in particular are problematic (what corresponds to A B C and D) then I will try to deal with the complexity or admit defeat.&quot;</p>
+<p>0MQ goes to great lengths to avoid this kind of problem. See the convoluted algorithm for managing list of pipes in lb_t and fq_t classes. The list stores pipe index (position in the list) inside of the pipe, however, pipe is not necessarily living in the same thread as the list. What you get is members that are living in different threads packed without any safeguards into a single class. There are lock-less algorithms involved etc. so it's really top complex system to demostrate theoretical issues on.</p>
+<p>The ABCD snippet in the previous post is much cleaner example. The only goal is to ensure that individual variables are accessed only by their owners, i's by A, j's by B. Attempt to access say C::i from B or C should yield a compile-time error.</p>
+<p>The only solution I can think of is along the lines of enclave pattern, I've described in my blog. However, that's hardly an idiomatic C++ and leaves me asking whether using plain old C is not a better solution.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1695833)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1695833" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1695833)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1695833)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1359232306 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">26 Jan 2013 20:31</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1696970">
+                      
+		<div class="post" id="post-1696970">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1696970)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1696970">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span> <span class="odate time_1359378020 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Jan 2013 13:00</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1696970">
+									
+
+<p>&#8230;ok this is interesting.</p>
+<p>I thought we were talking about a linked list and that the problem was simply going to be one of choosing which intrusive linked-list implementation best fitted the problem.</p>
+<p>This however is a much less well defined problem, but quite interesting.</p>
+<p>What is going on in the code now is clearly not ideal.</p>
+<p>That array class is crazy, just some thoughts so far, no need to respond:<br />
+1) why do we want random access to an array which does not<br />
+guarantee order is preserved? certainly it doesn't seem like a priority<br />
+that this is O(1)<br />
+2) pointers can be invalidated because deletion of objects does not remove them<br />
+from the array - this leads to a need to always check the pointers.<br />
+3) pointers can be invalidated because we are allowed access to the pointers<br />
+by reference<br />
+4) the array indexes can be invalidated because set_array_index is public.<br />
+5) The comments claim that insertion in O(1) but this is only average time.<br />
+Worst case time is bad because push may require new memory allocation and<br />
+copying of the array.</p>
+<p>An intrusive linked list could actually solve all of these problems, though iteration would obviously be slower and if there is some reason why you need O(1) random access via index then that would be a problem too. Intrusive linked lists do not require any allocations to add existing nodes to a list, for this reason they are good for &quot;real time&quot; applications.</p>
+<p>On the broader question of how to design the locking properly I am going to have to study the code more and review the literature in this area. I have a few ideas.</p>
+<p>I'm gonna stop myself babbling, I will probably go quiet for a while but I will try to come back to you with something useful.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1696970)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1696970" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1696970)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1696970)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=462e6deb5e2e99814caa88c10b4269bd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>maninalift (guest)</span>, <span class="odate time_1359378020 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Jan 2013 13:00</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1696986">
+                      
+		<div class="post" id="post-1696986">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1696986)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1696986">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1359380011 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Jan 2013 13:33</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1696986">
+									
+
+<p>OK. Give it a stab.</p>
+<p>However, I believe the problem is inherent: You can improve the code until it is cleanly implemented intrusive list. Then you have parts of the list object leaking into item object (next, prev). You need to ensure that these won't be used by anyone other than the list. So you'll probably go with something like the enclave pattern. At that point you should look on the code and ask: Are all these hacks used to get something that C++ promises out of the box (member access control) really worth it? Wouldn't it be cleaner to use raw C instead?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1696986)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1696986" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1696986)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1696986)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1359380011 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">28 Jan 2013 13:33</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1798419">
+                      
+		<div class="post" id="post-1798419">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1798419)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1798419">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=4d0b0e019b5169ddd1ae237aa4c270cd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>AcidZombie24 (guest)</span> <span class="odate time_1371493834 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">17 Jun 2013 18:30</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1798419">
+									
+
+<p>Actually you're wrong about the extra allocations with stl containers/iterators. Using vector&lt;person&gt; (not the lack of *) I had exactly 0 overhead. The class is exactly 8 bytes <a href="http://ideone.com/C4j0BG">http://ideone.com/C4j0BG</a></p>
+<p>Using list I get 24 bytes. I'm not sure where the extra few bytes comes from but that may be solved using a different implementation. Templates/oops doesn't cause extra allocations <a href="http://ideone.com/qGp2Am">http://ideone.com/qGp2Am</a></p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1798419)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1798419" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1798419)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1798419)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=4d0b0e019b5169ddd1ae237aa4c270cd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>AcidZombie24 (guest)</span>, <span class="odate time_1371493834 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">17 Jun 2013 18:30</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-1798435">
+                      
+		<div class="post" id="post-1798435">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,1798435)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-1798435">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1371494955 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">17 Jun 2013 18:49</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-1798435">
+									
+
+<p>The assumption is that the object is not assignable (imagine object that contains a running thread). Thus, there's need to store it in the list by reference, rather than be copying it.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,1798435)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-1798435" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,1798435)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,1798435)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262307" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1371494955 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">17 Jun 2013 18:49</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-3906049">
+                      
+		<div class="post" id="post-3906049">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3906049)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3906049">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=f7f66d4cb383d7f89435aee74751394d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>sergii (guest)</span> <span class="odate time_1533899346 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 Aug 2018 11:09</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3906049">
+									
+
+<p>Regarding your clarification on iterators - it is not entirely correct. With the proposed C structure you cannot have it in the several lists, because next and previous fields can make it part of only one list. So using iterators in C++ is still a viable alternative.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3906049)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3906049)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3906049" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3906049)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3906049)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=f7f66d4cb383d7f89435aee74751394d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>sergii (guest)</span>, <span class="odate time_1533899346 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 Aug 2018 11:09</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+
+<div class="pager"><span class="pager-no">page 1 of 4</span><span class="current">1</span><span class="target"><a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadPostsModule.listeners.updateList(2)">2</a></span><span class="target"><a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadPostsModule.listeners.updateList(3)">3</a></span><span class="target"><a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadPostsModule.listeners.updateList(4)">4</a></span><span class="target"><a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadPostsModule.listeners.updateList(2)">next &raquo;</a></span></div>
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  block ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

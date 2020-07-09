@@ -1,0 +1,1152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Performance of green threads and why it matters - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:81";
+        OZONE.request.timestamp = 1594263563;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:81";
+        WIKIREQUEST.info.pageId = 43803465;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;Performance of green threads and why it matters&quot;" href="/feed/page/comments-43803465.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            Performance of green threads and why it matters
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em"><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:80">The Nanny World</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:82">Software Licenses and Failed States</a></p>
+</div>
+    
+    
+    
+    </div>
+<p>If one looks closely enough at green threads, such as Go's 'go' statement, it's not hard to realise that they are really a flow control mechanism similar to 'if', 'for' or 'while' statements. Where 'if' allows you to skip a block of code, green threads give you a way to easily switch between different points of execution. Very much like 'if' or 'while' they are glorified jump statements.</p>
+<p>However, to use them as routinely and carelessly as we use ifs or whiles, the green threads would have to be as cheap to use as ifs and whiles are.</p>
+<p>That sounds like a rather tall order, given that we tend to think of threads as being on much higher abstraction level than humble 'if' statement, but maybe we are misjudging the difficulty of the problem. Let's have a look!</p>
+<p>First of all, 'go' statement in Go language does parallelism in addition to simple green-threading. With all the talk about 'concurrency is not parallelism' that seems to be part of Go's DNA, I find the design decision to support both using a single statement a bit weird. In any case, let's ignore the parallelism part and assume that our ideal 'go' statement does just the concurrency part. In other words, that it never involves switching to a different CPU core. If it was not so, the implementation would have to handle synchronisation between cores, locking of cachelines and so on. That would in turn make it slower than other flow control structures.</p>
+<p>Next, let's ignore all the hardware and software corner cases, such as chips with no virtual memory, no caches, 16-bit CPUs or similar. Our goal is not to demonstrate that 'go' can be as fast as 'if' in every possible case but that it can be made comparably fast if we really want to. We should also show that doing so doesn't require major changes in our mainstream technology stacks.</p>
+<p>That being said, let's focus on the technical challenge now.</p>
+<p>There are two parts to the problem: Stack management and context switching.</p>
+<p>So, can we allocate a stack in time comparable to the execution of 'if' statement?</p>
+<p>Imagine that instead of allocating the stacks as we go we'll simply preallocate a bunch of them at start up time. This really means just reserving part of the virtual address space for stacks. If we reserve 4GB and assume one stack to be 1MB long, we have enough space for 4000 concurrently running green threads.</p>
+<p>With memory overcommit it doesn't even consume any memory. The pages in question are mapped to physical memory only if they are actually used.</p>
+<p>One has to consider the impact of page faults, of course, but same is true of classic call stacks: When 'if' statement happens to cause a page fault it will be slow. Green threads don't change anything in this respect.</p>
+<p>But wait, won't creating a new green thread *always* cause a page fault?</p>
+<p>Not if the stacks are cached in a sane way. If the most recently freed stack is re-used by a new green thread the page will be already mapped to physical memory. Even better, given that new green thread will start messing with the top of the stack &#8212; which is exactly the last location previously finished green thread was accessing &#8212; the chances are good that the memory in question will still be cached in one of the CPU caches.</p>
+<p>In the end, allocating stacks boils down to doing a single pop operation on a singly-linked list, which can be super fast.</p>
+<p>Additionally, if this kind of programming model becomes common, one can imagine optimising the stack allocation mechanism even on the microarchitecture level.</p>
+<p>Second part of the problem is context switching.</p>
+<p>To do a context switch one has to store current state of all registers and load a different, previously saved, state instead. This is going to be slower than stack allocation, but still doable in 20 or so CPU cycles.</p>
+<p>When doing context switch, we also have to choose the green thread to schedule. I don't want to dive deep into scheduling algorithms, but the simplest possible one is a simple queue, i.e. a singly-linked list, which is easy and quick to manipulate. We need one push and one pop operation for each context switch.</p>
+<p>Once again, there's a lot of optimisation that CPU designers could do if this became a mainstream model of computation.</p>
+<p>In summary, 'go' can't be exactly as fast as 'if', but it can be comparable with execution times deep in the nanosecond range.</p>
+<p>Once that happens programmers will be free to use green threads to solve even the smallest problems &#8212; like those that we now solve using ifs and whiles &#8212; and to do so even in performance-critical environments.</p>
+<p><strong>Martin Sústrik, May 8th, 2016</strong></p>
+<div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:80">The Nanny World</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:82">Software Licenses and Failed States</a></p>
+</div>
+    
+    
+    
+    </div>
+<div style="height:2em"></div>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 1703256;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-2505226">
+                      
+		<div class="post" id="post-2505226">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505226)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505226">
+																		Erlang
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/dottedmag" onclick="WIKIDOT.page.listeners.userInfo(2272887); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=2272887&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="dottedmag" style="background-image:url(http://www.wikidot.com/userkarma.php?u=2272887)"/></a><a href="http://www.wikidot.com/user:info/dottedmag" onclick="WIKIDOT.page.listeners.userInfo(2272887); return false;" >dottedmag</a></span> <span class="odate time_1462706694 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 11:24</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505226">
+									
+
+<p>Wouldn't it be similar to how Erlang programmers use processes for the last 30 years?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505226)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505226)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505226" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505226)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505226)">Erlang</a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/dottedmag" onclick="WIKIDOT.page.listeners.userInfo(2272887); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=2272887&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="dottedmag" style="background-image:url(http://www.wikidot.com/userkarma.php?u=2272887)"/></a><a href="http://www.wikidot.com/user:info/dottedmag" onclick="WIKIDOT.page.listeners.userInfo(2272887); return false;" >dottedmag</a></span>, <span class="odate time_1462706694 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 11:24</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+                      
+    <div class="post-container" id="fpc-2505239">
+                      
+		<div class="post" id="post-2505239">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505239)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505239">
+																		Re: Erlang
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1462709396 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 12:09</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505239">
+									
+
+<p>Sure. Do you happen to know how the performance looks like in Erlang? Is it closer to if/while or rather closer to an OS thread?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505239)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505239)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505239" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505239)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505239)">Re: Erlang</a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1462709396 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 12:09</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2505270">
+                      
+		<div class="post" id="post-2505270">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505270)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505270">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9c28ca2783f2ca3a9b31ecb281565cf0&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Lev (guest)</span> <span class="odate time_1462716898 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 14:14</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505270">
+									
+
+<p>Erlang thread creation is comparable to invoking 10 Erlang function calls.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505270)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505270)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505270" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505270)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505270)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=9c28ca2783f2ca3a9b31ecb281565cf0&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Lev (guest)</span>, <span class="odate time_1462716898 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 14:14</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2505289">
+                      
+		<div class="post" id="post-2505289">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505289)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505289">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a8cdd7c0643da8d631de10ac39bc2c46&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>UNIX administrator (guest)</span> <span class="odate time_1462719530 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 14:58</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505289">
+									
+
+<p>No amount of caching, pre-allocating, or any other kind of trick is going to be able to come anywhere close to the speed of</p>
+<p>cmp.l #$something, d0<br />
+bne.s Somewhere<br />
+.Else: &#8230;</p>
+<p>That all happens in one or two clock cycles so we are talking, what, nanoseconds? To execute all the code making use of the pre-cached stack, even if it takes only four to ten instructions, we are already in millisecond territory. Multiplied by a number of threads&#8230; I just can't see it.</p>
+<p>Do you have any measurements, with which to prop these wild, wild assertions?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505289)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505289)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505289" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505289)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505289)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=a8cdd7c0643da8d631de10ac39bc2c46&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>UNIX administrator (guest)</span>, <span class="odate time_1462719530 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 14:58</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2505294">
+                      
+		<div class="post" id="post-2505294">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505294)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505294">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1462720229 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 15:10</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505294">
+									
+
+<p>4 instructions taking 1 millisecond? You are off by many orders of by many orders of magnitude.</p>
+<p>The measurements with libmill show that's its able to launch ~20 million green threads per second, i.e. ~50ns per green thread.</p>
+<p>Of course, with proper support on languaga/OS/microarch level one would expect it to be faster.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1462720364 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 15:12</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,2505294)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505294)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505294)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505294" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505294)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505294)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1462720229 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 15:10</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2510999">
+                      
+		<div class="post" id="post-2510999">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2510999)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2510999">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d418ccebe2e0fb4d6b55e1a1215e32c3&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>rmoe (guest)</span> <span class="odate time_1463580153 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">18 May 2016 14:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2510999">
+									
+
+<p>Yes, the admin is way off. And not.</p>
+<p>Careful with microbenchmarking! Unless one has a very profound understanding of a variety of fields ranging from the inner workings of a processor to the OS and to abstract reasoning, chances are one will find funny numbers without much meaning.</p>
+<p>I'm currently working on a project with some extremely time-critical parts and, although having 30+ years of experience, had plenty of painful understanding to do. And when I say time-critical I mean it; time-critical not only as in &quot;using custom functions rather than libc ones&quot; but also as in &quot;avoiding an if (let alone in a loop)&quot;.</p>
+<p>I don't believe in those 50ns green threads. Mainly for 3 reasons:<br />
+1) (and most important) the user of your library. Chances are extremely slim that (s)he won't cripple down your ferrari to a taxi cab or even to a tractor.</p>
+<p>2) Optimization tends to shift responsibility and efforts away. Yes, one can build a &quot;launch_green_thread()&quot; working within 50 ns but in most high-performance libs I've seen the fat price tag comes on the user side. Example case: Your code might succeed in avoiding a cache miss but someone *will* cause one. Hunting down yet another 5 ns (so we look bright) may actually well turn out to be a trap for the user and the end result is worse (which would be point 4 in this list: It's not the single routines and not even your lib but it's the whole programm that counts).</p>
+<p>3) Often it simply doesn't make sense. And by &quot;often&quot; I mean exactly the classical cases like networking. You may use a blocking, pseudo-blocking or non blocking approach but in the end there will be OS calls involved and one ends up optimizing 1 inch away from a mile long train.</p>
+<p>Let me end with a comparison from the security area: Everyone and his cat is hunting for even more secure crypto. In reality though, SSL is messed up and even that is not important because attackers don't attack crypto (as in &quot;mathematics&quot;) - they attack implementation. Or worse they attack the victims unpatched flash player.</p>
+<p>So, security efforts must not be about even-more-secure-crypto, they must not be about optimizing crypto from 99,995% to 99,997% - no, they must enhance those 95% of code of extremely lousy quality, they must bring the security there from 9% to 80%.</p>
+<p>In a similar way the problem isn't about code that wastes 3% or even 15% performance. The problem is the vast amount of code where &quot;new connection&quot; equals to &quot;oh, well, let's bring up a new OS process&quot; or were the developers went for select rather than at least poll, let alone aio.</p>
+<p>And finally, your 50 ns green threads aren't worth anything if the vast majority of users get the wall time (expensive OS call) andthen use snprintf (about 150 ns) for error message formatting.<br />
+That, sir, is what we call a big fat attack vector (by DOSing your server into spitting out error messages and getting strangled while doing it).</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2510999)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2510999)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2510999" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2510999)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2510999)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=d418ccebe2e0fb4d6b55e1a1215e32c3&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>rmoe (guest)</span>, <span class="odate time_1463580153 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">18 May 2016 14:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2505307">
+                      
+		<div class="post" id="post-2505307">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505307)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505307">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=0a62e2fe661e306492ae0cdf67a78a6c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>comto (guest)</span> <span class="odate time_1462723031 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 15:57</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505307">
+									
+
+<p>While green threads may be faster than LWPs during creation and context-switch operations they lack the basic reasoning for having threads in the first place: the parallelism and the fast activation on external events.</p>
+<p>Using &quot;green threads to solve even the smallest problems&quot; ? You are joking here, right ?</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505307)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505307)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505307" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505307)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505307)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=0a62e2fe661e306492ae0cdf67a78a6c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>comto (guest)</span>, <span class="odate time_1462723031 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 15:57</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2505315">
+                      
+		<div class="post" id="post-2505315">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505315)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505315">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1462724149 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 16:15</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505315">
+									
+
+<p>No, why? Here's my problem: Imagine a network stack with, say, 10 thin layers. The best way to model a single layer is 2 green threads (one for sending, one for receiving). If you avoid using green threads you get an unreadable and unmaintainable mess. So, each byte going out and each byte going in has to pass through 10 green threads. To do this at the network speed, green threads cannot by much more expensive then ifs and whiles. Doing inter-core synchronisation, for example, is definitely not an option.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505315)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505315)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505315" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505315)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505315)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1462724149 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 16:15</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2505394">
+                      
+		<div class="post" id="post-2505394">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505394)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505394">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=816c6d94e12c3165e304f6f78eceed90&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Comto (guest)</span> <span class="odate time_1462735804 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 19:30</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505394">
+									
+
+<p>No, the best way to model a network stack layer doesn't involve a thread for each direction of each layer. Especially green threads. First of all your network stack will have zero parallelism, and second the whole stack speed will be dictated by the slowest layer processing the packet data, but not in a parallel way but in an additional and self propagating delay way. Also there is absolutely no reason for a context switch when passing from a layer to another.</p>
+<p>Interlocking in network stack is usually avoided by using lockless network stacks distributed over multiple cores, stacks that use different queues exposes by the NIC for doing enqueueing and dequeueing frames.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,2505394)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505394" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505394)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505394)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=816c6d94e12c3165e304f6f78eceed90&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Comto (guest)</span>, <span class="odate time_1462735804 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 19:30</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2505830">
+                      
+		<div class="post" id="post-2505830">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505830)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505830">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1462807369 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 May 2016 15:22</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505830">
+									
+
+<p>I understand where you are coming from, but my use case wasn't processing incoming IP packets and dispatching them to different sockets.</p>
+<p>It was rather the stack above the TCP connections: A message delimitation layer. Encryption layer. Websocket layer. Etc. In short, think netty.</p>
+<p>Now, there's no much to gain from parallelism as we are operating on ordered byte of streams anyway. Quite the opposite, the whole thing may be slow because of pointless synchronisation between cores.</p>
+<p>As for the reason to use green threads, consider an object that takes TCP packets on one side and transforms them to websocket messages on the other. Without green threads you'll end up with super-ugly and hard-to-maintain state machine.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505830)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505830)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505830" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505830)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505830)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1462807369 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 May 2016 15:22</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2505378">
+                      
+		<div class="post" id="post-2505378">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505378)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505378">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=34776138bdf89902a18921560f8c49b6&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Alan (guest)</span> <span class="odate time_1462734410 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 19:06</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505378">
+									
+
+<p>I hear that exact same thing about every 10 years.</p>
+<p>Somebody comes up with a new abstraction, and then somebody figures out how to make it efficient, and people realize they can use it to make their lives easier, and then some old person from before step 2 appears and says &quot;WTF?&quot;</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505378)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505378)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505378" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505378)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505378)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=34776138bdf89902a18921560f8c49b6&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Alan (guest)</span>, <span class="odate time_1462734410 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 19:06</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2505386">
+                      
+		<div class="post" id="post-2505386">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2505386)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2505386">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=8351f9de369143be3558b61b61ff5913&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>zde (guest)</span> <span class="odate time_1462735103 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 19:18</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2505386">
+									
+
+<p>Won't 1MB stacks kill locality of reference? Firing up the same thread 1000 times might be reasonably fast, but you'll probably want to use $core_count threads, at least..</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2505386)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2505386)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2505386" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2505386)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2505386)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=8351f9de369143be3558b61b61ff5913&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>zde (guest)</span>, <span class="odate time_1462735103 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">08 May 2016 19:18</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2506342">
+                      
+		<div class="post" id="post-2506342">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2506342)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2506342">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=fb1e22ae3c3859a44b751894a1953886&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Jeff Cyr (guest)</span> <span class="odate time_1462868549 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 May 2016 08:22</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2506342">
+									
+
+<p>With a 1MB preallocated stack and register capture, the &quot;green&quot; thread would start looking exactly like a native thread!</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2506342)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2506342)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2506342" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2506342)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2506342)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=fb1e22ae3c3859a44b751894a1953886&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Jeff Cyr (guest)</span>, <span class="odate time_1462868549 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 May 2016 08:22</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2506386">
+                      
+		<div class="post" id="post-2506386">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2506386)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2506386">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1462878927 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 May 2016 11:15</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2506386">
+									
+
+<p>Except that everything is running on a single core, i.e. it's very fast.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2506386)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2506386)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2506386" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2506386)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2506386)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594262659" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1462878927 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 May 2016 11:15</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="1703256"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>

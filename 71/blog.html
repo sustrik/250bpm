@@ -1,0 +1,1579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Structured Concurrency - 250bpm</title>
+    
+    	<script type="text/javascript" src="http://www.wikidot.com/default__flow/login__CustomDomainScript?site_id=148706"></script>
+
+    
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/init.combined.js"></script>
+    <script  type="text/javascript">
+        var URL_HOST = 'www.wikidot.com';
+        var URL_DOMAIN = 'wikidot.com';
+        var USE_SSL =  true ;
+        var URL_STATIC = 'http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9';
+        // global request information
+        
+        var WIKIREQUEST = {};
+        WIKIREQUEST.info = {};
+        
+        WIKIREQUEST.info.domain = "250bpm.com";
+        WIKIREQUEST.info.siteId = 148706;
+        WIKIREQUEST.info.siteUnixName = "250bpm";
+        WIKIREQUEST.info.categoryId = 2550760;
+        WIKIREQUEST.info.themeId = 18520;
+        WIKIREQUEST.info.requestPageName = "blog:71";
+        OZONE.request.timestamp = 1594263557;
+        OZONE.request.date = new Date();
+        WIKIREQUEST.info.lang = 'en';
+                WIKIREQUEST.info.pageUnixName = "blog:71";
+        WIKIREQUEST.info.pageId = 36241339;
+                        WIKIREQUEST.info.lang = "en";
+        OZONE.lang = "en";
+        var isUAMobile = !!/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    </script>
+    
+    
+
+
+    
+        <script  type="text/javascript">
+    
+        require.config({
+            baseUrl: URL_STATIC + '/common--javascript',
+            paths: {
+                'jquery.ui': 'jquery-ui.min',
+                'jquery.form': 'jquery.form'
+            }
+        });
+    
+    </script>
+    
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+            
+    
+    
+    
+    
+    <meta http-equiv="content-language" content="en"/>
+    <script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--javascript/WIKIDOT.combined.js"></script>
+        
+    
+    <style type="text/css" id="internal-style">
+        
+        /* modules */
+        
+                
+        /* theme */
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(http://250bpm.wdfiles.com/local--theme/250bpm/style.css);
+            </style>
+    
+        
+        
+        
+    <link rel="shortcut icon" href="/local--favicon/favicon.gif"/>
+    <link rel="icon" type="image/gif" href="/local--favicon/favicon.gif"/>
+    
+            <link rel="apple-touch-icon" href="/common--images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/common--images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/common--images/apple-touch-icon-114x114.png" />
+        
+        
+            <link rel="alternate" type="application/wiki" title="Edit this page" href="javascript:WIKIDOT.page.listeners.editClick()"/>
+    
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18234656-1']);
+        _gaq.push(['_setDomainName', 'none']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        _gaq.push(['old._setAccount', 'UA-68540-5']);
+        _gaq.push(['old._setDomainName', 'none']);
+        _gaq.push(['old._setAllowLinker', true]);
+        _gaq.push(['old._trackPageview']);
+
+                _gaq.push(['userTracker._setAccount', 'UA-3207370-9']);
+        _gaq.push(['userTracker._trackPageview']);
+            </script>
+    
+    <script type="text/javascript">
+        window.google_analytics_uacct = 'UA-18234656-1';
+        window.google_analytics_domain_name = 'none';
+    </script>
+    
+        <link rel="manifest" href="/onesignal/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" acync=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: null,
+          });
+        });
+    </script>
+        
+<link rel="alternate" type="application/rss+xml" title="Comments for the page &quot;Structured Concurrency&quot;" href="/feed/page/comments-36241339.xml"/><script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumCommentsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/ForumViewThreadPostsModule.js"></script>
+<script type="text/javascript" src="http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/js/forum/sub/ForumNewPostFormModule.js"></script>
+</head>
+<body id="html-body">
+<div id="skrollr-body">
+<a name="page-top"></a>
+
+
+
+
+
+<div id="container-wrap-wrap">
+    <div id="container-wrap">
+        <div id="container">
+            <div id="header">
+              <h1><a href="/"><span>250bpm</span></a></h1>
+                
+                
+                <!-- google_ad_section_start(weight=ignore) -->
+                
+                <div id="search-top-box" class="form-search">
+    <form id="search-top-box-form" action="dummy" class="input-append">
+        <input id="search-top-box-input" class="text empty search-query" type="text" size="15" name="query" value="Search this site" onfocus="if(YAHOO.util.Dom.hasClass(this, 'empty')){YAHOO.util.Dom.removeClass(this,'empty'); this.value='';}"/><input class="button btn" type="submit" name="search" value="Search"/>
+    </form>
+</div>
+                
+                
+                    <div id="top-bar">
+                        
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="https://github.com/sustrik/cartesian">Cartesian</a></li>
+<li><a href="http://libdill.org">Libdill</a></li>
+<li><a href="http://nanomsg.org">Nanomsg</a></li>
+<li><a href="https://github.com/sustrik/tiles">Tiles</a></li>
+<li><a href="http://zero.mq">ZeroMQ</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+                    </div>
+                
+                <div id="login-status"><a href="javascript:;" onclick="WIKIDOT.page.listeners.createAccount(event)" class="login-status-create-account btn">Create account</a> <span>or</span> <a href="javascript:;" onclick="WIKIDOT.page.listeners.loginClick(event)" class="login-status-sign-in btn btn-primary">Sign in</a> </div>
+                <div id="header-extra-div-1"><span></span></div><div id="header-extra-div-2"><span></span></div><div id="header-extra-div-3"><span></span></div>
+            </div>
+            
+            <div id="content-wrap">
+                
+                    <div id="side-bar">
+                        
+
+
+                        
+
+
+                        
+
+
+                    </div>
+                
+                
+                <!-- google_ad_section_end -->
+                
+                <div id="main-content">
+                    <div id="action-area-top"></div>
+                    
+                    
+                        <div id="page-title">
+                            Structured Concurrency
+                        </div>
+                    
+
+                    
+
+                    
+
+
+
+                    <div id="page-content">
+                        
+
+<div style="width:50em"><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:70">Getting rid of state machines (II)</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:72">Select Statement Considered Harmful</a></p>
+</div>
+    
+    
+    
+    </div>
+<p>This article is a follow-up to the &quot;Getting Rid of State Machines&quot; blog posts, so you may want to read those first:</p>
+<ul>
+<li><a href="http://250bpm.com/blog:69">part 1</a></li>
+<li><a href="http://250bpm.com/blog:70">part 2</a></li>
+</ul>
+<p>Before going on, let me return to the fundamentals and make it clear what this effort is all about.</p>
+<p>As Joe Armstrong nicely puts it in his <a href="http://joearms.github.io/2016/01/28/A-Badass-Way-To-Connect-Programs-Together.html">blog</a>:</p>
+<blockquote>
+<p>TCP uses the idea a session and the only rational way to program a session is as a process or (horrors) as a thread. [&#8230;] Session management involves mutable state concurrency. A program that is a dozen lines of Erlang escalates into a mess of locks and mutexes or callbacks which in most languages is a thin layer over a pthreads implementation. For those of you who haven’t written a multi-threaded TCP socket server in C using pthreads I can only say “don’t go there, it’s not a pleasant experience” I’ve been there done that, and have the grey hairs to prove it.</p>
+</blockquote>
+<p>What's more to say? I have those grey hairs as well.</p>
+<p>If you are not familiar with the problem, imagine you want to implement a simple framing protocol. It will work on top of TCP. The protocol will be a simple sequence of messages, each message consisting of 32-bit size field in network byte order and the data. How hard it can be to implement such a simple specification?</p>
+<p>It turns out it can take months. Most of the time will be spent on dealing with switching between concurrently opened TCP connections, on error handling and on managing the shutdown process.</p>
+<p>In a sane world, specification 30 words long, like the one above, would be implementable in 100 lines of C code. If it requires several thousand lines of code, there's clearly something broken with our programming model.</p>
+<p>As I've argued in part I of this essay, to get a simple programming model you have to spawn a thread per TCP connection. But given that threads are expensive (and processes even more so) and that sharing state between threads is insane, bordering on suicidal, what you need are lightweight green threads and a simple communication mechanism to send messages between them. In UNIX of old they were called processes and pipes. In Go they are called goroutines and channels. In Erlang they are known as processes and mailboxes.</p>
+<p>However, as explained in part II of this essay, even with <a href="https://en.wikipedia.org/wiki/Communicating_sequential_processes">CSP</a>-like mechanism to use, there's one broad set of use cases that cannot be easily solved. The set contains everything that has to do with shutdown and cancellation. The article also makes a claim that if language had green threads *and* a sane cancellation mechanism it would allow for a purely imperative programming style without a need for state machines, i.e. explicitly saving state of the current computation, switching to something else, then restoring the state later on.</p>
+<p>The rest of the article will explore the question of cancellation and will propose a model of &quot;structured concurrency&quot; to deal with it.</p>
+<p>Structured concurrency is similar to the structured programming as we know it from all the modern programming languages. Structured programming prevents random jumping around the codebase and instead structures the program as a set of nested code blocks. The block lifetimes never overlap. If block B is nested in block A, the lifetime of B cannot exceed the lifetime of A. Similarly, structured concurrency prevents lifetime of green thread B launched by green thread A to exceed lifetime of A:</p>
+<div class="image-container aligncenter"><a href="http://250bpm.wdfiles.com/local--files/blog:71/state1.jpeg"><img src="http://250bpm.wdfiles.com/local--resized-images/blog:71/state1.jpeg/medium.jpg" alt="state1.jpeg" class="image" /></a></div>
+<p>Green thread <tt>quux()</tt> is launched by <tt>main()</tt>. It also finishes before the <tt>main()</tt>. Same applies to <tt>foo()</tt> and <tt>main()</tt> as well as to <tt>bar()</tt> and <tt>foo()</tt>.</p>
+<p>Codewise, it could look like this:</p>
+<div class="code">
+<pre>
+<code>void foo(void) {
+   ...        // do stuff
+   go(bar()); // launch new green thread
+   ...        // do more stuff
+}             // bar() is not running here any more</code>
+</pre></div>
+<p>You can think about it as extending our current notion of call stack to embrace concurrency. The call stack morphs into a call tree, but the nice properties of not unwinding the stack before children are finished and being able to walk up the stack all the way up to the <tt>main()</tt> function are preserved.</p>
+<p>A nice way to think about it is that green threads (like <tt>bar()</tt> in the example above) are just like local variables. Just like with variables, when the scope closes the green thread exists no more.</p>
+<p>Green threads local to functions may not be the most common use case but they are extremely helpful when thinking about the problem. The conceptual advantage of this system is obvious: Unlike with goroutines in Go, the green thread <tt>bar()</tt> is fully local to <tt>foo()</tt>. It's encapsulated within it. The caller of <tt>foo()</tt> doesn't have to be aware of the existence of <tt>bar()</tt>. The implementor of <tt>foo()</tt>, on the other hand, can remove <tt>bar()</tt> or launch 100 instances of it and it won't affect the caller in the slightest.</p>
+<p>But how would such system behave? What happens if <tt>bar()</tt> is still running when <tt>foo()</tt> returns to the caller?</p>
+<div class="image-container aligncenter"><a href="http://250bpm.wdfiles.com/local--files/blog:71/state2.jpeg"><img src="http://250bpm.wdfiles.com/local--resized-images/blog:71/state2.jpeg/medium.jpg" alt="state2.jpeg" class="image" /></a></div>
+<p>Do we want <tt>foo()</tt> to block and wait for <tt>bar()</tt> to finish? Or do we want <tt>foo()</tt> to forcefully cancel <tt>bar()</tt> before it exits?</p>
+<p>In real-world case we want a mixture of both, but the trivial case is the latter: Imagine that <tt>bar()</tt> is some kind of generator running in an infinite loop. If <tt>foo()</tt> waited for it to finish, it would be stuck forever.</p>
+<p>Let's think about how to do the cancellation then. The good news is that because of cooperative scheduling of green threads the code already has to be split in reasonably sized chunks. If it was not, one green thread would be able to block other greent threads for extended period of time. And given that the chunks never take long to execute we don't have to cancel the thread at random point of execution. We are perfectly happy with finishing the currently running chunk and cancelling the thread once it's done.</p>
+<p>In terms of API it means that unlike with POSIX signals where signal can happen at the most inconvenient point of time, we have to care about cancellation only when calling functions that can cause switch to a different green thread, in other words, all blocking functions.</p>
+<p>If we repurposed error code ECANCELED to signal that parent function is cancelling the current green thread the code could look like this:</p>
+<div class="code">
+<pre>
+<code>ssize_t rc = tcprecv(s, buf, len, 0);
+if(rc &lt; 0 &amp;&amp; errno == ECANCELED)
+    return;</code>
+</pre></div>
+<p>One observation to make here is that even with preemptive scheduling when the code is not guaranteed to be structured in bite-sized pieces it mostly happens to be. For example, as I am said, <a href="http://rumpkernel.org/">rumpkernels</a> are exposing POSIX API including pthreads but are actually running the program in a single thread using system calls as switching points. And so far, it seems to work even for unmodified legacy applications.</p>
+<p>The other part of the problem is harder though: How to initiate the cancellation from the parent function? We are facing quite a lot of distinct use cases here and the API is hard to get right.</p>
+<p>What follows will be a bit C-specific. In fact, the C implementation already exists and you can play with it <a href="https://github.com/sustrik/libdill">here</a>.</p>
+<p>Using C has both advantages and disadvantages. On the positive side, C's &quot;you can do whatever you want but you have to do it by hand&quot; ideology means that we don't have to extend the language itself and that we'll be able to accomplish everything we want by implementing a function. On the other hand, the fact that user has to do cancellation manually obscures the fact that in higher level languages the mechanism would be incorporated into the language. To tackle the problem I'll briefly discuss other languages at the end of this article.</p>
+<p>So, here we go.</p>
+<p>First of all, if we want to cancel a green thread, we need a thread handle:</p>
+<div class="code">
+<pre>
+<code>coro hndl = go(bar());</code>
+</pre></div>
+<p>What that means is that the green thread cannot be fully deallocated when it finishes its execution. If it was, the caller would be left with invalid handle and would face problems if they tried to cancel the thread. This is in contrast to how Go deals with goroutines. Goroutines run till they are finished and then they cleanly deallocate themselves.</p>
+<p>The question thus is: Are we missing an important use case by requiring green threads to be explicitly canceled?</p>
+<p>As far as I can say, no. Goroutine cancellation in Go is typically performed by its owner using signaling via channels and is semantically equivalent to built-in cancellation as proposed here, except more cumbersome. Some goroutines may be left running in a infinite loop just to get canceled when the process exits. These are equivalent to green threads launched in global scope. It's really hard to think of a fitting use case. The key observation is that if goroutine's lifetime is not synchronised with lifetime of a different goroutine it has no one to speak to (it doesn't even know who's running and who's not) and is thus quite useless. In short, the behaviour of Go-style green threads seems to be an artifact of Go's design and not an expression of a concrete real-world use case.</p>
+<p>Let's thus introduce the simplest possible API to cancel green threads. We are going iterate on it to get something that may actually work in the real world.</p>
+<div class="code">
+<pre>
+<code>void foo(void) {
+    coro cr = go(bar());
+    ... // do stuff
+    gocancel(cr);
+}</code>
+</pre></div>
+<p>What's missing is a way to give <tt>bar()</tt> a grace period to shut down. If, for example, it was sending its arguments to the network we may want to give it a second to flush the data before exiting:</p>
+<div class="code">
+<pre>
+<code>void foo(void) {
+    coro cr = go(bar());
+    ... // do stuff
+    sleep(1);
+    gocancel(cr);
+}</code>
+</pre></div>
+<p>The solution above works but the problem is that <tt>foo()</tt> is blocked for one second whether <tt>bar()</tt> manages to exit immediately or not. We would rather want it to finish immediately if possible but allow for the grace period otherwise.</p>
+<p>It seems that two signals have to be sent to the green thread being canceled: First one saying: &quot;Cancel if you have nothing to do anyway&quot;. Second one saying: &quot;Cancel even if you are not yet finished.&quot;</p>
+<div class="image-container aligncenter"><a href="http://250bpm.wdfiles.com/local--files/blog:71/state3.jpeg"><img src="http://250bpm.wdfiles.com/local--resized-images/blog:71/state3.jpeg/medium.jpg" alt="state3.jpeg" class="image" /></a></div>
+<p>If one thinks about how the <tt>bar()</tt> would look like it's not nice. Having to deal with the first signal even it the cases where you don't want to exit straight away results in re-introduction of state machines and exactly in that kind of convoluted code that we want to avoid.</p>
+<p>I've been stuck with this problem for quite a while but in the end it turns out it's not a problem at all.</p>
+<p>Consider how a typical implementation of bar looks like:</p>
+<div class="code">
+<pre>
+<code>void bar(sock s, chan ch) {
+    while(1) {
+        int val;
+        size_t valsz = sizeof(val);
+        chrecv(ch, &amp;val, &amp;valsz);       // get a message fro the owner
+        tcpsend(s, &amp;val, sizeof(val));  // send it via TCP
+    }
+}</code>
+</pre></div>
+<p>The thing is that if the coroutine is either stuck when communicating with its owner (receive from channel) or when doing other work (sending data to TCP connection in this case). In the former case we want it to terminate immediately &#8212; owner is shutting it down so there's no message going to arrive anyway. In the later case we want a grace period before the cancellation happens.</p>
+<p>And it turns out that we actually do have two different communication mechanisms between the owner and the owned! One is the channel <tt>ch</tt> used to send messages to the worker thread. Other one is the special cancelation mechanism we are discussing in this article.</p>
+<p>Let's introduce function <tt>chdone()</tt> equivalent to Go's <tt>close()</tt> function. It will cause any subsequent operation on the channel return EPIPE error.</p>
+<p>Let's also add timeout parameter to our <tt>gocancel()</tt> function. The cancellation of the child thread will begin after the timeout expires. If, on the other hand, child thread exits before the timeout expires, <tt>gocancel()</tt> will return straight away.</p>
+<div class="code">
+<pre>
+<code>void bar(sock s, chan ch) {
+    while(1) {
+        int rc;
+        int val;
+        size_t valsz = sizeof(val);
+        rc = chrecv(ch, &amp;val, &amp;valsz);
+        if(rc == -1 &amp;&amp; errno == EPIPE)
+            return;
+        rc = tcpsend(s, &amp;val, sizeof(val));
+        if(rc == -1 &amp;&amp; errno == ECANCELED)
+            return;
+    }
+}
+
+void foo(void) {
+    coro hndl = go(bar(ch));
+    ... // do stuff
+    chdone(ch);
+    gocancel(hndl, now() + 1000);
+}</code>
+</pre></div>
+<p>Let's see how it works.</p>
+<p>If <tt>bar()</tt> is stuck in <tt>chrecv()</tt>, in other words, if it is idling, the <tt>chrecv()</tt> function will return EPIPE error immediately when owner does <tt>chdone()</tt>. <tt>bar()</tt> thus exists immediately.</p>
+<p>If <tt>bar()</tt> is stuck in <tt>tcpsend()</tt>, i.e. if it is doing useful work, it won't be affected by <tt>chdone()</tt>. Afterwards, parent's <tt>gocancel()</tt> will wait for 1000 milliseconds. During that grace period, nothing will happen in <tt>bar()</tt>. <tt>tcpsend()</tt> will continue to send data. If it manages to send all the data, <tt>bar()</tt> will procceed to <tt>chrecv()</tt> which will immediately return EPIPE error (<tt>chdone()</tt> was already called by the parent).</p>
+<p>If <tt>tcpsend()</tt> doesn't succeed to send all data within the grace period, <tt>gocancel()</tt> will cancel the thread meaning that <tt>tcpsend()</tt> will return ECANCELED error and <tt>bar()</tt> will exit.</p>
+<p>Let's consider the most complex possible case.</p>
+<p>First, imagine that <tt>main()</tt> launches <tt>foo()</tt> which in turn launches <tt>bar()</tt>. After a while, <tt>foo()</tt> starts canceling <tt>bar()</tt> and gives it a grace period of 1000 milliseconds.</p>
+<div class="image-container aligncenter"><a href="http://250bpm.wdfiles.com/local--files/blog:71/state4.jpeg"><img src="http://250bpm.wdfiles.com/local--resized-images/blog:71/state4.jpeg/medium.jpg" alt="state4.jpeg" class="image" /></a></div>
+<p>That's simple. Let's now complicate the scenario: Imagine that <tt>main()</tt> starts canceling <tt>foo()</tt> while <tt>foo()</tt> is blocked in <tt>gocancel()</tt> and gives it grace period of 500 milliseconds.</p>
+<p>In other words, that grace period given by <tt>main()</tt> to <tt>foo()</tt> expires before grace period given by <tt>foo()</tt> to <tt>bar()</tt>. How do we even want the system behave in such a case?</p>
+<p>Well, we want <tt>foo()</tt> to be canceled after 500 milliseconds even though its child has longer grace period. If it was not so, the encapsulation would not work: Recall that we want <tt>main()</tt> to be fully agnostic about whether <tt>foo()</tt> uses <tt>bar()</tt> or not.</p>
+<p>At the same time, we want <tt>bar()</tt> to finish before <tt>foo()</tt> because otherwise the lifetime of the child would exceed the lifetime of the parent.</p>
+<p>The only possible solution is to shorten the grace period of <tt>bar()</tt> so that it expires when <tt>foo()</tt> is about to finish.</p>
+<p>It can be seen in the picture below. When <tt>gocancel()</tt> invoked by <tt>foo()</tt> gets cancellation signal from <tt>main()</tt> it revokes the remaining part of the grace period (grey box) and sends cancellation signal to <tt>bar()</tt> straigt away. <tt>bar()</tt> thus finishes almost immediately. <tt>gocancel()</tt> in <tt>foo()</tt> is free to exit. <tt>foo()</tt> finishes immediately afterwards and causes <tt>gocancel()</tt> in <tt>main()</tt> to exit. From the perspective of <tt>main()</tt>, <tt>foo()</tt> was canceled in 500 milliseconds, as expected.</p>
+<div class="image-container aligncenter"><a href="http://250bpm.wdfiles.com/local--files/blog:71/state5.jpeg"><img src="http://250bpm.wdfiles.com/local--resized-images/blog:71/state5.jpeg/medium.jpg" alt="state5.jpeg" class="image" /></a></div>
+<p>API-wise, it's easy to implement. <tt>gocancel()</tt> itself is a blocking function and thus should return ECANCELED if the parent decides to cancel current green thread. And that's exactly what it's going to do. The only thing to keep in mind is that <tt>gocancel()</tt> *does* cancel the thread even if it returns ECANCELED error. It never leaves the cancellation in a half-done state even though it may shorten the grace period.</p>
+<p>It is also worth mentioning that shortened grace period doesn't break <tt>foo()</tt>'s expectations. <tt>gocancel()</tt> it calls with 1000ms deadline can return after 500ms anyway if <tt>bar()</tt> finishes its work successfully. The case where it returns early because <tt>main()</tt> imposed shorter grace period on <tt>foo()</tt> therefore doesn't have to be handled in any special way.</p>
+<p>There's one more challenge for the <tt>gocancel()</tt> function: If we have 1000 child threads and give each of the 30 second grace period, the shutdown would take 30,000 seconds, i.e. more than 8 hours.</p>
+<p>We want grace periods for all those threads to happen in parallel:</p>
+<div class="code">
+<pre>
+<code>void foo(void) {
+    coro hndls[1000];
+    for(int i = 0; i != 1000; ++i)
+        hndls[i] = go(bar());
+    ... // do stuff
+    gocancel(hndls, 1000, now() + 30000);
+}</code>
+</pre></div>
+<p>By doing all the cancellation in parallel, function <tt>foo()</tt> will be delayed by at most 30 seconds.</p>
+<p>We are almost done, but I would like to return to the assumption I've made at the beginning of this article. I have said that green threads are arranged in a tree-shaped super-stack. I've also said that this may not even be the most common use case. However, we stuck to it because it made reasoning about the system relatively easy.</p>
+<p>Let's not have a look at other cases. Sometimes, lifespan of a green thread is not contained within a lifetime of a parent thread but rather its ownership is shared among multiple threads. What then?</p>
+<p>Well, I've already said that green thread should behave like a variable which is eliminated once it gets out of scope. However, we can allocate a variable on heap! In such case the lifetime of the variable in not tied to any particular scope but is terminated by hand (<tt>free()</tt> function). We can do the same with green threads.</p>
+<p>Imagine a object that sends data to a TCP socket. We can open such object using <tt>open_connection()</tt> function and close it using <tt>close_connection()</tt> function. It can contain a green thread that does the sending:</p>
+<div class="code">
+<pre>
+<code>struct connection {
+    coro hndl;
+    int sock;
+}
+
+struct connection *open_connection(int sock) {
+    struct connection *conn = malloc(sizeof(struct connection));
+    conn-&gt;sock = sock;
+    conn-&gt;hndl = go(connection_worker(conn));
+    return conn;
+}
+
+void close_connection(struct connection *conn) {
+    gocancel(&amp;conn-&gt;hndl, 1, now() + 1000);
+    free(conn);
+}</code>
+</pre></div>
+<p>That's it. The lifetime of the green thread is now managed manually by the owner(s) of the <tt>connection</tt> object.</p>
+<p>Finally, I would like to say few words about implementing structured concurrency in higher level languages. These typically differ from C by managing lifetimes of individual objects on user's behalf. C++ does so using automatic destructors, most other languages by having garbage collection mechanism. Given that structured concurrency is about lifetime management of green threads in those languages it should become part of the language.</p>
+<p>The most important question here is whether the cancellation can be done automatically, without any syntactic dead weight.</p>
+<p>The eqivalent of <tt>gocancel()</tt> function can surely be invoked automatically when the instance of green thread gets out of scope.</p>
+<p>One interesting observation here is that it can't be implemented using C++ destructors (or its equivalents in other languages) because that would cancel all the child threads one after another, in sequential manner, instead of cancelling them in parallel. The mechanism has to be trully integrated into the language runtime.</p>
+<p>What about deadlines though? <tt>gocancel()</tt> has a deadline parameter that can't be supplied by user if the cancellation is invoked automatically.</p>
+<p>My intuitive take on that is (but I may be wrong) that the size of grace period should be decided by the implementor of the thread who has the best idea about how long it makes sense to wait before killing it, and therefore it should be part of the green thread definition, e.g.:</p>
+<div class="code">
+<pre>
+<code>coroutine void foo(void) deadline(100) {
+    ...
+}</code>
+</pre></div>
+<p>One may reason that the deadline could vary depending on, say, CPU speed and thus should be instead set by the caller. However, if you look at the actual use cases it turns out that grace period is typically needed for interactions with the outside world, such as network I/O, user input or similar. Those operations, in turn, are independent of CPU speed.</p>
+<p>In the languages with exceptions ECANCELED error can be turned into an exception. One pitfall to avoid is that cancellation itself can be cancelled. In such case, the runtime should not try to raise an exception within an exception but rather propagate the exception up the stack. Once it unwinds main function of the thread it should be silently dropped.</p>
+<p>Finally, integration with garbage collected languages may be tricky. Surely we don't want green thread, after it got out of scope, to be left running, waiting for the garbage collector to kill it. Once again, this looks like a feature that has to be integrated into the language runtime.</p>
+<p>As a conclusion, I would like to say that this is a problem I was struggling with for years and this is the first time I feel I have a reasonable solution to it. Any feedback, criticism or simply ideas would be appreciated.</p>
+<p><strong>Martin Sústrik, February 7th, 2016</strong></p>
+<div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Previous:</strong> <a href="/blog:70">Getting rid of state machines (II)</a></p>
+</div>
+    
+    
+    
+    </div><div class="list-pages-box">    <div class="list-pages-item">
+
+
+<p><strong>Next:</strong> <a href="/blog:72">Select Statement Considered Harmful</a></p>
+</div>
+    
+    
+    
+    </div>
+<div style="height:2em"></div>
+<div class="comments-box">
+		
+	<div class="options" id="comments-options-hidden" style="display: none">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.showComments(event)">Show Comments</a> 
+	</div>
+		
+	<div id="thread-container" class="thread-container" style="margin-top: 1em">
+					
+
+
+<script type="text/javascript">
+	WIKIDOT.forumThreadId = 1591860;
+</script>
+
+
+	<div class="options" id="comments-options-shown">
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumCommentsModule.listeners.hideComments(event)" class="btn btn-default btn-small btn-sm">Hide All Comments</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.unfoldAll(event)" class="btn btn-default btn-small btn-sm">Unfold All</a> 
+		<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.foldAll(event)" class="btn btn-default btn-small btn-sm">Fold All</a>
+	</div>
+
+<div id="thread-container-posts" style="display: none">
+    
+
+
+
+	
+					
+      
+    <div class="post-container" id="fpc-2453147">
+                      
+		<div class="post" id="post-2453147">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2453147)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2453147">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=f74250d692283f80eaa0c8053f0b2ccd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Norswap (guest)</span> <span class="odate time_1454852915 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 13:48</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2453147">
+									
+
+<p>&quot;One interesting observation here is that it can't be implemented using C++ destructors (or its equivalents in other languages) because that would cancel all the child threads one after another, in sequential manner, instead of cancelling them in parallel. The mechanism has to be trully integrated into the language runtime.&quot;</p>
+<p>Why does it has to be done sequentially? I assume each time a thread spawns a child thread, this thread is entered into a table. What's preventing the parent thread's destructor from using this table to cancel all child threads in parallel?</p>
+<p>Another remark I had is that sometimes, my child thread will be engaged in a *long* exchange with a peer, so it will not be able to read from the parent pipe. However, I still would like the child thread to take notice, so that it can close the connection with the peer orderly (like by sending a message saying that it is being shutdown). To achieve that, it looks like the &quot;soft cancellation&quot; also should cause blocking calls to abort. Is this problematic in practice? Alternatively, you could read from the parent pipe after each blocking call completes (assuming C-style functions that don't write huge amount of data in one go but return the amount of bytes written, and thus have to be written in a loop). That sounds rather ugly, and I have never liked this style of function anyway.</p>
+<p>But the solution sounds otherwise very good.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2453147)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2453147)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2453147" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2453147)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2453147)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=f74250d692283f80eaa0c8053f0b2ccd&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Norswap (guest)</span>, <span class="odate time_1454852915 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 13:48</span>
+		</div>
+	</div>
+ 
+                
+                	
+
+
+        
+                      
+    <div class="post-container" id="fpc-2453169">
+                      
+		<div class="post" id="post-2453169">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2453169)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2453169">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1454859364 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 15:36</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2453169">
+									
+
+<p>As for C++ destructor question, one can imaging that all the coroutines are put into a stack stored in TLS. First destructor in the scope will pop all the coroutines in the local scope and cancel them. But how would it know which of the coroutines were declared in the current scope and which in the parent scope? Baring hacks like comparing stack pointers (which in not guaranteed to work reliably in face of optimisation anyway) there doesn't seem to be a way to do that in C++.</p>
+<p>As for the long conversation, I would just create a new channel to be signaled when cancellation is about to happen. At the eligible points of the conversation you can check the channel and initiate the closing sequence, if needed.</p>
+<p>The point is that not every point in the conversation is good for starting the closing handshake. Imagine that you are sending a protocol message 20 bytes long. Parent thread decides to send you the &quot;soft&quot; cancel. Do you want the send operation to unblock after sending 13 bytes. The protocol you are implementing surely doesn't support starting the handshake in the middle of other protocol message.</p>
+<p>In short, this is your protocol business logic and no cancellation mechanism can magically solve it. You have to do that by hand, i.e. by using channels.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2453169)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2453169)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2453169" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2453169)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2453169)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1454859364 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 15:36</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2453151">
+                      
+		<div class="post" id="post-2453151">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2453151)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2453151">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=055c244e36db3db4b3447b1f830fe302&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Vladimir (guest)</span> <span class="odate time_1454854370 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 14:12</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2453151">
+									
+
+<p>Parameterized deadlines will be useful when deadline bound to payload size or other conditions, i.e. network bandwidth, rtt etc. Even low-level functions like &quot;send fixed-size chunk&quot; cannot have fixed static deadline without affecting customers on specific workloads.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2453151)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2453151)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2453151" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2453151)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2453151)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=055c244e36db3db4b3447b1f830fe302&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Vladimir (guest)</span>, <span class="odate time_1454854370 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 14:12</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2453155">
+                      
+		<div class="post" id="post-2453155">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2453155)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2453155">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1454855628 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 14:33</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2453155">
+									
+
+<p>True. Still, in that case it doesn't even look like it's an caller's concern, more like a matter of traffic engineering.</p>
+
+							</div>
+
+								
+							<div class="changes">
+					Last edited on <span class="odate time_1454883159 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 22:12</span>
+					by <span class="printuser"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>
+					<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showHistory(event,2453155)"><i class="icon-plus"></i> Show more</a>
+				</div>
+				<div class="revisions" style="display: none"></div>
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2453155)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2453155)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2453155" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2453155)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2453155)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1454855628 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">07 Feb 2016 14:33</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2454157">
+                      
+		<div class="post" id="post-2454157">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2454157)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2454157">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=8f5e56ebbfba11685c2b73c8179a638d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andrew (guest)</span> <span class="odate time_1455002766 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 Feb 2016 07:26</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2454157">
+									
+
+<p>Have you looked at the context package in go? It provides a lot of this.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2454157)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2454157)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2454157" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2454157)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2454157)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=8f5e56ebbfba11685c2b73c8179a638d&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andrew (guest)</span>, <span class="odate time_1455002766 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 Feb 2016 07:26</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2454160">
+                      
+		<div class="post" id="post-2454160">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2454160)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2454160">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1455003350 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 Feb 2016 07:35</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2454160">
+									
+
+<p>Yes, I did. I've actually looked at several attempts to solve this problem and haven't found anything simple and intuitive. Everyone is kind of on the same line about problems to be solved, but the conceptual and API design are invariably pain to look at.</p>
+<p>I think it's symptomatic of the complex nature of the cancellation problem: While Go as a lnaguage has a nice, simple design, context package looks like it was forged in the enterprise pits of Microsoft in 1990's.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2454160)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2454160)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2454160" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2454160)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2454160)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1455003350 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">09 Feb 2016 07:35</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2454679">
+                      
+		<div class="post" id="post-2454679">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2454679)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2454679">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1455079959 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 Feb 2016 04:52</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2454679">
+									
+
+<p>I may have been uncharitable to the autor of the package here. If I was paid to implement it in 2014, I would have probably produced something similar. Anyway, the main problems are:</p>
+<p>1. The package introduces new hierarchy (contexts) orthogonal to the existing call-stack-based hierarchy. The design is almost an invitation to abuse, with resulting NxM complexity where the two hierarchies intersect.<br />
+2. It lumps together cancellation with other concerns, like propagation of user credentials. (Do one thing and do it well!)<br />
+3. There's no formal distinction between &quot;soft cancel&quot; and &quot;hard cancel&quot;. This distinction is crucial for implementing automatic cancellation because the former is by its very nature intertwined with the business logic, while the latter one is not and can thus be automated. Mixing the two thus prevents automation.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,2454679)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2454679" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2454679)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2454679)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1455079959 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">10 Feb 2016 04:52</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2458014">
+                      
+		<div class="post" id="post-2458014">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2458014)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2458014">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=7c1a3f9227c0cb408f8831d27d611ab2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ingvar (guest)</span> <span class="odate time_1455618912 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Feb 2016 10:35</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2458014">
+									
+
+<p>One advantage of contexts is that they can (with sufficient abuse) be used in an RPC context, which a language run-time feature never can.</p>
+<p>Imagine that you have a distributed, high-performance, service of some sort and to lessen the tail latency, you issue multiple queries from a &quot;frontend&quot; towards a load-balanced set of &quot;backends&quot;, then use the context parameter (suitably wired in to your RPC mechanism, of course) to cancel any outstanding requests once you get your first answer.</p>
+<p>You have both lessened the tail latency (you will respond at the speed of the fastest back-end, meaning that you need N backends to be slow, instead of 1), you have not caused N times more work to be performed (but you've increased work) and there's a mechanism to cancel outstanding queries recursively down the service stack.</p>
+<p>I suspect that is the actual problem Go's context package is actually trying to resolve.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,2458014)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2458014" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2458014)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2458014)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=7c1a3f9227c0cb408f8831d27d611ab2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ingvar (guest)</span>, <span class="odate time_1455618912 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Feb 2016 10:35</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2458225">
+                      
+		<div class="post" id="post-2458225">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2458225)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2458225">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span> <span class="odate time_1455653653 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Feb 2016 20:14</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2458225">
+									
+
+<p>Why would it not be solvable by language-based mechanism? If the RPC mechanism is written in the language in question, it should naturally support cancellation. (Btw, building network protocols, including RPC mechanisms, is actually what I am aiming for in the long run.)</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,2458225)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2458225" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2458225)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2458225)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span>, <span class="odate time_1455653653 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Feb 2016 20:14</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2458535">
+                      
+		<div class="post" id="post-2458535">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2458535)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2458535">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=7c1a3f9227c0cb408f8831d27d611ab2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ingvar (guest)</span> <span class="odate time_1455712043 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">17 Feb 2016 12:27</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2458535">
+									
+
+<p>Unless you can enforce that all backends are written in the same language, you can't rely solely on your language run-time features to provide cancellation on the remote end. I guess you could use something that exposes your cancellation mechanism on a protocol level, for other languages, but then you're essentially back in &quot;the context package&quot; problem again.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,2458535)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2458535" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2458535)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2458535)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=7c1a3f9227c0cb408f8831d27d611ab2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ingvar (guest)</span>, <span class="odate time_1455712043 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">17 Feb 2016 12:27</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2458573">
+                      
+		<div class="post" id="post-2458573">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2458573)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2458573">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span> <span class="odate time_1455717031 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">17 Feb 2016 13:50</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2458573">
+									
+
+<p>Sure. But the same problem applies to Go and contexts. There's no way to magically pass the context to the remote peer without support on the protocol level.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,2458573)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2458573" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2458573)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2458573)"></a> by <span class="printuser avatarhover"><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;"  ><img class="small" src="http://www.wikidot.com/avatar.php?userid=939&amp;amp;size=small&amp;amp;timestamp=1594261710" alt="martin_sustrik" style="background-image:url(http://www.wikidot.com/userkarma.php?u=939)"/></a><a href="http://www.wikidot.com/user:info/martin-sustrik" onclick="WIKIDOT.page.listeners.userInfo(939); return false;" >martin_sustrik</a></span>, <span class="odate time_1455717031 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">17 Feb 2016 13:50</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2732197">
+                      
+		<div class="post" id="post-2732197">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2732197)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2732197">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ae284ba0e7fb7d8736dc2301a2c69b4c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>hyfrey (guest)</span> <span class="odate time_1485187402 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">23 Jan 2017 16:03</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2732197">
+									
+
+<p>gRPC is rpc framework open sourced by google that support context between client and server. It support many languages.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2732197)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2732197)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2732197" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2732197)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2732197)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ae284ba0e7fb7d8736dc2301a2c69b4c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>hyfrey (guest)</span>, <span class="odate time_1485187402 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">23 Jan 2017 16:03</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2456914">
+                      
+		<div class="post" id="post-2456914">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2456914)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2456914">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span> <span class="odate time_1455432798 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2016 06:53</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2456914">
+									
+
+<p>Caveat: If green thread is encapsulated in an object (see the 'connection' example in the text) and the object is closed using dedicated function ('close_connection'), there's no way to close several such objects in parallel.</p>
+<p>To be investigated.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2456914)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2456914)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2456914" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2456914)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2456914)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span>, <span class="odate time_1455432798 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2016 06:53</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2457051">
+                      
+		<div class="post" id="post-2457051">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2457051)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2457051">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=570ed3884d109cd2da8771ab6d1c4846&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Michael (guest)</span> <span class="odate time_1455469755 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2016 17:09</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2457051">
+									
+
+<p>If only there were a programming language that was able to handle conditions without unwinding the stack &#8212; and had some sort of metaobject protocol ;-)</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2457051)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2457051)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2457051" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2457051)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2457051)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=570ed3884d109cd2da8771ab6d1c4846&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Michael (guest)</span>, <span class="odate time_1455469755 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2016 17:09</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2457054">
+                      
+		<div class="post" id="post-2457054">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2457054)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2457054">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span> <span class="odate time_1455470465 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2016 17:21</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2457054">
+									
+
+<p>Hm, I am not sure what you are referring to, but there are UNIX signals. They handle error conditions without disrupting the current call stack.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+																					<a href="javascript:;" onclick="togglePostOptions(event,2457054)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2457054" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2457054)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2457054)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span>, <span class="odate time_1455470465 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2016 17:21</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+                      
+    <div class="post-container" id="fpc-2458016">
+                      
+		<div class="post" id="post-2458016">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2458016)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2458016">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=7c1a3f9227c0cb408f8831d27d611ab2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ingvar (guest)</span> <span class="odate time_1455619135 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Feb 2016 10:38</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2458016">
+									
+
+<p>I think this is a veiled reference to Common Lisp, where you have two ways of handling a signalled condition (chosen at the point of handling, not at the point of signalling).</p>
+<p>You can either chose to unwind the stack, that means all you now have is the signalled condition.</p>
+<p>Or you can choose to handle it without unwinding the stack (essentially, this means &quot;another function call&quot;), without being in the constrained environment of a signal handler. This means you can (at this point) choose to unwind the stack, by signalling a condition you have chose to handle by unwinding, or do something and continue.</p>
+<p>It is quite useful, in its own way, but is quite different from pretty much anything else.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2458016)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2458016)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2458016" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2458016)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2458016)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=7c1a3f9227c0cb408f8831d27d611ab2&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Ingvar (guest)</span>, <span class="odate time_1455619135 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">16 Feb 2016 10:38</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2457139">
+                      
+		<div class="post" id="post-2457139">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2457139)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2457139">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=271c72e2cc3ca9cc56d06adc4f28d06a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andrew Nambudripad (guest)</span> <span class="odate time_1455483743 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2016 21:02</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2457139">
+									
+
+<p>Funny you should mention the enterprise pits of MS. MSR is doing a lot of really interesting work in this realm. <a href="http://sigops.org/sosp/sosp15/current/2015-Monterey/printable/227-dragojevic.pdf">http://sigops.org/sosp/sosp15/current/2015-Monterey/printable/227-dragojevic.pdf</a> I'm assuming youve read this paper, but if not I'd love to hear your thoughts on both this and additionally Intel/MIT's Cilk Plus.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2457139)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2457139)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2457139" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2457139)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2457139)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=271c72e2cc3ca9cc56d06adc4f28d06a&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Andrew Nambudripad (guest)</span>, <span class="odate time_1455483743 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">14 Feb 2016 21:02</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-2737825">
+                      
+		<div class="post" id="post-2737825">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2737825)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2737825">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=3a5fc5a843d0f1ffb1891128206f842c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Greg Edwards (guest)</span> <span class="odate time_1485908038 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Feb 2017 00:13</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2737825">
+									
+
+<p>Your description sounds very close to how Rust <a href="https://www.rust-lang.org/en-US/">https://www.rust-lang.org/en-US/</a> handles concurrency via the borrow-checker etc., so I wonder if Rust could be extended to implement what you are recommending.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2737825)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2737825)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2737825" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2737825)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2737825)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=3a5fc5a843d0f1ffb1891128206f842c&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Greg Edwards (guest)</span>, <span class="odate time_1485908038 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">01 Feb 2017 00:13</span>
+		</div>
+	</div>
+ 
+                
+        
+                      
+    <div class="post-container" id="fpc-2738819">
+                      
+		<div class="post" id="post-2738819">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,2738819)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-2738819">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span> <span class="odate time_1486039513 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Feb 2017 12:45</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-2738819">
+									
+
+<p>Unfortunately, I have no experience with Rust. But generally speaking, yes. Structured concurrency is just a programming paradigm and should be doable in any language that supports concurrency.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,2738819)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,2738819)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-2738819" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,2738819)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,2738819)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=ccbe7da9a44a8737ca2eda4462c42fe1&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Martin Sustrik (guest)</span>, <span class="odate time_1486039513 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">02 Feb 2017 12:45</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+            </div>
+ 
+
+	
+					
+      
+    <div class="post-container" id="fpc-3657348">
+                      
+		<div class="post" id="post-3657348">
+		<div class="long">
+			<div class="head">
+									<div class="options">
+						<a href="javascript:;" onclick="togglePostFold(event,3657348)" class="btn btn-default btn-small btn-sm">Fold</a>
+					</div>
+								<div class="title" id="post-title-3657348">
+																		
+															</div>
+				<div class="info">
+					<span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=bf6cfd208991f19b293d095e3ec78b48&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Fred Ross (guest)</span> <span class="odate time_1513891366 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">21 Dec 2017 21:22</span>
+														</div>
+			</div>
+			<div class="content" id="post-content-3657348">
+									
+
+<p>I'm reminded of PLT Racket's [custodians <a href="https://docs.racket-lang.org/reference/eval-model.html#%28part._custodian-model%29">https://docs.racket-lang.org/reference/eval-model.html#%28part._custodian-model%29</a>], though they are used for all kinds of resources as a set instead of just processes.</p>
+
+							</div>
+
+								
+					
+						<div class="options">
+				
+													<strong><a href="javascript:;" onclick="postReply(event,3657348)" class="btn btn-primary btn-small btn-sm">Reply</a></strong> 
+																	<a href="javascript:;" onclick="togglePostOptions(event,3657348)" class="btn btn-default btn-small btn-sm">Options</a>
+							</div>
+									
+			<div id="post-options-3657348" class="options" style="display: none">
+			</div>
+		</div>
+		<div class="short">
+							<a class="options btn btn-default btn-mini btn-xs" href="javascript:;" onclick="togglePostFold(event,3657348)" c>Unfold</a>
+						<a class="title" href="javascript:;" onclick="togglePostFold(event,3657348)"></a> by <span class="printuser avatarhover"><a href="javascript:;"><img class="small" src="http://www.gravatar.com/avatar.php?gravatar_id=bf6cfd208991f19b293d095e3ec78b48&amp;default=http://www.wikidot.com/common--images/avatars/default/a16.png&amp;size=16" alt=""/></a>Fred Ross (guest)</span>, <span class="odate time_1513891366 format_%25e%20%25b%20%25Y%2C%20%25H%3A%25M%7Cagohover">21 Dec 2017 21:22</span>
+		</div>
+	</div>
+ 
+                
+        
+            </div>
+ 
+
+
+
+</div>
+
+        <a href="javascript:;" id="new-post-button" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.newPost(event,null)"
+      style="display:  none ; margin-bottom:1em"
+    >Add a New Comment</a>
+
+
+    <div id="new-post-form-container">
+        <div id="new-post-preview-div" style="display: none">
+            <h1>Post preview:</h1>
+            <div class="post-container"></div>
+            <div></div>
+            <a href="javascript:;" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.closePreview(event)" class="btn btn-danger">Close preview</a>
+        </div>
+
+        <div id="new-post-div" class="well">
+            <form id="new-post-form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+                <input type="hidden" name="threadId" value="1591860"/>
+                <input type="hidden" name="parentId" value=""/>
+                                    <table class="guest-commenting">
+                        <tr>
+                            <td><input class="text form-control" name="guestName" type="text" maxlength="30" value="" title="Name"/></td>
+                            <td>or <a href="#action:login">Sign in as Wikidot user</a></td>
+                        </tr>
+                        <tr>
+                            <td><input class="text form-control" name="guestEmail" type="text" maxlength="50" value="" title="E-mail address"/></td>
+                            <td>(will not be published)</td>
+                        </tr>
+                    </table>
+                                <div><textarea id="np-text" name="source" rows="10" cols="50" class="form-control"></textarea></div>
+                <div class="change-textarea-size">
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',-5)">-</a>
+                    <a href="javascript:;" onclick="WIKIDOT.utils.changeTextareaRowNo('np-text',5)">+</a>
+                </div>
+                <div class="edit-help-34">
+                    Help: <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">wiki text quick reference</a>                </div>
+                                
+                <div id="edit-post-captcha"></div>
+                
+                <div class="buttons alignleft">
+                    <input class="btn btn-danger btn-small btn-sm" type="button" value="Cancel" id="np-cancel" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.cancel(event)"/>
+                    <input class="btn btn-default btn-small btn-sm" type="button" value="Preview" id="np-preview" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.preview(event)"/>
+                    <input class="btn btn-primary btn-small btn-sm" type="button" value="Post it" id="np-post" onclick="WIKIDOT.modules.ForumNewPostFormModule.listeners.save(event)"/>
+                </div>
+                    
+            </form>
+        </div>	
+
+    </div> 
+            <script type="text/javascript">
+            
+            $j(function() {
+                WIKIDOT.Editor.init("np-text", "np-editor-panel");
+            });
+            
+        </script>
+    
+ 
+
+<div style="display:none" id="post-options-template">
+	<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.showPermalink(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Permanent Link</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.editPost(event,'%POST_ID%')" class="btn btn-default btn-small btn-sm">Edit</a>
+			<a href="javascript:;" onclick="WIKIDOT.modules.ForumViewThreadModule.listeners.deletePost(event,'%POST_ID%')" class="btn btn-danger btn-small btn-sm">Delete</a>
+</div>
+	
+			</div>
+	
+	
+	
+</div></div>
+
+                    </div>
+
+                    
+
+
+                    
+
+
+
+                    
+
+                    <div id="page-info-break"></div>
+                    
+                        <div id="page-options-container">
+                            
+                        </div>
+                    
+                    <div id="action-area" style="display: none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="footer" style="display: block; visibility: visible;">
+                <div class="options" style="display: block; visibility: visible;">
+    <a href="http://www.wikidot.com/doc" id="wikidot-help-button">Help</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:terms-of-service" id="wikidot-tos-button">Terms of Service</a>
+    &nbsp;|
+    <a href="http://www.wikidot.com/legal:privacy-policy" id="wikidot-privacy-button">Privacy</a>
+    &nbsp;|
+    <a href="javascript:;" id="bug-report-button" onclick="WIKIDOT.page.listeners.pageBugReport(event)">Report a bug</a>
+    &nbsp;|
+    <a href="javascript:;" id="abuse-report-button" onclick="WIKIDOT.page.listeners.flagPageObjectionable(event)">Flag as objectionable</a>
+</div>
+Powered by <a href="http://www.wikidot.com">Wikidot.com</a> 
+            </div>
+            
+                <div id="license-area" class="license-area">
+                    Unless otherwise stated, the content of this page is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 License</a>
+                </div>
+            
+            
+            
+
+
+
+            <div id="extrac-div-1"><span></span></div><div id="extrac-div-2"><span></span></div><div id="extrac-div-3"><span></span></div>
+            
+            
+            
+            
+                
+            
+        </div>
+        
+    </div>
+<!-- These extra divs/spans may be used as catch-alls to add extra imagery. -->
+<div id="extra-div-1"><span></span></div><div id="extra-div-2"><span></span></div><div id="extra-div-3"><span></span></div>
+<div id="extra-div-4"><span></span></div><div id="extra-div-5"><span></span></div><div id="extra-div-6"><span></span></div>
+</div>
+
+
+
+
+</div>
+<div id="dummy-ondomready-block" style="display: none;" ></div>
+    <!-- Google Analytics load -->
+    <script type="text/javascript">
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <!-- Quantcast -->
+    <script type="text/javascript">
+    _qoptions={
+        qacct:"p-edL3gsnUjJzw-"
+    };
+    (function() {
+        var qc = document.createElement('script'); qc.type = 'text/javascript'; qc.async = true;
+        qc.src = ('https:' == document.location.protocol ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(qc, s);
+    })();
+    </script>
+    <noscript>
+        <img src="http://pixel.quantserve.com/pixel/p-edL3gsnUjJzw-.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+    </noscript>
+
+
+
+
+<div id="page-options-bottom-tips" style="display: none;">
+    <div id="edit-button-hovertip">
+        Click here to edit contents of this page.    </div>
+</div>
+<div id="page-options-bottom-2-tips"  style="display: none;">
+    <div id="edit-sections-button-hovertip">
+        Click here to toggle editing of individual sections of the page (if possible).         Watch headings for an &quot;edit&quot; link when available.    </div>
+    <div id="edit-append-button-hovertip">
+        Append content without editing the whole page source.    </div>
+    <div id="history-button-hovertip">
+        Check out how this page has evolved in the past.    </div>
+    <div id="discuss-button-hovertip">
+        If you want to discuss contents of this page - this is the easiest way to do it.    </div>
+    <div id="files-button-hovertip">
+        View and manage file attachments for this page.    </div>
+    <div id="site-tools-button-hovertip">
+        A few useful tools to manage this Site.    </div>
+    <div id="backlinks-button-hovertip">
+        See pages that link to and include this page.    </div>
+    <div id="rename-move-button-hovertip">
+        Change the name (also URL address, possibly the category) of the page.    </div>
+    <div id="view-source-button-hovertip">
+        View wiki source for this page without editing.    </div>
+    <div id="parent-page-button-hovertip">  
+        View/set parent page (used for creating breadcrumbs and structured layout).    </div>
+            <div id="abuse-report-button-hovertip">
+            Notify administrators if there is objectionable content in this page.        </div>
+        <div id="bug-report-button-hovertip">
+            Something does not work as expected? Find out what you can do.        </div>
+        <div id="wikidot-help-button-hovertip">
+            General Wikidot.com documentation and help section.        </div>
+        <div id="wikidot-tos-button-hovertip">
+            Wikidot.com Terms of Service - what you can, what you should not etc.        </div>
+        <div id="wikidot-privacy-button-hovertip">
+            Wikidot.com Privacy Policy.          
+        </div>
+    </div>
+</body>
+</html>
