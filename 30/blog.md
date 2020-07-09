@@ -28,11 +28,11 @@ Typically, economists would acknowledge that there are "non-rational" elements i
 
 In this case though we can measure the "sense of justice", "spite", "rage" or however you choose to name it. You can take your test population and measure how much they are willing to spend to punish the cheater:
 
-![idiotism1.png](http://250bpm.wdfiles.com/local--files/blog:30/idiotism1.png)
+[](30/idiotism1.png)
 
 Then, you can quite trivially compute the returns for the cheater:
 
-![idiotism2.png](http://250bpm.wdfiles.com/local--files/blog:30/idiotism2.png)
+[](30/idiotism2.png)
 
 So, in this example it makes sense to set the deposit to 100%-300% of the original price (the grey rectangle), because in any other case the cheter turns in profit.
 

@@ -30,7 +30,7 @@ The only missing bit is how to establish a TCP connection, when all we have is t
 
 Here's how it works:
 
-![location1.png](http://250bpm.wdfiles.com/local--files/blog:13/location1.png)
+[](13/location1.png)
 
 The question remains what should be done to solve the problem. Technically correct solution would be to move name resolution from messaging layer to transport layer. However, the real problem here is social rather than technical: Messaging products already provide the functionality and there's no incentive for the implementers to drop the feature. Actually, this single feature probably accounts for some 30-50% of the users (off-the-top-of-my-head estimate). Dropping it would mean losing considerable part of the audience and thus considerable portion of the revenue (for commercial products) or considerable portion of the credit (for free products).
 

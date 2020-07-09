@@ -6,11 +6,11 @@ I've already wrote about "survey" scalability protocol in this blog. [The articl
 
 First, let's have a look how REQ/REP protocol handles reliability. The basic idea is that there are multiple instances of the service, so if one of them fails, others are still available for processing requests. The only problem with this approach is that if a service instance crashes while processing a request it will never produce a reply and client will wait for it forever. To handle this situation REQ/REP protocol has the NN\_REQ\_RESEND\_IVL socket option, set by default to 60 seconds. If reply is not received within this time window, client socket (REQ) will assume that the service instance processing the request have crashed or became in some other way unavailable and re-sends the request. It will now be routed to a different service instance which will process the request and deliver the reply to the client. Check the sequence of events on the following diagram:
 
-![surrel1.png](http://250bpm.wdfiles.com/local--files/blog:20/surrel1.png)
+[](20/surrel1.png)
 
 That kind of of approach works well, but it has one drawnback that may or may not be a problem, depending on the application needs. If the service instance crashes, reply is delayed by 60 seconds. You can of course decrease the resend interval (NN\_REQ\_RESEND\_IVL socket option) to, say, 1 second, or even lower, however, then you are in risk of processing redundant requests:
 
-![surrel4.png](http://250bpm.wdfiles.com/local--files/blog:20/surrel4.png)
+[](20/surrel4.png)
 
 As can be seen on the diagram above, if the resend interval is set to 1 second, but processing the request takes 1.5 second, additional request is generated and the reply is silently dropped.
 
@@ -18,7 +18,7 @@ Thus, we are getting the worst of the possible worlds: We have to process each r
 
 The ideal solution would be to send two requests immediately. Then get the first reply and ignore the second. The system would be reliable — if one service instance fails, other one would still handle client requests — and at the same time there would be no latency impact in the case of failure:
 
-![surrel5.png](http://250bpm.wdfiles.com/local--files/blog:20/surrel5.png)
+[](20/surrel5.png)
 
 So, in theory we could add a new socket option to nanomsg, specifying how many copies of the request should be sent immediately. The user could set such option to say 3. If there were 10 instances of the service, the request would be sent to 3 of them and the first reply will be returned to the user. Subsequent replies will be silently dropped.
 
@@ -28,6 +28,6 @@ As can be seen REQ/REP protocol doesn't work very well once you want to use nano
 
 Luckily, "survey" pattern has exactly the behaviour we are looking for. It sends the request to all the connected service instances. That guarantees not only that the request will be processed in redundant manner to provide reliability with zero latency impact, but also that the same request won't be sent to the same sevice instance twice, thus avoiding useless overhead. When receiving the responses, unlike with REQ/REP pattern, you can receive all of them, rather than just a single one. However, if you just send the next request after receiving the first reply, all the pending replies for the old request will be silently dropped:
 
-![surrel2.png](http://250bpm.wdfiles.com/local--files/blog:20/surrel2.png)
+[](20/surrel2.png)
 
 **March 22nd, 2013**

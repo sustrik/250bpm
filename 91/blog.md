@@ -12,7 +12,7 @@ That being said, I want to address an obvious objection to the cartesian paradig
 
 To put it in practical terms, what if we wanted one object to be dependent on another object? Say, what if we wanted property X of object A to be twice the property X of object B:
 
-![matrix2.png](http://250bpm.wdfiles.com/local--files/blog%3A91/matrix2.png)
+[](91/matrix2.png)
 
 How would you write getter function for property X? Two times what exactly?
 

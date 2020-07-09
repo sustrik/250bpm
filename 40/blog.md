@@ -12,11 +12,11 @@ If you are one of those affected, spare few minutes and consider these reasons f
 
 If you write a single end-to-end test the execution of the test will probably cover a substantial part of the codebase:
 
-![fet1.png](http://250bpm.wdfiles.com/local--files/blog:40/fet1.png)
+[](40/fet1.png)
 
 If you write a single unit test, you cover just a small piece of the codebase:
 
-![fet2.png](http://250bpm.wdfiles.com/local--files/blog:40/fet2.png)
+[](40/fet2.png)
 
 If you are painting a house, you want to start with a biggest brush at hand and spare the tiny brush for the end to deal with fine details.
 

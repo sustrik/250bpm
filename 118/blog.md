@@ -2,7 +2,7 @@
 
 Imagine a simple one-shot coordination game between two players who don't know each other and can't communicate with each other. Each can pick one of two cards, either blue one or green one. If both choose the same card they each get $100. If they pick different cards they get nothing.
 
-![tradition1.png](http://250bpm.wdfiles.com/local--files/blog%3A118/tradition1.png)
+[](118/tradition1.png)
 
 Without being able to make a deal (the players can't communicate), to guess each other's likes and dislikes (the players don't know each other), without playing the game repeatedly (the players play one game and never see each other again) and without an obvious Schelling point (the blue card isn't more conspicuous than the green one or vice versa) the players are expected to do no better than chance. In other words, they are going to win or lose with 50% probability.
 

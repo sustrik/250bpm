@@ -4,7 +4,7 @@
 
 Recently I've stumbled over this graph (here's the original [article](https://github.com/blog/1964-open-source-license-usage-on-github-com)):
 
-![licenses.png](http://250bpm.wdfiles.com/local--files/blog:82/licenses.png)
+[](82/licenses.png)
 
 The number of projects with a license on GitHub is steadily decreasing. At the moment we are below 20%.
 

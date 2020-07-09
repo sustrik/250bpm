@@ -40,7 +40,7 @@ C programmer would rather solve the same problem in the following way:
 
 Now, let's compare how this solutions look like in the memory:
 
-![cpp1.png](http://250bpm.wdfiles.com/local--files/blog:8/cpp1.png)
+[](8/cpp1.png)
 
 First thing to note is that the C++ solution allocates twice the number of memory chunks compared to the C solution. For each element of the list there's a little helper object created. When there are lots of containers in the program the amount of these helper objects proliferates.
 
@@ -92,7 +92,7 @@ That is an automatic assumption that C++ programmers don't even start to questio
 
 Let's say that object is a collection of logically related data that has to be guarded by the same critical section to ensure its consistency in multi-threaded program. This definition radically changes our understanding of the architecture. The picture below shows the C person/people program (as listed above) and marks the data fields that should be guarded by a list-level critical section (yellow) vs. data fields to be guarded by element-level critical section (green):
 
-![cpp2.png](http://250bpm.wdfiles.com/local--files/blog:8/cpp2.png)
+[](8/cpp2.png)
 
 For a person with object-oriented world view it's a pretty exotic picture. The "people" object is composed not only of the fields in "people" struct itself, but contains also some of the fields ("prev" and "next") in the "person" struct.
 

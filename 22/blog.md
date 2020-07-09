@@ -18,7 +18,7 @@ Typically, business data (messages) are mixed with heartbeats within a single TC
 
 The problem hits once the application stops reading data from the TCP connection. The heartbeats may be arriving, however, they cannot be read, because there are messages stuck in TCP receive buffer in front of them. Given that TCP doesn't provide a way to read data from the middle of the receive buffer, the application has no idea whether the heartbeats are arriving or not.
 
-![heartbeats1.png](http://www.250bpm.com/local--files/blog:22/heartbeats1.png)
+[](22/heartbeats1.png)
 
 It's not immediately visible whether this is an actual problem or whether it can be solved by some clever trick. To get better understanding, consider the following questions and answers:
 

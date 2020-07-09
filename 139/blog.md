@@ -8,7 +8,7 @@ First, let's look at libdill's approach. It's a kind of old-school, boring appro
 
 As for cancellation, threads as such have no identifiers so it's not possible to cancel a single thread. However, bundles do have handles that you can use to cancel all the threads in the bundle. The rationale for this design is that there can be arbitrary number of threads running in the bundle and this way the user doesn't have to keep track of all the threads, whether any particular thread has already terminated or not and so on. Instead, you manipulate the bundle as a single entity, irrespective of how many threads are running within it. And of course, there can be a single thread in the bundle, so in the end you can cancel a single thread, albeit in a somehow indirect way.
 
-![sc8.png](http://250bpm.wdfiles.com/local--files/blog:139/sc8.png)
+[](139/sc8.png)
 
     coroutine void worker(void) {
         ...
@@ -33,7 +33,7 @@ When the scope is about to close it waits for all the threads to finish. The mai
 
 As for explicit cancellations, any thread can cancel the scope. That in turn causes each thread in the nursery to raise an exception, which bubbles to the top level and terminates all the threads. Once done, main thread can resume execution.
 
-![sc7.png](http://250bpm.wdfiles.com/local--files/blog:139/sc7.png)
+[](139/sc7.png)
 
     async def worker(nursery):
         ...
@@ -65,7 +65,7 @@ That may be subliminally troubling, but not troubling enough to discard the desi
 
 In libdill's implementation the ownership relations are unambiguous. Main thread owns all the attempt threads and that's it.
 
-![sc9.png](http://250bpm.wdfiles.com/local--files/blog:139/sc9.png)
+[](139/sc9.png)
 
 In Trio's implementation there are two different ways to think about the ownership.
 
@@ -73,7 +73,7 @@ If we define ownership as "whoever executes the nursery scope owns all the threa
 
 However, if we define ownership as "whoever launches a thread owns it" then we get a different picture: The main thread owns the first attempt thread. The first attempt thread owns the second attempt thread and so on.
 
-![sc10.png](http://250bpm.wdfiles.com/local--files/blog:139/sc10.png)
+[](139/sc10.png)
 
 This kind of ambiguity, I think, can be confusing.
 

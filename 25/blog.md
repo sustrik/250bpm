@@ -20,13 +20,13 @@ In reality, of course, events are not exactly the same as function calls, but in
 
 Imagine method foo() of object A calling method bar() of object B. Object B in turn calls method baz() of object A. It's a classic example of a callback. The sequence diagram for the scenario looks like this:
 
-![events1.png](http://250bpm.wdfiles.com/local--files/blog:25/events1.png)
+[](25/events1.png)
 
 The obvious ploblem here is that A::baz() is executed while A::foo() is still in progress. What it means is that, on one hand A::baz() may be executed while object A is in inconsistent state (keep in mind that just half of A::foo() have been executed so far!) and on the other hand, state of A changes mysteriosly under the feet of A::foo() while it calls B::bar().
 
 Events, in contrast, are executed in sequential manner. Next event is processed only after first one was fully processed. The sequence diagram for the same scenario would thus look like this:
 
-![events2.png](http://250bpm.wdfiles.com/local--files/blog:25/events2.png)
+[](25/events2.png)
 
 Technically, instead of calling a function there's an event enqueued. The main event loop processes any events in the event queue in one-by-one manner.
 
@@ -63,7 +63,7 @@ All the above being said, if you are working with a language where events are no
 
 What turned out to be a pretty good solution in [nanomsg](http://nanomsg.org) is arranging all the objects into an ownership tree and using functions when moving from root to leaves and events when moving from leaves to the root:
 
-![events4.png](http://250bpm.wdfiles.com/local--files/blog:25/events4.png)
+[](25/events4.png)
 
 The solution has two nice features:
 
@@ -78,7 +78,7 @@ First, let's define what we mean by state machine. The "state machines" in compu
 
 When we refer to state machines we mean objects with small part of their state (typically a single enum) singled out and referred to as **the state**:
 
-![events5.png](http://250bpm.wdfiles.com/local--files/blog:25/events5.png)
+[](25/events5.png)
 
 As can be seen, nothing changes from the technical point of view. What really happens is that the developer decides what part of the object is going to be **the state** and communicates that in a formal manner (by naming the member 'state'), so that any other developer can check the code and understand which member is supposed to be **the state**.
 
@@ -98,7 +98,7 @@ That being said, the state machines are an instrument for turning abstract proce
 
 All you have to do is to draw all the possible states as boxes and connect them by arrows representing valid state transitions. Let's have a look at the TCP protocol state machine, for example:
 
-![events3.png](http://250bpm.wdfiles.com/local--files/blog:25/events3.png)
+[](25/events3.png)
 
 If you start with the CLOSED state and follow the arrows you can generate life stories (narratives) of different TCP endpoints. Do that for two minutes and you'll get an good idea of how TCP endpoint works.
 

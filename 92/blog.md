@@ -20,17 +20,17 @@ Imagine Juliet has a brother. He'll eventually become the patriarch of house Cap
 
 Enter preferential cross-cousin marriage. In anthropology of kinship systems, this is a staple. In many societies there's a strong preference for a person to marry the child of their mother's brother or the child of thier father's sister. In case of Montagues and Capulets, Juliet's brother, now head of house Capulet, will be obliged to marry his son to Juliet's daugther, i.e. to a Montague.
 
-![romeo2.png](http://250bpm.wdfiles.com/local--files/blog%3A92/romeo2.png)
+[](92/romeo2.png)
 
 If you think it through, this rule ensures that the alliance made between the two families will be renewed and reinforced in every subsequent generation.
 
-![romeo3.png](http://250bpm.wdfiles.com/local--files/blog%3A92/romeo3.png)
+[](92/romeo3.png)
 
 Yes, this does sound like a kind of twisted argument that you would use when reasoning about incentives involved in a cryptocurrency. But before we proceed let's have a look at even more complex system.
 
 So, imagine a tribe living in Amazon Jungle. The tribe is split into three smaller clans: Jaguars, Tapirs and Capybaras. Sons stay in their father's clan. Jaguar daughters, however, are obliged to marry Tapir men. Tapir daughters will be married into Capybara clan. Capybara women, in turn, will be married into Jaguar clan.
 
-![romeo.png](http://250bpm.wdfiles.com/local--files/blog%3A92/romeo.png)
+[](92/romeo.png)
 
 Think for a while about what it means: If you are a Jaguar, your father is also a Jaguar, but your mother is a Tapir. Out of your four grandparents, one is Jaguar, two are Tapirs and one is Capybara. You will marry a Capybara woman. Your sons will remain in Jaguar clan, but your daugthers will marry into Capybara clan. Their daughters, in turn, will marry into Tapir clan.
 

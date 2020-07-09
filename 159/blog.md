@@ -28,7 +28,7 @@ Let's say no human being is able to roll their tongue. What happens when a mutat
 
 Well, if rolling your tongue makes you more likely to survive and have more children then the trait will be actively selected for. The frequency of the tongue-rolling allele in the population will increase rapidly:
 
-![slack1.png](http://250bpm.wdfiles.com/local--files/blog:159/slack1.png)
+[](159/slack1.png)
 
 Note that when the frequency reaches 100% there's no way back. There are no more non-tongue-rollers that could reproduce and take over the population. We say that the allele becomes fixed.
 
@@ -36,21 +36,21 @@ But what happens if the allele has no effect on your fitness? What it tongue-rol
 
 In that case the frequency of the allele is a random walk. If increases and decreases solely by chance. In most cases it means it will be wiped out quickly:
 
-![slack2.png](http://250bpm.wdfiles.com/local--files/blog:159/slack2.png)
+[](159/slack2.png)
 
 Sometimes, though, the allele gets lucky and becomes fixed:
 
-![slack3.png](http://250bpm.wdfiles.com/local--files/blog:159/slack3.png)
+[](159/slack3.png)
 
 We call this process of random fluctuation of allele frequency "genetic drift".
 
 The things turn interesting when the population size is small. Imagine population of two. Now it's much easier for the new allele to become fixed. Once it comes to being via mutation it already has 50% frequency in the pool and all it takes to become fixed is reproducing once.
 
-![slack4.png](http://250bpm.wdfiles.com/local--files/blog:159/slack4.png)
+[](159/slack4.png)
 
 The smaller the population, the more alleles become fixed by chance alone. (The picture stolen from [Wikipedia](https://en.wikipedia.org/wiki/Genetic_drift#/media/File:Random_genetic_drift_chart.png), CC BY-SA 3.0)
 
-![slack5.png](http://250bpm.wdfiles.com/local--files/blog:159/slack5.png)
+[](159/slack5.png)
 
 To put it in different words, there are two competing forces in play here. There's selection (determinism, Moloch). And then there's drift (randomness, slack). And there are two factors that determine which one is going to be stronger. First, the more effect the allele has on the fitness the more is its evolution driven by selection. Second, the smaller the population, the more it is driven by drift.
 
@@ -70,7 +70,7 @@ Interesting alternative was proposed by the team of Andreas Wagner, here in Zuri
 
 Think of it as of a map. Each colour patch is a different phenotype. Locations within a patch are different genoptyes. Individuals in the population, thanks to neutral mutations (which are by definition free of the selection pressure) can explore the enire area of their particular phenotype. Once the environment changes there may be some individuals just across the border from the phenotype that would do better in the new conditions. Such individuals can undergo a single non-neutral mutation and result in a new phenotype which will then spread in the population via selection.
 
-![slack6.png](http://250bpm.wdfiles.com/local--files/blog:159/slack6.png)
+[](159/slack6.png)
 
 This may be closer to the intuitive notion of slack. Neutral mutations have slack because they don't affect the phenotype and are thus not acted upon by the selection.
 

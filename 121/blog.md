@@ -4,13 +4,13 @@ This article is going to argue that to get composable network protocols, we have
 
 First of all, let's look at the very idea of protocol composability. Imagine a stack of three protocols:
 
-![orchestrator1.png](http://250bpm.wdfiles.com/local--files/blog:121/orchestrator1.png)
+[](121/orchestrator1.png)
 
 It seems that the implementation of TLS socket should own the TCP socket. In other words, that the TLS socket controls the lifetime of the TCP socket. In yet other words, that when you invoke "tls\_connect" function it will also, transparently to the user, create an underlying TCP socket. Similarly, when you call "tls\_close" function, it will also close the underlying TCP socket.
 
 This provides nice encapsulation. The only thing the user sees is the HTTP socket and they have no direct access to the TLS and TCP sockets. HTTP socket, in turn, sees only TLS socket and has no access to the TCP socket. Only TLS socket can access the TCP socket.
 
-![orchestrator2.png](http://250bpm.wdfiles.com/local--files/blog:121/orchestrator2.png)
+[](121/orchestrator2.png)
 
 Unfortunately, this design also limits composability: Each protocol can run only on top of a single hard-wired underlying protocol. There's no way to make HTTP run both on top of raw TCP (simple HTTP stack) and on top of TLS (HTTPS stack).
 
@@ -52,7 +52,7 @@ Let us consider a stack of five protocols, each needing some parameters. Moreove
 
 Well, the application can run some generic parameter-negotiating protocol. HTTP, for example. It will send all the parameters for all five protocols to the peer inside the HTTP request and it will receive peer's values of those parameters in the HTTP reply. Single round trip, yet all the parameters for all the layers of the stack are negotiated. Once done, the application can then create all five layers of the stack.
 
-![orchestrator3.png](http://250bpm.wdfiles.com/local--files/blog:121/orchestrator3.png)
+[](121/orchestrator3.png)
 
     s = tcp_connect(addr);
     s = http_attach(s);
@@ -79,7 +79,7 @@ So back to the original question: Is termination a natural part of a protocol?
 
 Imagine a CRLF protocol (one that breaks stream of bytes into messages separated by newlines) runing on top of TCP. Application may require three messages (lines) to be passed via this protocol. Afterwards, it will dismantle it and continue with something else, say TLS.
 
-![orchestrator4.png](http://250bpm.wdfiles.com/local--files/blog:121/orchestrator4.png)
+[](121/orchestrator4.png)
 
 In this case CRLF protocol needs no special termination mechanism. It is simply dismantled after three messages are sent.
 

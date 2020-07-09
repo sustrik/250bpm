@@ -4,7 +4,7 @@
 
 I've argued several times (see for example [here](http://www.aosabook.org/en/zeromq.html#fig.zeromq.multiuse)) that global state in a library should not be truly global, i.e. stored in C-style global variables, rather an instance of the "global" state should be created upon user request. The reason is that if the two modules within a process used the same low-level library, they would step on each other's toes:
 
-![global1.png](http://www.250bpm.com/local--files/blog:23/global1.png)
+[](23/global1.png)
 
 Imagine the library C has a global variable foo and setfoo() and getfoo() functions to access it. Now imagine the following sequence of events:
 
@@ -16,11 +16,11 @@ While the rule of thumb still holds for libraries in general — instead of havi
 
 Let's have a look at a concrete example. Imagine that the main program creates a logger object (a PULL socket that writes all received messages to the disk) and wants all the modules loaded into the process to report errors to the logger. As the communication happens within a single process, INPROC transport should be used to convey the log records from individual modules to the logger. However, according to the reasoning above, each module has it's own instance of global state (i.e. its own ZeroMQ context) and the INPROC transport in ZeroMQ doesn't allow for transferring messages between different contexts.
 
-![global2.png](http://www.250bpm.com/local--files/blog:23/global2.png)
+[](23/global2.png)
 
 The problem could be solved by using IPC or TCP transport instead, however, that opens a security hole: What if attacker connected to the logger from outside and either posted false records or DoS'ed the system with a flood of log requests?
 
-![global3.png](http://www.250bpm.com/local--files/blog:23/global3.png)
+[](23/global3.png)
 
 So, alternatively, the main program can create the ZeroMQ context and share it with individual modules. That would work as expected, however, there are several problems with the approach:
 

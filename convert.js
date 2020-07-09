@@ -26,6 +26,12 @@ for (var b = 1; b < 161; b++) {
          lines[i] = "**" + lines[i].substring(17).trim()
      }
 
+     if(lines[i].startsWith("![")) {
+         var idx = lines[i].indexOf("]")
+         var name = lines[i].substring(2, idx)
+         lines[i] = "[](" + b + "/" + name + ")"
+     }
+
      md += lines[i] + "\n"
   }
   md = "# " + md.trim()

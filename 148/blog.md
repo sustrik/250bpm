@@ -10,6 +10,6 @@ It's meant to be played by strings so that dissonances do not fade out.
 
 Use as you see fit.
 
-![lydian.png](http://250bpm.wdfiles.com/local--files/blog:148/lydian.png)
+[](148/lydian.png)
 
 **Feb 25th, 2019**
