@@ -12,7 +12,7 @@ Whatever the benefits, the cost was prohibitive.
 
 Recent "Unikernels as Processes" paper by Koller, Lucina, Prakash and Williams ([free download](https://dl.acm.org/citation.cfm?id=3267845)) turns the situation on its head. It proposes to run unikernels as good old boring OS processes. The idea is that most of the stack that's currently in the kernel will be in libraries linked directly to the application. Only few calls would cross the user/kernel boundary.
 
-[](138/unikernel2.png)
+![](unikernel2.png)
 
 ### One-click security
 

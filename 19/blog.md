@@ -20,31 +20,31 @@ That being said, let's now look at how the subscription matching works in ZeroMQ
 
 In ZeroMQ, the structure used for storing subscriptions is a [trie](https://en.wikipedia.org/wiki/Trie):
 
-[](19/trie1.png)
+![](trie1.png)
 
 The inefficiency of the format is obvious: If the subscriptions are composed from elements longer than one character (such as English words, stock codes etc.) allocating a trie node for each character is extremely wasteful.
 
 To improve the memory footprint, nanomsg uses [patricia trie](https://en.wikipedia.org/wiki/Radix_tree) instead:
 
-[](19/trie2.png)
+![](trie2.png)
 
 By storing strings at individual nodes, rather than single characters, we can minimise the amount of nodes needed to store a subscription set. In the example above the number of nodes dropped from 28 (simple trie) to 7 (patricia trie), i.e. to mere 25%!
 
 In the scenarios where subscriptions tend to be long, the terminal branches of the trie are often rather long. Switching to patricia trie in such case reduces the number of allocated nodes to 10% or even less:
 
-[](19/trie3.png)
+![](trie3.png)
 
 While patricia trie works great for reducing the number of nodes in the trie, there's another metric that effects the memory footprint, namely the size of the node structure itself.
 
 ZeroMQ allocates a fixed size data structure for each node and if (and only if) the node has more than one child it allocates a table of pointers to the children. The table is indexed by the character the child represents. The following diagram shows the representation of subscriptions "A" and "F":
 
-[](19/trie4.png)
+![](trie4.png)
 
 As can be seen, the format is optimised in such a way that it's not necessary to allocate an array of 256 pointers, one for each possible subsequent character (that would mean as much as 2kB of memory per node!), instead is allocates an array that starts with the lowest existing character and ending with the highest existing subsequent character. While this optimisation saves a lot of space, it is not perfect. For example, if the two subscriptions were "A" and "z" the pointers would occupy 0.5kB.
 
 To mitigate this problem, nanomsg introduces two different types of nodes. There's a "dense" node (used for nodes with 9+ children) which is basically the same as the node in ZeroMQ; and there's a "sparse" node (used for nodes with 1-8 children) that gets rid of all the NULL pointers:
 
-[](19/trie5.png)
+![](trie5.png)
 
 This way, subscribing for both "A" and "z" would need only 16 bytes for storing the child pointers (instead of 464 in ZeroMQ).
 

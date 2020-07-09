@@ -12,7 +12,7 @@ Now, the obvious question is: How is this useful? What can I do with it?
 
 Basically, it's a failover mechanism. Imagine you have two datacenters. One in New York, other one in London. You have some boxes able to provide specific kind of service. There are some of them on either site. You want to avoid trans-continental traffic and the associated latency. However, if things go bad and there's no service available on your side of the ocean you may prefer the trans-Atlantic communication to not being able to use the service at all. So, this is a configuration you can set up in New York:
 
-[](14/prio1.png)
+![](prio1.png)
 
 As you can see, local services have priority 1 and they are thus used, unless **all** of them are dead, busy or disconnected. Only at that point the requests will begin to be router across the ocean.
 
@@ -49,7 +49,7 @@ Here's the code needed to set up the requester:
 
 So far so good. Now let's have a look at more sophisticated setup:
 
-[](14/prio2.png)
+![](prio2.png)
 
 As can be seen, there's a cluster or workers (REPs) on each site. Clients (REQs) access the cluster via an intermediate message broker (REQ/REP device). The broker at each site is set up in such a way that if none of the boxes in local cluster can process the request, it is forwarded to the remote site. Of course, if there's no worker available on either site, the messages would bounce between New York and London, which is something you probably don't want to happen and you should take care to drop such messages in the broker. (Alternatively, if you believe that loop detection is a problem worth addressing in nanomsg itself, feel free to discuss in on [nanomsg mailing list](http://www.freelists.org/list/nanomsg).)
 
@@ -57,7 +57,7 @@ There's a similar priority system implemented for incoming messages (NN\_RCVPRIO
 
 Let's have a look at the following setup:
 
-[](14/prio3.png)
+![](prio3.png)
 
 As long as there are requests from the client (REQ) on the left, the server (REP) will process them and won't care about requests from the client on the right.
 
@@ -71,17 +71,17 @@ While the above may seem to be just a matter of different design philosophy, the
 
 Traditional broker-based messaging system stores messages inside of the broker. Typically, the priorities are implemented by having separate internal message queues for different priority levels. The sender application sends a message via TCP to the broker where it is stored in appropriate queue (depending on the priority level defined in the message). The receiver application asks for a message and broker retrieves a message from the highest-priority non-empty queue available and sends it back via TCP:
 
-[](14/prio4.png)
+![](prio4.png)
 
 This model works OK for traditional, slow messaging systems. The messages spend most of their lifetime stored in prioritised queues on the broker so there's no problem. However, in modern, fast, low-latency and real-time systems it is no longer the case. The time spent inside of broker approaches zero and most of the message lifetime is spent inside TCP buffers.
 
 That changes the situation dramatically. TCP buffer is not prioritised, it's a plain first-in-first-out queue. If a high-priority message is stuck behind a low-priority message, bad luck, the low priority message is going to be delivered first:
 
-[](14/prio5.png)
+![](prio5.png)
 
 To solve this problem nanomsg offers an alternative solution: Create different messaging topologies for different priorities. That way there are multiple TCP connections involved and head-of-line-blocking problem, as described above, simply doesn't happen:
 
-[](14/prio6.png)
+![](prio6.png)
 
 Topology for "urgent" messages is drawn in red. Topology for "normal" messages is in black. Client sends request to either "urgent" or "normal" REQ socket, depending on the priority level it is interested in. Server polls on both REP sockets and processes messages from the "urgent" one first. Finally, given that the two topologies use two different TCP ports, it is possible to configure network switches and routers is such a way that they treat urgent messages in preference and that they allocate certain amount of bandwidth for them, so that network congestion caused by normal messages won't effect delivery of urgent messages.
 

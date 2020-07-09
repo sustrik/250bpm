@@ -32,11 +32,11 @@ On the one hand, we have to avoid TCP pushback.
 
 Imagine two receivers reading from the same TCP connection. If one of them (R2) is not reading the data — maybe because it's busy doing some other work at the moment — the data linger in the TCP receive buffer and block all the remaining data in the buffer, including the data that belong to the other receiver (R1). This way, one slow or stuck service blocks all the other services sharing the same TCP connection:
 
-[](18/multiplexing1.png)
+![](multiplexing1.png)
 
 To prevent the blocking we need an asynchronous reader that would read the data from the TCP connection as fast as possible and then queue them into a separate buffer for each receiver:
 
-[](18/multiplexing2.png)
+![](multiplexing2.png)
 
 While the above algorithm solves the problem of blocking it is prone to memory exhaustion. If the asynchronous reader reads the data from TCP buffer faster than the receivers are able to consume it the per-receiver buffers will gradually grow and eventually run out of memory.
 
@@ -44,7 +44,7 @@ To solve that problem we have to re-introduce pushback mechanism on a per-stream
 
 Each per-receiver buffer should be of fixed size and the sender should never send more data than there is free space available in the buffer. Technically, this can be achieved by regularly advertising the amount of free space available in the queue (ACKs):
 
-[](18/multiplexing3.png)
+![](multiplexing3.png)
 
 EDIT: While the algorithm above does implement multiplexing on top of TCP, it does not fully match — performance-wise — mutliplexing solutions built directly on top of IP. The reason is that with TCP one lost packet prevents delivery of subsequent packets, even though the latter may contain data from unrelated channels. Thus, we are getting transport-layer head of line blocking and thus higher latency on _all_ channels in the case of loss of a single packet. This restriction doesn't apply to low-level multiplexing solutions such as SCTP or QUIC.
 
@@ -72,7 +72,7 @@ The above means that sharing the same destination port doesn't necessarily mean 
 
 Technically, such sharing can be accomplished by introducing a special service to listen on the shared destination port and then to hand the incoming connections to the particular services as appropriate:
 
-[](18/multiplexing4.png)
+![](multiplexing4.png)
 
 Other Considerations
 ====================

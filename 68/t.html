@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   Enforced Error Handling
+  </h1>
+  <p>
+   If you don't mind your program crashing once in a while — and I am not making fun here: for some programs making them 100% error proof doesn't pay off — using exceptions for error handling is pefectly adequate.
+  </p>
+  <p>
+   However, when writing code with strong reliability requirements your priorities are different. After all, large fraction of production outages comes from
+   <a href="http://danluu.com/postmortem-lessons/">
+    botched error handling
+   </a>
+   . You really want to stop and think about each error code at every level as it is passed up the stack. In that case C (or Go) style error handling is exactly what you want.
+  </p>
+  <p>
+   The problem with C (and Go) though is that it allows you to ignore the errors. It's perfectly all right not to check the error code or even not capture it in a variable. For example, this kind of thing is a common, almost a standard way to close a file descriptor:
+  </p>
+  <pre><code>close(fd);
+</code></pre>
+  <p>
+   However, POSIX says:
+  </p>
+  <pre><code>The close() function may fail if:
+</code></pre>
+  <pre><code>[EIO] An I/O error occurred while reading from or writing to the file system.
+</code></pre>
+  <p>
+   Oops!
+  </p>
+  <p>
+   All that being said, I wonder whether there is an imperative language that enforces explicit handling of errors. For example like this:
+  </p>
+  <pre><code>x = foo(y) err {
+</code></pre>
+  <pre><code>    // Handle the error here.
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <p>
+   In fact, you would still be able to ignore the error but you would have to make a conscious decision to do so:
+  </p>
+  <pre><code>x = foo(y) err {}
+</code></pre>
+  <p>
+   Moreover, looking for ignored errors, which is really hard in C, given that there's no easy way to distinguish void function invocations from unchecked error codes, would become easy, both for human reviewers and for automated tools.
+  </p>
+  <p>
+   <strong>
+    December 19th, 2015
+   </strong>
+  </p>
+ </body>
+</html>

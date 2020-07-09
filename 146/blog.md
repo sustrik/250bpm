@@ -47,11 +47,11 @@ Not only is graceful shutdown not immediate. It can be arbitrarily long or even 
 
 Consider a case where the parent coroutine sends the child coroutine a stream of tasks to process. It does so via a channel. It may send DoA, DoB and DoC requests. Then it hard-cancels the child. Hard cancellation is supposed to be immediate and so the child coroutine exits even though DoA, DoB and DoC haven't been processed yet.
 
-[](146/gs1.png)
+![](gs1.png)
 
 Does the graceful shutdown work is a similar way? No. Graceful shutdown means "finish whatever you are doing but take your time and be careful; don't break the business logic". During graceful shutdown you definitely don't want to drop the requests on the floor. So, instead of sending an out-of-band signal, like hard cancel did, you just write an application-defined STOP message to the channel and leave the child coroutine to do it's work. After it processes DoA, DoB and DoC, it will eventually receive the STOP message. At that point it will do the terminal handshakes, it will flush data to disk and so on. Finally, it will exit.
 
-[](146/gs2.png)
+![](gs2.png)
 
 The point I am trying to make here is that while hard-cancel signal travels necessarily out-of-band, the graceful shutdown signal must be, equally necessarily, passed in-band.
 

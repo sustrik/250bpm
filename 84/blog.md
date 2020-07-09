@@ -14,6 +14,6 @@ This is an actual Slovak folk song.
     Because the birch tree is no more.
     No, it is no more.
 
-[](84/birch.png)
+![](birch.png)
 
 **June 13th, 2016**

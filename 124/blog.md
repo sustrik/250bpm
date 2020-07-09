@@ -42,7 +42,7 @@ The control variable is stored on the stack. Maybe we can do the same with corou
 
 The stack would then look like this:
 
-[](124/stack.png)
+![](stack.png)
 
 The remaining problem is to make sure that foo() is not running any more when the scope the stack was declared in is exited. If it was still running, it would use memory on the stack below the stack pointer. If the stack grew again the new stack frames and the coroutine would overwrite each other.
 
@@ -60,7 +60,7 @@ See the animation below, but be warned. Once you see it you cannot unsee it. I'v
 
 Each box in the picture is a stack frame:
 
-[](124/calltree.gif)
+![](calltree.gif)
 
 ### A coroutine can be orphaned
 
@@ -130,7 +130,7 @@ Now imagine that we want to shut down the bundle but we want to give the worker 
 
 We would have to somehow wrap the all-style bundle of worker threads into a any-style bundle together with a new timeout coroutine.
 
-[](124/nesting.png)
+![](nesting.png)
 
 One can even imagine three or four levels of such nesting.
 

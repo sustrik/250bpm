@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   Getting rid of state machines (I)
+  </h1>
+  <p>
+   I've written about state machines
+   <a href="http:///www.250bpm.com/blog:25">
+    before
+   </a>
+   .
+  </p>
+  <p>
+   The message I was trying to convey was that using state machines is superior to relying on callbacks.
+  </p>
+  <p>
+   Which it is. Most definitely.
+  </p>
+  <p>
+   However, state machines have a bunch of problems of their own.
+  </p>
+  <p>
+   In this article I wan to discuss these problems in detail and propose what has to be done to replace state machines by standard linear code.
+  </p>
+  <p>
+   What's wrong?
+  </p>
+  <hr/>
+  <p>
+   Let's go straight to the problem: State machines are large and brittle.
+  </p>
+  <p>
+   Typically, there's no built-in support for state machines in your language and so you end up managing a large amount of boilerplate code. (In theory, you could generate the boilerplate, but code generation is super contributor-unfriendly and thus should better be avoided.)
+  </p>
+  <p>
+   What's worse, the code is complex and hard to reason about. It's extremely easy to get wrong.
+  </p>
+  <p>
+   In practice, the common traversal paths through the state machines are written and debugged early in the development cycle and what you are left with are bugs in rarely used paths dealing with stuff like timeouts, cancelations or errors. Interactions between different state machines multiply the complexity and what results are rarely seen, non-deterministic heisenbugs that take ages to reproduce and fix.
+  </p>
+  <p>
+   What is a state machine?
+  </p>
+  <hr/>
+  <p>
+   To fix the problems with state machines we first have to have clear understanding of what state machine is and what it isn't.
+  </p>
+  <p>
+   To put it simply, state machine is a computation, an algorithm.
+  </p>
+  <p>
+   It is very similar to 'function' (also known as procedure, method or subroutine), but unlike function it splits the computation is multiple smaller steps. The added value of the splitting is that the state machine can be interrupted each time it processes one step and before it starts processing the next one.
+  </p>
+  <p>
+   But what's the point? Why would anyone want to execute a function, which is a perfectly sane and nicely encapsulated unit of computation, in several steps?
+  </p>
+  <p>
+   And here we are getting to the core of the problem: You want to split the function because it may take too long to finish — it can do a lot of work or maybe just idly wait for I/O — and in the meantime it blocks other stuff from being executed.
+  </p>
+  <p>
+   Typical use of state machines is to run a step of one state machine, then run a step from another one and so on. In short, state machine is a very lightweight thread that user can schedule by hand. It is a manual alternative to an OS process or an OS thread.
+  </p>
+  <p>
+   Why state machines?
+  </p>
+  <hr/>
+  <p>
+   The obvious question thus is: Why state machines? Why not processes or threads?
+  </p>
+  <p>
+   And the obvious answer is: Performance.
+  </p>
+  <p>
+   When UNIX was still young, scheduling was supposed to be done by the OS on per-process basis. When implementing a network server, for example, you were supposed to fork a new instance of the process for each TCP connection and rely on the OS scheduler to switch between the processes.
+  </p>
+  <p>
+   I guess it made sense from performance point of view back then. All the stuff that makes process switching slow today haven't yet existed. Machines had single processor, there was no virtual addressing or memory caches. In such an environment process switching was closer to what we call green threads today.
+  </p>
+  <p>
+   Later on came threads. Threads are like processes, but operate in the same address space, so there's no need to switch the TLBs. Thus, cost of context switch is lower.
+  </p>
+  <p>
+   Finally, we've got green threads. These are typically implemented on the language level and avoid even more cost. The latest and most optimised version is Golang's goroutines. They are cooperatively scheduled, thus there is no cost associated with preemption. They have tiny stacks, maybe couple of kilobytes. They can even be scheduled on multiple CPU cores like real OS threads.
+  </p>
+  <p>
+   Goroutines are performance-wise comparable with hand-written state machines. It seems that there's no more space for radical performance improvement.
+  </p>
+  <p>
+   So, we can forget about state machines and use green threads instead, right?
+  </p>
+  <p>
+   Unfortunately no. Green threads, even if they bring us a long way towards the goal, aren't sufficient to eliminate all state machines. In next blog post I'll dig into the remaining problems in more detail.
+  </p>
+  <p>
+   <strong>
+    January 5th, 2016
+   </strong>
+  </p>
+ </body>
+</html>

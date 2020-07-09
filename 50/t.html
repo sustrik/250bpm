@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   Finish your stuff
+  </h1>
+  <p>
+   If there is one principle that should be added to the UNIX philosophy, it is:
+  </p>
+  <p>
+   "Finish your project."
+  </p>
+  <p>
+   It's the most simple, yet the most disregarded software engineering princinple I can think of.
+  </p>
+  <p>
+   I dare you to list three finished software projects.
+  </p>
+  <p>
+   Having hard time, eh?
+  </p>
+  <p>
+   Except for some basic UNIX tools, like grep or make, it's almost impossible to find anyting that's truly finished, not simply abandoned.
+  </p>
+  <p>
+   Imagine the carpenters were like programmers. You bought a chair. You bought it because you've inspected it and found out that it fulfills all your needs. Then, every other day, the carpenter turns up at your place and makes a modification to the chair. Some of the changes may be useful, some neutral, some are simply annoying and some, like those spikes protruding from the wood, make the chair no longer usable. But irrespective of that: You bought a damned chair and you want it to remain a chair, not to find out that it's some kind of protean piece of furniture that's a chair today and partly a table tomorrow and, who knows, maybe you'll be able to humidify your cigars in it next week. So you refuse to let the carpenter in just to find out next morning that the chair have sneaked out through the back door during the night and had nice shiny dental drill added. At this point there's no recourse but to burn the chair down, put its remanants into the cellar and pour some quality concrete over it to make sure it stays dead forever. But just before the movie ends, there's a shot showing a crack in the concrete making it clear that new, monstrous "Chair, version 2" sequel is coming. Soon.
+  </p>
+  <p>
+   In short, do finish your stuff.
+  </p>
+  <p>
+   Of course, it will need maintenance later on, bug fixes and security patches, but make it functionally complete in the first place.
+  </p>
+  <p>
+   Yes, I hear you claiming that your project is special and cannot be made functionally complete because, you know, circumstances X, Y and Z.
+  </p>
+  <p>
+   And here's the trick: If it can't be made functionally complete it's too big. You've tried to bite off a piece that's bigger than you can swallow. Just get back to the drawing board and split off a piece that can be made functionally complete. And that's the component you want to implement.
+  </p>
+  <p>
+   Here's my own experience:
+  </p>
+  <p>
+   First open source project I've worked on was
+   <a href="https://www.amqp.org/">
+    AMQP
+   </a>
+   messaging protocol and its reference implementation. It was impossible to make it functionally complete because it was designed by committee and it kept growing all the time. If it still lives its long and tortured life it's probably able to sing and dance and provide light entertainment for the entire family by now.
+  </p>
+  <p>
+   Out of the frustration with AMQP I've started my own
+   <a href="http://zero.mq">
+    ZeroMQ
+   </a>
+   project. No committee this time! Surely, I was able to make it functionally complete? Well, no. I've tried to make it do too much. It is a compatibility library, a async I/O framework, a message delimitation protocol and a library of messaging patterns. Today, almost eight years after its inception, the project is still under active development and heading towards the point where it will be able to
+   <a href="http://www.catb.org/jargon/html/Z/Zawinskis-Law.html">
+    send email
+   </a>
+   .
+  </p>
+  <p>
+   Next one:
+   <a href="http://nanomsg.org">
+    nanomsg
+   </a>
+   . An alternative to ZeroMQ. I've tried to limit the scope of project by splitting the transport functionality as well as messaging patterns into separate plug-ins. I was partially successful, but it is still too big a chunk to swallow in a single piece.
+  </p>
+  <p>
+   Lately, after 30 years in the programming business, I've finally managed to cut down my projects to a reasonable size.
+  </p>
+  <p>
+   <a href="http://sustrik.github.io/ribosome/">
+    Ribosome
+   </a>
+   is a code generator. It generates code and that's it. It's functionally complete. Since I wrote it I've fixed some bugs and it was translated to a couple of alternative programming languages (thanks to Apostolis Xekoukoulotakis and Ali Zaidi!). But that's it. No functionality was added. And, I assure you, there's no plan to do so in the future.
+  </p>
+  <p>
+   <a href="http://libmill.org">
+    Libmill
+   </a>
+   is a library that introduces Go-style concurrency to C. After couple of months of development it seems to functionally complete now. In the future it may be ported to different CPU architectures and opertating systems but there will be no functionality change. There will be bugfixes but no feature creep.
+  </p>
+  <p>
+   So, it seems, I am finally there.
+  </p>
+  <p>
+   Please join me in my effort and do finish your projects. Your users will love you for that.
+  </p>
+  <p>
+   <strong>
+    June 9th, 2015
+   </strong>
+  </p>
+ </body>
+</html>

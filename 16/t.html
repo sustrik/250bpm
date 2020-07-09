@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   Implementing Network Protocols in User Space
+  </h1>
+  <p>
+   Implementing network protocols in user space is not as uncommon as it may seem. The advantages when compared to implementing them in the kernel space range from easier development, more freedom to experiment and greater portability to less hassle with the distribution (the pain of getting the patch into the mainline kernel vs. simply uploading a user space library to GitHub), improved performance thanks to kernel by-pass and no way to provide a kernel space implementation for proprietary platforms like Windows.
+  </p>
+  <p>
+   While my experience in the area is based on my work on
+   <a href="http://www.zeromq.org">
+    ZeroMQ
+   </a>
+   and more recently on
+   <a href="http://nanomsg.org">
+    nanomsg
+   </a>
+   , there are many other libraries that share the same challenge. One may mention, for example,
+   <a href="https://code.google.com/p/openpgm">
+    OpenPGM
+   </a>
+   (reliable multicast, RFC 3208),
+   <a href="http://udt.sourceforge.net/">
+    UDT
+   </a>
+   (bulk transfer protocol) or
+   <a href="http://www.openonload.org/">
+    OpenOnload
+   </a>
+   (Solarflare's kernel by-pass networking).
+  </p>
+  <p>
+   This article gives an overview of technical challenges of designing an idiomatic APIs for network protocols implemented in user space and provides a background for my recent
+   <a href="https://lkml.org/lkml/2013/2/8/67">
+    EFD_MASK patch to Linux kernel
+   </a>
+   .
+  </p>
+  <p>
+   When implementing a network protocol in user space you will almost certainly start with some kind of clone of BSD sockets API:
+  </p>
+  <pre><code>struct myproto_sock {
+</code></pre>
+  <pre><code>    ...
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <pre><code>struct myproto_addr {
+</code></pre>
+  <pre><code>    ...
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <pre><code>struct myproto_sock *myproto_socket (void);
+</code></pre>
+  <pre><code>int myproto_close (struct myproto_sock *s);
+</code></pre>
+  <pre><code>int myproto_bind (struct myproto_sock *s, myproto_addr *addr);
+</code></pre>
+  <pre><code>int myproto_connect (struct myproto_sock *s, myproto_addr *addr);
+</code></pre>
+  <pre><code>ssize_t myproto_send (struct myproto_sock *s,
+</code></pre>
+  <pre><code>    const void *buf, size_t len, int flags);
+</code></pre>
+  <pre><code>ssize_t myproto_recv (struct myproto_sock *s,
+</code></pre>
+  <pre><code>    void *buf, size_t len, int flags);
+</code></pre>
+  <p>
+   However, when implementing anything except for the simplest client applications this API is not sufficient. To handle more than one socket in parallel, you need polling. For example, your server application may want to wait until at least one of several myproto sockets becomes readable.
+  </p>
+  <p>
+   Once again, the most obvious solution is to fork the polling API from BSD sockets:
+  </p>
+  <pre><code>struct myproto_pollfd {
+</code></pre>
+  <pre><code>    struct myproto_sock *fd;
+</code></pre>
+  <pre><code>    short events;
+</code></pre>
+  <pre><code>    short revents;
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <pre><code>int myproto_poll (struct myproto_pollfd *fds, nfds_t nfds, int timeout);
+</code></pre>
+  <p>
+   The next stumbling block is combining classic TCP or UDP sockets with myproto sockets in a single pollset. What if the server application wants to handle a set of myproto sockets along with a set of TCP sockets? The above API doesn't support that kind of thing. We have to modify the myproto_pollfd prototype to allow for using either myproto_sock pointer or regular OS-level file descriptor:
+  </p>
+  <pre><code>/*  rawfd field is used instead of fd when the latter is set to NULL */
+</code></pre>
+  <pre><code>struct myproto_pollfd {
+</code></pre>
+  <pre><code>    struct myproto_sock *fd;
+</code></pre>
+  <pre><code>    int rawfd;
+</code></pre>
+  <pre><code>    short events;
+</code></pre>
+  <pre><code>    short revents;
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <p>
+   The API is getting a little ugly, but it's still more or less usable. Unfortunately, it's not yet the end of the trouble. Actually, this is the point where things start to get hairy. Let's inspect the next use case.
+  </p>
+  <p>
+   There are many widely used asynchronous networking frameworks out there. Their main goal is to shield the user from the complexity of handling many connections in parallel. Obviously, central piece of each such framework is a loop polling on a set of sockets and invoking user-supplied handlers when the poll reports a network event. The polling itself is done via one of the system-level polling mechanisms, such as select, poll, epoll, kqueue, IOCP, or /dev/poll.
+  </p>
+  <p>
+   However, myproto sockets require a special polling function (myproto_poll) and thus cannot be integrated with such frameworks.
+  </p>
+  <p>
+   In theory, the framework can be modified to use myproto_poll instead of the system poll, but such a patch is never going to get into the mainline. The most obvious reason is that it makes the framework dependent on the myproto library, but the real problem occurs when there's a need to handle two different user space protocols. One asks the framework to use myproto_poll function, other one asks it to use someoneelsesproto_poll. There's no way to reconcile the two.
+  </p>
+  <p>
+   In short, protocol developer's only option is to somehow provide a native file descriptor for the frameworks to poll on. It can be done, for example, in the following way. This example assumes that myproto is a protocol built directly on top of IP layer:
+  </p>
+  <pre><code>struct myproto_fd {
+</code></pre>
+  <pre><code>    int raw; /*  underlying IP (SOCK_RAW) socket */
+</code></pre>
+  <pre><code>    ...
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <pre><code>int myproto_getfd (struct myproto_fd *s)
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    return s-&gt;raw;
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <p>
+   The user is expected to retrieve the underlying system file descriptor from myproto_fd (via myproto_getfd function) and use it for actual polling (select, poll, epoll etc.)
+  </p>
+  <p>
+   The problem with this approach is that the underlying file descriptor signals individual poll events depending on what's happening on IP layer, rather than on the myproto layer. For example, if a myproto control packet with no embedded user data arrives, the file descriptor will signal POLLIN, however, subsequent myproto_recv will return no data.
+  </p>
+  <p>
+   To solve this problem we have to implement a new function that will check whether the socket is
+   <strong>
+    really
+   </strong>
+   readable. Something like this:
+  </p>
+  <pre><code>struct myproto_fd {
+</code></pre>
+  <pre><code>    int raw; /*  underlying IP (SOCK_RAW) socket */
+</code></pre>
+  <pre><code>    uint8_t rx_buffer [128 * 1024]; /* receive buffer */
+</code></pre>
+  <pre><code>    size_t bytes_in_rx_buffer; /* amount of user data in reveive buffer */
+</code></pre>
+  <pre><code>    ...
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <pre><code>int myproto_getfd (struct myproto_fd *s)
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    return s-&gt;raw;
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <pre><code>int myproto_can_recv (struct my_proto_fd *s)
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    if (s-&gt;bytes_in_rx_buffer &gt; 0)
+</code></pre>
+  <pre><code>        return 1;
+</code></pre>
+  <pre><code>    else
+</code></pre>
+  <pre><code>        return 0;
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <p>
+   The intended usage is as follows:
+  </p>
+  <ol>
+   <li>
+    Retrieve the raw file descriptor form myproto socket.
+   </li>
+  </ol>
+  <ol>
+   <li>
+    Poll on it.
+   </li>
+  </ol>
+  <ol>
+   <li>
+    When POLLIN is signaled, use myproto_can_recv to find out whether the socket is really readable.
+   </li>
+  </ol>
+  <ol>
+   <li>
+    If so, receive the data via myproto_recv. The call is now guaranteed to return at least 1 byte.
+   </li>
+  </ol>
+  <p>
+   That's already pretty ugly. In the real world the API tends to get even worse. There are multiple reasons for that: The need to report special conditions like POLLERR, POLLPRI or POLLHUP. Using multiple underlying raw sockets. Handling underlying raw sockets in a background thread. Etc.
+  </p>
+  <p>
+   Let's consider the example of ZeroMQ. With ZeroMQ underlying sockets are managed by a worker thread. Worker thread communicates with user thread by sending it events via a socketpair. One event may mean, for example, "new messages have arrived". However, for efficiency reasons the event is not sent for every single arrived message, only when there was no message in the rx buffer beforehand. This kind of approach is called edge-triggering.
+  </p>
+  <p>
+   So, when user thread wants to poll on ZeroMQ socket it retrieves its internal file descriptor (receive side of the socketpair) and uses it for polling. Given that it is edge triggered, user has to deal with edge-triggering in the application. And it turns out that edge triggering is very counter-intuitive for most users and that it is seen as adding significant complexity to the API and leading to subtle bugs in the applications.
+  </p>
+  <p>
+   If you want to have a closer look at the convoluted API, check documentation for zmq_poll as well as for ZMQ_FD and ZMQ_EVENTS socket options. OpenPGM gets into pretty similar situation — see PGM_SEND_SOCK, PGM_RECV_SOCK, PGM_PENDING_SOCK and PGM_REPAIR_SOCK socket options. UDT implementation, if I recall correctly, just gives up and doesn't provide any generic polling mechanism at all. OpenOnload, on the other hand, hijacks the whole system socket API and replaces it with its own implementation.
+  </p>
+  <p>
+   As can be seen, all the possible solutions are basically ugly hacks. The question thus is, what can be done to fix the problem in a systematic manner.
+  </p>
+  <p>
+   Here's where proposed EFD_MASK patch for Linux kernel kicks in.
+  </p>
+  <p>
+   The fundamental idea is that it should be possible to create a system-level file descriptor to work as a placeholder for a socket implemented in the user space. Additionally, user space should be able to specify which events will be returned when the descriptor is polled on.
+  </p>
+  <p>
+   And as it turns out, Linux already offers an object that almost fits the bill. It's called eventfd.
+  </p>
+  <p>
+   For those not familiar with eventfd, it is basically a counter. By writing data to the eventfd you increase the counter, by reading data from eventfd you decrease the counter. When you poll on eventfd, it signals POLLIN when counter contains a value greater than zero. POLLOUT is signaled all the time except for the case when the counter reaches value of 0xffffffffffffffff.
+  </p>
+  <p>
+   There are couple of things missing though:
+  </p>
+  <ol>
+   <li>
+    There's no way to associate user space data (socket state) with eventfd.
+   </li>
+  </ol>
+  <ol>
+   <li>
+    While eventfd is great for signaling POLLIN and more or less viable for signaling POLLOUT, you can't force it to signal special events, such as POLLHUP or POLLPRI.
+   </li>
+  </ol>
+  <ol>
+   <li>
+    You can't even make it signal all possible combinations of POLLIN and POLLOUT. Specifically, there's no way to signal neither POLLIN nor POLLOUT, which is pretty common condition that can occur quite easily in network protocols (when receive buffer is empty and send buffer is full).
+   </li>
+  </ol>
+  <p>
+   To solve these problems we need to, first, associate an opaque pointer with the eventfd, and second, replace eventfd's counter semantics with mask semantics, i.e. network protocol implementation should be able to explicitly specify the mask of events to be signaled when the file descriptor is polled on.
+  </p>
+  <p>
+   At the moment, the addition to the existing Linux eventfd API looks like this:
+  </p>
+  <pre><code>#define EFD_MASK 2
+</code></pre>
+  <pre><code>struct efd_mask {
+</code></pre>
+  <pre><code>    uint32_t events;
+</code></pre>
+  <pre><code>    union {
+</code></pre>
+  <pre><code>        void *ptr;
+</code></pre>
+  <pre><code>        uint32_t u32;
+</code></pre>
+  <pre><code>        uint64_t u64;
+</code></pre>
+  <pre><code>    };
+</code></pre>
+  <pre><code>} __attribute__ ((__packed__));
+</code></pre>
+  <p>
+   You can use
+   <strong>
+    eventfd
+   </strong>
+   system call in combination with EFD_MASK flag to create a special type of eventfd object with mask semantics:
+  </p>
+  <pre><code>s = eventfd (0, EFD_MASK);
+</code></pre>
+  <p>
+   You can use
+   <strong>
+    write
+   </strong>
+   system call to set events and opaque data to the eventfd:
+  </p>
+  <pre><code>struct efd_mask mask;
+</code></pre>
+  <pre><code>mask.events = POLLIN | POLLHUP;
+</code></pre>
+  <pre><code>mask.u32 = 1234;
+</code></pre>
+  <pre><code>write (s, &amp;mask, sizeof (mask));
+</code></pre>
+  <p>
+   Afterwards, you can use
+   <strong>
+    read
+   </strong>
+   system call to get currently set events and opaque data from the eventfd:
+  </p>
+  <pre><code>struct efd_mask mask;
+</code></pre>
+  <pre><code>read (s, &amp;mask, sizeof (mask));
+</code></pre>
+  <pre><code>assert (mask.u32 == 1234);
+</code></pre>
+  <p>
+   Finally, when you poll on the eventfd using
+   <strong>
+    select
+   </strong>
+   ,
+   <strong>
+    poll
+   </strong>
+   or
+   <strong>
+    epoll_wait
+   </strong>
+   function, you'll get the events specified by last events written to eventfd:
+  </p>
+  <pre><code>struct pollfd pfd;
+</code></pre>
+  <pre><code>pfd.fd = s;
+</code></pre>
+  <pre><code>pfd.events = POLLIN | POLLOUT;
+</code></pre>
+  <pre><code>int cnt = poll (&amp;pfd, 1, -1);
+</code></pre>
+  <pre><code>assert (cnt == 1);
+</code></pre>
+  <pre><code>assert (pfd.revents == POLLIN | POLLHUP);
+</code></pre>
+  <p>
+   What follows is an example on a network protocol implemented in user space. It takes advantage of EFD_MASK functionality to provide socket-like behaviour to the user. There's are only three functions (opening socket, closing socket and receive) in the example. Other functions (send, setsockopt, connect, bind etc.) are left as an exercise for the reader:
+  </p>
+  <pre><code>struct myproto_state
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>     /*  Undelying raw sockets go here, protocol state machine etc. */
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <pre><code>int myproto_socket (void)
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    int s;
+</code></pre>
+  <pre><code>    struct myproto_state *state;
+</code></pre>
+  <pre><code>    struct efd_mask mask;
+</code></pre>
+  <pre><code>    /*  Create the file descriptor to represent the new myproto socket. */
+</code></pre>
+  <pre><code>    s = eventfd (0, EFD_MASK);
+</code></pre>
+  <pre><code>    /*  Create socket state and associate it with eventfd. */
+</code></pre>
+  <pre><code>    state = malloc (sizeof (struct myproto_state));
+</code></pre>
+  <pre><code>    mask.events = 0;
+</code></pre>
+  <pre><code>    mask.ptr = state;
+</code></pre>
+  <pre><code>    write (s, &amp;mask, sizeof (mask));
+</code></pre>
+  <pre><code>    return s;
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <pre><code>int myproto_close (int s)
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    struct efd_mask mask;
+</code></pre>
+  <pre><code>    struct myproto_state *state;
+</code></pre>
+  <pre><code>    /*  Retrieve the state. */
+</code></pre>
+  <pre><code>    read (s, &amp;mask, sizeof (mask));
+</code></pre>
+  <pre><code>    state = mask.ptr;
+</code></pre>
+  <pre><code>    /*  Deallocate the state and close the eventfd. */
+</code></pre>
+  <pre><code>    free (state);
+</code></pre>
+  <pre><code>    close (s);
+</code></pre>
+  <pre><code>    return 0;
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <pre><code>ssize_t myproto_recv (int s, void *buf, size_t len, int flags)
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    struct efd_mask mask;
+</code></pre>
+  <pre><code>    struct myproto_state *state;
+</code></pre>
+  <pre><code>    /*  Retrieve the state. */
+</code></pre>
+  <pre><code>    read (s, &amp;mask, sizeof (mask));
+</code></pre>
+  <pre><code>    state = mask.ptr;
+</code></pre>
+  <pre><code>    ... move data from protocol's rx buffer to the user's buffer ...
+</code></pre>
+  <pre><code>    /*  If there are no more data in rx buffer, unsignal POLLIN. */
+</code></pre>
+  <pre><code>    if (state-&gt;rx_buffer_size == 0)
+</code></pre>
+  <pre><code>        mask.events &amp;= ~POLLIN;
+</code></pre>
+  <pre><code>    /*  Store the modified poll flags. */
+</code></pre>
+  <pre><code>    write (s, &amp;mask, sizeof (mask));
+</code></pre>
+  <pre><code>    return nbytes;
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <p>
+   The code is relatively self-explanatory, so let me make one final remark. All the socket functions (except for socket creation and termination) follow the same pattern:
+  </p>
+  <ol>
+   <li>
+    Read from eventfd to get the socket state
+   </li>
+  </ol>
+  <ol>
+   <li>
+    Do actual work. Modify the poll flags in the process, if needed.
+   </li>
+  </ol>
+  <ol>
+   <li>
+    Write the state to the eventfd.
+   </li>
+  </ol>
+  <p>
+   Following these instructions should make implementing network protocols in user space easy. Or, if not easy (network protocols rarely are) it at least allows developers to focus on the functionality of the protocol rather than force them to fight with constraints and deficiencies of the underlying operating system.
+  </p>
+  <p>
+   <strong>
+    February 8th, 2013
+   </strong>
+  </p>
+ </body>
+</html>

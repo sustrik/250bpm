@@ -16,13 +16,13 @@ Both Scotts focused on the problem of getting into a better equilibrium. I, on t
 
 Consider a simple coordination game. The players don't know each other, can't communicate and so on. Each of them has to chose either blue card or green card. If they both pick green card, both get $100. If they both pick blue card both get $50. If they pick different cards they get nothing.
 
-[](123/progress1.png)
+![](progress1.png)
 
 Assuming that the tradition is to pick blue card, the players are stuck in suboptimal equilibrium. They both get $50, sure, but if they both managed to pick green card they could get double. But you can't communicate and if you chose green and your partner sticks with the tradition of picking blue, then tough luck, you get nothing. Moreover, you'll get chastised afterwards for violating the tradition.
 
 You can rephrase it in political terms. Replace $50 option by a shitty dictatorial regime. Replace $100 by a highly desirable functioning democracy. Replace $0 by a failed state (think of what's going on right now in Venezuela) or a civil war (Syria):
 
-[](123/progress2.png)
+![](progress2.png)
 
 Scotts, based on how they've phrased the problem, were interested mostly in how to solve the coordination problem and move from $50 to $100 (or from a dictatorial regime to democracy).
 
@@ -66,12 +66,12 @@ Another interesting insight from the model is that the two attitudes are not mut
 
 And that reminds me of an illustration from Konrad Lorenz' book "Das sogenannte Böse" (clumsily translated to English as "On Aggression"):
 
-[](123/progress3.png)
+![](progress3.png)
 
 The dog on the bottom left is relaxed, it feels neither aggression nor fear. The dog on the bottom right is aggressive, ready to attack. The dog on the top left is afraid. The dog on the top right is both afraid and aggressive. The latter may happen if the animal is cornered or if it can't to escape a dangerous situation for some other reason (e.g. defending the young).
 
 Now, if we liken progressivism with aggression (in the good sense, as a will to achieve a desirable goal) and conservatism with fear (in the good sense, as a will to avoid harm) we can redraw the picture like this:
 
-[](123/progress4.png)
+![](progress4.png)
 
 **April 21st, 2018**

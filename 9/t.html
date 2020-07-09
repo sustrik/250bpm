@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   Enclave Pattern
+  </h1>
+  <p>
+   In my last
+   <a href="/blog:8">
+    blog post
+   </a>
+   I've ranted about problems with implementing
+   <a href="http://www.boost.org/doc/libs/1_35_0/doc/html/intrusive/intrusive_vs_nontrusive.html">
+    intrusive containers
+   </a>
+   in C++.
+  </p>
+  <p>
+   The main problem is that to allow an object to be included into an intrusive container you have to modify the object itself, for example, add 'prev' and 'next' member variables to it. That in turn breaks the encapsulation principle. In rigorous object-oriented design the item is owned by the container, and thus the container should be aware of the item but
+   <strong>
+    not vice versa
+   </strong>
+   .
+  </p>
+  <p>
+   There have been a lot of discussion about the blog post both on this site and elsewhere but, unfortunately, participants focused on unrelated issues like whether list is an efficient data structure or whether objects as such rather than pointers should be stored in the non-intrusive list. The encapsulation issue went almost unnoticed and nobody have proposed any solution for it.
+  </p>
+  <p>
+   While I believe the encapsulation issue is a problem of design of C++ language and thus cannot be solved in C++, there seems to be a way to mitigate it. You cannot avoid adding 'prev' and 'next' pointers to the contained item, however you can prohibit the item to access these members and you can make them visible only to the container. To do that you can use a strange technique that I haven't seen being used so far, so I am taking liberty to call it "enclave pattern".
+  </p>
+  <p>
+   According to Wikipedia "An enclave is a territory entirely surrounded by another territory."
+  </p>
+  <p>
+   <img alt="" src="enclave1.png"/>
+  </p>
+  <p>
+   In the picture above, C is an eclave of A inside the teritory of B. Well-know real-world enclaves are, for example,
+   <a href="https://en.wikipedia.org/wiki/Kaliningrad_Oblast">
+    Kaliningrad
+   </a>
+   or
+   <a href="https://en.wikipedia.org/wiki/Nagorno-Karabakh">
+    Nagorno-Karabakh
+   </a>
+   .
+  </p>
+  <p>
+   In the programming context we can create an enclave C of class A inside class B. The idea is that while instance of C is embedded inside of instance of B, its members are not accessible by B, only by A:
+  </p>
+  <pre><code>class A
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>public:
+</code></pre>
+  <pre><code>    class C
+</code></pre>
+  <pre><code>    {
+</code></pre>
+  <pre><code>        friend class ::A;
+</code></pre>
+  <pre><code>    private:
+</code></pre>
+  <pre><code>        int i;
+</code></pre>
+  <pre><code>    };
+</code></pre>
+  <pre><code>    void fx ();
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <pre><code>class B
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>public:
+</code></pre>
+  <pre><code>    A::C c;
+</code></pre>
+  <pre><code>    void fx ();
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <p>
+   The unusual thing about the code snippet above is that class C is entirely private. It has no public members nor methods. In theory, it should be unusable. However, we are using 'friend' keyword to grant class A access to it.
+  </p>
+  <p>
+   Now, let's test the encapsulation:
+  </p>
+  <pre><code>void A::fx ()
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    B b;
+</code></pre>
+  <pre><code>    //  Following assignment compiles OK.
+</code></pre>
+  <pre><code>    b.c.i = 0;
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <pre><code>void B::fx ()
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    //  Following assignment fails to compile:
+</code></pre>
+  <pre><code>    //  error: ‘int A::C::i’ is private
+</code></pre>
+  <pre><code>    c.i = 0;
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <p>
+   As can be seen, enclave C exists inide of B, however, it can be accessed only from the methods of A.
+  </p>
+  <p>
+   And here's an example of implementing an intrusive list using the enclave pattern:
+  </p>
+  <pre><code>class list
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>public:
+</code></pre>
+  <pre><code>    class helper
+</code></pre>
+  <pre><code>    {
+</code></pre>
+  <pre><code>        friend class ::list;
+</code></pre>
+  <pre><code>    private:
+</code></pre>
+  <pre><code>        helper *prev;
+</code></pre>
+  <pre><code>        helper *next;
+</code></pre>
+  <pre><code>    };
+</code></pre>
+  <pre><code>    void push_back (node *item)
+</code></pre>
+  <pre><code>    {
+</code></pre>
+  <pre><code>        mtx.lock ();
+</code></pre>
+  <pre><code>        item-&gt;next = 0;
+</code></pre>
+  <pre><code>        item-&gt;prev = last;
+</code></pre>
+  <pre><code>        last = item;
+</code></pre>
+  <pre><code>        mtx.unlock ();
+</code></pre>
+  <pre><code>    }
+</code></pre>
+  <pre><code>private:
+</code></pre>
+  <pre><code>    mutex mtx;
+</code></pre>
+  <pre><code>    helper *first;
+</code></pre>
+  <pre><code>    helper *last;
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <pre><code>//  This class can be contained in the list.
+</code></pre>
+  <pre><code>class person 
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>public:
+</code></pre>
+  <pre><code>    list::helper h;
+</code></pre>
+  <pre><code>    int age;
+</code></pre>
+  <pre><code>    int weight;
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <p>
+   <em>
+    EDIT: The following example was added to the article post facto.
+   </em>
+  </p>
+  <p>
+   I've deliberately made the list implementation thread-safe to make the value of enclave pattern more obvious. The 'list' object contains a mutex that guards all the data fields belonging to the list. That is 'first' and 'last' members of the 'list' itself as well as 'prev' and 'next' fields that are the enclave of 'list' class inside 'person' class.
+  </p>
+  <p>
+   Now, imagine that implementer of 'person' class would accidentally mess with the 'next' pointer. As 'person' class exists outside of the list's critical section, it would lead to race conditions and undefined behaviour:
+  </p>
+  <pre><code>class person 
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>public:
+</code></pre>
+  <pre><code>    list::helper h;
+</code></pre>
+  <pre><code>    int age;
+</code></pre>
+  <pre><code>    int weight;
+</code></pre>
+  <pre><code>    void be_evil ()
+</code></pre>
+  <pre><code>    {
+</code></pre>
+  <pre><code>        h.next = 0;
+</code></pre>
+  <pre><code>    }
+</code></pre>
+  <pre><code>};
+</code></pre>
+  <p>
+   Fortunately, the 'enclave' pattern saves the day here. When trying to compile the above implementation of 'person' the compiler will report an error:
+  </p>
+  <pre><code>error: ‘list::node *list::node::next’ is private
+</code></pre>
+  <p>
+   It is entirely possible that this pattern was already described elsewhere and I believe it is new only thanks to sheer ignorance. If so, let me know and I'll add the appropriate citation to this article.
+  </p>
+  <p>
+   <strong>
+    September 11th, 2012
+   </strong>
+  </p>
+ </body>
+</html>

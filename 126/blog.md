@@ -12,7 +12,7 @@ So I went there and, oh my god, I was impressed.
 
 The building is HUGE:
 
-[](126/cvernovka.png)
+![](cvernovka.png)
 
 Moreover, it wasn't used before. It must have been in a terrible condition. Just getting it into a usable state must have been a Sisyphean task. How did they managed to do that?
 

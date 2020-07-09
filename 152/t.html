@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   On the Nature of Programming Languages
+  </h1>
+  <p>
+   What are we doing when designing a programming language? We decide whether it's going to be imperative or declarative. We add a bunch of operators. We add some kind of objects and visibility rules. We decide to make it either strongly-typed or weakly-typed. Maybe we add generics or inheritance, or maybe multiple inheritance. And so on.
+  </p>
+  <p>
+   The question that interests me is whether the nature of these tools is determined by the problems we want to solve, whether they are, in some way, inherent to or, in other words, directly inferrable from the nature of the problem at hand, or whether they are rather crutches for our imagination, a purely psychological constructs that help our imperfect brains to deal with the complexity of the real world.
+  </p>
+  <p>
+   If you asked me ten years ago, I would probably
+   <a href="http://250bpm.com/blog:95">
+    argue for the latter
+   </a>
+   .
+  </p>
+  <p>
+   And it's not hard to "prove" it: If two people write code to solve the same problem and one makes a terrible spaghetti monster in COBOL while the other goes for super-elegant and highly abstracted solution in Haskell, does it really matter to the computer? As long as the two are compiled to the same machine code, the machine does not care. All the clever constructs used, all the elegance, they are there only to guide our intuition about the code.
+  </p>
+  <p>
+   So, you see, the design of a programming language is determined by human psychology, by the quirks and foibles of the human brain. If there are inheritance hierarchies in your language it's not because things in the real world tend to arrange in neat trees — in fact, they never do, and if you want to point out the tree of life, I have bad news for you: most organisms have two parents and the tree of life is really a
+   <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">
+    DAG
+   </a>
+   of life — it's because human brains like to think in terms of taxonomies. They just happen to find it easier to deal with the complex world in that particular way.
+  </p>
+  <p>
+   But is it really so?
+  </p>
+  <p>
+   If you asked me today I wouldn't be so sure.
+  </p>
+  <p>
+   But it's a question that is not easy to answer. If you wanted to really tackle it you would need to take human brain out of the equation, so that you can find out whether the same kinds of "language constructs" arise even without a brain being involved.
+  </p>
+  <p>
+   So here's the idea: What about
+   <a href="https://en.wikipedia.org/wiki/Genetic_algorithm">
+    genetic algorithms
+   </a>
+   ? They don't require a programmer. Yet we can look at them and determine if a language feature, say encapsulation, does emerge from the process.
+  </p>
+  <p>
+   Or, rather, given the relative scarcity of data on genetic algorithms, let's have a look at evolution by natural selection. There's a code (genetic code), just like any programming language it can be executed (thus producing a phenotype) and there's definitely no brain involved. And we can ask: Is it just a random mess of instructions that happens, by a blind chance, to produce a viable phenotype or is there any internal structure to the code, something that we would recognize as a feature of a programming language?
+  </p>
+  <p>
+   And, I think, the answer may be yes.
+  </p>
+  <p>
+   Let's have a look at the concept of "
+   <a href="https://en.wikipedia.org/wiki/Evolvability">
+    evolvability
+   </a>
+   ". What it says is that natural selection may, in some cases, prefer individuals who have no direct, physical advantage, but whose progeny is more likely to adapt well to the changing evolutionary pressures.
+  </p>
+  <p>
+   But what does that even mean? Well, here's a concrete example:
+  </p>
+  <p>
+   Imagine two gazelles that are, phenotypically, the same. They look exactly the same, they behave the same etc. One would naively expect that neither of them would be preferred by natural selection.
+  </p>
+  <p>
+   But consider this: One of them has the length of the left rear leg encoded in one gene and the length of the right rear leg in a different gene. The other has the length of both hind legs encoded in a single gene. If that gene mutates both legs will be either longer or shorter, but they will never have different lengths.
+  </p>
+  <p>
+   Which of them is going to fare better in the race for survival?
+  </p>
+  <p>
+   I would bet on the single-gene one. When the environment changes and demands longer hind legs the evolutionary process would remain blind, some of the offspring would have longer legs and some of them would have shorter legs, but at least there wouldn't be the need to invest precious resources in all those unhopeful mutants with left leg shorter than the right one.
+  </p>
+  <p>
+   What the concept of evolvability says is that representation matters. The encoding isn't, in the long run, selectively neutral.
+  </p>
+  <p>
+   And as programmers we have a direct equivalent of the above: We call it subroutines. If the code is doing the same thing at two places, it's better to create a single subroutine and call it twice than to make two copies of the code.
+  </p>
+  <p>
+   Yet another example: Do you think that an organism in which every gene effects every part of its phenotype, the nose, the tail, the metabolism, the behaviour, is going to fare better than an organism where each gene is specialized for a single concrete task?
+  </p>
+  <p>
+   No, it's not. Every feature depending on every gene means that every mutation is going to change the phenotype significantly, in multiple ways. It's very likely that at least one of those changes is going to be deadly.
+  </p>
+  <p>
+   And again, there's a clear counterpart to that in programming languages. It's called modularity or, if you wish, encapsulation.
+  </p>
+  <p>
+   So, in the end, it seems the representation, the language features matter even if there's no human brain around to take advantage of them.
+  </p>
+  <p>
+   That is not to say that some of the language features aren't purely brain-oriented. Sane variable naming, for example, is likely to be such feature.
+  </p>
+  <p>
+   But still, at least some of what we encounter in programming languages probably goes deeper than that and is, in fact, objectively useful.
+  </p>
+  <p>
+   Now, to end with a lighter topic: Although I am a big fan of
+   <a href="https://en.wikipedia.org/wiki/Stanis%C5%82aw_Lem">
+    Stanisław Lem
+   </a>
+   and therefore I have pretty serious doubts about whether we'll be able to communicate with the aliens if we ever meet them (having different society, different biology, different brain, different everything is not going to make it easy) the reasoning above gives us at least some hope. If both we and the aliens write computer programs they are probably going to share at least some features (subroutines, modularity). Calling that kind of commonality "understanding" may be an exaggeration but it's still better than nothing.
+  </p>
+  <p>
+   <strong>
+    April 22nd, 2019
+   </strong>
+  </p>
+ </body>
+</html>

@@ -36,7 +36,7 @@ But even then: What do those remaining 43 codons encode?
 
 And here’s a table, stolen from Wikipedia, showing what’s going on:
 
-[](89/codons.png)
+![](codons.png)
 
 It turns out that those extra codons don’t encode anything special. They are just redundant ways to encode the same old boring amino acids.
 

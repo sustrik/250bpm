@@ -27,11 +27,11 @@ Whatever the case, failure to predict which memory is going to be used results i
 
 Another piece of the puzzle is the fact that the algorithms themselves are stored as data. The machine instructions reside in the memory and have to be accessed in the same way as data in text documents, images, databases etc. What that means is that if program jumps to an address that is not currently in the CPU cache, the execution of program hangs up for say 30 nanoseconds, till next instruction is loaded from the memory.
 
-[](6/likely1.png)
+![](likely1.png)
 
 Now, what if the jump is conditional? Obviously one path will simply continue executing the subsequent instructions which happen to be already loaded in the CPU cache. The other path jumps to another memory location and thus risks a cache miss and the associated performance penalty:
 
-[](6/likely2.png)
+![](likely2.png)
 
 In short, when there's a conditional jump (it-then-else statement in high-level languages) there will necessarily be a "slow" path and a "fast" path. And it's up to you, as a programmer, to decide what code to put on the fast path and which should go to the slow path.
 

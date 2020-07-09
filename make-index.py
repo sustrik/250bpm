@@ -6,7 +6,7 @@ for i in range(1, 161):
     html=f.read()
   pq = PyQuery(html)
   title = pq.find('#page-title').text()
-  out += '* [%s](%d/blog.html)\n' % (title, i)
+  out += '* [%s](%d/t.html)\n' % (title, i)
 print(out)
-with open("all.html", "w") as f:
+with open("all.md", "w") as f:
     f.write(out)

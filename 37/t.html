@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   Code Generation &amp; Visual Smog in Code (part I)
+  </h1>
+  <h3>
+   1.
+  </h3>
+  <p>
+   I am reading that code generation — then called "automatic programming" — originally referred to the automation of the task of punching the paper tape. Later on it became to mean generation of the real code from a higher level language like, say, Fortran.
+  </p>
+  <p>
+   Today it's not longer about creating full-blown programming languages. It's still about compilers, but rather about compilers for ad hoc, domain-specific and thow-away languages.
+  </p>
+  <h3>
+   2.
+  </h3>
+  <p>
+   Technically, to implement a compiler one needs two major parts: First, a general-purpose language to write the compiler in. Second, a parser.
+  </p>
+  <p>
+   Traditionally, compilers are implemented using C as an implementation language and tools like
+   <a href="https://en.wikipedia.org/wiki/Yacc">
+    yacc
+   </a>
+   to do the parsing part. However, if you need to write a throw-away compiler in two minutes, none of those fares particularly well. Both C and yacc are hard, time-consuming and error-prone to use.
+  </p>
+  <p>
+   Instead, you want a powerful, easy to use scripting language with an extensive set of libraries, something like Perl, Python or Ruby.
+  </p>
+  <p>
+   As for the parsing, you don't want to create a new language from scratch. Two minutes is not enough time to do that. Instead, you want a well-known shrinkwrapped language that allows for creating arbitrarily complex structures, while making no assumptions about the semantics. In short, we want JSON, YAML or XML.
+  </p>
+  <h3>
+   3.
+  </h3>
+  <p>
+   Given that both the implementation languages and the parsers and widely-available, free and easy to use, writing a code generator is a technically trivial task.
+  </p>
+  <p>
+   So, is there any need for a specialised tool for code generation in the end? Why not simply parse an XML file from Python?
+  </p>
+  <p>
+   And the answer is: Because readability.
+  </p>
+  <p>
+   Source code of code generator is notoriously ugly and hard to comprehend. And the code that cannot be read, cannot be maintained, fixed or shared with others. Any code generation tool should thus put the main focus on readability.
+  </p>
+  <h3>
+   4.
+  </h3>
+  <p>
+   Me being a C programmer, let's have a look at C example:
+  </p>
+  <pre><code>printf ("Hello, world!\n");
+</code></pre>
+  <p>
+   Now let's write code that will generate the code above:
+  </p>
+  <pre><code>printf ("printf (\"Hello, world!\\n\");");
+</code></pre>
+  <p>
+   And code that will generate the above generator:
+  </p>
+  <pre><code>printf ("printf (\"printf (\\\"Hello, world!\\\\n\\\");\");");
+</code></pre>
+  <p>
+   Yuck!
+  </p>
+  <h3>
+   5.
+  </h3>
+  <p>
+   Let me introduce a new term here: By "visual smog" I mean graphical elements in the code that are needed from syntactical point of view, but which don't contribute in any way to expressing the programmer's intent.
+  </p>
+  <pre><code>printf ("printf (\"printf (\\\"Hello, world!\\\\n\\\");\");");
+</code></pre>
+  <p>
+   The intent of the above code is "
+   <em>
+    generate a program that will generate a program that will print a string to stdout
+   </em>
+   ". However, around 50% of the code is not helpful in coveying the message and rather gets into the way. The amount of visual smog in the example is extremely high.
+  </p>
+  <h3>
+   6.
+  </h3>
+  <p>
+   As far as I can say, visual smog in code generators emanates from three major sources:
+  </p>
+  <ol>
+   <li>
+    Repetitive code
+   </li>
+  </ol>
+  <ol>
+   <li>
+    Escape sequences
+   </li>
+  </ol>
+  <ol>
+   <li>
+    Inconsistent indentation
+   </li>
+  </ol>
+  <h3>
+   7.
+  </h3>
+  <p>
+   Code like the one below contains a lot od visual smog:
+  </p>
+  <pre><code>printf ("#include &lt;stdio.h&gt;\n");
+</code></pre>
+  <pre><code>printf ("\n");
+</code></pre>
+  <pre><code>printf ("int main () {\n");
+</code></pre>
+  <pre><code>printf ("    printf ("Hello, world!\\n");\n");
+</code></pre>
+  <pre><code>printf ("    return 0;\n");
+</code></pre>
+  <pre><code>printf ("}\n");
+</code></pre>
+  <p>
+   Most of it is created by the repetitive printf statement. In past couple of weeks I've played with code generation and, in the process, I've written a simple code generation tool called
+   <a href="https://github.com/sustrik/ribosome">
+    ribosome
+   </a>
+   . There, I've decided to replace the leading print statement by a single typographically lightweight and easy-to-type character:
+  </p>
+  <pre><code>.#include &lt;stdio.h&gt;
+</code></pre>
+  <pre><code>.
+</code></pre>
+  <pre><code>.int main () {
+</code></pre>
+  <pre><code>.    printf ("Hello, world!");
+</code></pre>
+  <pre><code>.    return 0;
+</code></pre>
+  <pre><code>.}
+</code></pre>
+  <h3>
+   8.
+  </h3>
+  <p>
+   The control language in the case of ribosome is JavaScript and Ruby rather than C. I've discarded Perl for it's cryptic syntax — we are trying to improve the readability here, mind you! — and Python because its indenting rules clash with the requirements for a code generation tool. In the end, the mix of control language and generated language looks something like this:
+  </p>
+  <pre><code>for i in 1..5
+</code></pre>
+  <pre><code>.printf ("Hello, world!\n");
+</code></pre>
+  <pre><code>end
+</code></pre>
+  <p>
+   Which, of course, generates the following code:
+  </p>
+  <pre><code>printf ("Hello, world!\n");
+</code></pre>
+  <pre><code>printf ("Hello, world!\n");
+</code></pre>
+  <pre><code>printf ("Hello, world!\n");
+</code></pre>
+  <pre><code>printf ("Hello, world!\n");
+</code></pre>
+  <pre><code>printf ("Hello, world!\n");
+</code></pre>
+  <p>
+   To understand my comment about Python above, consider that the dot (.) must be the first character in the line. If it was possible to put the dot operator anywhere on the line, we would have to escape any other dot characters in the generated code:
+  </p>
+  <pre><code>    .System\.out\.println ("Hello, world!\n");
+</code></pre>
+  <p>
+   Assuming that that's not an option, let's imagine the hello world example above with Python as a control language:
+  </p>
+  <pre><code>for i in range(1,5):
+</code></pre>
+  <pre><code>.printf ("Hello, world!\n");
+</code></pre>
+  <p>
+   Given the Python's syntax, now we have to way to express whether the dot statement should be a part of the loop or whether it should be executed once after the loops ends.
+  </p>
+  <p>
+   By the way,
+   <a href="http://www.makotemplates.org/">
+    Mako
+   </a>
+   code generator uses Python as the control language, but has to add extra syntactic costructs to the language:
+  </p>
+  <pre><code>% for name in row:
+</code></pre>
+  <pre><code>    &lt;td&gt;${name}&lt;/td&gt;\
+</code></pre>
+  <pre><code>% endfor
+</code></pre>
+  <h3>
+   9.
+  </h3>
+  <p>
+   The next interesting question is: Why do we prepend the lines of output by dot rather than the lines of Ruby code? Why not the other way round? Or, for what it's worth, why not use two different prefix characters to distinguish between the two?
+  </p>
+  <p>
+   There are two answers. One of them is kind of trivial, the other one is more philosphical:
+  </p>
+  <p>
+   First: We know that dots at the beginning of the line are quite rare in Ruby. Even if dot happens to occur at the beginning of the line it should be easy to get rid of it by simply adding some whitespace. Thus, there's no much space for clashes, where a Ruby line would be accidentally mistaken for an output line. However, this reasoning doesn't work the other way round: We don't know anything about the language being generated. It may be C or Fortran or Lisp. It may be something completely different. We can't guarantee that there won't be dots at the beginnings of the lines.
+  </p>
+  <p>
+   In the worst case we would be generating a ribosome source file (meta-code-generation) which would mean a lot of dots at the beginnings of the lines. We would have to introduce escape sequences. And the least thing anyone wants in a code generator is more escape sequences.
+  </p>
+  <p>
+   Second reason: Most code generation tools use the paradigm of the "template". What it means is that you consider the source file to be a template that contains the destination code in almost the final form and the code generation tool is used only to replace few selected snippets in the file by generated values:
+  </p>
+  <pre><code>#include &lt;stdio.h&gt;
+</code></pre>
+  <pre><code>int main()
+</code></pre>
+  <pre><code>{
+</code></pre>
+  <pre><code>    printf ("Hello, $(name)!\n");
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <p>
+   The template paradigm may work well for a simple function like
+   <em>
+    printf
+   </em>
+   (and maybe it works OK for generating web pages), but once complex looping, branching and function invocation is added to the mix, the template doesn't look like a template anymore. It looks like what it really is, namely, a program that generates another program.
+  </p>
+  <p>
+   Thus, I believe, the user approaches the code generation tool with the intent of writing a code-generating code, not a template. And in ribosome I've done my best to accommodate that mindset.
+  </p>
+  <p>
+   What it means in practice is that user can start writing Ruby code straight away with no extra syntactic baggage. They can even copy existing Ruby code to a ribosome source file and expect it to work out of the box!
+  </p>
+  <p>
+   And that, of course, means that lines of Ruby cannot have any extra prefixes.
+  </p>
+  <h3>
+   10.
+  </h3>
+  <p>
+   As already mentioned, escape sequences are another ample source of visual smog. The only way to fully avoid escape sequnces is to use prefixes — which is exactly what ribosome does with the dot notation. The dot has special meaning ("pass the line to the output") only if it occurs as the first charcter in the line. The rest of the line can thus contain arbitrary characters, including dot, without a need for escape sequences:
+  </p>
+  <pre><code>.System.out.println ("Hello, world!\n");
+</code></pre>
+  <h3>
+   11.
+  </h3>
+  <p>
+   Ribosome could have done with no escape sequences altogether, were it not for the need to embed ruby expressions into the generated code:
+  </p>
+  <pre><code>name = "Alice"
+</code></pre>
+  <pre><code>.printf ("Hello, @{name}!\n");
+</code></pre>
+  <p>
+   What I've tried to do with @{} notation (as well as with the three other remaining operators) was:
+  </p>
+  <ol>
+   <li>
+    Use two characters for the operator, not a single one.
+   </li>
+  </ol>
+  <ol>
+   <li>
+    Choose an unlikely combination of characters, rather than a common one.
+   </li>
+  </ol>
+  <p>
+   The very fact of using two characters as an operator lowers the chance of collision with the generated text quadratically. Using uncommon two-character sequences lowers the probabilty of collision to almost zero.
+  </p>
+  <h3>
+   12.
+  </h3>
+  <p>
+   There's one exception to the above reasoning: When generating ribosome source file by ribosome (meta-level) the character sequences representing ribosome operators won't be all that rare. Therefore, I've created a dedicated construct to deal with such meta-meta-meta issues.
+  </p>
+  <p>
+   Specifically, I've introduced a "nested expression of N-th level" operator. The idea is that the compilation of an expression of N-th level yields an expression of (N-1)-th level, until, in the end, compilation of 1st level nested expression yields the computed value of the expression:
+  </p>
+  <pre><code>@3{x} =&gt; @2{x} =&gt; @{x} =&gt; x
+</code></pre>
+  <p>
+   For those who enjoy meta-programing, here's an practical example:
+  </p>
+  <pre><code>.name = "Alice"
+</code></pre>
+  <pre><code>..Hello, @2{name}!
+</code></pre>
+  <p>
+   First compilation results in:
+  </p>
+  <pre><code>name = "Alice"
+</code></pre>
+  <pre><code>.Hello, @{name}!
+</code></pre>
+  <p>
+   And the second one yields:
+  </p>
+  <pre><code>Hello, Alice!
+</code></pre>
+  <h3>
+   13.
+  </h3>
+  <p>
+   In the rare case where we need to generate @{ sequence without the result actually being an ribosome input file we must finally resort to a proper escape sequence. These are implemented as simple Ruby functions:
+  </p>
+  <pre><code>.In the rare case where we need to generate @{at}{ sequence without...
+</code></pre>
+  <p>
+   <strong>
+    To be continued…
+   </strong>
+  </p>
+  <p>
+   <strong>
+    April 21st, 2014
+   </strong>
+  </p>
+ </body>
+</html>

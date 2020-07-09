@@ -14,13 +14,13 @@ This is what TCP half-close mechanism is for. Client sends a request and shuts d
 
 Technically, this works by sending FIN packets, the TCP's equivalent of EOF. Client sends data, then sends FIN. Server receives the data, processes it, sends the responses, receives the FIN, then sends FIN back to the client. Client receives the responses, processes them, receives the FIN and at that point it knows that everything went OK and no data was lost.
 
-[](90/term1.png)
+![](term1.png)
 
 So, what can go possibly wrong?
 
 Well, imagine that server wants to do clean shut down as well. It doesn't have to do that as often as client does, but it may still happen that request for clean shut down from client coincides with request for clean shut down from server. That's where the things can go awry.
 
-[](90/term2.png)
+![](term2.png)
 
 Look at the server side: Server does half-close, then receives a request. It can process it, but it can't send the responses! The outbound half of the TCP connection was already closed by shutdown() function.
 
@@ -30,7 +30,7 @@ But look at the client now: It's waiting for responses and considers incoming FI
 
 OK, so maybe we can fix the problem by making the simultaneous shutdown an error rather than a success. It would require no change to TCP protocol, just to TCP API. When endpoint sends a FIN and then receives a FIN from the peer without first receiving an ACK for the former FIN, it would return an error to the user.
 
-[](90/term3.png)
+![](term3.png)
 
 Problem solved, no?
 
@@ -42,13 +42,13 @@ That, finally, brings me to my main point: Terminal handshake, to be fully relia
 
 In other words, client has to know it's the client and server has to know it's the server. If so, they can act a bit differently when shutting down and thus solve the problem. Actually, client can be left unchanged and use the standard half-close mechanism. Server, on the other hand, has to send an additional termination request before starting the half-close procedure:
 
-[](90/term4.png)
+![](term4.png)
 
 Note how sending the "I am shutting down!" message does nothing to the underlying TCP connection. The server is still able to both send and receive data. It can continue working as normal, thus giving the client a grace period to shut down. The client, on the other hand, is expected to finish whatever it is doing at the moment and do the classic connection half-close.
 
 This, of course, gives client a chance to misbehave a block server's shutdown by simply going on as normal and not doing the half-close. In that case though, it's perfectly reasonable for server to forcefully close the connection after the grace period expires.
 
-[](90/term5.png)
+![](term5.png)
 
 That's all from the technical standpoint.
 

@@ -8,7 +8,7 @@ However, every time I become too enthusiastic about all that I remind myself of 
 
 Centrifugal governor is a device, first added to the steam engine by James Watt himself. It controls flow of steam to the valves and thus allows the machine to maintain constant speed. It's powered by the machine and as the machine goes faster it makes the spindle rotate faster, thus lifting the attached masses which in turn connect to the throttle valve which then limits amount of steam admitted to the valves. In short, it's a self-regulating system.
 
-[](66/cgov.png)
+![](cgov.png)
 
 And while, like all good libertarians, I would hate travelling by a train with centrifugal governor disabled or missing, I would also hate to travel by one where the crew believed that centrifugal governor is a god-sent solution for all problems and refused to steer the train.
 

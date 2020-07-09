@@ -18,19 +18,19 @@ _If there's no subscriber for a particular message in a specific portion of the 
 
 While the requirement seems to be self-obvious, it is often not honoured in messaging systems in use today. In most broker-based systems consumers subscribe for messages with the broker, however, there's no way for broker to subscribe for messages with the publisher. So, even if there is no consumer interested in the message it is still passed from the publisher to the broker, just to be dropped there:
 
-[](39/ps1T.png)
+![](ps1T.png)
 
 What we want to achieve instead is a system where the message nobody is interested in is dropped as soon as possible, presumably even before being sent to the network:
 
-[](39/ps2T.png)
+![](ps2T.png)
 
 We also want this property to be transitive, ie. even if there are multiple intermediary nodes (brokers, devices) between publisher and consumer, the unneeded messages should still be dropped as soon as possible:
 
-[](39/ps3T.png)
+![](ps3T.png)
 
 More generically, we want message to travel only through those lattices in the message distribution tree that lead to consumers interested in the message:
 
-[](39/ps4T.png)
+![](ps4T.png)
 
 Additionally, it would be preferable to pass message through any edge of the graph once only even if there are multiple consumers down that branch of the tree. In other words, message duplication should happen as far away down the stream as possible — in this case in the node D rather than in the node P.
 
@@ -39,7 +39,7 @@ Subscription Forwarding
 
 To achieve this kind of design subscriptions have to be passed to the upstream nodes so that the upstream nodes can use them to avoud sending messages to the paths where there are no interested subscribers. The property should be transitive, ie. upstream node should forward the subscription to its parent which in turn should pass it to its parent etc.
 
-[](39/ps5T.png)
+![](ps5T.png)
 
 So, when consumer application subscribes to a topic the subscription, in addition to applying locally, hops up the stream until it reaches the ultimate producer(s).
 
@@ -51,7 +51,7 @@ Subscription messages are composed of a single byte, 0 for unsubscription and 1 
 
 This makes implementation of a device quite simple: Use XPUB/XSUB sockets instead of PUB/SUB, pass all the messages from XSUB to XPUB (data flow) and all the messages from XPUB to XSUB (subscription flow):
 
-[](39/ps6T.png)
+![](ps6T.png)
 
 Disconnections and Reconnections
 ================================
@@ -121,7 +121,7 @@ Another scenario for plugging into subscription mechanism is creating bridges to
 
 Let's take an example of ØMQ/AMQP bridge. The bridge can create an XPUB socket to send messages from AMQP to ØMQ. The other way round it can read the subscriptions from the socket and send them as _queue.bind_ commands to the AMQP system:
 
-[](39/ps7T.png)
+![](ps7T.png)
 
 The same way, bridges can be built to interface with other messaging systems: JMS, STOMP, PubSubHubbub, Redis etc.
 

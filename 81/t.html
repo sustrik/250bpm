@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   Performance of green threads and why it matters
+  </h1>
+  <p>
+   If one looks closely enough at green threads, such as Go's 'go' statement, it's not hard to realise that they are really a flow control mechanism similar to 'if', 'for' or 'while' statements. Where 'if' allows you to skip a block of code, green threads give you a way to easily switch between different points of execution. Very much like 'if' or 'while' they are glorified jump statements.
+  </p>
+  <p>
+   However, to use them as routinely and carelessly as we use ifs or whiles, the green threads would have to be as cheap to use as ifs and whiles are.
+  </p>
+  <p>
+   That sounds like a rather tall order, given that we tend to think of threads as being on much higher abstraction level than humble 'if' statement, but maybe we are misjudging the difficulty of the problem. Let's have a look!
+  </p>
+  <p>
+   First of all, 'go' statement in Go language does parallelism in addition to simple green-threading. With all the talk about 'concurrency is not parallelism' that seems to be part of Go's DNA, I find the design decision to support both using a single statement a bit weird. In any case, let's ignore the parallelism part and assume that our ideal 'go' statement does just the concurrency part. In other words, that it never involves switching to a different CPU core. If it was not so, the implementation would have to handle synchronisation between cores, locking of cachelines and so on. That would in turn make it slower than other flow control structures.
+  </p>
+  <p>
+   Next, let's ignore all the hardware and software corner cases, such as chips with no virtual memory, no caches, 16-bit CPUs or similar. Our goal is not to demonstrate that 'go' can be as fast as 'if' in every possible case but that it can be made comparably fast if we really want to. We should also show that doing so doesn't require major changes in our mainstream technology stacks.
+  </p>
+  <p>
+   That being said, let's focus on the technical challenge now.
+  </p>
+  <p>
+   There are two parts to the problem: Stack management and context switching.
+  </p>
+  <p>
+   So, can we allocate a stack in time comparable to the execution of 'if' statement?
+  </p>
+  <p>
+   Imagine that instead of allocating the stacks as we go we'll simply preallocate a bunch of them at start up time. This really means just reserving part of the virtual address space for stacks. If we reserve 4GB and assume one stack to be 1MB long, we have enough space for 4000 concurrently running green threads.
+  </p>
+  <p>
+   With memory overcommit it doesn't even consume any memory. The pages in question are mapped to physical memory only if they are actually used.
+  </p>
+  <p>
+   One has to consider the impact of page faults, of course, but same is true of classic call stacks: When 'if' statement happens to cause a page fault it will be slow. Green threads don't change anything in this respect.
+  </p>
+  <p>
+   But wait, won't creating a new green thread *always* cause a page fault?
+  </p>
+  <p>
+   Not if the stacks are cached in a sane way. If the most recently freed stack is re-used by a new green thread the page will be already mapped to physical memory. Even better, given that new green thread will start messing with the top of the stack — which is exactly the last location previously finished green thread was accessing — the chances are good that the memory in question will still be cached in one of the CPU caches.
+  </p>
+  <p>
+   In the end, allocating stacks boils down to doing a single pop operation on a singly-linked list, which can be super fast.
+  </p>
+  <p>
+   Additionally, if this kind of programming model becomes common, one can imagine optimising the stack allocation mechanism even on the microarchitecture level.
+  </p>
+  <p>
+   Second part of the problem is context switching.
+  </p>
+  <p>
+   To do a context switch one has to store current state of all registers and load a different, previously saved, state instead. This is going to be slower than stack allocation, but still doable in 20 or so CPU cycles.
+  </p>
+  <p>
+   When doing context switch, we also have to choose the green thread to schedule. I don't want to dive deep into scheduling algorithms, but the simplest possible one is a simple queue, i.e. a singly-linked list, which is easy and quick to manipulate. We need one push and one pop operation for each context switch.
+  </p>
+  <p>
+   Once again, there's a lot of optimisation that CPU designers could do if this became a mainstream model of computation.
+  </p>
+  <p>
+   In summary, 'go' can't be exactly as fast as 'if', but it can be comparable with execution times deep in the nanosecond range.
+  </p>
+  <p>
+   Once that happens programmers will be free to use green threads to solve even the smallest problems — like those that we now solve using ifs and whiles — and to do so even in performance-critical environments.
+  </p>
+  <p>
+   <strong>
+    May 8th, 2016
+   </strong>
+  </p>
+ </body>
+</html>

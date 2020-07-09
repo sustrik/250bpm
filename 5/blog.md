@@ -24,11 +24,11 @@ It involves two new socket types types: SURVEYOR and RESPONDENT. The survey itse
 
 First, the survey is distributed by the surveyor to all the respondents in the topology:
 
-[](5/survey1.png)
+![](survey1.png)
 
 Then the responses are routed back to the original surveyor:
 
-[](5/survey2.png)
+![](survey2.png)
 
 Note the failed respondent at the bottom right. The respondent process may have crashed. Or maybe network was down. Or the survey was dropped because of queue overflow. Or the respondent have simply chosen not to participate in the survey.
 
@@ -159,7 +159,7 @@ The problem is how to connect each client to each server. First, the number of c
 
 To solve this problem we can introduce an intermediary application (so called "device") that would sit in the middle of the network, between the clients and the servers. If will have two bound sockets with well-known addresses, one for servers to connect to, the other one for clients to connect to:
 
-[](5/survey3.png)
+![](survey3.png)
 
 To use this design, surveyor and respondent applications can remain unchanged, except that surveyor should connect to the device rather than bind to a fixed address.
 

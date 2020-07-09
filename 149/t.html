@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--Converted via md-to-html-->
+<html>
+ <head>
+ </head>
+ <body>
+  <h1>
+   Programmatic Code Generation: Composability
+  </h1>
+  <p>
+   After working some more with
+   <a href="https://github.com/sustrik/tiles">
+    Tiles
+   </a>
+   , my mini-library for programmatic code generation, I've realized it has a feature that I haven't knowingly baked in, but which makes it a really good tool for the job. Namely, the code you write is composable.
+  </p>
+  <p>
+   Here's what I mean: If you want to generate a C function that prints out names of countries' capitals then you can generate the code that does the actual printing first:
+  </p>
+  <pre><code>data = {
+</code></pre>
+  <pre><code>    "Afghanistan": "Kabul",
+</code></pre>
+  <pre><code>    "Brazil": "Brasilia",
+</code></pre>
+  <pre><code>    "Canada": "Ottawa",
+</code></pre>
+  <pre><code>}
+</code></pre>
+  <pre><code>body = t/''
+</code></pre>
+  <pre><code>for country, capital in data.items():
+</code></pre>
+  <pre><code>    body |= t/"""
+</code></pre>
+  <pre><code>              printf("@{capital} is the capital of @{country}");
+</code></pre>
+  <pre><code>              """
+</code></pre>
+  <p>
+   Once done, you cen generate the scaffolding:
+  </p>
+  <pre><code>program = t/"""
+</code></pre>
+  <pre><code>    #include &lt;stdio.h&gt;
+</code></pre>
+  <pre><code>    int main(void) {
+</code></pre>
+  <pre><code>        @{body}
+</code></pre>
+  <pre><code>        return 0;
+</code></pre>
+  <pre><code>    }
+</code></pre>
+  <pre><code>    """
+</code></pre>
+  <p>
+   The example, of course, shows just two levels of nesting. In practice, however, you'd have many levels of nesting.
+  </p>
+  <p>
+   But whatever the nesting level, you, as a programmer, can focus on a single task at a time. First, you think about how to print the capitals. Then you think about the scaffolding. There's no overlap.
+  </p>
+  <p>
+   Compare that to your typical templating solution:
+  </p>
+  <pre><code>template = Template("""
+</code></pre>
+  <pre><code>    #include &lt;stdio.h&gt;
+</code></pre>
+  <pre><code>    int main(void) {
+</code></pre>
+  <pre><code>        {% for country, capital in data.items() %}
+</code></pre>
+  <pre><code>        printf("{{ capital }} is the capital of {{ country }}");
+</code></pre>
+  <pre><code>        {% endfor %}
+</code></pre>
+  <pre><code>        return 0;
+</code></pre>
+  <pre><code>    }
+</code></pre>
+  <pre><code>    """)
+</code></pre>
+  <pre><code>template.render(data=data)
+</code></pre>
+  <p>
+   Note how you start with writing scaffolding (include, main) then you switch to the business logic (printf), then you get back to scaffolding (return).
+  </p>
+  <p>
+   The example is trivial and as such, the both solutions are kind of comparable.
+  </p>
+  <p>
+   However, imagine there are five levels of nesting.
+  </p>
+  <p>
+   The code written using Tiles would, logically, look like this:
+  </p>
+  <pre><code>level1
+</code></pre>
+  <pre><code>level2
+</code></pre>
+  <pre><code>level3
+</code></pre>
+  <pre><code>level4
+</code></pre>
+  <pre><code>level5
+</code></pre>
+  <p>
+   The code written using one the classic templating tools, on the other hand, would look like this:
+  </p>
+  <pre><code>level1
+</code></pre>
+  <pre><code>  level2
+</code></pre>
+  <pre><code>    level3
+</code></pre>
+  <pre><code>      level4
+</code></pre>
+  <pre><code>        level5
+</code></pre>
+  <pre><code>      level4
+</code></pre>
+  <pre><code>    level3
+</code></pre>
+  <pre><code>  level2
+</code></pre>
+  <pre><code>level1
+</code></pre>
+  <p>
+   <strong>
+    March 2nd, 2019
+   </strong>
+  </p>
+ </body>
+</html>

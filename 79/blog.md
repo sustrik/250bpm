@@ -10,10 +10,10 @@ Third one is harder to classify. It's kind of inspired by the influence that mid
 
 Enjoy!
 
-[](79/1.png)
+![](1.png)
 
-[](79/2.png)
+![](2.png)
 
-[](79/3.png)
+![](3.png)
 
 **April 26th, 2016**

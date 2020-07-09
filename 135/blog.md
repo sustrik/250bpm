@@ -48,7 +48,7 @@ Measurements show that the threshold for the RNA size is somewhere around 100 ba
 
 Following graph shows sustainable RNA size based on the mutation rate (1 - replication fidelity):
 
-[](135/eigen.png)
+![](eigen.png)
 
 And here we encounter the paradox. If we wanted longer, self-sustainable RNA molecules we would need better fidelity. But better fidelity can only be achieved with the help of specialized enzymes. But the smallest genome able to code for such an enzyme, and for the necessary translating machinery, would require a number of bases greatly exceeding 100 nucleotides. It's a catch-22 situation.
 
