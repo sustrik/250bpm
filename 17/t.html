@@ -1,0 +1,43 @@
+<h1 id="busmessagingpattern">Bus Messaging Pattern</h1>
+<p>The idea underlying "bus" messaging pattern is to provide the semantics similar to those of the hardware bus — everyone connected to the bus gets any data sent to the bus — just to do so on the higher layer. So, to use messaging terminology, everyone connected to the message bus gets any message sent to the bus.</p>
+<p><img src="bus1.png" alt="" /></p>
+<p>This pattern doesn't scale well — at some point the number of applications connected to the bus will grow to the point where they will be overloaded by sheer amount of messages they produce. However, the pattern is widely used in some industries (stock trading) in IPC (messaging passing within a single machine) and local (broadcasting data on single LAN) environments. The assumption is that the bus topology is fully controlled by the admins and is never left to scale beyond the point where it breaks.</p>
+<p>Given the wide usage of the pattern, new experimental bus protocol was added to <a href="http://nanomsg.org">nanomsg</a> library. The protocol, due to its symmetrical nature, provides just one socket type named NN_BUS. If the topology is set up right (there are paths between each two nodes in the topology) any message sent to NN_BUS socket should be received by all the other NN_BUS sockets in the topology, but not by the sender itself.</p>
+<p><img src="bus2.png" alt="" /></p>
+<p>And a simple example of the usage of the bus socket:</p>
+<pre><code>#include &lt;nanomsg/nn.h&gt;
+#include &lt;nanomsg/bus.h&gt;
+
+int main ()
+{
+    int s = nn_socket (AF_SP, NN_BUS);
+    nn_connect (s, "tcp://192.168.0.111:5555");
+    nn_send (s, "ABC", 3, 0);
+    nn_close (s);
+    return 0;
+}
+</code></pre>
+<p>Note that as with any other broadcasting pattern, the message transfer is not reliable. If it was, single slow, dead or malevolent application would be able block the whole topology.</p>
+<p>While the semantics of bus protocol are fairly simple, special care is needed to make it work for all possible configurations of the topology: multicast vs. unicast transports, broker-based vs. broker-less topologies, joining multiple partial buses using intermediate devices etc.</p>
+<p>First, let's have a look at two trivial examples with no intermediate devices.</p>
+<p>The multicast scenario is pretty straightforward:</p>
+<p><img src="bus3.png" alt="" /></p>
+<p>The only special case to take into account is whether the underlying multicast transport delivers messages back to the sender. If so, the assumption that NN_BUS socket doesn't receive messages that it itself had sent won't hold. So, it's important that implementation of such multicast transport filters out messages sent by itself. It should be relatively easy to do, for example, by filtering based on source IP address.</p>
+<p>Another trivial setup is to connect any node with any other node in the topology by TCP connections. That of course means a lot of connections, but this kind of setup is sometimes used in small deployments (3-4 boxes):</p>
+<p><img src="bus4.png" alt="" /></p>
+<p>This setup should just work with no special cases to take care of.</p>
+<p>Now, let's have a look at some non-trivial topologies. The most common one is to have a broker (device) in the middle. Every application will connect to the device, which in turn will broadcast every message to every application except for the one that sent it.</p>
+<p>To build a device, as is the case with any other scalability protocol, you need a special low-level or "raw" version of NN_BUS socket.</p>
+<pre><code>s = nn_socket (AF_SP_RAW, NN_BUS);
+</code></pre>
+<p>The semantics of such socket are following:</p>
+<ol>
+<li>When receiving a message, message is tagged by ID of the connection is was received on.</li>
+<li>When sending a message, it is sent to all the connections except for the one identified in the message tag.</li>
+</ol>
+<p>I believe it's quite obvious how that works. One special aspect though is that due to fully symmetrical nature of bus protocol, intermediate devices — unlike devices for other scalability protocols — need just one socket, not two of them. Messages are simply received from the socket and sent back to it:</p>
+<p><img src="bus5.png" alt="" /></p>
+<p>Finally, let's have a look how two partial buses can be joined into a single bus using an intermediate device. Note how raw bus socket semantics allow messages from one sub-bus to pass through the device to the other sub-bus, but prevent them to be republished to the original sub-bus:</p>
+<p><img src="bus6.png" alt="" /></p>
+<p>The above is the first attempt to formalise bus pattern as a scalability protocol. The solution may still have its shortcomings. Any help with identifying the deficiencies of the protocol would be appreciated!</p>
+<p><strong>February 19th, 2013</strong></p>

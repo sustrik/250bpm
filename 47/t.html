@@ -1,0 +1,17 @@
+<h1 id="acryptopuzzlereadysteadygo">A cryptopuzzle. Ready, steady, go!</h1>
+<p>I've solved a nice cryptopuzzle yesterday and solving it was so much fun that it would be a shame not to share it.</p>
+<p>The background is simple: Elections.</p>
+<p>There's a lot of clever crypto being devised to help with elections (see e.g. <a href="http://en.wikipedia.org/wiki/End-to-end_auditable_voting_system">E2E audiatable voting systems</a> , also nice talk <a href="https://www.youtube.com/watch?v=ZDnShu5V99s">here</a>), but, as you might notice, there's always an assumption that the voter will come to the polling place to cast the ballot.</p>
+<p>Half a minute or so of the enforced privacy in the booth is necessary for the voter to do their decision without being coerced. The fact that there's no way, after the fact, for the voter to prove how they have voted makes coercion impossible. And for exactly the same reason you can't sell your vote: You can't prove how you have actually voted and thus there's nothing to sell.</p>
+<p>What about the online elections though?</p>
+<p>There are no voting booths, no enforced privacy. Therefore, the voters can be coerced to vote for a specific candidate. They may sell their votes. And that's bad news for democracy, of course.</p>
+<p>So, let's have a look at Estonian e-voting system (see <a href="http://en.wikipedia.org/wiki/Electronic_voting_in_Estonia">here</a>, and <a href="https://www.youtube.com/watch?v=JY_pHvhE4os">here</a>) to see how do they deal with the problem. It turns out that they allow to cast multiple e-votes, with only the last one being valid. Therefore, if you were coerced to vote against your will, you can still cast another vote later and thus, in essence, overwrite your previous coerced vote.</p>
+<p>It's not a perfect system. Given that elections end at a specified time, say Saturday at 12:00PM, the coercer can arrive at your place at 11:55PM, force you to cast a vote and wait for 5 minutes to make sure you haven't cast another vote.</p>
+<p>As far as I can see, Estonians solve the issue by doing e-voting first, physical voting second. That way, you can still visit a voting booth after the end of e-voting period and cast the vote in person. Physical vote beats the e-vote.</p>
+<p>There goes the prospect of fully online elections! Estonian system requires physical polling places. Even worse, the coercer can follow the voter during the whole voting period and beat the living deaylights out of them in case they try to vote at a polling place.</p>
+<p>So, after a rather lengthy introduction, let's have a look at the puzzle:</p>
+<p><strong>Imagine fully online election. We assume that voter has an electronic ID card to identify himself. He is supposed to choose one of several candidates (no write-ins, no preferences et c.) The coercer follows the voter for the entire voting period. He joins him before the candidates are announced and leaves after the official winner is announced.</strong></p>
+<p><strong>How would you prevent coercion (and vote selling) under such threat model?</strong></p>
+<p>Feel free to comment and post your suggestions below.</p>
+<p>Ready? Steady. Go!</p>
+<p><strong>January 16th, 2015</strong></p>

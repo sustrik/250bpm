@@ -1,0 +1,80 @@
+<h1 id="confessionsofanabstractionhater">Confessions of an Abstraction Hater</h1>
+<p>I've written about the <a href="http://250bpm.com/blog:86">cost of abstraction</a> before. Once you are in the IT industry for couple of decades and once you've read couple of millions lines on legacy code you become healthily suspicious of any kind of abstraction. Not that we can do without abstraction. We need it to be able to write code at all. However, each time you encounter an abstraction in the code that could have been avoided you get a little bit sadder. And some codebases are sadder than Romeo and Juliet and King Lear combined.</p>
+<p>Remember reading an unfamiliar codebase the last time? Remember how you've thought that the authors were a bunch of incompetent idiots?</p>
+<p>People may argue that this is because legacy stuff is necessarily convoluted, but hey, at that point you were just skimming through the codebase and you weren't understanding it deep enough to tell your typical enterprise legacy monstrosity from a work of an architectural genius. The reason you were annoyed was because you were overwhelmed by the sheer amount of unfamiliar abstraction. (To prove that, consider what was your opinion of the codebase was few months later, after getting familiar with it. It looked much better, no?)</p>
+<p>Keep that feeling in mind. Think of it when writing new code. How will a person who doesn't know first thing about this codebase feel when reading it?</p>
+<p>The options are not palatable. Either you try to be clever, use abstraction a lot and they'll think you are a moron. Or you get rid of all unnecessary abstraction. You'll make their life much less frustrating but they'll think you are some kind of simpleton. (And they'll probably refactor the code to make it look more clever.)</p>
+<p>I want to give a very basic example of the phenomenon.</p>
+<p>Imagine that the requirements are that your program does A, B, C, D and E, in that order.</p>
+<p>You can do it in the dumbest possible way:</p>
+<pre><code>void main() {
+    // Do A.
+    ...
+    // Do B.
+    ...
+    // Do C.
+    ...
+    // Do D.
+    ...
+    // Do E.
+    ...
+}
+</code></pre>
+<p>Or maybe you notice that B, C and D are kind of related and comprise a logical unit of work:</p>
+<pre><code>void foo() {
+    // Do B.
+    ...
+    // Do C.
+    ...
+    // Do D.
+    ...
+}
+
+void main() {
+    // Do A.
+    ...
+    foo();
+    // Do E.
+    ...
+}
+</code></pre>
+<p>But C would probably be better off as a stand-alone function. You can imagine a case where somewhene would like to call it from elsewhere:</p>
+<pre><code>void bar() {
+    // Do C.
+    ...
+}
+
+void foo() {
+    // Do B.
+    ...
+    bar();
+    // Do D.
+    ...
+}
+
+void main() {
+    // Do A.
+    ...
+    foo();
+    // Do E.
+    ...
+}
+</code></pre>
+<p>Now think of it from the point of view of casual reader, someone who's just skimming through the code.</p>
+<p>When they look at the first version of the code they may thing the author was a simpleton, but they can read it with ease. It looks like a story. You can read it as if it were a novel. There's nothing confusing there. The parts come in the correct order:</p>
+<pre><code>A
+B
+C
+D
+E
+</code></pre>
+<p>But when skimming through the refactored code that's no longer the case. What you see is:</p>
+<pre><code>C
+B
+D
+A
+E
+</code></pre>
+<p>It's much harder to get the grip of what's going on there but at least they'll appreciate author's cleverness.</p>
+<p>Or maybe they won't.</p>
+<p><strong>January 27th, 2019</strong></p>

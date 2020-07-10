@@ -1,0 +1,28 @@
+<h1 id="documentintentnotalgorithmausecase">Document intent not algorithm: A use case</h1>
+<p>It's often said that when writing comments you should document intent rather than algorithm.</p>
+<p>However, I think lot of programmers haven't really grasped the maxim. Therefore, I was trying to come up with a minimal use case, an example that would illustrate, in very simple and easy to remember way, why that is the case.</p>
+<p>Imagine you are debugging an application written by someone else. You have little understanding of how it works, what are the data structures or algorithms and so on.</p>
+<p>When you look at the block of code that is the likely culprit, there are two lines like this:</p>
+<pre><code>/* Increment orderid. */
+orderid++;
+</code></pre>
+<p>Ok, so some kind of order ID is being incremented here. Everything works as expected, right?</p>
+<p>Well, imagine that the code was written in a slightly different way:</p>
+<pre><code>/* Get next order ID. */
+orderid++;
+</code></pre>
+<p>Aha. That makes it more interesting. Is the next order ID the one with ID+1? Maybe the orders are ordered in decreasing sequence and the code should have been:</p>
+<pre><code>/* Get next order ID. */
+orderid--;
+</code></pre>
+<p>You investigate some more and yes, it turns out that while the order IDs are increasing there may be holes in the sequence because of cancelled orders.</p>
+<p>And here's the fix:</p>
+<pre><code>/* Get next order ID. */
+while(1) {
+    orderid++;
+    if(is_valid_order(orderid))
+        break;
+}
+</code></pre>
+<p>The example above was deliberately trivial. It may seem at first glance that the different between "increment" and "get next" is insignificant. However, once the code grows sufficiently complex, such clarity in expressing the intent can make a world of difference.</p>
+<p><strong>August 3rd, 2015</strong></p>
