@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-showdown makehtml all.md -o all.html
+showdown makehtml -i all.md -o all.html
 
 for d in *; do
   if [ -d "$d" ]; then
