@@ -59,9 +59,7 @@
    Imagine the case where you have multiple worker goroutines, all sending messages to the main routine. They can do so via a single channel. To make the point more obvious, let's make the channel unbuffered:
   </p>
   <p>
-   <a href="http://250bpm.wdfiles.com/local--files/blog:73/footnote1.jpeg">
-    <img alt="footnote1.jpeg" src="http://250bpm.wdfiles.com/local--resized-images/blog:73/footnote1.jpeg/medium.jpg"/>
-   </a>
+   <img alt="" src="footnote1.jpeg"/>
   </p>
   <p>
    When happens when main routine reads a message from the channel? What looks like a pretty standard I/O operation is in fact translated by the language runtime into a scheduling decision: The channel picks one of the ready worker goroutines and unblocks it. Nice. The scheduling is almost invisible to the user.
@@ -70,9 +68,7 @@
    Let's consider a different way of implementing the same thing though. Let us have one channel per worker goroutine. Main goroutine will then select{} on those channels to get the messages. In theory, it works the same as the original one channel design. Channels use simple probabilistic scheduler. So does select. The behaviour should therefore be identical:
   </p>
   <p>
-   <a href="http://250bpm.wdfiles.com/local--files/blog:73/footnote2.jpeg">
-    <img alt="footnote2.jpeg" src="http://250bpm.wdfiles.com/local--resized-images/blog:73/footnote2.jpeg/medium.jpg"/>
-   </a>
+   <img alt="" src="footnote2.jpeg"/>
   </p>
   <p>
    The difference though is that in the latter case the user is free to manipulate the set of channels to wait for manually and can thus plug into the system scheduler. For example, they can select{} on high-priority channels first and only if no message is available fall back to selecting on all channels, including low-priority ones.
@@ -129,17 +125,13 @@
    What that means is that if select{} is expected to be used, we won't have nice object APIs. The channels will dangle out of the open gut of the object making attempts to hide internals of the object behind nice function-based API futile. Object will expose both channels and functions. Each will have its own parameter syntax, its own invocation syntax and so on. Unlike functions, channels don't even allow to specify output parameters. It's ugly:
   </p>
   <p>
-   <a href="http://250bpm.wdfiles.com/local--files/blog:73/footnote3.jpeg">
-    <img alt="footnote3.jpeg" src="http://250bpm.wdfiles.com/local--resized-images/blog:73/footnote3.jpeg/medium.jpg"/>
-   </a>
+   <img alt="" src="footnote3.jpeg"/>
   </p>
   <p>
    However, if we get rid of select, the encapsulation suddenly starts working. Sending a message to channel can be hidden inside a function. If there's a reply, the sequence of sending a request through one channel and getting a reply through a different one can be hidden inside a function.
   </p>
   <p>
-   <a href="http://250bpm.wdfiles.com/local--files/blog:73/footnote4.jpeg">
-    <img alt="footnote4.jpeg" src="http://250bpm.wdfiles.com/local--resized-images/blog:73/footnote4.jpeg/medium.jpg"/>
-   </a>
+   <img alt="" src="footnote4.jpeg"/>
   </p>
   <p>
    There's certainly more to be said in favour of select-free programming, but these two footnotes should give you at least a starting point for thinking about the problem.

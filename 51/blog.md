@@ -14,7 +14,7 @@ Let's now proceed to a concrete case study. It's anonymised and heavily simplifi
 
 What you see below is a dissected API of the component. It consists of two functionally distinct parts labeled "bait" and "hook":
 
-[![evolution1.jpeg](http://250bpm.wdfiles.com/local--resized-images/blog:51/evolution1.jpeg/medium.jpg)](http://250bpm.wdfiles.com/local--files/blog:51/evolution1.jpeg)
+![](evolution1.jpeg)
 
 The "bait" is the part that lures the prey. It attracts programmers same way as anglerfish attracts a shrimp. It does so by being useful. C language has no stadard containers so, yeah, it is an attractive proposition. You won't have to implement a queue for the umpteenth time. The implementation is efficient and the API is clean. The "listen" function is a bit weird but we are not going to use it anyway, so who cares?
 
