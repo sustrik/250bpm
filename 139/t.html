@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="twoapproachestostructuredconcurrency">Two Approaches to Structured Concurrency</h1>
 <p>I am the author of <a href="http://libdill.org/">libdill</a>, a library that brings <a href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/">structured concurrency</a> to C language. However, the concept of structured concurrency is still evolving and we haven't yet reached the final consensus on what's the right way of doing it.</p>
 <p>To broaden my horizon, I've recently played with <a href="https://trio.readthedocs.io/en/latest/">Trio</a>), a library for strucutured concurrency in Python. Also, to be able to compare the two approaches I've <a href="https://github.com/sustrik/libdill/blob/master/happyeyeballs.c">implemented</a> Happy Eyeballs algorithm (<a href="https://tools.ietf.org/html/rfc8305">RFC 8305</a>) using libdill, so that it can be compared to <a href="https://github.com/python-trio/trio/blob/1095e373cd7b2207948e0cb90d059dd7ee2e98f7/trio/_highlevel_open_tcp_stream.py">Trio's implementation</a>. Unfortunately, Trio doesn't implement asynchronous DNS queries, which lead to some of the most interesting concurrent scenarios, but in spite of that the comparison highlighted some interesting differences between the two approaches. I am going to cover what I've learned in this article.</p>
@@ -59,4 +67,4 @@ async with trio.open_nursery() as nursery:
 <p>Libdill, on the other hand, can avoid that kind of thing because it uses Golang-style channels for synchronization among threads.</p>
 <p>But it seems that addition of channels to Trio is <a href="https://github.com/python-trio/trio/issues/719">being considered</a>. Once the channels are available the Happy Eyeballs algorithm can be rewritten to use a simple "main thread owns all worker threads" model.</p>
 <p>At that point, the topic of the two approaches to structured concurrency should be revisited.</p>
-<p><strong>October 31st, 2018</strong></p>
+<p><strong>October 31st, 2018</strong></p></body>

@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="messagingmultiplexing">Messaging &amp; Multiplexing</h1>
 <p><strong>I've originally written this article in September 2011. Given that I've had several discussions about multiplexing inside of messaging solutions in past few days, I've decided to re-publish a slightly improved version.</strong></p>
 <h1 id="introduction">Introduction</h1>
@@ -48,4 +56,4 @@
 <h1 id="conclusion">Conclusion</h1>
 <p>Multiplexing on top of TCP in overall fails to deliver the advantages it is assumed to provide. Moreover, implementing such multiplexer basically means implementing custom TCP on top of the standard TCP (rx buffers, ACKs etc.). Such implementation will almost necessarily be buggy, it will have sub-optimal performance and it will just duplicate the functionality already present in the network stack. Thus, we get a lot of drawbacks with no associated advantages.</p>
 <p>The special case of multiplexing several services on the top of a single TCP port doesn't require actual multiplexing of the data. It can be achieved by passing separate TCP connections initiated on the same port to the different applications as appropriate.</p>
-<p><strong>February 24th, 2013</strong></p>
+<p><strong>February 24th, 2013</strong></p></body>

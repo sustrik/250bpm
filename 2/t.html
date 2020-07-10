@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="economicsofmessagingsoftware">Economics of Messaging Software</h1>
 <p>It gets quite complicated to explain what's the difference between traditional business messaging (products like IBM's <a href="http://www-01.ibm.com/software/integration/wmq/#">WebSphere MQ</a>, APIs like <a href="http://en.wikipedia.org/wiki/Java_Message_Service">JMS</a> and protocols like <a href="http://www.amqp.org">AMQP</a> or <a href="http://mqtt.org">MQTT</a>) and distributed messaging (as implemented by <a href="http://www.zeromq.org">ØMQ</a>). Both are the ways for applications to speak each to another easily. However, once you get to describing the differences, the discussion breaks into lots of messy <a href="http://www.zeromq.org/docs:welcome-from-amqp">technical details</a> and the big picture disappears.</p>
 <p>To understand the big picture, I believe, one has to understand the economics of the problem area.</p>
@@ -32,4 +40,4 @@
 <p>Finally, imagine the situation when the network is down. What happens with enterprise-grade messaging system is that messages are stored in DLQ (dead-letter queue) where the assigned staff person can check them and execute the lost transactions via telephone, send them via FedEx or whatever is appropriate. Now, in modern lightweight Internet firm you have no person assigned to check the DLQ. What now? Are we going to simply throw away the messages in DLQ? If so, why bother having reliable messaging system at all? Fail!</p>
 <p>In summary, I believe the current state of business messaging ecosystem is caused by ignoring the real-world requirements and focusing on requirements we've inherited from 1980's corporate world. This blog post won't try to dive into details of how ØMQ attempts to address the new emergent requirements of modern Internet ecosystem. The details can be found <a href="http://www.zeromq.org/docs:welcome-from-amqp">elsewhere</a>. I hope, though, that it gives 30,000 feet perspective of the differences between traditional MQ solutions and ØMQ.</p>
 <p>Happy Lunar New Year everybody!</p>
-<p><strong>January 23rd, 2012</strong></p>
+<p><strong>January 23rd, 2012</strong></p></body>

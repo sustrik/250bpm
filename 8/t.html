@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="whyshouldihavewrittenzeromqincnotcpartii">Why should I have written ZeroMQ in C, not C++ (part II)</h1>
 <p>In my <a href="/blog:4">previous blog post</a> I've discussed how the need for rigorous error handling in low-level infrastructure software prevents the usage of many fundamental C++ features (exceptions, constructors, destructors). The conclusion was that with such a severely limited feature set, writing the program in C yields shorter and more readable codebase. A side effect is eliminating the dependency on C++ runtime library, which shouldn't be easily dismissed, especially in embedded environments.</p>
 <p>In this blog post I would like to explore the problem from a different point of view. Namely: Are there any performance implications in using C++ vs. C ?</p>
@@ -93,4 +101,4 @@ private in person:
 <p>In conclusion, if ZeroMQ was written in C it would require less memory allocations, there would be less memory fragmentation and some of the algorithms would have O(1) complexity instead of O(n) or O(log n).</p>
 <p>The problem behind the inefficiency is not in ZeroMQ code, nor is it an inherent flaw of object-oriented methodology. Rather it is a deficiency in the design of C++ language. And to be fair to C++, the same problem exists in most — if not all — object-oriented languages.</p>
 <p><em>EDIT: Patrick Wyatt have written a more extensive blog post on intrusive lists. You can find it <a href="http://www.codeofhonor.com/blog/avoiding-game-crashes-related-to-linked-lists">here</a>.</em></p>
-<p><strong>Aug 30th, 2012</strong></p>
+<p><strong>Aug 30th, 2012</strong></p></body>

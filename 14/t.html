@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="priotitisedloadbalancingwithnanomsg">Priotitised Load Balancing with nanomsg</h1>
 <p>Load balancing is one of the typical features of messaging systems. Although some don't do it (MQTT), most of them provide some way to spread a workload among cluster of boxes.</p>
 <p>In <a href="http://www.zeromq.org">ZeroMQ</a> load balancing is done via REQ (requests that require replies) or, alternatively, by PUSH socket (requests that don't require replies). When designing it, I've opted for completely fair load-balancer. What it means is that if there are two peers able to process requests, first request goes to the first one, second request goes to the second one, third request goes ot the first one again etc. It's called round-robin load balancing. Of course, if a peer is dead, or it is busy at the moment, it's removed from the set of eligible destinations and left alone to re-start or finish the task it is dealing with.</p>
@@ -55,4 +63,4 @@ nn_term ();
 <p>To solve this problem nanomsg offers an alternative solution: Create different messaging topologies for different priorities. That way there are multiple TCP connections involved and head-of-line-blocking problem, as described above, simply doesn't happen:</p>
 <p><img src="prio6.png" alt="" /></p>
 <p>Topology for "urgent" messages is drawn in red. Topology for "normal" messages is in black. Client sends request to either "urgent" or "normal" REQ socket, depending on the priority level it is interested in. Server polls on both REP sockets and processes messages from the "urgent" one first. Finally, given that the two topologies use two different TCP ports, it is possible to configure network switches and routers is such a way that they treat urgent messages in preference and that they allocate certain amount of bandwidth for them, so that network congestion caused by normal messages won't effect delivery of urgent messages.</p>
-<p><strong>Jan 28th, 2013</strong></p>
+<p><strong>Jan 28th, 2013</strong></p></body>

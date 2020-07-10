@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="gettingridofstatemachinesii">Getting rid of state machines (II)</h1>
 <p>So, as explained in the previous article, with green threads every state machine can be rephrased as a simple imperative function.</p>
 <p>Nice. So we are done, aren't we?</p>
@@ -111,4 +119,4 @@ func count(chanA chan string, chanB chan string) {
 </ol>
 <p>If the cancellation mechanism is not this generic users would have to implement these use cases by hand which will in turn lead to introduction of state machines into the code.</p>
 <p>I've been trying to design such a cancellation mechanism for several years and I have repeatedly failed. Finally, I believe I have a solution that may work. I am going to describe it in the next article.</p>
-<p><strong>January 25th, 2016</strong></p>
+<p><strong>January 25th, 2016</strong></p></body>

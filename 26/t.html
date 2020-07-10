@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="nanomsgtowardsfullblownconfigurationmanagement">nanomsg: Towards Full-Blown Configuration Management</h1>
 <p>There have been no administrative functionality in ZeroMQ, nor there is one in nanomsg. Adding such functionality is currently being discussed on nanomsg mailing list and I feel that it may prove confusing for those not directly involved in the discussion. This blog post thus tries to introduce the basic idea and the use cases without digging too deep into the implementation details.</p>
 <p>When you are connecting two components via nanomsg, you typically do it something like this:</p>
@@ -60,4 +68,4 @@ socketB tcp_nodelay 1
 nn_connect (s, "meteo-data");
 </code></pre>
 <p>And that's it. As can be seen there are no configuration files, no need to distribute anything or install any additional software etc.</p>
-<p><strong>September 10th, 2013</strong></p>
+<p><strong>September 10th, 2013</strong></p></body>

@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="eventdrivenarchitecturestatemachinesetal">Event-driven architecture, state machines et al.</h1>
 <p>In my <a href="/blog:24">previous blog post</a> I've described the problems with callback-based architectures and hinted that the solution may be replacing the callbacks by events and state machines. In this post I would like to discuss the proposed solution in more detail. Specifically, I am going to define what the events and state machines actually are and explain why they are useful.</p>
 <p>While the article may be used as an intro to <a href="http://nanomsg.org">nanomsg's</a> internal architecture it can be also be though of as an opinion piece of possible interest to anybody dealing with event-driven architectures and/or state machines.</p>
@@ -66,4 +74,4 @@ void raise (event e)
 <p>To throw in a bit of personal experience, I've done some coding with events alone, with no explicit state machines. It turned out to be very hard to get it right. When thinking about it in the retrospect the problem wasn't caused, interestingly, by the lack of a narrative. Rather, it was the fact that human brain is so good at generating narratives that new short-lived narratives popped into my head all the time. And with no set formally-defined narrative to rely on, they were often mutually incompatible, even contradictory, which in turn led to confusion and incoherent, buggy code.</p>
 <h3 id="combiningeventsandstatemachines">Combining events and state machines</h3>
 <p>While it is possible to use events without state machines (as already discussed) or state machines without events (using standard methods instead of events to drive the state machine) the combination of the two results in an extremely powerfull tool for implementing asynchronous systems. In the next blog post I would like to dive into technicalities of such implementation, including topics such as structuring of the code, handling of arguments and return values, nested state machines et c.</p>
-<p><strong>August 1st, 2013</strong></p>
+<p><strong>August 1st, 2013</strong></p></body>

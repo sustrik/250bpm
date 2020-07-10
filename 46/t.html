@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="noninteractivezeroknowledgeproofsforfunandprofit">Non-interactive zero knowledge proofs for fun and profit</h1>
 <p>Intuitive explanations of the <em>zero knowledge proofs</em> on the web have been rare. There is the classic Alibaba's cave parable, but while it is generally comprehensible it's too simplistic, in my opinion, to explain the topic fully. Luckily, recent article by Matthew Green does a great job at providing an intuitive introduction to the topic:</p>
 <p><a href="http://blog.cryptographyengineering.com/2014/11/zero-knowledge-proofs-illustrated-primer.html">http://blog.cryptographyengineering.com/2014/11/zero-knowledge-proofs-illustrated-primer.html</a></p>
@@ -27,4 +35,4 @@
 <p>Well, the "amount" field for each Bitcoin address can be encoded by its owner's key. That way the attacker can track the entire blockchain but still have no idea whether any particular transaction corresponds to buying a box of matches or buying the entire country of Belgium.</p>
 <p>The only problem with that kind of approach is that you have to convince the miners (who are in care of the distributed ledger) that you haven't created money from nothing. Sending 1 Bitcoin from one account, for example, and receiving 1,000,000 Bitcoins to a different account is not a valid transaction. Neither is sending 1,000,000 Bitcoins from an account that contains 1 Bitcoin.</p>
 <p>This is where the non-interactive zero knowledge proofs kick in. Similarly to Google proving that the adjacent nodes in the graph have different colours you can make a proof that the Bitcoin transaction you are attempting to do plays by the rules. The proof is then sent to the miners along with the transaction itself. Each miner can thus independently verify that the transaction is valid and deserves to be included into the ledger.</p>
-<p><strong>December 7th, 2014</strong></p>
+<p><strong>December 7th, 2014</strong></p></body>

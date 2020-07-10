@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="backdoorsinencryptionstandardsandhowtofightthem">Backdoors in Encryption Standards and How To Fight Them</h1>
 <p>In the last week there a lot of discussion of malevolent parties putting backdoors into encryption standards and how to prevent it. There have been a long thread at IETF mailing list about the topic (starting <a href="http://www.ietf.org/mail-archive/web/ietf/current/msg82071.html">here</a>). NIST re-opened one of its standards due to worries that the backdoor was built in by NSA (see <a href="http://csrc.nist.gov/publications/nistbul/itlbul2013_09_supplemental.pdf">here</a>). And so on.</p>
 <p>It may happen that security agency walks into a standards body and demands that the backdoor is built in. That is a rather trivial case and it can be handled by adjusting the policy of the standard body accordingly. IETF, for example, did so in <a href="https://www.rfc-editor.org/rfc/rfc2804.txt">RFC 2804</a>.</p>
@@ -11,4 +19,4 @@
 <p>The final remaining problem, although unlikely to happen if the mutual hostility is well-balanced, is how to secure the communication if all the involved standard creators decide to cooperate. There are two possibilities here:</p>
 <p>First, the security agencies may decide to share the backdoor each with another. However, if that happens, it would mean that NSA won't be able to protect its own communication from FSB and vice versa. Thus, both agencies would have to create a new, secret encryption standard for internal use. And if that happens, it takes a single leak to get the standard out to the public and at that point the leaked standard can be added to the encryption suite.</p>
 <p>The second possibility is that the agencies won't share the backdoors, rather, they would decrypt data each for another ("spying as a service"). In such case, the order of encryption is important. The rule of the thumb is that the innermost level of encryption should not be the one created by the entity which threatens you the most, rather it should be the one crafted by its most direct enemy. That way we ensure that by decrypting data for others, you are basically cooperating on hurting yourself. After all, the one who will get the plaintext first is your most direct enemy. For example, if the files leaked by Snowden were encrypted in this way and if FSB asked NSA to decrypt it's part of the suite, NSA won't get any information, it wouldn't even know what it is decrypting, but in the end it would help WikiLeaks to get the files (assuming that WikiLeaks' encryption standard was used as the innermost one).</p>
-<p><strong>September 11th, 2013</strong></p>
+<p><strong>September 11th, 2013</strong></p></body>

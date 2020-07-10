@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="updateonstructuredconcurrency">Update on Structured Concurrency</h1>
 <p>Since I've written the article on <a href="http://250bpm.com/blog:71">structured concurrency</a> and implemented <a href="http://libdill.org/">libdill</a> the progress went on.</p>
 <p>Most importantly, Nathaniel J. Smith has published his "<a href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/">Notes on structured concurrency, or: Go statement considered harmful</a>" article. (If you prefer to watch a video, go <a href="https://www.youtube.com/watch?v=oLkfnc_UMcE">here</a>.) It's better, more detailed and more eloquent than anything I have ever written on the topic. If you want to read one thing about structured concurrency go read Nathaniel's article.</p>
@@ -64,4 +72,4 @@
 <p>The reason was that implementation of threads in the C standard library (pthreads) is complex and fragile. It contains a lot of corner cases and poorly specified behavior. Once signals are added to the mix all bets are off. Even if you make it work on one operating system, there's no guarantee that you won't experience weird behavior on a different operating system.</p>
 <p>And I really don't want to deal with that complexity. Libdill is a hobby project and I have only limited time to spend on it.</p>
 <p>But, eventually, if structured concurrency is to take off, it will have to deal with OS threads and processes. It would need people with enough free time and enthusiasm to deal with the complexity and maybe also some political will to change standard libraries in such a way that they play well with structured concurrency.</p>
-<p><strong>October 19th, 2018</strong></p>
+<p><strong>October 19th, 2018</strong></p></body>

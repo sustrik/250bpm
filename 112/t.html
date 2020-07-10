@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="lowhangingfruitofprogramminglanguagedesign">Low Hanging Fruit of Programming Language Design</h1>
 <p>Recently, I've read a paper about <a href="http://janvitek.org/pubs/oopsla17b.pdf">code duplication</a>. The authors analyzed GitHub repositiories for duplicate code. They've found an unexpectedly high amount of code duplication. In their own words:</p>
 <blockquote>
@@ -18,4 +26,4 @@
 <p>Let's have a look at the problem in detail: Why do we need state machines at all? Well, because otherwise we would need one thread per connection. If there were 10,000 connections we would be 10,000 threads which may not be acceptable. Also, threads are not free. There's a cost to preemptive multitasking. If there are many threads competing for small number of CPUs it may take a long time till your particular thread is scheduled. State machines are basically super-lightweight threads, many of which can live on the top of a single OS thread. The memory requirements are low, context switching is extremely fast.</p>
 <p>So what if the language itself provided such lightweight threads? That would remove the need for state machines and, subsequently, for code generation.</p>
 <p>And that's exactly what Go did with goroutines. Also, I have personally written a <a href="http://libdill.org/">library</a> that does a similar thing for C.</p>
-<p>Can a similar thing be done for other instances of code generation as found in GitHub? In my opinion, it is very likely.</p>
+<p>Can a similar thing be done for other instances of code generation as found in GitHub? In my opinion, it is very likely.</p></body>

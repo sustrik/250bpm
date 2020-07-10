@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="whyismytcpnotreliableexpertedition">Why is my TCP not reliable (expert edition)</h1>
 <p>The shortcomings of TCP connection termination have been described many times. If you are not familiar with those problems here's an example of an <a href="https://blog.netherlabs.nl/articles/2009/01/18/the-ultimate-so_linger-page-or-why-is-my-tcp-not-reliable">article</a> that focuses on the problem.</p>
 <p>However, there's one special use case that is rarely, if ever, discussed.</p>
@@ -28,4 +36,4 @@
 <p>First, there's this not widely known theoretical result: If you want your protocol to be fully reliable in the face of either peer shutting down, the terminal handshake has to be asymmetric. As we've seen above, TCP protocol has symmetric termination algorithm and thus can't, by itself, guarantee full reliability.</p>
 <p>Second, I am currently working on <a href="https://github.com/sustrik/libdill/blob/master/rfc/bsd-socket-api-revamp.md">BSD socket API revamp</a> and it's not clear how to address this issue. On one hand, the problem is so obscure that we can't really count on the protocol user to get everything right. So, the API could force the protocol developer to implement the termination mechanism correctly. That way the user wouldn't have to care.</p>
 <p>On the other hand the API should support the existing, not fully reliable, protocols, most importantly, TCP. But that raises an API design problem: Given that there are so many ways to terminate a connection (forceful termination, single-step TCP-like close, two-step TCP-like termination with half-closes, full-blown three step termination as secribed above) how many shutdown APIs should there be? If there's close1(), close2(), close3() and close4(), it's going to get super confusing pretty quickly. If there's a single API, it can't give the same reliability guarantees for every protocol.</p>
-<p><strong>Apr 7th, 2017</strong></p>
+<p><strong>Apr 7th, 2017</strong></p></body>

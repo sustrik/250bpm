@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
 <h1 id="implementingnetworkprotocolsinuserspace">Implementing Network Protocols in User Space</h1>
 <p>Implementing network protocols in user space is not as uncommon as it may seem. The advantages when compared to implementing them in the kernel space range from easier development, more freedom to experiment and greater portability to less hassle with the distribution (the pain of getting the patch into the mainline kernel vs. simply uploading a user space library to GitHub), improved performance thanks to kernel by-pass and no way to provide a kernel space implementation for proprietary platforms like Windows.</p>
 <p>While my experience in the area is based on my work on <a href="http://www.zeromq.org">ZeroMQ</a> and more recently on <a href="http://nanomsg.org">nanomsg</a>, there are many other libraries that share the same challenge. One may mention, for example, <a href="https://code.google.com/p/openpgm">OpenPGM</a> (reliable multicast, RFC 3208), <a href="http://udt.sourceforge.net/">UDT</a> (bulk transfer protocol) or <a href="http://www.openonload.org/">OpenOnload</a> (Solarflare's kernel by-pass networking).</p>
@@ -202,4 +210,4 @@ ssize_t myproto_recv (int s, void *buf, size_t len, int flags)
 <li>Write the state to the eventfd.</li>
 </ol>
 <p>Following these instructions should make implementing network protocols in user space easy. Or, if not easy (network protocols rarely are) it at least allows developers to focus on the functionality of the protocol rather than force them to fight with constraints and deficiencies of the underlying operating system.</p>
-<p><strong>February 8th, 2013</strong></p>
+<p><strong>February 8th, 2013</strong></p></body>
