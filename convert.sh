@@ -8,5 +8,6 @@ for d in *; do
     showdown makehtml -i $d/blog.md -o $d/r.html
     cat header.html $d/r.html footer.html > $d/t.html
     rm $d/r.html
+    ln -s $d/t.html blog:$d
   fi
 done
