@@ -9,3 +9,5 @@ Details about the event can be found [here](https://fosdem.org/2019/schedule/eve
 If you have no idea what structured concurrency is about, good intro article can be found [here](https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/).
 
 EDIT: The video of the talk can be found [here](https://fosdem.org/2019/schedule/event/structured_concurrency/).
+
+**January 2nd, 2019**

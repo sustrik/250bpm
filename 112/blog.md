@@ -16,8 +16,6 @@ If you think of code generation as a preliminary step to creating a programming 
 
 Even more interesting lesson to learn here is that as a programming language designer you don't have to rely on your gut instinct or, even worse, just try to impose your pet way of doing things on programming public, but rather, you can adopt an evidence-based approach and start by analysis of the vast repository of real-world use cases that is GitHub.
 
-**November 21st, 2017**
-
 **Addendum, November 24th**: Looking at the comments about this article on [Hacker News](https://news.ycombinator.com/item?id=15756054) it seems that people have misunderstood what I was saying in two ways.
 
 First, there is the idea that I am advocating creation of new DSLs. Like, if there turns out to be a lot of code generated in fish canning industry we should create a dedicated fish canning language. That's not what I meant. While DSLs may have their place I was really speaking about general-purpose languages.
@@ -37,3 +35,5 @@ So what if the language itself provided such lightweight threads? That would rem
 And that's exactly what Go did with goroutines. Also, I have personally written a [library](http://libdill.org/) that does a similar thing for C.
 
 Can a similar thing be done for other instances of code generation as found in GitHub? In my opinion, it is very likely.
+
+**November 21st, 2017**

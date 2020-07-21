@@ -1,7 +1,5 @@
 # Linguistics and Programming Languages
 
-
-
 NOTE: This is an article I've published more that a decade ago. From my today's point of view it may be a bit naive but it still makes a valid and interesting proposal. Sadly though, nobody have taken the challenge in the meantime. Can it be a time to do so now? I am republishing it here as is, with no modifications whatsover.
 
 It is quite common to use computers to analyse natural languages. Although we are not yet able to accomplish the task plausibly, the problem is being solved with the hope that one day we will be able to communicate with computers in natural language.
@@ -215,3 +213,5 @@ Here are some more problems of interest:
 *   Does STL documentation correspond to a dictionary of natural language?
 
 Many of these questions are still to be explored. On the way we may obtain completely different view of what a programming language might be and how they could be analysed and improved.
+
+**June 1st, 2006**

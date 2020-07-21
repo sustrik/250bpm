@@ -173,6 +173,6 @@ Want to move the program to a different machine?
 
 Easy! Just scp the directory to the machine in question. Then ask the interpreter to resume the execution where it has ended.
 
-**April 28th, 2019**
-
 EDIT May 4th 2019: Typesystem based on file extensions, including polymorphism: frobnicate(foo.json) can have different implementation than frobnicate(foo.xml)
+
+**April 28th, 2019**

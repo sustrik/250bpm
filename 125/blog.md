@@ -106,8 +106,8 @@ The person may, alternatively, decide to help. Once again, there's cognitive dis
 
 Also, this new understanding of himself as a moral and self-sacrificing person affects his future behavior. If asked for help again how can he possibly justify refusing the plea?
 
-**April 29th, 2018**
-
 **Note from September 30th, 2018**: François Rochat and Andre Modigliani in their paper "[The Ordinary Quality of Resistance: From Milgram's Laboratory to the Milage of Le Chambon](http://faculty.buffalostate.edu/hennesda/obedience%20and%20disobedience%20-%20le%20chambon.pdf)" describe the collective effort in the sorroundings of the French village of Le Chambon that saved ~5000 people. While this is somewhat different to individual rescue efforts discussed in this article, the authors still point out the importance of gradual increase in individual involvement:
 
 > At first, helping meant giving some food, or taking people in for one or two nights. Then, as matters became worse, the helpers had to look for extra food and clothing, which was not an easy task. Food was rationed and food stamps restricted to regular inhabitants of the community; the same was true for clothing. Hiding places also had to be secured in case of police raids. Helpers were thus confronted with all sorts of daily problems that they had to resolve. In retrospect, it seems clear that their rescue mission was really built on these day-to-day decisions having to do with very ordinary things, and that their commitment to the task was gradual. … They did one thing at a time, and one thing after the other, each move bringing them closer to becoming the rescuers we admire today. At the outset they were merely decent persons helping those in need. However, these small, early steps ended up making the difference between life and death for thousands of refugees. By starting to help, the rescuers became more deeply involved in the fate of the refugees—they felt strongly pressed to learn to become effective.
+
+**April 29th, 2018**

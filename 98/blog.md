@@ -38,6 +38,6 @@ And a note for those who are now trying to figure out whether having male and fe
 
 As a final remark, let me raise a question of whether memetics have been stuck for years exactly because we've tried to apply the model of simple natural selection to memes, whereas, in reality, we are facing much more messy and complex world of sexual selection.
 
-**August 13th, 2017**
-
 Addendum, December 4th, 2017: "You'd be hard-pressed to come up with a social phenomenon that lacks \[infinite mirror strcuture\]". Brain fart. Tools can obviously propagate without much infinite mirroring. Tool that is different from your neighbour's tool is not worse at serving its purpose just because of that fact.
+
+**August 13th, 2017**
