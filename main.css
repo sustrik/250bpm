@@ -51,4 +51,10 @@ th, td {
     padding-right: 2em;
 }
 
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
 
