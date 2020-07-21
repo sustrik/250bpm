@@ -15,10 +15,19 @@ for d in os.listdir():
   title = c.strip().split('\n')[0][2:]
   titles[num] = title
 
-out = ''
-for blog in sorted(titles.items()):
-  out += "* [%s](/250bpm/blog:%d)\n" % (blog[1], blog[0])
+blogs = sorted(titles.items())
+blogs.reverse()
 
+out = ''
+for blog in blogs:
+  out += "* [%s](/250bpm/blog:%d)\n" % (blog[1], blog[0])
 with open("toc.md", "w") as f:
+    f.write(out)
+
+out = ''
+for i in range(0, 5):
+  blog = blogs[i]
+  out += "* [%s](/250bpm/blog:%d)\n" % (blog[1], blog[0])
+with open("recent.md", "w") as f:
     f.write(out)
 
