@@ -17,7 +17,7 @@ for d in os.listdir():
 
 out = ''
 for blog in sorted(titles.items()):
-  out += "* [%s](blog:%d/index.html)\n" % (blog[1], blog[0])
+  out += "* [%s](/blog:%d)\n" % (blog[1], blog[0])
 
 with open("toc.md", "w") as f:
     f.write(out)
