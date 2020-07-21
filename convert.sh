@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-showdown makehtml -i all.md -o all.html
+showdown makehtml -i toc.md -o toc.html
+cat header.html toc.html footer.html > index.html
+exit
 
 for d in *; do
   if [ -d "$d" ]; then

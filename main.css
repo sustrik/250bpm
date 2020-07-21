@@ -5,7 +5,7 @@ body {
     padding-bottom: 2em;
     padding-left: 5em;
     padding-right: 5em;
-    font-family: sans-serif;
+    font-family: warnock-pro,Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Georgia,serif;
 }
 
 h1 {
@@ -33,7 +33,7 @@ h6 {
 }
 
 a {
-    color: black;
+    color: #606060;
 }
 
 tt {

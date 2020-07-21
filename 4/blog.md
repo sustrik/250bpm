@@ -1,7 +1,5 @@
 # Why should I have written ZeroMQ in C, not C++ (part I)
 
-
-
 Just to be clear from the very beginning: This is not going to be a Torvalds-ish rant against C++ from the point of view of die-hard C programmer.
 
 I've been using C++ whole my professional career and it's still my language of choice when doing most projects.
