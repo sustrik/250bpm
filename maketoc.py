@@ -22,7 +22,7 @@ def fmt(blog):
   return "* [%s](/250bpm/blog:%d)\n" % (blog[1], blog[0])
 
 out = """
-# 250bpm
+![](/250bpm/250bpm.com)
 
 My name is Martin Sústrik.
 
