@@ -234,6 +234,9 @@ The following events are chaotic. The emergence of different opposition movement
 
 In short, the whole range of events that accompany separatist movements around the world.
 
+![](cornol.png)
+<p style="text-align: center;"><i>Jurassic separatists at carnival in Cornol (1948)</i></p>
+
 However, unlike in Northern Ireland, where the violence spiraled out of control at approximately the same time, Switzerland has succeeded - not least through the extensive use of the instruments of direct democracy - to keep the situation under control and eventually, if at the typical Swiss sluggish pace, to resolve it.
 
 We can't go into details here, but let's at least look at a short timeline:
@@ -271,8 +274,6 @@ In the referenda above, the municipality of Laufen decided to remain in the cant
 But the question of the so-called Bernese Jura (Protestant parts of Jura that have not joined the new canton) is still not resolved to the general satisfaction. Separatist haven't yet given up.
 
 In February 2012 the governments of the cantons of Bern and Jura agree to deliver a solution to the problem. In November 2013, two referenda are held, one in Jura, the other in Bernese Jura. The referenda pose the question of whether to begin the process of creating a new canton that would include both areas. Should the referendum pass, a commission would be set up to propose a detailed process, which would then be voted upon in a referendum. The preliminary idea was that every municipality in the Bernese Jura would vote on whether to stay in the canton of Bern or join the canton of Jura.
-
-![](jura.png)
 
 Although the referendum succeeds in the canton of Jura (64.2% in favor), it fails in Berenese Jura (28.15% in favor). Thus, the question of the Great Jura is definitely off the table. Any further inciting of the Jurassic question loses political legitimacy.
 
