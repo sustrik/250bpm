@@ -24,10 +24,10 @@ for blog in blogs:
 with open("toc.md", "w") as f:
     f.write(out)
 
-out = ''
+out = '### Recent\n\n'
 for i in range(0, 5):
   blog = blogs[i]
   out += "* [%s](/250bpm/blog:%d)\n" % (blog[1], blog[0])
-with open("recent.md", "w") as f:
+with open("index.md", "w") as f:
     f.write(out)
 
