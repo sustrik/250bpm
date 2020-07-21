@@ -171,6 +171,7 @@ Back in 1917 Switzerland used to use majority system in the parliamentary electi
 Needless to say, Liberal Democrats torpedoed every attempt to replace the majority voting system by a proportional one. If the instrument of popular initiatives was not available, it would be a dead end. The voters would have to wait until Liberal Democrats lose some of their voter support. But even then, thanks to the majority system, an absolute majority in parliament could be won by another party, who would again find it difficult to abolish the system that brought it to power.
 
 ![](proporz.jpg)
+<p style="text-align: center;"><i>Poster in favor or proportional voting system (1918)</i></p>
 
 General dissatisfaction with the state of affairs led to the launch of the popular initiative "For a proportional system of elections to the National Council" in 1918 which succeeded with 66.8% votes in favor.
 
