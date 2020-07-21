@@ -7,8 +7,7 @@ for d in *; do
   if [ -d "$d" ]; then
     echo "$d"
     showdown makehtml -i $d/blog.md -o $d/r.html
-    cat header.html $d/r.html footer.html > $d/t.html
+    cat header.html $d/r.html footer.html > $d/index.html
     rm $d/r.html
-    ln -s $d/t.html blog:$d
   fi
 done
