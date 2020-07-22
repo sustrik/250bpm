@@ -22,13 +22,13 @@ def fmt(blog):
   return "* [%s](/250bpm/blog:%d)\n" % (blog[1], blog[0])
 
 out = """
-![](/250bpm/250bpm.png)
+<img class="caption" src="/250bpm/250bpm.png">
 
 My name is Martin Sústrik.
 
 Once I have written software projects such as [ØMQ](https://zeromq.org/), [nanomsg](https://nanomsg.org) or [libdill](https://libdill.org).
 
-I believe I was the first one to use the term [Structured Concurrency](https://en.wikipedia.org/wiki/Structured_concurrency).
+I believe I was the first one to use the term [structured concurrency](https://en.wikipedia.org/wiki/Structured_concurrency).
 
 These days I blog about random stuff.
 
