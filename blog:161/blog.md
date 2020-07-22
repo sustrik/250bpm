@@ -179,6 +179,10 @@ To be fair, a new form of initiative, so called “general popular initiative”
 
 In any case, the story continues with People's party, the initiator of the anti-immigration referendum shouting treason, but then announcing that they will not challenge the decision in another referendum. Instead, they opt to challenge the outcome indirectly, with an initiative asking for Swiss law - and thus the outcome of the anti-mass immigration initiative - to take precedence over international treaties - and thus over the Treaty on Free Movement with the EU. The initiative is rejected in a referendum.
 
+![](svp.jpg)
+<p style="text-align: center;"><i>EU worm gnaws on Swiss apple. Election poster of Swiss People's Party (2019)</i></p>
+
+
 In 2018, signature collection begins for a new referendum. The proposal instructs the government to negotiate the removal of free movement clauses from the treaties with the European Union and, if that does not happen, establishes automatic termination of said treaties. The referendum was scheduled for May 2020, but postponed due to the coronavirus epidemic. That being said, the surveys show that the referendum will most likely fail and the problem of discrepancy between the constitution and the law will persist.
 
 To conclude, it is worth noting how the discussion is becoming more and more nuanced over the years. In the 19th century, it was disputed whether a partial change in the constitution through a popular initiative was permissible at all. Then we see the government openly sabotaging the legal instrument. Today, 130 years after it was introduced, the Swiss are finally dealing with the actual messy problems that the usage of popular initiatives entails. 
