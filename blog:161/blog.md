@@ -179,7 +179,7 @@ To be fair, a new form of initiative, so called “general popular initiative”
 
 In any case, the story continues with People's party, the initiator of the anti-immigration referendum shouting treason, but then announcing that they will not challenge the decision in another referendum. Instead, they opt to challenge the outcome indirectly, with an initiative asking for Swiss law - and thus the outcome of the anti-mass immigration initiative - to take precedence over international treaties - and thus over the Treaty on Free Movement with the EU. The initiative is rejected in a referendum.
 
-![](svp.jpg)
+![](svp.png)
 <p style="text-align: center;"><i>EU worm gnaws on Swiss apple. Election poster of Swiss People's Party (2019)</i></p>
 
 
