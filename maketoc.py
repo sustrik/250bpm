@@ -41,7 +41,7 @@ for i in range(0, 5):
   out += fmt(blogs[i])
 
 out += '### Sociology, Politology, History, Coordination Problems\n\n'
-for i in [161, 160, 159, 151, 136, 135, 132, 128, 127, 125, 113, 100, 96, 94, 92, 66]:
+for i in [162, 161, 160, 159, 151, 136, 135, 132, 128, 127, 125, 113, 100, 96, 94, 92, 66]:
   out += fmt((i, titles[i])) 
 
 out += '### Structured Concurrency\n\n'
