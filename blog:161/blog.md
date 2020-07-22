@@ -22,6 +22,10 @@ There are obligatory referenda: Any change in constitution, adjustment of taxes 
 
 To understand the scope of the thing, consider that a 37-year-old from the city of Zurich who turned 18 in year 2000, has, in past 20 years, had the opportunity to take part in 548 referenda, 181 of them being on the federal, 176 on the cantonal and 191 on the municipal level. With the average turnout of 45% it means that they have voted in approximately 246 referenda.
 
+![](landesgemeinde.jpg)
+<p style="text-align: center;"><i>Voting by a show of hands. Canton Glarus. (Photo by Marc Schlumpf)</i></p>
+
+
 Due to their large number, individual referenda are not organized separately. Instead, they are voted on in batches, typically four times a year.
 
 To get a flavor of how it feels like, here's the batch from the city of Zurich in February 2020:
