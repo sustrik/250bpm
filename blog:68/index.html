@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
+<p><a class="home" href="/">←</a></p>
 <h1 id="enforcederrorhandling">Enforced Error Handling</h1>
 <p>If you don't mind your program crashing once in a while — and I am not making fun here: for some programs making them 100% error proof doesn't pay off — using exceptions for error handling is pefectly adequate.</p>
 <p>However, when writing code with strong reliability requirements your priorities are different. After all, large fraction of production outages comes from <a href="http://danluu.com/postmortem-lessons/">botched error handling</a>. You really want to stop and think about each error code at every level as it is passed up the stack. In that case C (or Go) style error handling is exactly what you want.</p>

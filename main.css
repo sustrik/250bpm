@@ -32,6 +32,13 @@ h6 {
     font-size: 100%;
 }
 
+.home {
+    color: black;
+    font-size: 300%;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 a {
     color: #606060;
 }

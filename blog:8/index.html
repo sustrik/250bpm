@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
+<p><a class="home" href="/">←</a></p>
 <h1 id="whyshouldihavewrittenzeromqincnotcpartii">Why should I have written ZeroMQ in C, not C++ (part II)</h1>
 <p>In my <a href="/blog:4">previous blog post</a> I've discussed how the need for rigorous error handling in low-level infrastructure software prevents the usage of many fundamental C++ features (exceptions, constructors, destructors). The conclusion was that with such a severely limited feature set, writing the program in C yields shorter and more readable codebase. A side effect is eliminating the dependency on C++ runtime library, which shouldn't be easily dismissed, especially in embedded environments.</p>
 <p>In this blog post I would like to explore the problem from a different point of view. Namely: Are there any performance implications in using C++ vs. C ?</p>

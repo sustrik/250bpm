@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
+<p><a class="home" href="/">←</a></p>
 <h1 id="thecallbackhell">The Callback Hell</h1>
 <p>I've spent last month re-writing the code of <a href="http://nanomsg.org">nanomsg</a> to use state machines internally, passing asynchronous events around instead of using random callbacks between the components. The change is complex, requires a lot of work and it is not visible to the end user, so the question is: Why do it at all? The time can be put to better use implementing sexy new features that would make the users happy. Instead, the progress on the library seems stalled and such major re-write may even result in regressions. Why even bother then?</p>
 <p>I'll try to provide the answer in this article. It will introduce a generic argument against callbacks, so if you are using callbacks, give it a read even if you are not interested in nanomsg per se. By the way, note that I am not going to say anything new here. The knowledge has been around for literally decades. However, given the amount of callback-driven programming that's being done and apparent — although completely incomprehensible to me — craving of some users of ZeroMQ and nanomsg for callback-based APIs, I believe that re-iterating the basics would be useful.</p>

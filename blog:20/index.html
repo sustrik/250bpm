@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
+<p><a class="home" href="/">←</a></p>
 <h1 id="usingsurveyprotocolforhighavailability">Using Survey Protocol for High Availability</h1>
 <p>I've already wrote about "survey" scalability protocol in this blog. <a href="http://www.250bpm.com/blog:5">The article</a> explained how the survey protocol can be used to collect information from a set of computers. This article, on the other hand, shows how to use "survey" protocol to combine high reliability with low latency.</p>
 <p>First, let's have a look how REQ/REP protocol handles reliability. The basic idea is that there are multiple instances of the service, so if one of them fails, others are still available for processing requests. The only problem with this approach is that if a service instance crashes while processing a request it will never produce a reply and client will wait for it forever. To handle this situation REQ/REP protocol has the NN_REQ_RESEND_IVL socket option, set by default to 60 seconds. If reply is not received within this time window, client socket (REQ) will assume that the service instance processing the request have crashed or became in some other way unavailable and re-sends the request. It will now be routed to a different service instance which will process the request and deliver the reply to the client. Check the sequence of events on the following diagram:</p>
