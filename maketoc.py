@@ -42,7 +42,11 @@ for i in range(0, 5):
 
 out += '### Sociology, Politology, History, Coordination Problems\n\n'
 for i in [161, 160, 159, 151, 136, 135, 132, 128, 127, 125, 113, 100, 96, 94, 92, 66]:
-  out += fmt((i, titles[i]))  
+  out += fmt((i, titles[i])) 
+
+out += '### Structured Concurrency\n\n'
+for i in [146, 145, 143, 139, 137, 124, 71, 70, 69, 25]:
+  out += fmt((i, titles[i])) 
 
 out += '### Short Stories\n\n'
 for i in [150, 134, 131, 130, 129, 109]:
