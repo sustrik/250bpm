@@ -329,3 +329,5 @@ Shortly after the previous referendum, the city of Moutier decides to hold a mun
 And so, if everything goes well, the Jurassic question will be definitively resolved soon, after more than two centuries of conflict.
 
 **July 18th, 2020**
+
+[Next part](http://250bpm.com/blog:162)
