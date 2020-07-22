@@ -46,7 +46,11 @@ for i in [161, 160, 159, 151, 136, 135, 132, 128, 127, 125, 113, 100, 96, 94, 92
 
 out += '### Structured Concurrency\n\n'
 for i in [146, 145, 143, 139, 137, 124, 71, 70, 69, 25]:
-  out += fmt((i, titles[i])) 
+  out += fmt((i, titles[i]))
+
+out += '### Miscellanea\n\n'
+for i in [153, 152, 149, 133, 121, 119, 102, 95, 93, 91, 88, 81, 68, 65, 55, 51, 50, 49, 48, 45]:
+  out += fmt((i, titles[i]))
 
 out += '### Short Stories\n\n'
 for i in [150, 134, 131, 130, 129, 109]:
