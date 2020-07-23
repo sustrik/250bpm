@@ -25,13 +25,7 @@ def fmt(blog):
 out = """
 <img class="caption" src="/250bpm/250bpm.png">
 
-My name is Martin Sústrik.
-
-Once I have written software projects such as [ØMQ](https://zeromq.org/), [nanomsg](https://nanomsg.org) or [libdill](https://libdill.org).
-
-I believe I was the first one to use the term [structured concurrency](https://en.wikipedia.org/wiki/Structured_concurrency).
-
-These days I blog about random stuff.
+My name is Martin Sústrik. In the past I have written software projects such as [ØMQ](https://zeromq.org/), [nanomsg](https://nanomsg.org) or [libdill](https://libdill.org). I may have been the first one to use the term [structured concurrency](https://en.wikipedia.org/wiki/Structured_concurrency). These days I blog about random stuff.
 
 All the opinions stated here are my own. Any resemblance to opinions of other people, living or dead, is purely coincidental.
 
