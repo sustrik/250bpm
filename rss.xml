@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>250bpm</title>
+  <link>http://250bpm.com</link>
+  <description>Martin Sustrik's Blog</description>
+
+  <item>
+    <title>Swiss Political System: More than You ever Wanted to Know (II.)</title>
+    <link>http://250bpm.com/blog:162</link>
+    <description>Swiss Political System: More than You ever Wanted to Know (II.)</description>
+  </item>
+  <item>
+    <title>Swiss Political System: More than You ever Wanted to Know (I.)</title>
+    <link>http://250bpm.com/blog:161</link>
+    <description>Swiss Political System: More than You ever Wanted to Know (I.)</description>
+  </item>
+  <item>
+    <title>Institutional Senescence</title>
+    <link>http://250bpm.com/blog:160</link>
+    <description>Institutional Senescence</description>
+  </item>
+  <item>
+    <title>In Search of Slack</title>
+    <link>http://250bpm.com/blog:159</link>
+    <description>In Search of Slack</description>
+  </item>
+  <item>
+    <title>Partying over Internet: Technological Aspects</title>
+    <link>http://250bpm.com/blog:158</link>
+    <description>Partying over Internet: Technological Aspects</description>
+  </item>
+  <item>
+    <title>The Missing Piece</title>
+    <link>http://250bpm.com/blog:157</link>
+    <description>The Missing Piece</description>
+  </item>
+  <item>
+    <title>Happy Petrov Day!</title>
+    <link>http://250bpm.com/blog:156</link>
+    <description>Happy Petrov Day!</description>
+  </item>
+  <item>
+    <title>On Becoming Clueless</title>
+    <link>http://250bpm.com/blog:155</link>
+    <description>On Becoming Clueless</description>
+  </item>
+  <item>
+    <title>Type-safeness in Shell</title>
+    <link>http://250bpm.com/blog:154</link>
+    <description>Type-safeness in Shell</description>
+  </item>
+  <item>
+    <title>Hull: An alternative to shell that I&#x27;ll never have time to implement</title>
+    <link>http://250bpm.com/blog:153</link>
+    <description>Hull: An alternative to shell that I&#x27;ll never have time to implement</description>
+  </item>
+  <item>
+    <title>On the Nature of Programming Languages</title>
+    <link>http://250bpm.com/blog:152</link>
+    <description>On the Nature of Programming Languages</description>
+  </item>
+  <item>
+    <title>The Politics of Age (the Young vs. the Old)</title>
+    <link>http://250bpm.com/blog:151</link>
+    <description>The Politics of Age (the Young vs. the Old)</description>
+  </item>
+  <item>
+    <title>Muqaata&#x27;a by Fahad Himsi (I.)</title>
+    <link>http://250bpm.com/blog:150</link>
+    <description>Muqaata&#x27;a by Fahad Himsi (I.)</description>
+  </item>
+  <item>
+    <title>Programmatic Code Generation: Composability</title>
+    <link>http://250bpm.com/blog:149</link>
+    <description>Programmatic Code Generation: Composability</description>
+  </item>
+  <item>
+    <title>Lydian song</title>
+    <link>http://250bpm.com/blog:148</link>
+    <description>Lydian song</description>
+  </item>
+  <item>
+    <title>Tiles: Report on Programmatic Code Generation</title>
+    <link>http://250bpm.com/blog:147</link>
+    <description>Tiles: Report on Programmatic Code Generation</description>
+  </item>
+  <item>
+    <title>Graceful Shutdown</title>
+    <link>http://250bpm.com/blog:146</link>
+    <description>Graceful Shutdown</description>
+  </item>
+  <item>
+    <title>Structured Concurrency Cross-language Forum</title>
+    <link>http://250bpm.com/blog:145</link>
+    <description>Structured Concurrency Cross-language Forum</description>
+  </item>
+  <item>
+    <title>Confessions of an Abstraction Hater</title>
+    <link>http://250bpm.com/blog:144</link>
+    <description>Confessions of an Abstraction Hater</description>
+  </item>
+  <item>
+    <title>Announcement: A talk about structured concurrency at FOSDEM</title>
+    <link>http://250bpm.com/blog:143</link>
+    <description>Announcement: A talk about structured concurrency at FOSDEM</description>
+  </item>
+  <item>
+    <title>State Machines and the Strange Case of Mutating API</title>
+    <link>http://250bpm.com/blog:142</link>
+    <description>State Machines and the Strange Case of Mutating API</description>
+  </item>
+  <item>
+    <title>Equivalence of State Machines and Coroutines</title>
+    <link>http://250bpm.com/blog:141</link>
+    <description>Equivalence of State Machines and Coroutines</description>
+  </item>
+  <item>
+    <title>On Rigorous Error Handling</title>
+    <link>http://250bpm.com/blog:140</link>
+    <description>On Rigorous Error Handling</description>
+  </item>
+  <item>
+    <title>Two Approaches to Structured Concurrency</title>
+    <link>http://250bpm.com/blog:139</link>
+    <description>Two Approaches to Structured Concurrency</description>
+  </item>
+  <item>
+    <title>Unikernels: No Longer an Academic Exercise</title>
+    <link>http://250bpm.com/blog:138</link>
+    <description>Unikernels: No Longer an Academic Exercise</description>
+  </item>
+  <item>
+    <title>Update on Structured Concurrency</title>
+    <link>http://250bpm.com/blog:137</link>
+    <description>Update on Structured Concurrency</description>
+  </item>
+  <item>
+    <title>Coordination Problems in Evolution: The Rise of Eukaryotes</title>
+    <link>http://250bpm.com/blog:136</link>
+    <description>Coordination Problems in Evolution: The Rise of Eukaryotes</description>
+  </item>
+  <item>
+    <title>Coordination Problems in Evolution: Eigen&#x27;s Paradox</title>
+    <link>http://250bpm.com/blog:135</link>
+    <description>Coordination Problems in Evolution: Eigen&#x27;s Paradox</description>
+  </item>
+  <item>
+    <title>One-person Universe</title>
+    <link>http://250bpm.com/blog:134</link>
+    <description>One-person Universe</description>
+  </item>
+  <item>
+    <title>What Can Philosophers Learn from Programmers?</title>
+    <link>http://250bpm.com/blog:133</link>
+    <description>What Can Philosophers Learn from Programmers?</description>
+  </item>
+  <item>
+    <title>Anti-social Punishment</title>
+    <link>http://250bpm.com/blog:132</link>
+    <description>Anti-social Punishment</description>
+  </item>
+  <item>
+    <title>The Eb</title>
+    <link>http://250bpm.com/blog:131</link>
+    <description>The Eb</description>
+  </item>
+  <item>
+    <title>On Interstellar Communication</title>
+    <link>http://250bpm.com/blog:130</link>
+    <description>On Interstellar Communication</description>
+  </item>
+  <item>
+    <title>The Garden of Forking Paths</title>
+    <link>http://250bpm.com/blog:129</link>
+    <description>The Garden of Forking Paths</description>
+  </item>
+  <item>
+    <title>Inadequate Equilibria vs. Governance of the Commons</title>
+    <link>http://250bpm.com/blog:128</link>
+    <description>Inadequate Equilibria vs. Governance of the Commons</description>
+  </item>
+  <item>
+    <title>Soviet-era Jokes, Common Knowledge, Irony</title>
+    <link>http://250bpm.com/blog:127</link>
+    <description>Soviet-era Jokes, Common Knowledge, Irony</description>
+  </item>
+  <item>
+    <title>Musings on Social Capital</title>
+    <link>http://250bpm.com/blog:126</link>
+    <description>Musings on Social Capital</description>
+  </item>
+  <item>
+    <title>Research: Rescuers during the Holocaust</title>
+    <link>http://250bpm.com/blog:125</link>
+    <description>Research: Rescuers during the Holocaust</description>
+  </item>
+  <item>
+    <title>Structured Concurrency in High-level Languages</title>
+    <link>http://250bpm.com/blog:124</link>
+    <description>Structured Concurrency in High-level Languages</description>
+  </item>
+  <item>
+    <title>Progressivism vs. Conservatism: A Game-theoretic Approach</title>
+    <link>http://250bpm.com/blog:123</link>
+    <description>Progressivism vs. Conservatism: A Game-theoretic Approach</description>
+  </item>
+  <item>
+    <title>Schooling in your Head</title>
+    <link>http://250bpm.com/blog:122</link>
+    <description>Schooling in your Head</description>
+  </item>
+  <item>
+    <title>Composable Network Protocols vs. Encapsulation</title>
+    <link>http://250bpm.com/blog:121</link>
+    <description>Composable Network Protocols vs. Encapsulation</description>
+  </item>
+  <item>
+    <title>Mojim Spoluobčanom (To My Compatriots)</title>
+    <link>http://250bpm.com/blog:120</link>
+    <description>Mojim Spoluobčanom (To My Compatriots)</description>
+  </item>
+  <item>
+    <title>Documentation Driven Design</title>
+    <link>http://250bpm.com/blog:119</link>
+    <description>Documentation Driven Design</description>
+  </item>
+  <item>
+    <title>Game-theoretic Approach to Tradition</title>
+    <link>http://250bpm.com/blog:118</link>
+    <description>Game-theoretic Approach to Tradition</description>
+  </item>
+  <item>
+    <title>Crypto for Kids: Messenger&#x27;s Story</title>
+    <link>http://250bpm.com/blog:117</link>
+    <description>Crypto for Kids: Messenger&#x27;s Story</description>
+  </item>
+  <item>
+    <title>Your Share of National Wealth for a Microwave Oven!</title>
+    <link>http://250bpm.com/blog:116</link>
+    <description>Your Share of National Wealth for a Microwave Oven!</description>
+  </item>
+  <item>
+    <title>Computational Complexity as a Law of Nature</title>
+    <link>http://250bpm.com/blog:115</link>
+    <description>Computational Complexity as a Law of Nature</description>
+  </item>
+  <item>
+    <title>Inadequate Equilibria</title>
+    <link>http://250bpm.com/blog:114</link>
+    <description>Inadequate Equilibria</description>
+  </item>
+  <item>
+    <title>Suicide by Culture</title>
+    <link>http://250bpm.com/blog:113</link>
+    <description>Suicide by Culture</description>
+  </item>
+  <item>
+    <title>Low Hanging Fruit of Programming Language Design</title>
+    <link>http://250bpm.com/blog:112</link>
+    <description>Low Hanging Fruit of Programming Language Design</description>
+  </item>
+  <item>
+    <title>Evolving towards Extinction</title>
+    <link>http://250bpm.com/blog:111</link>
+    <description>Evolving towards Extinction</description>
+  </item>
+  <item>
+    <title>Hard Things in Computer Science: Naming things</title>
+    <link>http://250bpm.com/blog:110</link>
+    <description>Hard Things in Computer Science: Naming things</description>
+  </item>
+  <item>
+    <title>A Microstory</title>
+    <link>http://250bpm.com/blog:109</link>
+    <description>A Microstory</description>
+  </item>
+  <item>
+    <title>On Modern Propaganda</title>
+    <link>http://250bpm.com/blog:108</link>
+    <description>On Modern Propaganda</description>
+  </item>
+  <item>
+    <title>Ontogeny Recapitulates Phylogeny</title>
+    <link>http://250bpm.com/blog:107</link>
+    <description>Ontogeny Recapitulates Phylogeny</description>
+  </item>
+  <item>
+    <title>A Thought on the AI Risk</title>
+    <link>http://250bpm.com/blog:106</link>
+    <description>A Thought on the AI Risk</description>
+  </item>
+  <item>
+    <title>On Intellectual Honesty</title>
+    <link>http://250bpm.com/blog:105</link>
+    <description>On Intellectual Honesty</description>
+  </item>
+  <item>
+    <title>A Tale of Two Countries</title>
+    <link>http://250bpm.com/blog:104</link>
+    <description>A Tale of Two Countries</description>
+  </item>
+  <item>
+    <title>Moral Dunning-Kruger</title>
+    <link>http://250bpm.com/blog:103</link>
+    <description>Moral Dunning-Kruger</description>
+  </item>
+  <item>
+    <title>Kaizen of Programming</title>
+    <link>http://250bpm.com/blog:102</link>
+    <description>Kaizen of Programming</description>
+  </item>
+  <item>
+    <title>Gift vs. Reputation in OSS</title>
+    <link>http://250bpm.com/blog:101</link>
+    <description>Gift vs. Reputation in OSS</description>
+  </item>
+  <item>
+    <title>&quot;Being from a Worker Family&quot;</title>
+    <link>http://250bpm.com/blog:100</link>
+    <description>&quot;Being from a Worker Family&quot;</description>
+  </item>
+  <item>
+    <title>On Tolerance</title>
+    <link>http://250bpm.com/blog:99</link>
+    <description>On Tolerance</description>
+  </item>
+  <item>
+    <title>Infinite Mirrors and Sexual Selection</title>
+    <link>http://250bpm.com/blog:98</link>
+    <description>Infinite Mirrors and Sexual Selection</description>
+  </item>
+  <item>
+    <title>Game with Infinite Mirrors</title>
+    <link>http://250bpm.com/blog:97</link>
+    <description>Game with Infinite Mirrors</description>
+  </item>
+  <item>
+    <title>Reputation Engineering, part III</title>
+    <link>http://250bpm.com/blog:96</link>
+    <description>Reputation Engineering, part III</description>
+  </item>
+  <item>
+    <title>Linguistics and Programming Languages</title>
+    <link>http://250bpm.com/blog:95</link>
+    <description>Linguistics and Programming Languages</description>
+  </item>
+  <item>
+    <title>Reputation Engineering, part II</title>
+    <link>http://250bpm.com/blog:94</link>
+    <description>Reputation Engineering, part II</description>
+  </item>
+  <item>
+    <title>Note on Homesteading the Noosphere</title>
+    <link>http://250bpm.com/blog:93</link>
+    <description>Note on Homesteading the Noosphere</description>
+  </item>
+  <item>
+    <title>Reputation Engineering, Part I</title>
+    <link>http://250bpm.com/blog:92</link>
+    <description>Reputation Engineering, Part I</description>
+  </item>
+  <item>
+    <title>Sure, we have imperative and functional. But what about cartesian programming?</title>
+    <link>http://250bpm.com/blog:91</link>
+    <description>Sure, we have imperative and functional. But what about cartesian programming?</description>
+  </item>
+  <item>
+    <title>Why is my TCP not reliable (expert edition)</title>
+    <link>http://250bpm.com/blog:90</link>
+    <description>Why is my TCP not reliable (expert edition)</description>
+  </item>
+  <item>
+    <title>Digital encoding. Legacy software. Evolution.</title>
+    <link>http://250bpm.com/blog:89</link>
+    <description>Digital encoding. Legacy software. Evolution.</description>
+  </item>
+  <item>
+    <title>SRE&#x27;s review of Democracy</title>
+    <link>http://250bpm.com/blog:88</link>
+    <description>SRE&#x27;s review of Democracy</description>
+  </item>
+  <item>
+    <title>Few thoughts on current political situation</title>
+    <link>http://250bpm.com/blog:87</link>
+    <description>Few thoughts on current political situation</description>
+  </item>
+  <item>
+    <title>The Cost of Abstraction</title>
+    <link>http://250bpm.com/blog:86</link>
+    <description>The Cost of Abstraction</description>
+  </item>
+  <item>
+    <title>Debt Cancellation Referendum</title>
+    <link>http://250bpm.com/blog:85</link>
+    <description>Debt Cancellation Referendum</description>
+  </item>
+  <item>
+    <title>The Birch</title>
+    <link>http://250bpm.com/blog:84</link>
+    <description>The Birch</description>
+  </item>
+  <item>
+    <title>The Awe of Cryptography</title>
+    <link>http://250bpm.com/blog:83</link>
+    <description>The Awe of Cryptography</description>
+  </item>
+  <item>
+    <title>Software Licenses and Failed States</title>
+    <link>http://250bpm.com/blog:82</link>
+    <description>Software Licenses and Failed States</description>
+  </item>
+  <item>
+    <title>Performance of green threads and why it matters</title>
+    <link>http://250bpm.com/blog:81</link>
+    <description>Performance of green threads and why it matters</description>
+  </item>
+  <item>
+    <title>The Nanny World</title>
+    <link>http://250bpm.com/blog:80</link>
+    <description>The Nanny World</description>
+  </item>
+  <item>
+    <title>Three simple pieces for piano</title>
+    <link>http://250bpm.com/blog:79</link>
+    <description>Three simple pieces for piano</description>
+  </item>
+  <item>
+    <title>The Adventures of Boltzmann Brain (part III)</title>
+    <link>http://250bpm.com/blog:78</link>
+    <description>The Adventures of Boltzmann Brain (part III)</description>
+  </item>
+  <item>
+    <title>The Adventures of Boltzmann Brain (part II)</title>
+    <link>http://250bpm.com/blog:77</link>
+    <description>The Adventures of Boltzmann Brain (part II)</description>
+  </item>
+  <item>
+    <title>Uncertainty principle in economics</title>
+    <link>http://250bpm.com/blog:76</link>
+    <description>Uncertainty principle in economics</description>
+  </item>
+  <item>
+    <title>On printing money</title>
+    <link>http://250bpm.com/blog:75</link>
+    <description>On printing money</description>
+  </item>
+  <item>
+    <title>The Adventures of Boltzmann Brain (part I)</title>
+    <link>http://250bpm.com/blog:74</link>
+    <description>The Adventures of Boltzmann Brain (part I)</description>
+  </item>
+  <item>
+    <title>Footnotes to &quot;Select Statement Considered Harmful&quot;</title>
+    <link>http://250bpm.com/blog:73</link>
+    <description>Footnotes to &quot;Select Statement Considered Harmful&quot;</description>
+  </item>
+  <item>
+    <title>Select Statement Considered Harmful</title>
+    <link>http://250bpm.com/blog:72</link>
+    <description>Select Statement Considered Harmful</description>
+  </item>
+  <item>
+    <title>Structured Concurrency</title>
+    <link>http://250bpm.com/blog:71</link>
+    <description>Structured Concurrency</description>
+  </item>
+  <item>
+    <title>Getting rid of state machines (II)</title>
+    <link>http://250bpm.com/blog:70</link>
+    <description>Getting rid of state machines (II)</description>
+  </item>
+  <item>
+    <title>Getting rid of state machines (I)</title>
+    <link>http://250bpm.com/blog:69</link>
+    <description>Getting rid of state machines (I)</description>
+  </item>
+  <item>
+    <title>Enforced Error Handling</title>
+    <link>http://250bpm.com/blog:68</link>
+    <description>Enforced Error Handling</description>
+  </item>
+  <item>
+    <title>Software Totemism</title>
+    <link>http://250bpm.com/blog:67</link>
+    <description>Software Totemism</description>
+  </item>
+  <item>
+    <title>Centrifugal Governor or Why I am not a Libertarian</title>
+    <link>http://250bpm.com/blog:66</link>
+    <description>Centrifugal Governor or Why I am not a Libertarian</description>
+  </item>
+  <item>
+    <title>Ecology of Software Quality</title>
+    <link>http://250bpm.com/blog:65</link>
+    <description>Ecology of Software Quality</description>
+  </item>
+  <item>
+    <title>Celestial Emporium of Benevolent Knowledge</title>
+    <link>http://250bpm.com/blog:64</link>
+    <description>Celestial Emporium of Benevolent Knowledge</description>
+  </item>
+  <item>
+    <title>Saving the journalism. With bitcoin.</title>
+    <link>http://250bpm.com/blog:63</link>
+    <description>Saving the journalism. With bitcoin.</description>
+  </item>
+  <item>
+    <title>A really hard problem</title>
+    <link>http://250bpm.com/blog:62</link>
+    <description>A really hard problem</description>
+  </item>
+  <item>
+    <title>You cannot have at-least-once broadcast</title>
+    <link>http://250bpm.com/blog:61</link>
+    <description>You cannot have at-least-once broadcast</description>
+  </item>
+  <item>
+    <title>Be just or be data-driven?</title>
+    <link>http://250bpm.com/blog:60</link>
+    <description>Be just or be data-driven?</description>
+  </item>
+  <item>
+    <title>OO languages spend most effort addressing a minority use case</title>
+    <link>http://250bpm.com/blog:59</link>
+    <description>OO languages spend most effort addressing a minority use case</description>
+  </item>
+  <item>
+    <title>Documentation at scale: The principles</title>
+    <link>http://250bpm.com/blog:58</link>
+    <description>Documentation at scale: The principles</description>
+  </item>
+  <item>
+    <title>Document intent not algorithm: A use case</title>
+    <link>http://250bpm.com/blog:57</link>
+    <description>Document intent not algorithm: A use case</description>
+  </item>
+  <item>
+    <title>Advanced metaprogramming in C</title>
+    <link>http://250bpm.com/blog:56</link>
+    <description>Advanced metaprogramming in C</description>
+  </item>
+  <item>
+    <title>Let&#x27;s stop kidding ourselves about APIs</title>
+    <link>http://250bpm.com/blog:55</link>
+    <description>Let&#x27;s stop kidding ourselves about APIs</description>
+  </item>
+  <item>
+    <title>The Second Use Case for Literate Programming</title>
+    <link>http://250bpm.com/blog:54</link>
+    <description>The Second Use Case for Literate Programming</description>
+  </item>
+  <item>
+    <title>A case for unstructured programming</title>
+    <link>http://250bpm.com/blog:53</link>
+    <description>A case for unstructured programming</description>
+  </item>
+  <item>
+    <title>Where are Python macros?</title>
+    <link>http://250bpm.com/blog:52</link>
+    <description>Where are Python macros?</description>
+  </item>
+  <item>
+    <title>Dissecting Software Component&#x27;s Reproductive System</title>
+    <link>http://250bpm.com/blog:51</link>
+    <description>Dissecting Software Component&#x27;s Reproductive System</description>
+  </item>
+  <item>
+    <title>Finish your stuff</title>
+    <link>http://250bpm.com/blog:50</link>
+    <description>Finish your stuff</description>
+  </item>
+  <item>
+    <title>Reusability Trap</title>
+    <link>http://250bpm.com/blog:49</link>
+    <description>Reusability Trap</description>
+  </item>
+  <item>
+    <title>Coroutines in C with Arbitrary Arguments</title>
+    <link>http://250bpm.com/blog:48</link>
+    <description>Coroutines in C with Arbitrary Arguments</description>
+  </item>
+  <item>
+    <title>A cryptopuzzle. Ready, steady, go!</title>
+    <link>http://250bpm.com/blog:47</link>
+    <description>A cryptopuzzle. Ready, steady, go!</description>
+  </item>
+  <item>
+    <title>Non-interactive zero knowledge proofs for fun and profit</title>
+    <link>http://250bpm.com/blog:46</link>
+    <description>Non-interactive zero knowledge proofs for fun and profit</description>
+  </item>
+  <item>
+    <title>The Clockwork inside Game of Thrones</title>
+    <link>http://250bpm.com/blog:45</link>
+    <description>The Clockwork inside Game of Thrones</description>
+  </item>
+  <item>
+    <title>Bullshit jobs</title>
+    <link>http://250bpm.com/blog:44</link>
+    <description>Bullshit jobs</description>
+  </item>
+  <item>
+    <title>Magic numbers in C</title>
+    <link>http://250bpm.com/blog:43</link>
+    <description>Magic numbers in C</description>
+  </item>
+  <item>
+    <title>Are you a programmer-mathematician or a programmer-handyman?</title>
+    <link>http://250bpm.com/blog:42</link>
+    <description>Are you a programmer-mathematician or a programmer-handyman?</description>
+  </item>
+  <item>
+    <title>Idiot&#x27;s Guide to ABI Versioning</title>
+    <link>http://250bpm.com/blog:41</link>
+    <description>Idiot&#x27;s Guide to ABI Versioning</description>
+  </item>
+  <item>
+    <title>Unit Test Fetish</title>
+    <link>http://250bpm.com/blog:40</link>
+    <description>Unit Test Fetish</description>
+  </item>
+  <item>
+    <title>Design of PUB/SUB subsystem in ØMQ</title>
+    <link>http://250bpm.com/blog:39</link>
+    <description>Design of PUB/SUB subsystem in ØMQ</description>
+  </item>
+  <item>
+    <title>Code Generation &amp; Visual Smog in Code (part II)</title>
+    <link>http://250bpm.com/blog:38</link>
+    <description>Code Generation &amp; Visual Smog in Code (part II)</description>
+  </item>
+  <item>
+    <title>Code Generation &amp; Visual Smog in Code (part I)</title>
+    <link>http://250bpm.com/blog:37</link>
+    <description>Code Generation &amp; Visual Smog in Code (part I)</description>
+  </item>
+  <item>
+    <title>In the Defense of Spaghetti Code</title>
+    <link>http://250bpm.com/blog:36</link>
+    <description>In the Defense of Spaghetti Code</description>
+  </item>
+  <item>
+    <title>Poor Man&#x27;s Scientific Method</title>
+    <link>http://250bpm.com/blog:35</link>
+    <description>Poor Man&#x27;s Scientific Method</description>
+  </item>
+  <item>
+    <title>The Second Step Towards Immortality</title>
+    <link>http://250bpm.com/blog:34</link>
+    <description>The Second Step Towards Immortality</description>
+  </item>
+  <item>
+    <title>Bitcoins &amp; Deflation</title>
+    <link>http://250bpm.com/blog:33</link>
+    <description>Bitcoins &amp; Deflation</description>
+  </item>
+  <item>
+    <title>Fighting Efficiency</title>
+    <link>http://250bpm.com/blog:32</link>
+    <description>Fighting Efficiency</description>
+  </item>
+  <item>
+    <title>The Pashalik Syndrome</title>
+    <link>http://250bpm.com/blog:31</link>
+    <description>The Pashalik Syndrome</description>
+  </item>
+  <item>
+    <title>Beyond Rational Idiotism</title>
+    <link>http://250bpm.com/blog:30</link>
+    <description>Beyond Rational Idiotism</description>
+  </item>
+  <item>
+    <title>Tragedy of the Commons and Tragedy of the Privately Owned Land</title>
+    <link>http://250bpm.com/blog:29</link>
+    <description>Tragedy of the Commons and Tragedy of the Privately Owned Land</description>
+  </item>
+  <item>
+    <title>Public Key Encryption for Kids</title>
+    <link>http://250bpm.com/blog:28</link>
+    <description>Public Key Encryption for Kids</description>
+  </item>
+  <item>
+    <title>Backdoors in Encryption Standards and How To Fight Them</title>
+    <link>http://250bpm.com/blog:27</link>
+    <description>Backdoors in Encryption Standards and How To Fight Them</description>
+  </item>
+  <item>
+    <title>nanomsg: Towards Full-Blown Configuration Management</title>
+    <link>http://250bpm.com/blog:26</link>
+    <description>nanomsg: Towards Full-Blown Configuration Management</description>
+  </item>
+  <item>
+    <title>Event-driven architecture, state machines et al.</title>
+    <link>http://250bpm.com/blog:25</link>
+    <description>Event-driven architecture, state machines et al.</description>
+  </item>
+  <item>
+    <title>The Callback Hell</title>
+    <link>http://250bpm.com/blog:24</link>
+    <description>The Callback Hell</description>
+  </item>
+  <item>
+    <title>Getting Rid of ZeroMQ-style Contexts</title>
+    <link>http://250bpm.com/blog:23</link>
+    <description>Getting Rid of ZeroMQ-style Contexts</description>
+  </item>
+  <item>
+    <title>TCP and heartbeats</title>
+    <link>http://250bpm.com/blog:22</link>
+    <description>TCP and heartbeats</description>
+  </item>
+  <item>
+    <title>How to Write a Language Binding for nanomsg</title>
+    <link>http://250bpm.com/blog:21</link>
+    <description>How to Write a Language Binding for nanomsg</description>
+  </item>
+  <item>
+    <title>Using Survey Protocol for High Availability</title>
+    <link>http://250bpm.com/blog:20</link>
+    <description>Using Survey Protocol for High Availability</description>
+  </item>
+  <item>
+    <title>Optimising Subscriptions in nanomsg</title>
+    <link>http://250bpm.com/blog:19</link>
+    <description>Optimising Subscriptions in nanomsg</description>
+  </item>
+  <item>
+    <title>Messaging &amp; Multiplexing</title>
+    <link>http://250bpm.com/blog:18</link>
+    <description>Messaging &amp; Multiplexing</description>
+  </item>
+  <item>
+    <title>Bus Messaging Pattern</title>
+    <link>http://250bpm.com/blog:17</link>
+    <description>Bus Messaging Pattern</description>
+  </item>
+  <item>
+    <title>Implementing Network Protocols in User Space</title>
+    <link>http://250bpm.com/blog:16</link>
+    <description>Implementing Network Protocols in User Space</description>
+  </item>
+  <item>
+    <title>Why Communication Infrastructure Should Use Permissive Licenses</title>
+    <link>http://250bpm.com/blog:15</link>
+    <description>Why Communication Infrastructure Should Use Permissive Licenses</description>
+  </item>
+  <item>
+    <title>Priotitised Load Balancing with nanomsg</title>
+    <link>http://250bpm.com/blog:14</link>
+    <description>Priotitised Load Balancing with nanomsg</description>
+  </item>
+  <item>
+    <title>Location-independent Addressing with Messaging Middleware</title>
+    <link>http://250bpm.com/blog:13</link>
+    <description>Location-independent Addressing with Messaging Middleware</description>
+  </item>
+  <item>
+    <title>EINTR and What It Is Good For</title>
+    <link>http://250bpm.com/blog:12</link>
+    <description>EINTR and What It Is Good For</description>
+  </item>
+  <item>
+    <title>The Merit of AMQP (part I)</title>
+    <link>http://250bpm.com/blog:11</link>
+    <description>The Merit of AMQP (part I)</description>
+  </item>
+  <item>
+    <title>Getting Rid of Domain Registrars Using Bitcoin Algorithm</title>
+    <link>http://250bpm.com/blog:10</link>
+    <description>Getting Rid of Domain Registrars Using Bitcoin Algorithm</description>
+  </item>
+  <item>
+    <title>Enclave Pattern</title>
+    <link>http://250bpm.com/blog:9</link>
+    <description>Enclave Pattern</description>
+  </item>
+  <item>
+    <title>Why should I have written ZeroMQ in C, not C++ (part II)</title>
+    <link>http://250bpm.com/blog:8</link>
+    <description>Why should I have written ZeroMQ in C, not C++ (part II)</description>
+  </item>
+  <item>
+    <title>Does GPL hurt free software?</title>
+    <link>http://250bpm.com/blog:7</link>
+    <description>Does GPL hurt free software?</description>
+  </item>
+  <item>
+    <title>Using likely() and unlikely()</title>
+    <link>http://250bpm.com/blog:6</link>
+    <description>Using likely() and unlikely()</description>
+  </item>
+  <item>
+    <title>Distributed Computing: The Survey Pattern</title>
+    <link>http://250bpm.com/blog:5</link>
+    <description>Distributed Computing: The Survey Pattern</description>
+  </item>
+  <item>
+    <title>Why should I have written ZeroMQ in C, not C++ (part I)</title>
+    <link>http://250bpm.com/blog:4</link>
+    <description>Why should I have written ZeroMQ in C, not C++ (part I)</description>
+  </item>
+  <item>
+    <title>Silicon Valley, Hollywood and Iceland as the New Superpower</title>
+    <link>http://250bpm.com/blog:3</link>
+    <description>Silicon Valley, Hollywood and Iceland as the New Superpower</description>
+  </item>
+  <item>
+    <title>Economics of Messaging Software</title>
+    <link>http://250bpm.com/blog:2</link>
+    <description>Economics of Messaging Software</description>
+  </item>
+  <item>
+    <title>ØMQ: Mission Accomplished</title>
+    <link>http://250bpm.com/blog:1</link>
+    <description>ØMQ: Mission Accomplished</description>
+  </item>
+</channel>
+</rss>

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import html
 import os
 
 # collect blog titles
@@ -34,6 +35,8 @@ These days I blog about random stuff.
 
 All the opinions stated here are my own. Any resemblance to opinions of other people, living or dead, is purely coincidental.
 
+<img src="rss.png" class="rss"> [RSS feed](rss.xml)
+
 """
 
 out += '### Recent\n\n'
@@ -64,11 +67,33 @@ out += '### All articles\n\n'
 out += '* [All articles](toc.html)\n\n'
 
 with open("index.md", "w") as f:
-    f.write(out)
+  f.write(out)
 
 out = ''
 for blog in blogs:
   out += fmt(blog)
 with open("toc.md", "w") as f:
-    f.write(out)
+  f.write(out)
 
+rss = """<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>250bpm</title>
+  <link>http://250bpm.com</link>
+  <description>Martin Sustrik's Blog</description>
+"""
+for blog in blogs:
+  desc = html.escape(blog[1])
+  link = "http://250bpm.com/blog:%s" % blog[0]
+  rss += """
+  <item>
+    <title>%s</title>
+    <link>%s</link>
+    <description>%s</description>
+  </item>""" % (desc, link, desc)
+rss += """
+</channel>
+</rss>
+"""
+with open("rss.xml", "w") as f:
+  f.write(rss)
