@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p><a class="home" href="/">←</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
 <h1 id="locationindependentaddressingwithmessagingmiddleware">Location-independent Addressing with Messaging Middleware</h1>
 <p>When I'm thinking about messaging, usually I assume is that its goal is to deliver nicely packaged tools for implementing different clever scaling algorithms. An example may be pub-sub pattern (or JMS topic) to do one-to-many data distribution, or req-rep pattern (or JMS queue) to implement a service provided by a cluster of stateless workers.</p>
 <p>However, messaging is quite often used in a very different manner. Instead of providing a distributed algorithm among N processes, it is used for a simple one-to-one communication, basically in the same way as TCP is used.</p>

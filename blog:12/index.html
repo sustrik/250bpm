@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p><a class="home" href="/">←</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
 <h1 id="eintrandwhatitisgoodfor">EINTR and What It Is Good For</h1>
 <p>EINTR is one of the POSIX errors that you can get from different blocking functions (send, recv, poll, sem_wait etc.) The POSIX standard unhelpfully describes it as "Interrupted function." Googling for EINTR returns mainly random questions like "I am getting teh EINTR error. What now?" answered mostly by "Just restart the interrupted function."</p>
 <p>None of this helps much when you want to correctly handle EINTR, actually understand what you are doing and why. In this blog post I'll try to explain what EINTR is good for and how to handle it in your code.</p>

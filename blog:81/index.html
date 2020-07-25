@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p><a class="home" href="/">←</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
 <h1 id="performanceofgreenthreadsandwhyitmatters">Performance of green threads and why it matters</h1>
 <p>If one looks closely enough at green threads, such as Go's 'go' statement, it's not hard to realise that they are really a flow control mechanism similar to 'if', 'for' or 'while' statements. Where 'if' allows you to skip a block of code, green threads give you a way to easily switch between different points of execution. Very much like 'if' or 'while' they are glorified jump statements.</p>
 <p>However, to use them as routinely and carelessly as we use ifs or whiles, the green threads would have to be as cheap to use as ifs and whiles are.</p>

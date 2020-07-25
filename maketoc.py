@@ -20,10 +20,10 @@ blogs = sorted(titles.items())
 blogs.reverse()
 
 def fmt(blog):
-  return "* [%s](/250bpm/blog:%d)\n" % (blog[1], blog[0])
+  return "* [%s](./blog:%d/index.html)\n" % (blog[1], blog[0])
 
 out = """
-<img class="caption" src="/250bpm/250bpm.png">
+<img class="caption" src="250bpm.png">
 
 My name is Martin Sústrik. In the past I have written software projects such as [ØMQ](https://zeromq.org/), [nanomsg](https://nanomsg.org) or [libdill](https://libdill.org). I may have been the first one to use the term [structured concurrency](https://en.wikipedia.org/wiki/Structured_concurrency). These days I blog about random stuff.
 
@@ -58,15 +58,15 @@ for i in [148, 84, 79]:
   out += fmt((i, titles[i]))
 
 out += '### All articles\n\n'
-out += '* [All articles](toc.html)\n\n'
+out += '* [All articles](toc/index.html)\n\n'
 
 with open("index.md", "w") as f:
   f.write(out)
 
-out = ''
+out = '# All artices\n'
 for blog in blogs:
   out += fmt(blog)
-with open("toc.md", "w") as f:
+with open("toc/blog.md", "w") as f:
   f.write(out)
 
 rss = """<?xml version="1.0" encoding="UTF-8" ?>

@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p><a class="home" href="/">←</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
 <h1 id="gettingridofzeromqstylecontexts">Getting Rid of ZeroMQ-style Contexts</h1>
 <p>I've argued several times (see for example <a href="http://www.aosabook.org/en/zeromq.html#fig.zeromq.multiuse">here</a>) that global state in a library should not be truly global, i.e. stored in C-style global variables, rather an instance of the "global" state should be created upon user request. The reason is that if the two modules within a process used the same low-level library, they would step on each other's toes:</p>
 <p><img src="global1.png" alt="" /></p>

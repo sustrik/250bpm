@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p><a class="home" href="/">←</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
 <h1 id="enclavepattern">Enclave Pattern</h1>
 <p>In my last <a href="/blog:8">blog post</a> I've ranted about problems with implementing <a href="http://www.boost.org/doc/libs/1_35_0/doc/html/intrusive/intrusive_vs_nontrusive.html">intrusive containers</a> in C++.</p>
 <p>The main problem is that to allow an object to be included into an intrusive container you have to modify the object itself, for example, add 'prev' and 'next' member variables to it. That in turn breaks the encapsulation principle. In rigorous object-oriented design the item is owned by the container, and thus the container should be aware of the item but <strong>not vice versa</strong>.</p>

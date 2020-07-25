@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p><a class="home" href="/">←</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
 <h1 id="tcpandheartbeats">TCP and heartbeats</h1>
 <p>Heartbeating is a common technique to check whether network connection is alive. The idea is that each end of the connection sends small packet od data called "hearetbeat" once in a while. If the peer doesn't receive a heartbeat for some time (typically a multiply of the interval between the heartbeats), the connection is considered broken.</p>
 <p>Interestingly, TCP protocol doesn't provide heartbeats (there are optional keep-alives that are operating on scale of hours, but these are not really useful for swift dectection of network disruption). In short, if network connection is broken, TCP endpoints are not notified about the fact.</p>

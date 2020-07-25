@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p><a class="home" href="/">←</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
 <h1 id="priotitisedloadbalancingwithnanomsg">Priotitised Load Balancing with nanomsg</h1>
 <p>Load balancing is one of the typical features of messaging systems. Although some don't do it (MQTT), most of them provide some way to spread a workload among cluster of boxes.</p>
 <p>In <a href="http://www.zeromq.org">ZeroMQ</a> load balancing is done via REQ (requests that require replies) or, alternatively, by PUSH socket (requests that don't require replies). When designing it, I've opted for completely fair load-balancer. What it means is that if there are two peers able to process requests, first request goes to the first one, second request goes to the second one, third request goes ot the first one again etc. It's called round-robin load balancing. Of course, if a peer is dead, or it is busy at the moment, it's removed from the set of eligible destinations and left alone to re-start or finish the task it is dealing with.</p>

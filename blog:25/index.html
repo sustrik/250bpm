@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="/250bpm/main.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<p><a class="home" href="/">←</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
 <h1 id="eventdrivenarchitecturestatemachinesetal">Event-driven architecture, state machines et al.</h1>
 <p>In my <a href="/blog:24">previous blog post</a> I've described the problems with callback-based architectures and hinted that the solution may be replacing the callbacks by events and state machines. In this post I would like to discuss the proposed solution in more detail. Specifically, I am going to define what the events and state machines actually are and explain why they are useful.</p>
 <p>While the article may be used as an intro to <a href="http://nanomsg.org">nanomsg's</a> internal architecture it can be also be though of as an opinion piece of possible interest to anybody dealing with event-driven architectures and/or state machines.</p>
