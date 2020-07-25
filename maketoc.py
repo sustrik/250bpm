@@ -19,8 +19,8 @@ for d in os.listdir():
 blogs = sorted(titles.items())
 blogs.reverse()
 
-def fmt(blog):
-  return "* [%s](./blog:%d/index.html)\n" % (blog[1], blog[0])
+def fmt(blog, root='.'):
+  return "* [%s](%s/blog:%d/index.html)\n" % (blog[1], root, blog[0])
 
 out = """
 <img class="caption" src="250bpm.png">
@@ -65,7 +65,7 @@ with open("index.md", "w") as f:
 
 out = '# All artices\n'
 for blog in blogs:
-  out += fmt(blog)
+  out += fmt(blog, root='..')
 with open("toc/blog.md", "w") as f:
   f.write(out)
 

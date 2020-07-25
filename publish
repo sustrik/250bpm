@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 ./maketoc.py
 
 showdown makehtml -i index.md -o index.raw.html
