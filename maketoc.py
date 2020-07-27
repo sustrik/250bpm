@@ -49,6 +49,15 @@ out += '### Miscellanea\n\n'
 for i in [153, 152, 149, 133, 121, 119, 102, 95, 93, 91, 88, 81, 68, 65, 55, 51, 50, 49, 48, 45]:
   out += fmt((i, titles[i]))
 
+out += """### Software
+* [ØMQ](https://zeromq.org/) - a distributed messaging library
+* [nanomsg](https://nanomsg.org) - a distributed messaging library
+* [libdill](https://libdill.org) - [structured concurrency](http://libdill.org/structured-concurrency.html), in C
+* [cartesian](https://github.com/sustrik/cartesian) - playing around with the idea of [cartesian programming paradigm](file:///home/martin/250bpm/blog:91/index.html)
+* [tiles](https://github.com/sustrik/tiles) - code generator manipulating [rectangular areas of text](file:///home/martin/250bpm/blog:147/index.html)
+
+"""
+
 out += '### Short Stories\n\n'
 for i in [150, 134, 131, 130, 129, 109]:
   out += fmt((i, titles[i]))  
