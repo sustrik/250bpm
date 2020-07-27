@@ -35,26 +35,47 @@
 <p>The lower one deals with what happens between exactly two TCP endpoints. It basically defines a "better TCP" to build the messaging solution on top of. This layer consists of features like initial handshaking, authentication, message delimitation, multiplexing, heartbeating etc.</p>
 <p>Second layer deals with communication between more than two endpoints and is often referred to as "broker model" (although this is a misnomer: ZeroMQ implements this layer without a need for broker). Broker model defines the behaviour of queues shared between multiple connections as well as algorithms to route messages from clients to the shared queues and vice versa.</p>
 <p>The following table may be of interest. I've compiled the list of better-known messaging standards and marked whether they deal with connection layer or the broker model layer:</p>
-<p>Connection Layer</p>
-<p>Broker Model</p>
-<p><a href="http://www.amqp.org/specification/0-9-1/amqp-org-download">AMQP/0-9-1</a></p>
-<p>Yes</p>
-<p>Yes</p>
-<p><a href="http://www.amqp.org/resources/download">AMQP/1-0</a></p>
-<p>Yes</p>
-<p>No</p>
-<p><a href="http://www.zeromq.org">ZeroMQ</a></p>
-<p>No</p>
-<p>Yes</p>
-<p><a href="http://xmpp.org/">XMPP</a></p>
-<p>Yes</p>
-<p>Yes</p>
-<p><a href="http://www.ibm.com/developerworks/webservices/library/ws-mqtt/index.html#N10084">MQTT</a></p>
-<p>Yes</p>
-<p>Yes</p>
-<p><a href="http://stomp.github.com/">STOMP</a></p>
-<p>Yes</p>
-<p>No</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;"></th>
+<th style="text-align:left;">Connection Layer</th>
+<th style="text-align:left;">Broker Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><a href="http://www.amqp.org/specification/0-9-1/amqp-org-download">AMQP/0-9-1</a></td>
+<td style="text-align:left;">Yes</td>
+<td style="text-align:left;">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left;"><a href="http://www.amqp.org/resources/download">AMQP/1-0</a></td>
+<td style="text-align:left;">Yes</td>
+<td style="text-align:left;">No</td>
+</tr>
+<tr>
+<td style="text-align:left;"><a href="http://www.zeromq.org">ZeroMQ</a></td>
+<td style="text-align:left;">No</td>
+<td style="text-align:left;">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left;"><a href="http://xmpp.org/">XMPP</a></td>
+<td style="text-align:left;">Yes</td>
+<td style="text-align:left;">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left;"><a href="http://www.ibm.com/developerworks/webservices/library/ws-mqtt/index.html#N10084">MQTT</a></td>
+<td style="text-align:left;">Yes</td>
+<td style="text-align:left;">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left;"><a href="http://stomp.github.com/">STOMP</a></td>
+<td style="text-align:left;">Yes</td>
+<td style="text-align:left;">No</td>
+</tr>
+</tbody>
+</table>
 <p>Remark: ZeroMQ is a product and does not define a protocol. I've included it into the list as it is the only example of "broker model" running straight on top of raw TCP, with no intermediate "connection layer". (You may consider <a href="/concepts">this article</a>, where I've defined some basic concepts of distributed messaging, to be an initial step towards a formal protocol.)</p>
 <h1 id="meritofamqp10">Merit of AMQP/1-0</h1>
 <p>To assess the merit of AMQP, it can't judged based on its original goals. With no broker model the goal of interoperability was not reached and we would have to write the protocol off as a failure. There would be nothing to blog about.</p>

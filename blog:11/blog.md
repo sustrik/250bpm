@@ -42,45 +42,14 @@ Second layer deals with communication between more than two endpoints and is oft
 
 The following table may be of interest. I've compiled the list of better-known messaging standards and marked whether they deal with connection layer or the broker model layer:
 
-Connection Layer
-
-Broker Model
-
-[AMQP/0-9-1](http://www.amqp.org/specification/0-9-1/amqp-org-download)
-
-Yes
-
-Yes
-
-[AMQP/1-0](http://www.amqp.org/resources/download)
-
-Yes
-
-No
-
-[ZeroMQ](http://www.zeromq.org)
-
-No
-
-Yes
-
-[XMPP](http://xmpp.org/)
-
-Yes
-
-Yes
-
-[MQTT](http://www.ibm.com/developerworks/webservices/library/ws-mqtt/index.html#N10084)
-
-Yes
-
-Yes
-
-[STOMP](http://stomp.github.com/)
-
-Yes
-
-No
+|                                                                                         | Connection Layer | Broker Model |
+| :-------------------------------------------------------------------------------------- | :--------------- | :----------- |
+| [AMQP/0-9-1](http://www.amqp.org/specification/0-9-1/amqp-org-download)                 | Yes              | Yes          |
+| [AMQP/1-0](http://www.amqp.org/resources/download)                                      | Yes              | No           |
+| [ZeroMQ](http://www.zeromq.org)                                                         | No               | Yes          |
+| [XMPP](http://xmpp.org/)                                                                | Yes              | Yes          |
+| [MQTT](http://www.ibm.com/developerworks/webservices/library/ws-mqtt/index.html#N10084) | Yes              | Yes          |
+| [STOMP](http://stomp.github.com/)                                                       | Yes              | No           |
 
 Remark: ZeroMQ is a product and does not define a protocol. I've included it into the list as it is the only example of "broker model" running straight on top of raw TCP, with no intermediate "connection layer". (You may consider [this article](/concepts), where I've defined some basic concepts of distributed messaging, to be an initial step towards a formal protocol.)
 
