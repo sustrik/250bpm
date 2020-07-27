@@ -1,39 +1,5 @@
 # How to Write a Language Binding for nanomsg
 
-
-
-[Fold](javascript:;)[Unfold](javascript:;)
-
-Table of Contents
-
-[Reusing ZeroMQ bindings](#toc0)
-
-[Forking ZeroMQ bindings](#toc1)
-
-[Writing a new binding](#toc2)
-
-[Plug-ins vs. native code](#toc3)
-
-[Plug-ins](#toc4)
-
-[Native code](#toc5)
-
-[Run-time retrieval of constants](#toc6)
-
-[Managing socket lifetime](#toc7)
-
-[Sending and receiving messages](#toc8)
-
-[Zero-copy](#toc9)
-
-[Error codes](#toc10)
-
-[Handling EINTR](#toc11)
-
-[Polling](#toc12)
-
-[Modularity](#toc13)
-
 Language bindings are pieces of infrastructure that allow nanomsg to be used from different programming languages. This article is meant to provide some hints that may be helpful for binding developers.
 
 Reusing ZeroMQ bindings
