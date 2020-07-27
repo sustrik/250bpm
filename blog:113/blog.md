@@ -45,3 +45,5 @@ It should be said that there was an attempt by protestant intelligentsia to figh
 The original interview can be found [here (in Slovak)](https://dennikn.sk/953687/ako-evanjelici-sami-seba-na-juhu-stredneho-slovenska-takmer-vyhubili). The study itself is called "Tajní Vrahovia " by JÁN ALÁČ and is in the process of being published.
 
 **December 2nd, 2017**
+
+* [Discussion at Hacker News](https://news.ycombinator.com/item?id=15830623)

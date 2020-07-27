@@ -330,4 +330,8 @@ And so, if everything goes well, the Jurassic question will be definitively reso
 
 **July 18th, 2020**
 
+* [Discussion at Hacker News](https://news.ycombinator.com/item?id=23881309)
+* [Discussion at LessWrong](https://www.lesswrong.com/posts/x6hpkYyzMG6Bf8T3W/swiss-political-system-more-than-you-ever-wanted-to-know-i)
+* [Discussion at Marginal Revolution](https://marginalrevolution.com/marginalrevolution/2020/07/how-swiss-politics-works.html)
+
 [Next part](http://250bpm.com/blog:162)

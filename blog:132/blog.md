@@ -20,41 +20,13 @@ The earnings, obviously, depend not only on subject's move but also on the willi
 
 To get a feeling of the payoffs, let's have a look at the single-round earnings in the extreme case where each participant either puts all their tokens into the pool ("cooperator") or keeps all the tokens for themselves ("free-rider"):
 
-No. of free-riders
-
-Earning of a cooperator
-
-Earnings of a free-rider
-
-0
-
-32
-
-n/a
-
-1
-
-24
-
-44
-
-2
-
-16
-
-36
-
-3
-
-8
-
-28
-
-4
-
-n/a
-
-20
+| No. of free-riders | Earning of a cooperator | Earnings of a free-rider |
+| :----------------- | :---------------------- | :----------------------- |
+| 0                  | 32                      | n/a                      |
+| 1                  | 24                      | 44                       |
+| 2                  | 16                      | 36                       |
+| 3                  | 8                       | 28                       |
+| 4                  | n/a                     | 20                       |
 
 ### Public goods game with punishment
 
@@ -144,3 +116,6 @@ I also remember how, when I moved to Switzerland, a lot of my friends said thing
 Swiss people would not understand. What's so bad about punishing free-riders after all?
 
 **September 27th, 2018**
+
+[Discussion at Hacker News](https://news.ycombinator.com/item?id=18194693)
+[Discussion at LessWrong](https://www.lesswrong.com/posts/X5RyaEDHNq5qutSHK/anti-social-punishment)

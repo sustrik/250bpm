@@ -162,3 +162,5 @@ That's not to say there were no problems in Gal Oya project. However, the exampl
 Common pool resource problems are a strict subset of inadequate equilibria problems. However, I don't see why they would be inherently easier to solve than other types of problems. Maybe there's a viable solution for each such problem. Maybe there's a way to escape any suboptimal Nash equilibrium. Maybe all we have to do is to try and when we fail to try again.
 
 **May 25th, 2018**
+
+[Discussion at LessWrong](https://www.lesswrong.com/posts/2G8j8D5auZKKAjSfY/inadequate-equilibria-vs-governance-of-the-commons)

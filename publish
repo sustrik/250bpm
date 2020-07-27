@@ -4,14 +4,14 @@ set -e
 
 ./maketoc.py
 
-showdown makehtml -i index.md -o index.raw.html
+showdown makehtml -i index.md -o index.raw.html --tables
 cat header.html index.raw.html footer.html > index.html
 rm index.md index.raw.html
 
 for d in *; do
   if [ -d "$d" ]; then
     echo "$d"
-    showdown makehtml -i $d/blog.md -o $d/r.html
+    showdown makehtml -i $d/blog.md -o $d/r.html  --tables
     cat header.html blog-header.html $d/r.html footer.html > $d/index.html
     rm $d/r.html
   fi

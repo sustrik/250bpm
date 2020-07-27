@@ -24,23 +24,11 @@ Let's make a digression and think about [symbiosis](https://en.wikipedia.org/wik
 
 Consider this kind of arrangement of payoffs. The numbers specify the fitness of the host (left) and the symbiont (right):
 
-Host / Symbiont
 
-cooperate
-
-parasitize
-
-cultivate
-
-20 / 20
-
-5 / 30
-
-kill
-
-15 / 0
-
-**10 / 5**
+| Host / Symbiont | cooperate | parasitize |
+| :-------------- | :-------- | :--------- |
+| cultivate       | 20 / 20   | 5 / 30     |
+| kill            | 15 / 0    | **10 / 5** |
 
 It can be easily seen that there is only one equilibrium: Whatever the host does it's better for the symbiont to parasitize. And if the symbiont is a parasite it's always better for the host to kill it.
 
@@ -48,23 +36,11 @@ Under what conditions do we see this kind of game? The authors point out that th
 
 How about a different scenario?
 
-Host / Symbiont
+| Host / Symbiont | cooperate   | parasitize |
+| :-------------- | :---------- | :--------- |
+| cultivate       | **20 / 20** | 5 / 10     |
+| kill            | 15 / 0      | **10 / 5** |
 
-cooperate
-
-parasitize
-
-cultivate
-
-**20 / 20**
-
-5 / 10
-
-kill
-
-15 / 0
-
-**10 / 5**
 
 The ideal strategy for the symbiont is not clear in this case. If the host is cultivator it may pay to the symbiont to cooperate. If, on the other hand, the host tries to kill it, the best thing for the symbiont to do would be to multiply as fast as possible, regardless to any damage to the host.
 
@@ -74,23 +50,10 @@ This kind of setup is expected **if each host acquires only a single symbiont fr
 
 Finally, let's have a look at the the following scenario:
 
-Host / Symbiont
-
-cooperate
-
-parasitize
-
-cultivate
-
-**20 / 20**
-
-5 / 10
-
-kill
-
-15 / 15
-
-10 / 0
+| Host / Symbiont | cooperate   | parasitize |
+| :-------------- | :---------- | :--------- |
+| cultivate       | **20 / 20** | 5 / 10     |
+| kill            | 15 / 15     | 10 / 0     |
 
 Again, there's only one equilibrium. It's always better for the symbiont to cooperate and once it's cooperating, it's better for the host to cultivate it.
 

@@ -151,3 +151,6 @@ It turns out that Switzerland is not ruled by anyone in particular. And that bri
 Power is hopelessly diluted. Nobody can make a decision on their own. Everyone is forced to negotiate and, eventually, to compromise. This arrangement is one of the contributing factors to the Swiss system of ruling by consensus, the so called "concordance democracy", which we are going to explore in the next installment of this essay.
 
 **July 22nd, 2020**
+
+* [Discussion at LessWrong](https://www.lesswrong.com/posts/KTnJ4w4grttfJmwo9/swiss-political-system-more-than-you-ever-wanted-to-know-ii)
+
