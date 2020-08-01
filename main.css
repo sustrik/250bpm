@@ -58,9 +58,14 @@ th, td {
     padding-right: 2em;
 }
 
-.caption {
+.logo {
   width: 60%;
   box-shadow: none;
+}
+
+.rss {
+  display: inline;
+  width: inherit;
 }
 
 img {
@@ -71,9 +76,25 @@ img {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.rss {
-  display: inline;
-  width: inherit;
+img.large {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 98%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img.small {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+p.imgtext {
+  text-align: center;
+  font-style: italic;
 }
 
 table {

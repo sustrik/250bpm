@@ -2,17 +2,28 @@
 
 set -e
 
+make_page () {
+    echo "$1"
+    showdown makehtml -i $1/blog.md -o $1/r.html  --tables
+    cat header.html blog-header.html $1/r.html footer.html > $1/index.html
+    rm $1/r.html
+}
+
 ./maketoc.py
 
 showdown makehtml -i index.md -o index.raw.html --tables
 cat header.html index.raw.html footer.html > index.html
 rm index.md index.raw.html
 
-for d in *; do
-  if [ -d "$d" ]; then
-    echo "$d"
-    showdown makehtml -i $d/blog.md -o $d/r.html  --tables
-    cat header.html blog-header.html $d/r.html footer.html > $d/index.html
-    rm $d/r.html
-  fi
-done
+if [ -z "$1" ]; then
+  for d in *; do
+    if [ -d "$d" ]; then
+      make_page $d
+    fi
+  done
+  exit
+fi
+
+make_page "blog:$1"
+
+

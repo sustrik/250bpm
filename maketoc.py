@@ -23,7 +23,7 @@ def fmt(blog, root='.'):
   return "* [%s](%s/blog:%d/index.html)\n" % (blog[1], root, blog[0])
 
 out = """
-<img class="caption" src="250bpm.png">
+<img class="logo" src="250bpm.png">
 
 My name is Martin Sústrik. In the past I have written software projects such as [ØMQ](https://zeromq.org/), [nanomsg](https://nanomsg.org) or [libdill](https://libdill.org). I may have been the first one to use the term [structured concurrency](https://en.wikipedia.org/wiki/Structured_concurrency). These days I blog about random stuff.
 
@@ -38,7 +38,7 @@ for i in range(0, 5):
   out += fmt(blogs[i])
 
 out += '### Sociology, Politology, Evolution, Coordination Problems\n\n'
-for i in [162, 161, 160, 159, 151, 136, 135, 132, 128, 127, 125, 113, 100, 96, 94, 92, 66]:
+for i in [163, 162, 161, 160, 159, 151, 136, 135, 132, 128, 127, 125, 113, 100, 96, 94, 92, 66]:
   out += fmt((i, titles[i])) 
 
 out += '### Structured Concurrency\n\n'

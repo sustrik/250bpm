@@ -79,7 +79,7 @@ In the latter case, the militia system is meant to bring real world, practical e
 However, the militia system seems to be gradually breaking down. Only a third of members of the federal parliament are still doing it as a side job. Also, with the increased mobility, the feeling of belonging to a particular place and the prestige associated with working for a municipal authority wears down. Large municipalities tend to hire salaried employees. Small municipalities, on the other hand, are struggling to fill in the administrative positions. This is one of the reasons behind the increasing number of municipality mergers in the past few decades.
 
 ![](gemeinde.png)
-<p style="text-align: center;"><i>Blue: Overall number of municipalities in Switzerland. Red: Average number of inhabitants per municipality. Author: Seadart <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></i></p>
+<p class="imgtext">Blue: Overall number of municipalities in Switzerland. Red: Average number of inhabitants per municipality. Author: Seadart <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></p>
 
 If you put your conservative hat on, this development is deeply troubling. Maybe even more troubling than the current bogeyman of the progressives, the rise of right-wing populism. Because what it means, on the big scale, is replacement of the state run by citizens by the state run by the political class. In other words, the replacement of participative democracy by a spectator democracy. On the local scale, on the other hand, with at best as many candidates as there are positions the election turns from choosing the best candidate into approving the single running one. And it is not clear, whether the unique Swiss model of direct democracy and rule by consensus can survive that.
 
@@ -131,8 +131,8 @@ Finally, it should be said that the cantons often serve as political laboratorie
 
 When a photograph of the Swiss president waiting for a train trended on Twitter in 2014, people were amazed at what a safe country Switzerland has to be if the president can take a train just as any other mortal. Others flipped over Swiss egalitarianism, over the country where a farmer and a worker could find themselves in a train compartment with the president.
 
-![](president.png)
-<p style="text-align: center;"><i>Swiss president Didier Burkhalter waiting for a train (2014)</i></p>
+<img class="small" src="president.png"/>
+<p class="imgtext">Swiss president Didier Burkhalter waiting for a train (2014)</p>
 
 Few have realized that the prosaic explanation of the fact is simply that the president is not important enough to have to be transported in an armored limousine. In fact, many Swiss people have trouble remembering who the president happens to be this year.
 
