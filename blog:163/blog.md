@@ -319,3 +319,5 @@ That appears not to be the case. Turnout in Switzerland is chronically weak, osc
 <p class="imgtext">A mixed bag. Turnout at referenda in Switzerland. Turnout at presidential elections in the US. Turnout at parliamentary elections in Slovakia.</p>
 
 However, a detailed analysis shows that the situation is not that simple. It is not the case that half of the Swiss never vote. It turns out that about a quarter votes almost every time, a quarter almost never, and the rest votes occasionally. That being said, 90% of people have voted at least once in the past five years. This suggests that people vote selectively. If a referendum is about education, it is only natural that people without children in school ignore the vote. On the other hand, it is true that a certain part of the electorate can be only lured to the ballot box by simple topics with a big emotional appeal, e.g. restrictions on immigration.
+
+**August 10th, 2020**
