@@ -50,7 +50,7 @@ Following diagram shows how the seven seats in the Federal Council were distribu
 
 ### Opposition Enters the Government
 
-In 1845, catholic cantons formed the so-called Sonderbund ("Separate Alliance") and split from the rest of the confederation. That led to the civil war among catholic and protestant cantons in 1947 won by the protestants. As a direct consequence of the war, the modern, federal Switzerland was formed and the cantons lost their independence.
+In 1845, catholic cantons formed the so-called Sonderbund ("Separate Alliance") and split from the rest of the confederation. That led to the civil war among catholic and protestant cantons in 1847 won by the protestants. As a direct consequence of the war, the modern, federal Switzerland was formed and the cantons lost their independence.
 
 ![](sonderbund.png)
 <p class="imgtext">Author: Marco Zanoli, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></p>
