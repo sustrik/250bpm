@@ -94,7 +94,7 @@ The problem remained of how to get there.
 
 To understand the complexity of the task consider how the selecting of a new councilor looks like. Not only are they expected to be from a specific political party, so that the existing balance of power is preserved. Balance between language regions is also important. Typically, at least two councilors are from either French or Italian speaking regions. The most populous cantons (Zurich, Bern and either Geneva or Vaud) tend to get one seat in the Federal Council each. At the time there was also a rule that there should be no more than one councilor from any particular canton. He or she should also, in the words of historian Urs Altermatt, be "cut out of average wood," i.e. they should not stand out too much. Finally, given that absolute majority of the Unified General Assembly (both chambers of the parliament) is needed to vote them in, they must be acceptable not only within their own party, but for the other parties as well.
 
-The list or requirements sounds crazy. Finding even a single councilor would be hard. Luckily though, candidate doesn't have to be a member of parliament. Every Swiss citizen is eligible, so there's a huge pool to draw from. Still, the complexity of finding a suitable person may be one of the reasons why the councilors are, if they don't choose to resign themselves, almost always re-elected. In fact, there's a strong taboo against removing an incumbent federal councilor. It ever happened four times. Twice in 19th century, never in 20th century and twice in 21st century. As a consequence, federal councilor spends on average ten years in the office.
+The list or requirements sounds crazy. Finding even a single councilor would be hard. Luckily though, the candidate doesn't have to be a member of parliament. Every Swiss citizen is eligible, so there's a huge pool to draw from. Still, the complexity of finding a suitable person may be one of the reasons why the councilors are, if they don't choose to resign themselves, almost always re-elected. In fact, there's a strong taboo against removing an incumbent federal councilor. It ever happened four times. Twice in 19th century, never in 20th century and twice in 21st century. As a consequence, federal councilor spends on average ten years in the office.
 
 Given these circumstances and the fact that Social Democrats adopted "two or nothing" motto, any attempt to change the composition of the Federal Council was a long project, requiring long-term trust between political rivals. Rosenberg also had to fight opposition within CVP, where a strong faction wanted to give Social Democrats at most one seat.
 
@@ -138,7 +138,7 @@ In 1972, Blocher, originally a lawyer and businessman, joined the Swiss People's
 
 He gradually gains influence in the party, mainly at the expense of the old, moderate wing. His high point comes in 1994 when he helps to prevent Switzerland joining the European Economic Area. As the party gradually takes over Blocher's agenda, its preferences grow until, in 1999, the once smallest coalition partner becomes the strongest party in the parliament (22.5%).
 
-Animated graphics showing how SVP ceased being traditional economically conservative and socially progressive party and, while remaining economically conservative, quickly moved towards socially conservative end of the spectrum, can be found [here](https://blog.tagesanzeiger.ch/datenblog/index.php/1791/wie-sich-die-svp-aus-dem-buergerblock-verabschiedet-hat). (By the way, the graphics also shows the ongoing centralization of Swiss politics: Note how cantonal chapters, represented by small dots, draw closer to their respective national party over the years.)
+Animated graphics showing how SVP ceased being a traditional economically conservative and socially progressive party and, while remaining economically conservative, quickly moved towards socially conservative end of the spectrum, can be found [here](https://blog.tagesanzeiger.ch/datenblog/index.php/1791/wie-sich-die-svp-aus-dem-buergerblock-verabschiedet-hat). (By the way, the graphics also shows the ongoing centralization of Swiss politics: Note how cantonal chapters, represented by small dots, draw closer to their respective national party over the years.)
 
 Unlike right-wing populist parties elsewhere though, SVP puts emphasis on democracy. In particular, it stresses direct democracy, while at the same time downplaying the rule of law. SVP doesn't like the idea of people deciding only on the rules which are then applied by impartial institutions. They would like the people to decide on particular cases. An example of this would be their failed attempt in the city of Zurich to start granting citizenship by ballot. (This has been tried in year 2000 in the municipality of Emmen and it turned out that a lot of candidates were turned down just because they happened to have Yugoslavian-sounding names. On the other hand, a girl from Montenegro with an Italian-sounding name has got the citizenship. The procedure was declared to be unconstitutional by the Federal Court in 2003.)
 
@@ -173,7 +173,7 @@ He doesn't give up his populist antics either. In 2006, he breaks presumption of
 
 His opponents also accuse him of ignoring parliamentary decisions, of trying to control the parliament with threats, of criticizing court decisions and of delaying bills that he does not like.
 
-All that being said, everyone expects him to be re-elected.
+All that being said, everyone still expects him to be re-elected.
 
 Social Democrats feel there is a chance though. They know that the majority in parliament is fed up with Blocher and getting rid of him hangs only on finding a viable counter-candidate.
 
@@ -187,19 +187,19 @@ Third, the candidate would have to make for a competent federal councilor. Peopl
 
 Fourth, the counter-candidate would have to be better than Blocher himself. At least, he or she should be willing to accept the rule of law and the collegiality principle.
 
-SP decided to go on with Eveline Widmer-Schlumpf, a member of the old, moderate, milk-price-oriented, wing of the party. At the time, she was not a member of federal parliament and so she was, to some extent, immune to Blocher's threats. She was the president of the Conference of Cantonal Ministers of Finance, which, as you may remember from the previous part, is a body operating on national level, but parallel to the federal government. That is, she is no newbie to the big politics. In fact, Widmer-Schlumpf was considered a good candidate for a Federal Councilor by SVP itself. In 2003, the party president and ally of Blocher, Ueli Maurer, describes her as "a very valid candidate, one of the most competent politicians in the country." In other words, she was no leftie secretly infiltrating the conservative SVP.
+SP decided to go on with Eveline Widmer-Schlumpf, a member of the old, moderate, milk-price-oriented, wing of the party. At the time, she was not a member of federal parliament and so she was, to some extent, immune to Blocher's threats. She was the president of the Conference of Cantonal Ministers of Finance, which, as you may remember from the previous part, is a body operating on the national level, but parallel to the federal government. That is, she is no newbie to the big politics. In fact, Widmer-Schlumpf was considered a good candidate for a Federal Councilor by SVP itself. In 2003, the party president and ally of Blocher, Ueli Maurer, describes her as "a very valid candidate, one of the most competent politicians in the country." In other words, she was no leftie secretly infiltrating the conservative SVP.
 
-Moreover, the party's radicals have the upper hand and, just a week before the election, they remove two dissenting deputies from the Graubünden section of the party, which Widmer-Schlumpf belongs to, from important parliamentary commissions. One of them describes the conditions in the party as "dictatorship". SP counts on Widmer-Schlumpf not being amused.
+Moreover, the party's radicals now have the upper hand and just a week before the election they remove two dissenting deputies from the Graubünden section of the party (which Widmer-Schlumpf belongs to) from important parliamentary commissions. One of them describes the conditions in the party as "dictatorship". SP counts on Widmer-Schlumpf not being amused.
 
-Social Democrats speak to the leadership of the centrist Christian Democrats. They propose to elect Widmer-Schlumpf instead of Blocher and they get their support.
+Social Democrats contact the leadership of the centrist Christian Democrats. They propose to elect Widmer-Schlumpf instead of Blocher and they get their support.
 
 They manage to make a secret agreement with the Greens to withdraw their own candidate, who had no chance of winning anyway, at the last minute.
 
-Even some individuals from right-wing Liberal Democratic Party are contacted. The party is officially in favor of Blocher, but he is unpopular in the French and Italian-speaking cantons and some parliamentarians from these cantons may be willing to vote against him.
+Even some individual members of the right-wing Liberal Democratic Party are contacted. The party is officially in favor of Blocher, but he is unpopular in the French and Italian-speaking cantons and some parliamentarians from these cantons may be willing to vote against him.
 
 The result of the vote comes as a shock to the People's Party. The party's sovereign leader is not re-elected and the current outsider, Mrs. Eveline Wider-Schlumpf, becomes the new representative of SVP in the government.
 
-They ask Wider-Schlumpf not to accept the position. She asks for a day to decide. Demonstrators, mostly leftists, in front of the Bundeshaus are, funnily, expressing support for a right-wing politician. Large banner they hang out reads: "Eveline, say yes!"
+SVP asks Wider-Schlumpf not to accept the position. She asks for a day to decide. Demonstrators, mostly leftists, in front of the Bundeshaus are, funnily, expressing support for a right-wing politician. Large banner they hang out reads: "Eveline, say yes!"
 
 The next day she indeed agrees and becomes a competent federal councilor for next eight years. She has extremely high approval numbers and in 2008 she even wins the award "Swiss Person of the Year".
 
@@ -220,23 +220,23 @@ Similar scenario takes place in the canton of Bern. The party's cantonal section
 
 A large part of the People's Party of the canton of Bern, including seventeen members of the cantonal parliament, therefore joins the new BDP party. Similar scenario plays out in the canton of Glarus.
 
-Blocher announces that from now on, the People's Party will be pursuing opposition politics. In the Swiss context, it means trying to sabotage the government by referenda.
+Blocher announces that from now on, People's Party will be pursuing opposition politics. In the Swiss context, it means trying to sabotage the government by referenda.
 
 When Samuel Schmid resigns from the Federal Council in 2008, SVP nominates Christoph Blocher again. However, it is immediately clear that he has not chance of winning. What's worse, SP tries to pull the same trick again: They nominate Hansjörg Walter, a moderate SVP politician from canton Thurgau and the president of Swiss Farmers' Union. 
 
-After the first round of voting with no candidate getting the majority, the party, scared, pulls out Christoph Blocher. The party president, Ueli Maurer, is nominated instead. But he's not seen as any more moderate than Blocher himself and many fear that with Maurer, the entire Blocher story would repeat anew.
+After the first round of voting where no candidate gets the majority, the party, scared, pulls out Christoph Blocher. The party president, Ueli Maurer, is nominated instead. But he's not seen as any more moderate than Blocher himself and many fear that with Maurer, the entire Blocher story would repeat anew.
 
-In the second round of voting the moderate candidate gets two more votes than Maurer does and misses the absolute majority by a single vote.
+In the second round of voting the moderate candidate gets two more votes than Maurer does and needs only a single additional vote to get the absolute majority.
 
-The president of SVP group in the parliament addresses the collegium and begs them in the name of Christoph Blocher (to everyone's amusement) to vote for Maurer.
+The president of SVP parliamentary faction addresses the deputies and begs them in the name of Christoph Blocher (to everyone's amusement) to vote for Maurer.
 
-Finally, in the third round, Maurer gets one vote more than his countercandidate and wins the election.
+Finally, in the third round, Maurer wins the election by a single vote.
 
 It has to be said that Maurer, unlike Blocher, has grown into the position and turned out to be an acceptable federal councilor.
 
-In 2011, after new elections, the People's Party once again tries to take advantage of the Magic Formula and gain the second seat in government. They want to replace Widmer-Schlumpf, who is now in a different party, by their own candidate (not by Blocher). Nevertheless, when deputies are given a choice between two traditions, the tradition of the Magic Formula and the tradition of never de-electing incumbent councilors, they decide to prefer the second principle and re-elect Widmer-Schlupf.
+In 2011, after new elections, the People's Party once again tries to take advantage of the Magic Formula and gain the second seat in government. They want to replace Widmer-Schlumpf, who is now a member of a different party, by their own candidate (not by Blocher). Nevertheless, when deputies are given a choice between two traditions, the tradition of the Magic Formula and the tradition of never de-electing incumbent councilors, they decide to prefer the latter principle and re-elect Widmer-Schlupf.
 
-When People's Party gets its all time best numbers in the elections in 2015 (29,4%) and Widmer-Schlupf's new Conservative-Democratic Party only 4%, the councilor resigns voluntarily. But People's Party decides to play the card of national cohesion rather then taking a risk of nominating Blocher again. One of the three candidates is from the French and another from the Italian-speaking part of Switzerland. Finally, Guy Parmelin, a relatively moderate candidate from the canton of Vaud, is elected.
+When People's Party gets its all time best numbers in the elections in 2015 (29,4%) and Widmer-Schlupf's new Conservative-Democratic Party only 4%, the councilor voluntarily resigns. People's Party decides to play the card of national cohesion rather then taking a risk of nominating Blocher again. One of the three candidates is from the French and another from the Italian-speaking part of Switzerland. Finally, Guy Parmelin, a relatively moderate candidate from the canton of Vaud, is elected.
 
 The concordance, after twelve years of troubles, becomes fully operational again.
 
