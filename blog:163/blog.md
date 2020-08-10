@@ -244,9 +244,9 @@ The concordance, after twelve years of troubles, becomes fully operational again
 
 I've chosen to write about the history of Magic Formula in painstaking detail. The idea of concordance and rule by consensus is so alien to the people for competitive democracies that nothing less, no theoretical explanation, would be able to convey how it works. The reader would be left to choose between disbelief and incorrect assumption that Swiss are a bunch of clueless hippies.
 
-That being said, what is the actual mechanisms that makes the Swiss political system tick?
+But that being said, what is the actual mechanisms that makes the Swiss political system tick?
 
-In my opinion, the core of it lies in the fact that everyone is in minority, every time. Switzerland, thanks to its diversity, gets that for free. However, unlike, say, similarly diverse Afghanistan, it managed to turn that disadvantage into an advantage. Instead of fighting each other forever and getting a failed state in result it somehow managed to move the struggle from the military to the political domain. What's more, it managed to fight the problems not by homogenizing and centralizing the country, but rather by making the diversity - and thus the general circumstance of being in minority - the leading principle of its political system.
+In my opinion, the core of it lies in the fact that everyone is in minority, every time. Switzerland, thanks to its diversity, gets that for free. However, unlike, say, similarly diverse Afghanistan, it managed to turn that disadvantage into an advantage. Instead of fighting each other forever and getting a failed state in result it somehow managed to move the struggle from the military to the political domain. What's more, it managed to fight the problems not by homogenizing and centralizing the country, but rather by making the diversity - and thus the general experience of being in minority - the leading principle of its political system.
 
 You want to be a federal councilor? You are left at the mercy of your political opponents. It doesn't matter that you are the strongest man in the strongest party. You have to try hard to placate the others so that they vote for you.
 
@@ -266,7 +266,7 @@ Before interpreting the graph, consider the following two facts: The area below 
 
 For comparison, I've added the data for the US and for my native Slovakia (I couldn't resist the urge. Sorry.) In the US case the graph represents the portion of voters who voted for the ruling president. In the case of Slovakia it's people who voted for the coalition parties.
 
-As can be seen, both countries wobble around 50%. Naively, one would expect that legitimacy in a democratic country cannot fall below 50%. Whoever is supported by less than half of the voters should be outvoted and unable to form a government. In reality, however, there are many ways to fall into this trap. A country may have a weird electoral system (US), it may have a minority or bureaucratic government (Belgium) or, as in the case of Slovakia, quotas for entering the parliament can leave a large part of the voters (28.5%) without representation in the parliament, let alone in the government.
+As can be seen, both countries wobble around 50%. Naively, one would expect that legitimacy in a democratic country cannot fall below 50%. Whoever is supported by less than half of the voters should be outvoted and unable to form a government. In reality, however, there are many ways to fall into this trap. A country may have a weird electoral system (US), it may have a minority or bureaucratic government (Belgium) or, as in the case of Slovakia, quotas for the entry into the parliament can leave a large part of the voters (28.5%) without representation in the parliament, let alone in the government.
 
 In reality, legitimacy close to 50% seems to be quite common in competitive democracies. It kind of follows: With competitive mindset one wants to band together with only as many competitors as it takes to get the majority. Going any further means unnecessarily "losing" the contest.
 
