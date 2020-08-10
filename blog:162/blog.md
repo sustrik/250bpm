@@ -154,3 +154,4 @@ Power is hopelessly diluted. Nobody can make a decision on their own. Everyone i
 
 * [Discussion at LessWrong](https://www.lesswrong.com/posts/KTnJ4w4grttfJmwo9/swiss-political-system-more-than-you-ever-wanted-to-know-ii)
 
+[Next part](http://250bpm.com/blog:163)

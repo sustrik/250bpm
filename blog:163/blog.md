@@ -1,5 +1,7 @@
 # Swiss Political System: More than You ever Wanted to Know (III.)
 
+[Previous part](http://250bpm.com/blog:162)
+
 When I've mentioned the failed referendum to limit urban sprawl to a Swiss friend he nodded and casually noted that government is already introducing some anti-suburbanization legislation.
 
 Wait! What?
@@ -240,7 +242,7 @@ The concordance, after twelve years of troubles, becomes fully operational again
 
 ### Rule by Consensus
 
-I've chosen to write about the history of Magic Formula in painstaking detail. The idea of concordance and rule by consensus is so alien to the people for competitive democracies that nothing less, no theoretical explanation, would be able to convey how it works. The reader would be left to choose between disbelief and incorrect assumption that Swiss are a bunch of naïve hippies.
+I've chosen to write about the history of Magic Formula in painstaking detail. The idea of concordance and rule by consensus is so alien to the people for competitive democracies that nothing less, no theoretical explanation, would be able to convey how it works. The reader would be left to choose between disbelief and incorrect assumption that Swiss are a bunch of clueless hippies.
 
 That being said, what is the actual mechanisms that makes the Swiss political system tick?
 
