@@ -92,7 +92,7 @@ If FDP, CVP and SP each got two seats and SVP one seat, it would not only almost
 
 The problem remained of how to get there.
 
-To understand the complexity of the task consider how the selecting of a new councilor looks like. Not only are they expected to be from a specific political party, so that the existing balance of power is preserved. Balance between language regions is also important. Typically, at least to councilors are from either French or Italian speaking regions. The most populous cantons (Zurich, Bern and either Geneva or Vaud) tend to get one seat in the Federal Council each. At the time there was also a rule that there should be no more than one councilor from any particular canton. He or she should also, in the words of historian Urs Altermatt, be "cut out of average wood," i.e. they should not stand out too much. Finally, given that absolute majority of the Unified General Assembly (both chambers of the parliament) is needed to vote them in, they must be acceptable not only within their own party, but for the other parties as well.
+To understand the complexity of the task consider how the selecting of a new councilor looks like. Not only are they expected to be from a specific political party, so that the existing balance of power is preserved. Balance between language regions is also important. Typically, at least two councilors are from either French or Italian speaking regions. The most populous cantons (Zurich, Bern and either Geneva or Vaud) tend to get one seat in the Federal Council each. At the time there was also a rule that there should be no more than one councilor from any particular canton. He or she should also, in the words of historian Urs Altermatt, be "cut out of average wood," i.e. they should not stand out too much. Finally, given that absolute majority of the Unified General Assembly (both chambers of the parliament) is needed to vote them in, they must be acceptable not only within their own party, but for the other parties as well.
 
 The list or requirements sounds crazy. Finding even a single councilor would be hard. Luckily though, candidate doesn't have to be a member of parliament. Every Swiss citizen is eligible, so there's a huge pool to draw from. Still, the complexity of finding a suitable person may be one of the reasons why the councilors are, if they don't choose to resign themselves, almost always re-elected. In fact, there's a strong taboo against removing an incumbent federal councilor. It ever happened four times. Twice in 19th century, never in 20th century and twice in 21st century. As a consequence, federal councilor spends on average ten years in the office.
 
@@ -100,7 +100,7 @@ Given these circumstances and the fact that Social Democrats adopted "two or not
 
 In any case, CVP contacted SP and asked them to support their candidate the next time one of the FDP councilors resigns. In return, they've promised that the new councilor would resign once another FDP councilor resigned. That would open space for two SP councilors. CVP itself would, in the long term, gain no additional seats but, as already explained, they would become the decisive factor between the political left and the political right. Social Democrats accepted the deal.
 
-The first step of the plan was executed in 1954, when one of the FDP concilors resigned. With the support of SP the third CVP councilor was elected in his place.
+The first step of the plan was executed in 1954, when one of the FDP councilors resigned. With the support of SP the third CVP councilor was elected in his place.
 
 CVP councilor Philipp Etter was now ready to resign at opportune moment. He even rejected vicepresidency in 1956 to keep all the options open.
 
@@ -149,7 +149,7 @@ Blocher himself became a member of the government of the canton of Zurich in 197
 
 In parliamentary elections in 2003, SVP gains 26.7% and Blocher demands a Federal Council seat for himself.
 
-And while, numerically, SVP has justified claim to the second seat, the Magic Formula was orginally intended to balance the forces on the left with the forces on the right. With the right-wing SVP getting a second seat at expense of the CVP the balance between right and left becomes 4:2, with centrist CVP, now having only a single seat, no longer being able to make a difference.
+And while, numerically, SVP has justified claim to the second seat, the Magic Formula was originally intended to balance the forces on the left with the forces on the right. With the right-wing SVP getting a second seat at expense of the CVP the balance between right and left becomes 4:2, with centrist CVP, now having only a single seat, no longer being able to make a difference.
 
 There are other reasons not to vote for Blocher. In 1994, during a vote in the National Council, he voted not only for himself, but also pressed the button of his absent colleague. In 1999, he was convicted by court for his anti-Semitic statements. And in general, his authoritarian and uncompromising attitude directly clashes with the consensual way how the politics are done in Switzerland.
 
