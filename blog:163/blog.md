@@ -151,9 +151,13 @@ In parliamentary elections in 2003, SVP gains 26.7% and Blocher demands a Federa
 
 And while, numerically, SVP has justified claim to the second seat, the Magic Formula was originally intended to balance the forces on the left with the forces on the right. With the right-wing SVP getting a second seat at expense of the CVP the balance between right and left becomes 4:2, with centrist CVP, now having only a single seat, no longer being able to make a difference.
 
-There are other reasons not to vote for Blocher. In 1994, during a vote in the National Council, he voted not only for himself, but also pressed the button of his absent colleague. In 1999, he was convicted by court for his anti-Semitic statements. And in general, his authoritarian and uncompromising attitude directly clashes with the consensual way how the politics are done in Switzerland.
+There are other reasons not to vote for Blocher. In 1994, during a vote in the National Council, he pressed the button of his absent colleague.
 
-But some still favor making him a federal councilor. Carlo Schmid (CVP): "In would be an error not to elect Blocher to the Federal Council. ... Blocher has an enormous disruptive potential. That potential must be neutralized."
+In 1997, during the discussion of Jewish gold in Swiss banks he says: "The Jewish organizations that demand the money say that it's ultimately not about the money. But let's be honest: That's exactly what it's about." When a newspaper summarizes it as "The Jews only care about money," Blocher sues the journalist for defamation. The court later decides that the article haven't betrayed the spirit of Blocher's speech. He has to bear the costs of the case and part of the costs of the investigation, as well as pay 10,000 francs in compensation to the editor.
+
+But also in general, his authoritarian and uncompromising attitude directly clashes with the consensual way how the politics are done in Switzerland.
+
+Despite that, some are still in favor of making him a federal councilor. Carlo Schmid (CVP): "In would be an error not to elect Blocher to the Federal Council. ... Blocher has an enormous disruptive potential. That potential must be neutralized."
 
 That may sound strange, but that's how Swiss politics work. One doesn't try to lock their opponents out. One rather offers them a trade of getting access to power in exchange for submitting to the consensus. We've already seen this happen with Social Democrats half a century earlier.
 
