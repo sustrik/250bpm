@@ -301,7 +301,7 @@ A nice illustrative example on the topic of trust are the quarantine measures du
 
 On the first day, police of canton Uri reports that they are stopping cars on the road to the Gotthard Tunnel and convincing people not to travel. Police spokesperson reports: "We haven't convinced anyone yet."
 
-The next day, they report the first success: "One car turned around and went home. It seems that the message is getting through."
+The next day, they report the first success: "One car has turned around and gone home. It seems that the message is getting through."
 
 However: "About 98% of those stopped have a good reason to travel to Ticino - because they live there, or have a family there, or very important responsibilities. Very few people travel there on vacation or for fun."
 
