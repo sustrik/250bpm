@@ -20,7 +20,7 @@
 <p>To broaden my horizon, I've recently played with <a href="https://trio.readthedocs.io/en/latest/">Trio</a>), a library for strucutured concurrency in Python. Also, to be able to compare the two approaches I've <a href="https://github.com/sustrik/libdill/blob/master/happyeyeballs.c">implemented</a> Happy Eyeballs algorithm (<a href="https://tools.ietf.org/html/rfc8305">RFC 8305</a>) using libdill, so that it can be compared to <a href="https://github.com/python-trio/trio/blob/1095e373cd7b2207948e0cb90d059dd7ee2e98f7/trio/_highlevel_open_tcp_stream.py">Trio's implementation</a>. Unfortunately, Trio doesn't implement asynchronous DNS queries, which lead to some of the most interesting concurrent scenarios, but in spite of that the comparison highlighted some interesting differences between the two approaches. I am going to cover what I've learned in this article.</p>
 <p>First, let's look at libdill's approach. It's a kind of old-school, boring approach that you would expect from a C library: When you want to execute code concurrently you create a bundle object. Bundle is a container to hold green threads. From the API perspective it looks very much like a thread pool. You can launch green threads (coroutines) in the bundle.</p>
 <p>As for cancellation, threads as such have no identifiers so it's not possible to cancel a single thread. However, bundles do have handles that you can use to cancel all the threads in the bundle. The rationale for this design is that there can be arbitrary number of threads running in the bundle and this way the user doesn't have to keep track of all the threads, whether any particular thread has already terminated or not and so on. Instead, you manipulate the bundle as a single entity, irrespective of how many threads are running within it. And of course, there can be a single thread in the bundle, so in the end you can cancel a single thread, albeit in a somehow indirect way.</p>
-<p><img src="sc8.png" alt="" /></p>
+<p><img class="old" src="sc8.png"></p>
 <pre><code>coroutine void worker(void) {
     ...
 }
@@ -39,7 +39,7 @@ int main(void) {
 <p>Technically, you open a "nursery" scope (nursery is Trio's equivalent of a thread bundle). Both the code in the nursery scope and the worker threads are considered to live in the nursery.</p>
 <p>When the scope is about to close it waits for all the threads to finish. The main thread execution is resumed when that happens.</p>
 <p>As for explicit cancellations, any thread can cancel the scope. That in turn causes each thread in the nursery to raise an exception, which bubbles to the top level and terminates all the threads. Once done, main thread can resume execution.</p>
-<p><img src="sc7.png" alt="" /></p>
+<p><img class="old" src="sc7.png"></p>
 <pre><code>async def worker(nursery):
     ...
     nursery.cancel_scope.cancel()
@@ -60,11 +60,11 @@ async with trio.open_nursery() as nursery:
 <p>First, Trio posits that all threads, including the main thread, are equal. But as we've already seen the main thread is special, even in Trio's implementation of Happy Eyeballs. It does different stuff. It is different semantically, but also syntactically — the main thread is the block of code inside the nursery scope, the attempt thread code is a separate async function.</p>
 <p>That may be subliminally troubling, but not troubling enough to discard the design. What's more troubling though is the effect it has on ownership relations and encapsulation.</p>
 <p>In libdill's implementation the ownership relations are unambiguous. Main thread owns all the attempt threads and that's it.</p>
-<p><img src="sc9.png" alt="" /></p>
+<p><img class="old" src="sc9.png"></p>
 <p>In Trio's implementation there are two different ways to think about the ownership.</p>
 <p>If we define ownership as "whoever executes the nursery scope owns all the threads running in the nursery then the design is basically the same as in libdill: The main thread owns the attempt threads.</p>
 <p>However, if we define ownership as "whoever launches a thread owns it" then we get a different picture: The main thread owns the first attempt thread. The first attempt thread owns the second attempt thread and so on.</p>
-<p><img src="sc10.png" alt="" /></p>
+<p><img class="old" src="sc10.png"></p>
 <p>This kind of ambiguity, I think, can be confusing.</p>
 <p>But that still may not be a reason to discard the design. It's only a matter of mindset after all. The programmers should learn that the first definition of ownership is the correct one and the second one shouldn't be used at all.</p>
 <p>But now we get to the matter of encapsulation and that's the thing that makes me feel really uncomfortable.</p>

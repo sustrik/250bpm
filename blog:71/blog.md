@@ -29,7 +29,7 @@ The rest of the article will explore the question of cancellation and will propo
 
 Structured concurrency is similar to the structured programming as we know it from all the modern programming languages. Structured programming prevents random jumping around the codebase and instead structures the program as a set of nested code blocks. The block lifetimes never overlap. If block B is nested in block A, the lifetime of B cannot exceed the lifetime of A. Similarly, structured concurrency prevents lifetime of green thread B launched by green thread A to exceed lifetime of A:
 
-![](state1.jpeg)
+<img class="old" src="state1.jpeg">
 
 Green thread quux() is launched by main(). It also finishes before the main(). Same applies to foo() and main() as well as to bar() and foo().
 
@@ -49,7 +49,7 @@ Green threads local to functions may not be the most common use case but they ar
 
 But how would such system behave? What happens if bar() is still running when foo() returns to the caller?
 
-![](state2.jpeg)
+<img class="old" src="state2.jpeg">
 
 Do we want foo() to block and wait for bar() to finish? Or do we want foo() to forcefully cancel bar() before it exits?
 
@@ -106,7 +106,7 @@ The solution above works but the problem is that foo() is blocked for one second
 
 It seems that two signals have to be sent to the green thread being canceled: First one saying: "Cancel if you have nothing to do anyway". Second one saying: "Cancel even if you are not yet finished."
 
-![](state3.jpeg)
+<img class="old" src="state3.jpeg">
 
 If one thinks about how the bar() would look like it's not nice. Having to deal with the first signal even it the cases where you don't want to exit straight away results in re-introduction of state machines and exactly in that kind of convoluted code that we want to avoid.
 
@@ -164,7 +164,7 @@ Let's consider the most complex possible case.
 
 First, imagine that main() launches foo() which in turn launches bar(). After a while, foo() starts canceling bar() and gives it a grace period of 1000 milliseconds.
 
-![](state4.jpeg)
+<img class="old" src="state4.jpeg">
 
 That's simple. Let's now complicate the scenario: Imagine that main() starts canceling foo() while foo() is blocked in gocancel() and gives it grace period of 500 milliseconds.
 
@@ -178,7 +178,7 @@ The only possible solution is to shorten the grace period of bar() so that it ex
 
 It can be seen in the picture below. When gocancel() invoked by foo() gets cancellation signal from main() it revokes the remaining part of the grace period (grey box) and sends cancellation signal to bar() straigt away. bar() thus finishes almost immediately. gocancel() in foo() is free to exit. foo() finishes immediately afterwards and causes gocancel() in main() to exit. From the perspective of main(), foo() was canceled in 500 milliseconds, as expected.
 
-![](state5.jpeg)
+<img class="old" src="state5.jpeg">
 
 API-wise, it's easy to implement. gocancel() itself is a blocking function and thus should return ECANCELED if the parent decides to cancel current green thread. And that's exactly what it's going to do. The only thing to keep in mind is that gocancel() \*does\* cancel the thread even if it returns ECANCELED error. It never leaves the cancellation in a half-done state even though it may shorten the grace period.
 

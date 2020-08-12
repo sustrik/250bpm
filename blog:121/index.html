@@ -18,10 +18,10 @@
 <h1 id="composablenetworkprotocolsvsencapsulation">Composable Network Protocols vs. Encapsulation</h1>
 <p>This article is going to argue that to get composable network protocols, we have to treat them in a way that seemingly breaks encapsulation. The stuff here is not intrinsically complicated but it may be counterintuitive. Give yourself some time to think about the examples before rejecting the entire idea.</p>
 <p>First of all, let's look at the very idea of protocol composability. Imagine a stack of three protocols:</p>
-<p><img src="orchestrator1.png" alt="" /></p>
+<p><img class="old" src="orchestrator1.png"></p>
 <p>It seems that the implementation of TLS socket should own the TCP socket. In other words, that the TLS socket controls the lifetime of the TCP socket. In yet other words, that when you invoke "tls_connect" function it will also, transparently to the user, create an underlying TCP socket. Similarly, when you call "tls_close" function, it will also close the underlying TCP socket.</p>
 <p>This provides nice encapsulation. The only thing the user sees is the HTTP socket and they have no direct access to the TLS and TCP sockets. HTTP socket, in turn, sees only TLS socket and has no access to the TCP socket. Only TLS socket can access the TCP socket.</p>
-<p><img src="orchestrator2.png" alt="" /></p>
+<p><img class="old" src="orchestrator2.png"></p>
 <p>Unfortunately, this design also limits composability: Each protocol can run only on top of a single hard-wired underlying protocol. There's no way to make HTTP run both on top of raw TCP (simple HTTP stack) and on top of TLS (HTTPS stack).</p>
 <p>To address that use case we can decouple the protocols by giving them a generic interface. Virtual "send" function to send data. Virtual "recv" function to receive data. These functions, being virtual, will work with any protocol. Once implemented the protocols can communicate via these virtual functions. They don't need to know about each other and they can be layered easily.</p>
 <p>All you need to do is to stack the protocols one on the top of the other:</p>
@@ -45,7 +45,7 @@ s = http_attach(s);
 <p>One of the common problems of network protocol design is eliminating roundtrips. If there are 10 protocols in the stack, if each of them needs an initial roundtrip and if roundtrip time is 100 milliseconds establishment of a connection will take one second. That's often not acceptable. Even worse, the latency cannot be improved because speed of light, Einstein etc. Protocol designers will therefore throw good design principles under the bus and engage in all kinds of protocol conflation and protocol mislayering.</p>
 <p>Let us consider a stack of five protocols, each needing some parameters. Moreover, let's say we cannot use trick above where the application knows all the parameter values in advance and can hard-code them. Is there a way to cut down the number of initial parameter negotiations (i.e. network roundtrips) while still keeping the protocols separate and not merging them into one ugly monolith?</p>
 <p>Well, the application can run some generic parameter-negotiating protocol. HTTP, for example. It will send all the parameters for all five protocols to the peer inside the HTTP request and it will receive peer's values of those parameters in the HTTP reply. Single round trip, yet all the parameters for all the layers of the stack are negotiated. Once done, the application can then create all five layers of the stack.</p>
-<p><img src="orchestrator3.png" alt="" /></p>
+<p><img class="old" src="orchestrator3.png"></p>
 <pre><code>s = tcp_connect(addr);
 s = http_attach(s);
 ...
@@ -65,7 +65,7 @@ s = protocol5_attach(s, param_F, param_G, param_H);
 <p>Consider, for example, how WebSocket protocol follows HTTP protocol. If HTTP haven't terminated cleanly (by each party sending an empty line) the peers would not agree on where in the stream of bytes they are and it would not be possible to start the WebSocket protocol.</p>
 <p>So back to the original question: Is termination a natural part of a protocol?</p>
 <p>Imagine a CRLF protocol (one that breaks stream of bytes into messages separated by newlines) runing on top of TCP. Application may require three messages (lines) to be passed via this protocol. Afterwards, it will dismantle it and continue with something else, say TLS.</p>
-<p><img src="orchestrator4.png" alt="" /></p>
+<p><img class="old" src="orchestrator4.png"></p>
 <p>In this case CRLF protocol needs no special termination mechanism. It is simply dismantled after three messages are sent.</p>
 <pre><code>s = tcp_connect(addr);
 s = crlf_attach(s);

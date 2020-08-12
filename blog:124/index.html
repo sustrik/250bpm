@@ -45,7 +45,7 @@ int b;
 go_mem(foo(), stk, sizeof(stk));
 </code></pre>
 <p>The stack would then look like this:</p>
-<p><img src="stack.png" alt="" /></p>
+<p><img class="old" src="stack.png"></p>
 <p>The remaining problem is to make sure that foo() is not running any more when the scope the stack was declared in is exited. If it was still running, it would use memory on the stack below the stack pointer. If the stack grew again the new stack frames and the coroutine would overwrite each other.</p>
 <p>It looks like we'll have to solve some scoping issues before we have a functional high-level concurrency model.</p>
 <h3 id="acoroutinecantbeorphaned">A coroutine can't be orphaned</h3>
@@ -54,7 +54,7 @@ go_mem(foo(), stk, sizeof(stk));
 <p>And once you accept the fact that there will be no orphan coroutines you can imagine introducting concurrency into a programming language as a move from the dumb old linear call stack to a call tree.</p>
 <p>See the animation below, but be warned. Once you see it you cannot unsee it. I've envisaged it some years ago and since then I have a hard time thinking of concurrency in any other way.</p>
 <p>Each box in the picture is a stack frame:</p>
-<p><img src="calltree.gif" alt="" /></p>
+<p><img class="old" src="calltree.gif"></p>
 <h3 id="acoroutinecanbeorphaned">A coroutine can be orphaned</h3>
 <p>Despite of what was said above there is a use case for orphaned coroutines. Specifically, sometimes you want a coroutine to be a part of an object allocated on the heap. Imagine, for example, a TCP socket object which contains a coroutine to send keepalives. The socket is created by one coroutine but it can be easily passed to a different, unrelated coroutine. If we do that we don't want the keepalives stop being sent just because the original coroutine exited.</p>
 <p>And here we are back to "coroutine is like a variable" idea.</p>
@@ -101,7 +101,7 @@ close(b);
 <p>Consider the accept loop example above. We have a bundle of worker threads with "all" semantics. All threads have to finish before the bundle can be closed.</p>
 <p>Now imagine that we want to shut down the bundle but we want to give the worker threads 10 seconds to finish gracefully.</p>
 <p>We would have to somehow wrap the all-style bundle of worker threads into a any-style bundle together with a new timeout coroutine.</p>
-<p><img src="nesting.png" alt="" /></p>
+<p><img class="old" src="nesting.png"></p>
 <p>One can even imagine three or four levels of such nesting.</p>
 <h3 id="isathreadpartofthebundleitcreates">Is a thread part of the bundle it creates?</h3>
 <p>As for "no" alternative, we've seen the examples above. User creates a bundle and adds threads into it. Parent continues executing as normal:</p>
