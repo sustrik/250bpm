@@ -246,7 +246,7 @@ The concordance, after twelve years of troubles, becomes fully operational again
 
 ### Rule by Consensus
 
-I've chosen to write about the history of Magic Formula in painstaking detail. The idea of concordance and rule by consensus is so alien to the people for competitive democracies that nothing less, no theoretical explanation, would be able to convey how it works. The reader would be left to choose between disbelief and incorrect assumption that Swiss are a bunch of clueless hippies.
+I've chosen to write about the history of Magic Formula in painstaking detail. The idea of concordance and rule by consensus is so alien to the people from competitive democracies that nothing less, no theoretical explanation, would be able to convey how it works. The reader would be left to choose between disbelief and incorrect assumption that Swiss are a bunch of clueless hippies.
 
 But that being said, what is the actual mechanisms that makes the Swiss political system tick?
 
