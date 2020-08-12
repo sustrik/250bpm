@@ -32,9 +32,9 @@
 <p>The obvious problem with that is that the size of CPU cache is limited in size. You can't copy entire memory into it. So, the CPU has to guess which memory is going to be used in the near future and load that memory into the CPU cache. The algorithms for doing that can be as simple as 'memory that was used most recently is the most likely to be used in the future' or more sophisticated like 'it the program is using memory at address X now, it is likely to use memory at address X+1 in a short time".</p>
 <p>Whatever the case, failure to predict which memory is going to be used results in so called "cache miss" and operation that would otherwise take 1 nanosecond will suddenly take 30 nanoseconds. Consequently, most of the micro-optimisation work done today deals with avoiding cache misses.</p>
 <p>Another piece of the puzzle is the fact that the algorithms themselves are stored as data. The machine instructions reside in the memory and have to be accessed in the same way as data in text documents, images, databases etc. What that means is that if program jumps to an address that is not currently in the CPU cache, the execution of program hangs up for say 30 nanoseconds, till next instruction is loaded from the memory.</p>
-<p><img src="likely1.png" alt="" /></p>
+<p><img class="old" src="likely1.png"></p>
 <p>Now, what if the jump is conditional? Obviously one path will simply continue executing the subsequent instructions which happen to be already loaded in the CPU cache. The other path jumps to another memory location and thus risks a cache miss and the associated performance penalty:</p>
-<p><img src="likely2.png" alt="" /></p>
+<p><img class="old" src="likely2.png"></p>
 <p>In short, when there's a conditional jump (it-then-else statement in high-level languages) there will necessarily be a "slow" path and a "fast" path. And it's up to you, as a programmer, to decide what code to put on the fast path and which should go to the slow path.</p>
 <p>Imagine this piece of code:</p>
 <pre><code>if (nuclear_reactor_leaking)

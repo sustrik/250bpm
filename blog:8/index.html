@@ -46,7 +46,7 @@ struct
 } people;
 </code></pre>
 <p>Now, let's compare how this solutions look like in the memory:</p>
-<p><img src="cpp1.png" alt="" /></p>
+<p><img class="old" src="cpp1.png"></p>
 <p>First thing to note is that the C++ solution allocates twice the number of memory chunks compared to the C solution. For each element of the list there's a little helper object created. When there are lots of containers in the program the amount of these helper objects proliferates.</p>
 <p>For example, in ZeroMQ creating and connecting a socket results in dozens of memory allocations. In the C rewrite of the library I am working on at the moment, creating a socket requires one memory allocation and connecting it results in yet one more allocation.</p>
 <p>Obviously, the number of allocations has performance consequences. The time spent allocating the memory chunks may be irrelevant — in ZeroMQ it is out of critical path anyway — however, the amount of memory used and the memory fragmentation that ensues is pretty important. It has direct impact on how CPU caches are filled and, consequently, on cache miss rate. Recalling that access to physical memory is by far the slowest operation in modern computers may give you an idea what the performance impact would be.</p>
@@ -80,7 +80,7 @@ struct
 <p>To answer the question we have to understand the underlying problem. And the problem turns out to be the very definition of term "object". In C++ "class" is just a synonym for C "struct". Both keywords can be used almost interchangeably. The implication is that "object" is a collection of data located in a continuous chunk of memory.</p>
 <p>That is an automatic assumption that C++ programmers don't even start to question. However, let's try to examine the "object" from a different point of view.</p>
 <p>Let's say that object is a collection of logically related data that has to be guarded by the same critical section to ensure its consistency in multi-threaded program. This definition radically changes our understanding of the architecture. The picture below shows the C person/people program (as listed above) and marks the data fields that should be guarded by a list-level critical section (yellow) vs. data fields to be guarded by element-level critical section (green):</p>
-<p><img src="cpp2.png" alt="" /></p>
+<p><img class="old" src="cpp2.png"></p>
 <p>For a person with object-oriented world view it's a pretty exotic picture. The "people" object is composed not only of the fields in "people" struct itself, but contains also some of the fields ("prev" and "next") in the "person" struct.</p>
 <p>However unexpected, the decomposition makes perfect technical sense:</p>
 <ol>

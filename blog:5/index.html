@@ -27,9 +27,9 @@
 <p>To address these issues new "Survey" pattern is implemented in the recent release 1.1.0 of <a href="http://www.crossroads.io">Crossroads I/O</a>.</p>
 <p>It involves two new socket types types: SURVEYOR and RESPONDENT. The survey itself happens in two steps.</p>
 <p>First, the survey is distributed by the surveyor to all the respondents in the topology:</p>
-<p><img src="survey1.png" alt="" /></p>
+<p><img class="old" src="survey1.png"></p>
 <p>Then the responses are routed back to the original surveyor:</p>
-<p><img src="survey2.png" alt="" /></p>
+<p><img class="old" src="survey2.png"></p>
 <p>Note the failed respondent at the bottom right. The respondent process may have crashed. Or maybe network was down. Or the survey was dropped because of queue overflow. Or the respondent have simply chosen not to participate in the survey.</p>
 <p>To handle these kinds of issues surveyor can set a timeout associated with the survey. When it sends the survey it starts waiting for the responses. It processes any responses it gets. Finally, the timeout is hit. No more responses will be received. Surveyor application can move on to other tasks.</p>
 <p>Let's have a look at an example. It implements a simple service discovery using survey pattern. What follows is the surveyor application. It's written in C so the code is a bit long-winded. In a higher-level language only few lines of code would be required:</p>
@@ -137,7 +137,7 @@ Following services are available:
 <p>Let's consider the most common scenario: There are many client applications and many server applications. Any consumer may launch a survey asking for the list of all the available services. It should get a response from every server application.</p>
 <p>The problem is how to connect each client to each server. First, the number of connections would grow quadratically as the number of clients and servers increases. Second, the clients would have to know addresses of all the servers so that they can connect to them.</p>
 <p>To solve this problem we can introduce an intermediary application (so called "device") that would sit in the middle of the network, between the clients and the servers. If will have two bound sockets with well-known addresses, one for servers to connect to, the other one for clients to connect to:</p>
-<p><img src="survey3.png" alt="" /></p>
+<p><img class="old" src="survey3.png"></p>
 <p>To use this design, surveyor and respondent applications can remain unchanged, except that surveyor should connect to the device rather than bind to a fixed address.</p>
 <p>As for the device, all it has to do is to open two sockets and pass messages between them. This is pretty straightforward and has been covered elsewhere, so having a quick look on the pseudocode should be sufficient:</p>
 <pre><code>s1 = xs_socket (XRESPONDENT)

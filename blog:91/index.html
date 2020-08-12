@@ -21,7 +21,7 @@
 <p>I am not making any big claims now either, mind you. I would just like to explore the mechanics and the limits of this new paradigm. Maybe its use is limited to the niche area of writing config files? Or maybe it's a full-blown paradigm, a worthwhile peer to functional and imperative paradigms? I frankly don't know.</p>
 <p>That being said, I want to address an obvious objection to the cartesian paradigm. The objection goes like this: "Cartesian program generates a description of the world in the form of a set of anonymous (unnamed) objects. You can iterate over them, but you cannot really reference any specific object. This makes the paradigm not useful for anything but config files, which don't, by their nature, require addressable objects."</p>
 <p>To put it in practical terms, what if we wanted one object to be dependent on another object? Say, what if we wanted property X of object A to be twice the property X of object B:</p>
-<p><img src="matrix2.png" alt="" /></p>
+<p><img class="old" src="matrix2.png"></p>
 <p>How would you write getter function for property X? Two times what exactly?</p>
 <pre><code>var cfg = {
     x: alt(0, 1, 2, 3),

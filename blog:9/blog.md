@@ -12,7 +12,7 @@ While I believe the encapsulation issue is a problem of design of C++ language a
 
 According to Wikipedia "An enclave is a territory entirely surrounded by another territory."
 
-![](enclave1.png)
+<img class="old" src="enclave1.png">
 
 In the picture above, C is an eclave of A inside the teritory of B. Well-know real-world enclaves are, for example, [Kaliningrad](https://en.wikipedia.org/wiki/Kaliningrad_Oblast) or [Nagorno-Karabakh](https://en.wikipedia.org/wiki/Nagorno-Karabakh).
 

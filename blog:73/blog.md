@@ -33,13 +33,13 @@ Let me explain.
 
 Imagine the case where you have multiple worker goroutines, all sending messages to the main routine. They can do so via a single channel. To make the point more obvious, let's make the channel unbuffered:
 
-![](footnote1.jpeg)
+<img class="old" src="footnote1.jpeg">
 
 When happens when main routine reads a message from the channel? What looks like a pretty standard I/O operation is in fact translated by the language runtime into a scheduling decision: The channel picks one of the ready worker goroutines and unblocks it. Nice. The scheduling is almost invisible to the user.
 
 Let's consider a different way of implementing the same thing though. Let us have one channel per worker goroutine. Main goroutine will then select{} on those channels to get the messages. In theory, it works the same as the original one channel design. Channels use simple probabilistic scheduler. So does select. The behaviour should therefore be identical:
 
-![](footnote2.jpeg)
+<img class="old" src="footnote2.jpeg">
 
 The difference though is that in the latter case the user is free to manipulate the set of channels to wait for manually and can thus plug into the system scheduler. For example, they can select{} on high-priority channels first and only if no message is available fall back to selecting on all channels, including low-priority ones.
 
@@ -76,11 +76,11 @@ No such thing is possible using frobnicate() function. If all you have is the fu
 
 What that means is that if select{} is expected to be used, we won't have nice object APIs. The channels will dangle out of the open gut of the object making attempts to hide internals of the object behind nice function-based API futile. Object will expose both channels and functions. Each will have its own parameter syntax, its own invocation syntax and so on. Unlike functions, channels don't even allow to specify output parameters. It's ugly:
 
-![](footnote3.jpeg)
+<img class="old" src="footnote3.jpeg">
 
 However, if we get rid of select, the encapsulation suddenly starts working. Sending a message to channel can be hidden inside a function. If there's a reply, the sequence of sending a request through one channel and getting a reply through a different one can be hidden inside a function.
 
-![](footnote4.jpeg)
+<img class="old" src="footnote4.jpeg">
 
 There's certainly more to be said in favour of select-free programming, but these two footnotes should give you at least a starting point for thinking about the problem.
 

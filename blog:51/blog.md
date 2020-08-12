@@ -1,7 +1,5 @@
 # Dissecting Software Component's Reproductive System
 
-
-
 After writing ["reusability trap"](http://250bpm.com/blog:49) blog post where I played with evolutionary concepts in the area of sofware engineering I was pointed to the ["Selfish Class"](http://www.laputan.org/selfish/selfish.html) essay, which explores similar landscape.
 
 The article is fine although a bit naive. It makes it sound like programmers were in control of the evolution of software. Whereas, in fact, they are just a useful source of random mutation in the self-driven evolutionary process. That is, I guess, both bad news (The horror! We are not in charge!) and good news (Hooray! We are not responsible for the mess after all!)
@@ -14,7 +12,7 @@ Let's now proceed to a concrete case study. It's anonymised and heavily simplifi
 
 What you see below is a dissected API of the component. It consists of two functionally distinct parts labeled "bait" and "hook":
 
-![](evolution1.jpeg)
+<img class="old" src="evolution1.jpeg">
 
 The "bait" is the part that lures the prey. It attracts programmers same way as anglerfish attracts a shrimp. It does so by being useful. C language has no stadard containers so, yeah, it is an attractive proposition. You won't have to implement a queue for the umpteenth time. The implementation is efficient and the API is clean. The "listen" function is a bit weird but we are not going to use it anyway, so who cares?
 

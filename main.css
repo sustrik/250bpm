@@ -96,7 +96,8 @@ img.old {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: off;
+  width: auto;
+  box-shadow: none;
 }
 
 p.imgtext {
