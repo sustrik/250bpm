@@ -69,7 +69,7 @@ In other words, the moment a person joins the Council, their main loyalty is no 
 
 In 1919, when the Liberals lost the absolute majority in the parliament, Christian Democrats got the second government seat. In 1929 agrarian BGB party (now SVP) joined the club.
 
-At that point, the largest party that was still in opposition were the Social Democrats. And that was a big deal. Worker movement was strong in Switzerland. The general strike in 1918 almost led to a civil war. Bloodshed was prevented, rather miraculously, only by the distinctive Swiss ability to compromise.
+At that point, the largest party that was still in opposition were the Social Democrats. And that was a big deal. Worker movement was strong in Switzerland. The general strike in 1918, with 250,000 workers involved, 110,000 soldiers being mobilized and paramilitary units being formed, almost led to a civil war. Bloodshed was prevented, rather miraculously, only by the distinctive Swiss ability to compromise.
 
 ![](streik.png)
 <p class="imgtext">Army is prepared to quell the general strike. Bern, 1918.</p>
