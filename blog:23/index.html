@@ -17,7 +17,7 @@
   <p><a class="home" href="../index.html">←</a></p>
 <h1 id="gettingridofzeromqstylecontexts">Getting Rid of ZeroMQ-style Contexts</h1>
 <p>I've argued several times (see for example <a href="http://www.aosabook.org/en/zeromq.html#fig.zeromq.multiuse">here</a>) that global state in a library should not be truly global, i.e. stored in C-style global variables, rather an instance of the "global" state should be created upon user request. The reason is that if the two modules within a process used the same low-level library, they would step on each other's toes:</p>
-<p><img src="global1.png" alt="" /></p>
+<p><img class="old" src="global1.png"></p>
 <p>Imagine the library C has a global variable foo and setfoo() and getfoo() functions to access it. Now imagine the following sequence of events:</p>
 <ol>
 <li>Library A: setfoo(10)</li>
@@ -26,9 +26,9 @@
 </ol>
 <p>While the rule of thumb still holds for libraries in general — instead of having a single global state, let each module create its own state — I believe that application of the rule in ZeroMQ was a mistake. ZeroMQ is a <strong>communication</strong> library and, as such, it is an exception to the rule. Communication means sharing of data and thus, communication library's task is to make modules visible each to another, rather than separating them into impervious compartments.</p>
 <p>Let's have a look at a concrete example. Imagine that the main program creates a logger object (a PULL socket that writes all received messages to the disk) and wants all the modules loaded into the process to report errors to the logger. As the communication happens within a single process, INPROC transport should be used to convey the log records from individual modules to the logger. However, according to the reasoning above, each module has it's own instance of global state (i.e. its own ZeroMQ context) and the INPROC transport in ZeroMQ doesn't allow for transferring messages between different contexts.</p>
-<p><img src="global2.png" alt="" /></p>
+<p><img class="old" src="global2.png"></p>
 <p>The problem could be solved by using IPC or TCP transport instead, however, that opens a security hole: What if attacker connected to the logger from outside and either posted false records or DoS'ed the system with a flood of log requests?</p>
-<p><img src="global3.png" alt="" /></p>
+<p><img class="old" src="global3.png"></p>
 <p>So, alternatively, the main program can create the ZeroMQ context and share it with individual modules. That would work as expected, however, there are several problems with the approach:</p>
 <ol>
 <li>To create a communication channel within a process you need to specify both context and address. Contrast that with all the remaining transports where specifying an address is sufficient to establish a communication.</li>

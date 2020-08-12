@@ -22,7 +22,7 @@
 <p>Whatever the benefits, the cost was prohibitive.</p>
 <h3 id="unikernelsasprocesses">Unikernels as processes</h3>
 <p>Recent "Unikernels as Processes" paper by Koller, Lucina, Prakash and Williams (<a href="https://dl.acm.org/citation.cfm?id=3267845">free download</a>) turns the situation on its head. It proposes to run unikernels as good old boring OS processes. The idea is that most of the stack that's currently in the kernel will be in libraries linked directly to the application. Only few calls would cross the user/kernel boundary.</p>
-<p><img src="unikernel2.png" alt="" /></p>
+<p><img class="old" src="unikernel2.png"></p>
 <h3 id="oneclicksecurity">One-click security</h3>
 <p>Assuming that libraries implementing POSIX APIs are available (and they are; see e.g. <a href="http://rumpkernel.org/">rumpkernel</a>) it should be possible to take your existing application and just recompile it as a unikernel. The application would work as it did before, but it would use only a few system calls.</p>
 <p>So, on one hand, any vulnerability in the kernel outside of those few functions won't affect your application.</p>

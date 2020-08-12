@@ -24,7 +24,7 @@ The traditional solution to this problem is templating.
 
 The idea is that the generated program is like a form, a pre-printed template with few blank slots to fill in:
 
-![tiles1.gif](http://250bpm.wdfiles.com/local--files/blog:147/tiles1.gif)
+<img class="old" src="tiles1.gif">
 
 And here's how it works with, say Jinja2:
 

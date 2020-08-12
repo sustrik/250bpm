@@ -32,11 +32,11 @@ So, here's a simple way you can help with finding out what's the case. In the co
 
 After we have sufficient numer of answers, I intend to chart the percentage of complexity-lovers vs. complexity-haters according to the experience level. If the resulting graph looks like this:
 
-![](handyman1.png)
+<img class="old" src="handyman1.png">
 
 Then the theory 1 is correct: People get less complexity-tolerant as they grow more experienced. If, on the other hand, the graph looks like this:
 
-![](handyman2.png)
+<img class="old" src="handyman2.png">
 
 Then the theory 2 is correct: Some people are mathematicians while others are handymen. The latter love complexity. It has nothing to do with experience level.
 

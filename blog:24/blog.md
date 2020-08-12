@@ -28,7 +28,7 @@ Consider this code:
 
 It's pretty simple. A has pointer to B and vice versa. If you invoke A::foo, it will invoke B::baz which in turn will invoke A::bar. A::bar increments a member variable of A. There's no catch there. The program will work as expected.
 
-![](callback0.png)
+<img class="old" src="callback0.png">
 
 However, imagine we'll make A::foo a little bit more complex:
 
@@ -57,7 +57,7 @@ Well, not quite. In what follows I'll try to explain why the code above is a tar
 
 First, imagine the callback happens in a more complex setup. Object A calls object B, which calls object C, which calls object D, which calls object E, which in turn calls back to object A.
 
-![](callback1.png)
+<img class="old" src="callback1.png">
 
 It's pretty obvious that handling the callback is going to be much more complex in this case. The problem stems from the fact that when A invokes B, it has no idea that there, nested five levels deep, is a call back to A. Thus, when the call to B returns, the developer will be genuinely surprised that the state of A have mutated in the meantime.
 
@@ -71,11 +71,11 @@ I am going to suppose that by now I've persuaded you that long cycles in the cal
 
 The problem is that in any realistic scenario the call graph is much more complex that the simple two-node graph as shown at the top of this article. There are other functions called by A and B gets called from other functions as well:
 
-![](callback2.png)
+<img class="old" src="callback2.png">
 
 Now imagine that at some point in the future some random developer adds a call from C to D. He's not even aware of existence of A and B, let alone the cycle between them. However, the change introduces a new 6-node-long cycle:
 
-![](callback3.png)
+<img class="old" src="callback3.png">
 
 Suddenly, it may happen that component E makes call to B — which worked with no problems before — and finds its own state modified when the function returns. Which, of course, makes it fail, or, even worse, misbehave.
 

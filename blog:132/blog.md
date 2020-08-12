@@ -61,13 +61,13 @@ Specifically, the experiment was conducted at the following places:
 
 The results from this experiment are exactly as you would expect. The cooperators found out that there was no way to prevent free-riding and the amount of resources they've put into the common pool steadily decreased. This result replicated across different participant pools. Particular pool may have started with a high or low cooperative behavior, but as the time went on the cooperation always decreased.
 
-![](punishment1.png)
+<img class="old" src="punishment1.png">
 
 ### Results: Public goods game with punishment
 
 Ability to punish free-riders increased the cooperative behavior in most participant pools. Free-riders learned that free-riding doesn't pay off and started contributing to the common pool.
 
-![](punishment2.png)
+<img class="old" src="punishment2.png">
 
 However, introduction of punishment had no effect in some of the pools. The contributions stayed more or less the same throughout the experiment in Minsk, Samara, Dnipropetrovsk, Muscat, Instanbul, Riyadh and Athens.
 
@@ -83,7 +83,7 @@ In fact, they were punishing cooperators so much that the cooperation-enhancing 
 
 To make it even more confusing, the anti-social punishment, unlike the pro-social punishment which had roughly similar level in all the participant pools, differed widely among the pools. While it was almost non-existent in the West, it was common in Eastern Europe, in Middle East and in Greece.
 
-![](punishment3.png)
+<img class="old" src="punishment3.png">
 
 The authors then try to find out which aspects of the society are correlated with the high anti-social punishment rate:
 

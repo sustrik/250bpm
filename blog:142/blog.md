@@ -4,7 +4,7 @@ State machines are widely used to implement network protocols, or, generally, ob
 
 Consider TCP state machine:
 
-![](events3.png)
+<img class="old" src="events3.png">
 
 During its lifetime TCP socket moves throught different states in the diagram. When you start connecting it's in SYN SENT state, when the initial handshake is over, it's in ESTABLISHED state and so on.
 
@@ -12,7 +12,7 @@ And here's an interesting observation: The API of the socket changes as you move
 
 To give a more illustrative example, have a look at [SOCKS5](https://tools.ietf.org/html/rfc1929) protocol. It's basically a TCP or UDP proxy protocol. It's used, for example, by Tor. It starts with authentication phase, supporting different kinds of authentication. Then it moves to connection establishment phase. Once again there are different ways to connect. You can connect to an IPv4 address, to a IPv6 address or to a hostname. Finally, the state machine moves to one of the working states. This can be a TCP connection or an UDP connection.
 
-![](mutate2.png)
+<img class="old" src="mutate2.png">
 
 Note how API changes between the states. In CLOSED state you can call functions such as connect\_unauthenticated or connect\_password. In AUTHENTICATED state you can call connect\_tcp, bind\_tcp or open\_udp. In TCP ESTABLISHED you can do normal stream socket operations, while in UDP ESTABLISHED you can do datagram operations.
 

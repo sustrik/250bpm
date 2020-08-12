@@ -33,13 +33,13 @@
 <p>The main problem to solve when dealing with multiplexing on top of TCP is how to handle the pushback mechanism.</p>
 <p>On the one hand, we have to avoid TCP pushback.</p>
 <p>Imagine two receivers reading from the same TCP connection. If one of them (R2) is not reading the data — maybe because it's busy doing some other work at the moment — the data linger in the TCP receive buffer and block all the remaining data in the buffer, including the data that belong to the other receiver (R1). This way, one slow or stuck service blocks all the other services sharing the same TCP connection:</p>
-<p><img src="multiplexing1.png" alt="" /></p>
+<p><img class="old" src="multiplexing1.png"></p>
 <p>To prevent the blocking we need an asynchronous reader that would read the data from the TCP connection as fast as possible and then queue them into a separate buffer for each receiver:</p>
-<p><img src="multiplexing2.png" alt="" /></p>
+<p><img class="old" src="multiplexing2.png"></p>
 <p>While the above algorithm solves the problem of blocking it is prone to memory exhaustion. If the asynchronous reader reads the data from TCP buffer faster than the receivers are able to consume it the per-receiver buffers will gradually grow and eventually run out of memory.</p>
 <p>To solve that problem we have to re-introduce pushback mechanism on a per-stream level.</p>
 <p>Each per-receiver buffer should be of fixed size and the sender should never send more data than there is free space available in the buffer. Technically, this can be achieved by regularly advertising the amount of free space available in the queue (ACKs):</p>
-<p><img src="multiplexing3.png" alt="" /></p>
+<p><img class="old" src="multiplexing3.png"></p>
 <p>EDIT: While the algorithm above does implement multiplexing on top of TCP, it does not fully match — performance-wise — mutliplexing solutions built directly on top of IP. The reason is that with TCP one lost packet prevents delivery of subsequent packets, even though the latter may contain data from unrelated channels. Thus, we are getting transport-layer head of line blocking and thus higher latency on <em>all</em> channels in the case of loss of a single packet. This restriction doesn't apply to low-level multiplexing solutions such as SCTP or QUIC.</p>
 <h1 id="sanitycheck">Sanity Check</h1>
 <p>How does the above algorithm addresses the users' concerns?</p>
@@ -55,7 +55,7 @@
 <p>The crucial observation here is that the term "port" in this context means "destination port". Destination ports are used to identify services (port 80 = HTTP) and do not, by themselves, uniquely identify particular TCP connection. TCP connection is uniquely identified by the combination of the destination port and the source port.</p>
 <p>The above means that sharing the same destination port doesn't necessarily mean sharing the TCP connection. Two connections can use the same destination port but differ by the source port.</p>
 <p>Technically, such sharing can be accomplished by introducing a special service to listen on the shared destination port and then to hand the incoming connections to the particular services as appropriate:</p>
-<p><img src="multiplexing4.png" alt="" /></p>
+<p><img class="old" src="multiplexing4.png"></p>
 <h1 id="otherconsiderations">Other Considerations</h1>
 <p>When using multiple TCP connections, each has to be go through its own "slow start" period. However, this is not a problem with long-lived connections which are the most common case in messaging middleware. It should be noted that using SCTP, with its channelling mechanism, would be more appropriate in this scenario than using TCP.</p>
 <p>Multiple TCP connections occupy multiple slots in NAT table in case your box is behind a NAT.</p>

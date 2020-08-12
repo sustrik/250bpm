@@ -10,10 +10,10 @@ The example is stolen from [Wikipedia's article on finite state machines](https:
 
 Wikipedia presents the state machine in question in the following manner:
 
-![](fsm3.png)
+<img class="old" src="fsm3.png">
 
 And here's my attempt to rewrite the state machine as a coroutine in Go:
 
-![](fsm2.png)
+<img class="old" src="fsm2.png">
 
 **December 15th, 2018**

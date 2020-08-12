@@ -10,11 +10,11 @@ Let me explain.
 
 Classic story-telling technique is based on building up the tension gradually until it reaches a climax, where it is dissolved. The higher the climax, the more captivating the story. After the climax the story ends. It's called "dramatic structure" and can be depicted like this:
 
-![](game1.png)
+<img class="old" src="game1.png">
 
 The image gets a bit more complex when you consider that there may be several mini-climaxes on the way towards the main climax:
 
-![](game4.png)
+<img class="old" src="game4.png">
 
 However, that's just a technical nuance. We can ignore it here.
 
@@ -22,7 +22,7 @@ The important fact about the dramatic structure is that it doesn't fit to everyt
 
 So, every writer must have at some time or other fancied writing a detective story where the protagonist is investigating a murder, clues are gathered, tension rises, it's finally becoming clear who the suspects are and then the detective is run over by bus. The end.
 
-![](game2.png)
+<img class="old" src="game2.png">
 
 The story is entirely plausible, it can very well happen in the real life, but nobody have actually written it. A narrative where dramatic tensions are left unresolved is deeply unsatisfactory to the reader and writing such a story is a literary suicide.
 
@@ -36,7 +36,7 @@ So what's going on there?
 
 Mr. Martin is cleverly building the tension in the side plots in parallel with the main plot. So, when the main plot crashes in a terrible and unexpected manner, the reader may be dismayed, offended, confused or enraged, but they continue to read on as they still want to know how the side plot ends. At that point the side plot becomes the main plot. Here's a picture:
 
-![](game3.png)
+<img class="old" src="game3.png">
 
 Note how the tension may drop occasionally, but it never drops below the level where the reader throws the book away in disgust.
 

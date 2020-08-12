@@ -10,6 +10,6 @@ It's meant to be played by strings so that dissonances do not fade out.
 
 Use as you see fit.
 
-![](lydian.png)
+<img class="old" src="lydian.png">
 
 **Feb 25th, 2019**

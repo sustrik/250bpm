@@ -23,23 +23,23 @@
 <p>Aside of the data distribution itself, the main design goal for PUB/SUB subsystem is to minimise the network traffic. Afterall, what PUB/SUB boils down to is multicasting which is notorious for overloading the networks. Thus, the design described herewith is based on the following requirement:</p>
 <p><em>If there's no subscriber for a particular message in a specific portion of the distribution tree the data should not even traverse associated network segments.</em></p>
 <p>While the requirement seems to be self-obvious, it is often not honoured in messaging systems in use today. In most broker-based systems consumers subscribe for messages with the broker, however, there's no way for broker to subscribe for messages with the publisher. So, even if there is no consumer interested in the message it is still passed from the publisher to the broker, just to be dropped there:</p>
-<p><img src="ps1T.png" alt="" /></p>
+<p><img class="old" src="ps1T.png"></p>
 <p>What we want to achieve instead is a system where the message nobody is interested in is dropped as soon as possible, presumably even before being sent to the network:</p>
-<p><img src="ps2T.png" alt="" /></p>
+<p><img class="old" src="ps2T.png"></p>
 <p>We also want this property to be transitive, ie. even if there are multiple intermediary nodes (brokers, devices) between publisher and consumer, the unneeded messages should still be dropped as soon as possible:</p>
-<p><img src="ps3T.png" alt="" /></p>
+<p><img class="old" src="ps3T.png"></p>
 <p>More generically, we want message to travel only through those lattices in the message distribution tree that lead to consumers interested in the message:</p>
-<p><img src="ps4T.png" alt="" /></p>
+<p><img class="old" src="ps4T.png"></p>
 <p>Additionally, it would be preferable to pass message through any edge of the graph once only even if there are multiple consumers down that branch of the tree. In other words, message duplication should happen as far away down the stream as possible — in this case in the node D rather than in the node P.</p>
 <h2 id="subscriptionforwarding">Subscription Forwarding</h2>
 <p>To achieve this kind of design subscriptions have to be passed to the upstream nodes so that the upstream nodes can use them to avoud sending messages to the paths where there are no interested subscribers. The property should be transitive, ie. upstream node should forward the subscription to its parent which in turn should pass it to its parent etc.</p>
-<p><img src="ps5T.png" alt="" /></p>
+<p><img class="old" src="ps5T.png"></p>
 <p>So, when consumer application subscribes to a topic the subscription, in addition to applying locally, hops up the stream until it reaches the ultimate producer(s).</p>
 <p>The technical difficulty with this model is how to pass the subscription through the intermediate devices. Recall that a device is just a pair of ØMQ sockets connected by user code. Thus, there's no way to implement subscription forwarding in devices without user code taking part in the process. And that's what XPUB/XSUB sockets are for.</p>
 <p>XPUB is similar to a PUB socket, except that you can receive messages from it. The messages you receive are the subscriptions traveling upstream. XSUB is similar to SUB except that you subscribe by sending a subscription message to it.</p>
 <p>Subscription messages are composed of a single byte, 0 for unsubscription and 1 for subscription, followed by the subscription itself, ie. the prefix we want to check the messages for.</p>
 <p>This makes implementation of a device quite simple: Use XPUB/XSUB sockets instead of PUB/SUB, pass all the messages from XSUB to XPUB (data flow) and all the messages from XPUB to XSUB (subscription flow):</p>
-<p><img src="ps6T.png" alt="" /></p>
+<p><img class="old" src="ps6T.png"></p>
 <h1 id="disconnectionsandreconnections">Disconnections and Reconnections</h1>
 <p>To avoid storing stale subscriptions in individual nodes, disconnection of a peer should result in automatic generation all the relevant unsubscriptions to be passed upstream. For example, if XPUB socket has a single peer who subscribed for topic "A", disconnection of that peer should result in generation of unsubscription "A" that will hop upstream until it reaches terminal producer(s).</p>
 <p>The other way round, when reconnection happens, XSUB socket should send all its subscriptions to the reconnected peer to reestablish the message flow. Recall that the peer (XPUB) have generated unsubscriptions when disconnection happened. By re-sending the subscriptions the routing tables on the publisher side are renewed and the message distribution continues to work as expected.</p>
@@ -77,7 +77,7 @@
 <p>Luckily, this is exactly what XPUB socket allows it to do. It can open an XPUB socket and start listening for the subscriptions. If a message is about to be generated, the producer will check its list of subscriptions and proceed only if there's an appropriate subscription present.</p>
 <p>Another scenario for plugging into subscription mechanism is creating bridges to other messaging implementations, both generic and ad hoc in-house systems.</p>
 <p>Let's take an example of ØMQ/AMQP bridge. The bridge can create an XPUB socket to send messages from AMQP to ØMQ. The other way round it can read the subscriptions from the socket and send them as <em>queue.bind</em> commands to the AMQP system:</p>
-<p><img src="ps7T.png" alt="" /></p>
+<p><img class="old" src="ps7T.png"></p>
 <p>The same way, bridges can be built to interface with other messaging systems: JMS, STOMP, PubSubHubbub, Redis etc.</p>
 <h1 id="subscriptionforwardingasanlocaloptimisation">Subscription Forwarding as an Local Optimisation</h1>
 <p>Conceptually, I find it useful to think of forwarding subscriptions to publishers as of an optimisation:</p>
