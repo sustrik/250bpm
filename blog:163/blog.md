@@ -88,7 +88,7 @@ The fact that even the position of federal chancellor was taken by FDP and not g
 
 A short-sighted CVP politician may have focused only on winning one seat from FDP and achieving parity. The general secretary of CVP, Martin Rosenberg, however, realized that there's a different stable arrangement in sight, and, as it happened, one that was very compelling and had deep political logic.
 
-If FDP, CVP and SP each got two seats and SVP one seat, it would not only almost perfectly match the election results. It would also address the two big splits in the Swiss society. First, it would mean that three federal councilors on the right (FDP and SVP) would be counterbalanced by two councilors on the left (SP). Second, the historically underrepresented Catholics (CVP), despite having just two seats, would become the balancing force between the right and the left.
+If FDP, CVP and SP each got two seats and SVP one seat - an arrangement that would later become known as Magic Formula - it would not only almost perfectly match the election results. It would also address the two big splits in the Swiss society. First, it would mean that three federal councilors on the right (FDP and SVP) would be counterbalanced by two councilors on the left (SP). Second, the historically underrepresented Catholics (CVP), despite having just two seats, would become the balancing force between the right and the left.
 
 The problem remained of how to get there.
 
@@ -128,7 +128,7 @@ While voting in a councilor against the will of their own party may be rare, thi
 
 Up to this point, it may still seem that Switzerland is an old-world bucolic utopia, in which politicians bow to each other and say, "After you, sir!"
 
-What we are interested in though is how the system copes with bad-faith actors and deliberate attemps to subvert it. System based on people being decent, on the rule by consensus seems to be particularly susceptible to such attacks.
+What we are interested in though is how the system copes with bad-faith actors and deliberate attempts to subvert it. System based on people being decent, on the rule by consensus seems to be particularly susceptible to such attacks.
 
 Enter Christoph Blocher, the man whom Steve Bannon once described as "Trump before Trump".
 
