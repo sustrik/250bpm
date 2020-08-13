@@ -3,14 +3,6 @@
 <head>
   <meta charset="utf-8">
   <title>250bpm</title>
-  <link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>250bpm</title>
   <link rel="stylesheet" type="text/css" href="../main.css">
 </head>
 <body>
@@ -186,4 +178,5 @@ void close_connection(struct connection *conn) {
 <p>In the languages with exceptions ECANCELED error can be turned into an exception. One pitfall to avoid is that cancellation itself can be cancelled. In such case, the runtime should not try to raise an exception within an exception but rather propagate the exception up the stack. Once it unwinds main function of the thread it should be silently dropped.</p>
 <p>Finally, integration with garbage collected languages may be tricky. Surely we don't want green thread, after it got out of scope, to be left running, waiting for the garbage collector to kill it. Once again, this looks like a feature that has to be integrated into the language runtime.</p>
 <p>As a conclusion, I would like to say that this is a problem I was struggling with for years and this is the first time I feel I have a reasonable solution to it. Any feedback, criticism or simply ideas would be appreciated.</p>
-<p><strong>February 7th, 2016</strong></p></body>
+<p><strong>February 7th, 2016</strong></p><p><a href="https://www.reddit.com/r/250bpm">Discuss</a></p>
+</body>

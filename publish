@@ -5,7 +5,7 @@ set -e
 make_page () {
     echo "$1"
     showdown makehtml -i $1/blog.md -o $1/r.html  --tables
-    cat header.html blog-header.html $1/r.html footer.html > $1/index.html
+    cat blog-header.html $1/r.html blog-footer.html > $1/index.html
     rm $1/r.html
 }
 
