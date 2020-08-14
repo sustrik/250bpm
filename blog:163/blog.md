@@ -46,7 +46,7 @@ Building of the concordance democracy is a historical process. When modern Switz
 
 Following diagram shows how the seven seats in the Federal Council were distributed among the parties. Blue stands for [FDP.The Liberals](https://en.wikipedia.org/wiki/FDP.The_Liberals), orange for [Christian Democratic People's Party (CVP)](https://en.wikipedia.org/wiki/Christian_Democratic_People%27s_Party_of_Switzerland), green for [Swiss People's party (SVP)](https://en.wikipedia.org/wiki/Swiss_People%27s_Party), red for [Social Democratic Party (SP)](https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Switzerland) and yellow for [Conservative Democratic Party (BDP)](https://en.wikipedia.org/wiki/Conservative_Democratic_Party_of_Switzerland). The diagram is getting gradually more colorful and tracks the progress of concordance mindset over the course of history.
 
-<img class="large" src="seats.png"/>
+<img class="large-noshadow" src="seats.png"/>
 
 ### Opposition Enters the Government
 
@@ -82,7 +82,7 @@ However, in 1953, when Social Democrats' attempt at reforming federal finances f
 
 The story begins with the liberals (FDP) electing their own representative to the free position in the Federal Council. From their point of view it was just the return to the pre-1943 state of affairs. From everybody else's point of view it was just FDP being greedy. FDP got 24% in the elections, after all, and CVP 22.5%, almost exactly the same. Yet FDP got four seats and CVP just two.
 
-<img class="large" src="magic.png"/>
+<img class="large-noshadow" src="magic.png"/>
 
 The fact that even the position of federal chancellor was taken by FDP and not granted to the junior partner in the government didn't make the things better. All of that has, understandably, caused resentment in CVP.
 
@@ -116,7 +116,7 @@ It gets worse. The councilor representing the party may be elected against the w
 
 In 1983, SP nominated Lilian Uchtenhagen, who would have been the first female federal councilor. But the parties on the right considered her politically too far on the left.
 
-After several unsuccessful attempts to vote in different candidates seen as more moderate, a new candidate, Otto Stich, was nominated by the center-right FDP party. Otto Stich was a social democrat, but FDP considered him to be moderate, almost as he was one of their own.
+After several unsuccessful attempts to vote in different candidates seen as more moderate, a new candidate, Otto Stich, was nominated by the center-right FDP party. Otto Stich was a social democrat, but FDP considered him to be moderate, almost as if he was one of their own.
 
 He got elected and he accepted the election against the will of the SP leadership. The leadership then seriously considered retreating into opposition. However, plenary assembly of the party in 1984 decided against the idea.
 

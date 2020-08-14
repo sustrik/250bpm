@@ -92,6 +92,30 @@ img.small {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+img.noshadow {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  box-shadow: none;
+}
+
+img.large-noshadow {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 98%;
+  box-shadow: none;
+}
+
+img.small-noshadow {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  box-shadow: none;
+}
+
 img.old {
   display: block;
   margin-left: auto;
