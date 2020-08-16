@@ -59,7 +59,7 @@ out += """### Software
 """
 
 out += '### Short Stories\n\n'
-for i in [150, 134, 131, 130, 129, 109]:
+for i in [164, 150, 134, 131, 130, 129, 109]:
   out += fmt((i, titles[i]))  
 
 out += '### Moments Musicaux\n\n'
