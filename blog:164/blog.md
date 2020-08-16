@@ -1,6 +1,6 @@
 # The Human Condition
 
-_This is a transcript of a [recording](https://www.youtube.com/watch?v=DgkDrVj1qIo) made on August 9th, 2020 at a polling station in Vitebsk, Belarus. I couldn't resist its literary appeal, its XIX. century, almost Chekhovian, feel and have written it down as if it was a play._
+_This is a transcript of a [recording](https://www.youtube.com/watch?v=DgkDrVj1qIo) made on August 9th, 2020 at a polling station in Vitebsk, Belarus. Aside from being a nice illustation to [Milgram experiment](https://en.wikipedia.org/wiki/Milgram_experiment), I couldn't resist its literary appeal, its XIX. century, almost Chekhovian, feel and have written it down as if it was a play._
 
 MEMBERS OF THE ELECTORAL COMMISSION No. 25 are in a room. The commission consists of of both men and women of various ages, all of them teachers at the local school.
 
@@ -40,7 +40,7 @@ They have inspected each ballot honestly and conscientiously. They have got, acc
 
 Therefore, I don't want you to be the only ones who will somehow - it's not clear whether guided by common sense, pride, sense of responsibility or whatever - stand out of the crowd.
 
-Let me say that I am, so to say, an old person. I am a contemporary of Viktor Tsoi. Even of Elvis Presley. I was born before he died. I know all those songs. Even Scorpions I know very well. But today we are not in a place where one should engage in this kind of honest actions.
+I am, so to say, an old person. I am a contemporary of Viktor Tsoi. Even of Elvis Presley. I was born before he died. I know all those songs. Even Scorpions I know very well. But today we are not in a place where one should engage in this kind of honest actions.
 
 I have a very tough proposal for you.
 
@@ -102,7 +102,7 @@ SERGEY VIKTOROVICH: I also saw those ballot boxes with accordion-folded sheets. 
 
 MAN'S VOICE: No, you were here.
 
-DIFFERENT VOICE: Lukashenko got more on early voting. But this is what we've got today. That's what in front of us.
+DIFFERENT VOICE: Lukashenko got more on early voting. But this is what we've got today. That's what we are looking at.
 
 SERGEY VIKTOROVICH: I'll say again: I've heard your personal opinion and that's enough. It's enough.
 
