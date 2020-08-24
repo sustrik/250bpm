@@ -4,11 +4,11 @@ When researching the topic of [distributing government seats in Switzerland](htt
 
 In the game, three players are asked to vote on splitting a dollar. The game is iterative, it has multiple rounds. At the beginning, a third of a dollar may be assigned to each player. The players, unanimously, vote for the arrangement.
 
-However, the arrangement is not stable. It's a game about forming coallitions. Two players can conspire and vote in a arrangement where they split the dollar fairly among themselves and give nothing to the third player.
+However, the arrangement is not stable. It's a game about forming coalitions. Two players can conspire and vote in a arrangement where they split the dollar fairly among themselves and give nothing to the third player.
 
-But even then the arrangement isn't stable. Now the third player can approach one of the other two coallition parties and propose a better deal: Instead of 50 cents they would get 75 cents and the proposing party would content itself with just 25 cents. Their current coallition partner would get nothing. The party is incentivized to accept not only because of sheer greed, but also because it is aware that if they rejected the proposal, the proposing party can make the same offer to their coallition partner and thus lock them out of the coallition.
+But even then the arrangement isn't stable. Now the third player can approach one of the other two coalition parties and propose a better deal: Instead of 50 cents they would get 75 cents and the proposing party would content itself with just 25 cents. Their current coalition partner would get nothing. The party is incentivized to accept not only because of sheer greed, but also because it is aware that if they rejected the proposal, the proposing party can make the same offer to their coalition partner and thus lock them out of the coalition.
 
-But even now, with two players sharing the dollar in 75:25 ratio, the arrangement is not stable. The senior partner can blackmail the junior partner by threatening to make a coallition with the opposition party. The junior partner, in their turn, can do exactly the same thing.
+But even now, with two players sharing the dollar in 75:25 ratio, the arrangement is not stable. The senior partner can blackmail the junior partner by threatening to make a coalition with the opposition party. The junior partner, in their turn, can do exactly the same thing.
 
 As can be seen, any arrangement is, in principle, unstable. The negotiation game can go on forever without reaching a stable state.
 
@@ -18,6 +18,6 @@ The interesting aspect here is that unlike in other countries with the same prob
 
 Note that the game still doesn't have a stable strategy. The problem wasn't solved within the game. It was solved on the meta-level, by parties agreeing to respect the voting results, internalizing that respect and punishing those who don't behave.
 
-Also note that this haven't in fact solved the problem, but moved it, commendably so, to a different level. Today the split-the-dollar game isn't played among parliamentarians forming a goverment, but rather among members of government voting on practical issues.
+Also note that this haven't in fact solved the problem, but moved it, commendably so, to a different level. Today the split-the-dollar game isn't played among parliamentarians forming a government, but rather among members of government voting on practical issues.
 
 **August 24th, 2020**
