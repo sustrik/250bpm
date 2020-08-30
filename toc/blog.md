@@ -1,4 +1,5 @@
 # All artices
+* [Steampunk in XIX. century](../blog:166/index.html)
 * [Split-a-Dollar Game](../blog:165/index.html)
 * [The Human Condition](../blog:164/index.html)
 * [Swiss Political System: More than You ever Wanted to Know (III.)](../blog:163/index.html)
