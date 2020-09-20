@@ -333,5 +333,7 @@ And so, if everything goes well, the Jurassic question will be definitively reso
 * [Discussion at Hacker News](https://news.ycombinator.com/item?id=23881309)
 * [Discussion at LessWrong](https://www.lesswrong.com/posts/x6hpkYyzMG6Bf8T3W/swiss-political-system-more-than-you-ever-wanted-to-know-i)
 * [Discussion at Marginal Revolution](https://marginalrevolution.com/marginalrevolution/2020/07/how-swiss-politics-works.html)
+* [Discussion at r/Switzerland](https://www.reddit.com/r/Switzerland/comments/htimhc/swiss_political_system_more_than_you_ever_wanted/)
+* [Discussion at r/slatestarcodex](https://www.reddit.com/r/slatestarcodex/comments/htrz35/swiss_political_system_more_than_you_ever_wanted/)
 
 [Next part](http://250bpm.com/blog:162)
