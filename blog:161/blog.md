@@ -302,7 +302,7 @@ The events do not end with the creation of the new canton in 1979 though.
 
 In the referenda above, the municipality of Laufen decided to remain in the canton of Bern, creating a Bern enclave between the cantons of Jura, Solothurn and Basel-Country. The events continued as follows:
 
-* November 1977: popular initiative "Do you want to start the process of connecting Laufen to the neighboring canton?" succeeds with 65% of the votes for.
+* November 1977: popular initiative "Do you want to start the process of connecting Laufen to the neighboring canton?" succeeds with 65% of the votes in favor.
 * January 1980: Referendum precludes Laufen joining the canton of Basel-City.
 * March 1980: In yet another referendum, Laufen decides to start negotiations with the canton of Basel-Country (64.65% in favor).
 * September 1983: Unsuccessful referendum on joining the canton of Basel-Country. 56.68% vote against. Laufen remains in the canton of Bern. (A parallel referendum in the canton of Basel-Country approves the adoption of Laufen by a majority of 73% of the votes.)
