@@ -55,6 +55,7 @@ out += """### Software
 * [libdill](https://libdill.org) - [structured concurrency](http://libdill.org/structured-concurrency.html), in C
 * [cartesian](https://github.com/sustrik/cartesian) - playing around with the idea of [cartesian programming paradigm](file:///home/martin/250bpm/blog:91/index.html)
 * [tiles](https://github.com/sustrik/tiles) - code generator manipulating [rectangular areas of text](file:///home/martin/250bpm/blog:147/index.html)
+* [grison](https://github.com/sustrik/grison) - storing structures with cycles in JSON
 
 """
 
