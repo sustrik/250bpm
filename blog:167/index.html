@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>250bpm</title>
+  <link rel="stylesheet" type="text/css" href="../main.css">
+</head>
+<body>
+  <p><a class="home" href="../index.html">←</a></p>
+<h1 id="simplestpossiblegraphdatabase">Simplest possible graph database</h1>
+<p>Each time one instantiates two structures in memory and connects them with a pointer, they have in fact created a simple graph database.</p>
+<pre><code class="go language-go">type Person struct {
+    Name     string
+    Age      int
+    Sex      string
+    Father   *Person
+    Mother   *Person
+    Spouse   *Person
+}
+
+...
+
+alice = &amp;Person{Name: "Alice"}
+bob = &amp;Person{Name: "Bob", Mother: alice}
+</code></pre>
+<p>The users can't do any queries or any other fancy stuff but they can traverse the graph and inspect the fields in the structures.</p>
+<pre><code class="go language-go">// Who is Bob's mother?
+fmt.Println(bob.Mother.Name)
+</code></pre>
+<p>They can even save the database into a file using <code>json.Marshal</code> function from the <code>encoding/json</code> package and reload it at some later time. So far so good.</p>
+<p>However, imagine that Carol and Dan are married:</p>
+<pre><code>carol = &amp;Person{Name: "Carol"}
+dan = &amp;Person{Name: "Dan"}
+carol.Spouse = dan
+dan.Spouse = carol
+</code></pre>
+<p>This database can't be saved, because there's a loop in the graph. Marshalling algorithm would either enter an infinite loop or, possibly, realize that there is a loop and bail out.</p>
+<p>Same problem occurs if one decides to add <code>Children</code> field to the structure so that it is possible to traverse the family tree in both directions.</p>
+<p>In short, it would be nice to have a library, an equivalent of <code>encoding/json</code>, but one that is able to deal with the loops in the graph.</p>
+<p>Obviously, it is not entirely trivial. First, the simple tree structure of JSON doesn't lend itself easily to representation of graphs. Second, there doesn't necessarily exist a single node from which every other node is reachable. The simple <code>json.Marshal(rootNode)</code> approach is not going to work.</p>
+<p>Let's therefore add ability to store references in JSON like this:</p>
+<pre><code class="json language-json">{
+    "Person": {
+        "CAROL": {
+            "Name": "Carol",
+            "Spouse": {"$ref": "Person:DAN"},
+        },
+        "DAN": {
+            "Name": "Dan",
+            "Spouse": {"$ref": "Person:CAROL"},
+        }
+    }
+}
+</code></pre>
+<p>As for the problem with disconnected graphs, let's ask the user to create a "master" structure, i.e. a structure with pointers to all the nodes in the graph:</p>
+<pre><code class="go language-go">type Master struct{
+    Person []*Person
+    Pet []*Pet
+    // Add more node types here.
+}
+</code></pre>
+<p>Once done the graph can be saved/loaded from JSON like this:</p>
+<pre><code class="go language-go">var m1 Master
+...
+b, err := grison.Marshal(&amp;m1)
+...
+var m2 Master
+err = grison.Unmarshal(b, &amp;m2)
+</code></pre>
+<p>Grison stands for "graph json" (but also happens to be a kind of <a href="https://en.wikipedia.org/wiki/Galictis">south-american wolverine</a>) and the library can be found <a href="https://github.com/sustrik/grison">here</a>.</p>
+<p>Interestingly, the JSON format with "typed" nodes allows for something that standard <code>encoding/json</code> can't do. It can unmarshal interfaces. The problem faced by <code>encoding/json</code> is that when it encounters an interface to unmarshal, it has no idea which concrete type to instantiate. The library just returns an error.</p>
+<p>With grison format, however, the type is right there in the file (e.g. "Person"). And given that name "Person" is bound to type "Person" in the master structure, the library, when it encounters an interface pointer (marshaled as a grison reference) can easily infer the type of node to create.</p>
+<p><strong>October 7th, 2020</strong></p><p><b><a href="https://www.reddit.com/r/250bpm">Discussion Forum</a></b></p>
+</body>
