@@ -1,4 +1,4 @@
-# Simplest possible graph database
+# Simplest Possible Graph Database
 
 Each time one instantiates two structures in memory and connects them with a pointer, they have in fact created a simple graph database.
 

@@ -1,5 +1,5 @@
 # All artices
-* [Simplest possible graph database](../blog:167/index.html)
+* [Simplest Possible Graph Database](../blog:167/index.html)
 * [Steampunk in XIX. century](../blog:166/index.html)
 * [Split-a-Dollar Game](../blog:165/index.html)
 * [The Human Condition](../blog:164/index.html)
