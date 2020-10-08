@@ -1,4 +1,5 @@
 # All artices
+* [Political Lottery in Switzerland](../blog:168/index.html)
 * [Simplest Possible Graph Database](../blog:167/index.html)
 * [Steampunk in XIX. century](../blog:166/index.html)
 * [Split-a-Dollar Game](../blog:165/index.html)
