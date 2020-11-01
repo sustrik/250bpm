@@ -1,4 +1,5 @@
 # All artices
+* [Musical moment in d minor](../blog:169/index.html)
 * [Political Lottery in Switzerland](../blog:168/index.html)
 * [Simplest Possible Graph Database](../blog:167/index.html)
 * [Steampunk in XIX. century](../blog:166/index.html)
