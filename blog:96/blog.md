@@ -54,24 +54,11 @@ As a conclusion let me summarize it like this: Reputation is scarce but not tras
 
 Some examples:
 
-Token
-
-Reputation
-
-Trademark
-
-Goodwill
-
-GitHub project
-
-Stars, Followers
-
-Twitter account
-
-Followers
-
-Webpage
-
-Google page rank, Bing page rank
+| Token           | Reputation       |
+| :-------------- | :--------------- |
+| Trademark       | Goodwill         | 
+| GitHub project  | Stars, Followers |
+| Twitter account | Followers        |
+| Webpage         | Google page rank |
 
 **July 17th, 2017**
