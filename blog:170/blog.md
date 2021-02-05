@@ -1,6 +1,6 @@
 # The Story of the Reichstag
 
-When the Red Army was conquering Berlin, capture of Reichstag was seen as an important symbolic act. For Russians, the Reichstag was a symbol of the Nazi Germany. Nazis, however, never used the building, seeing it as a symbol of the despised democracy. As you may remember, they've rather set it on fire and blamed the communists for the deed.
+When the Red Army was conquering Berlin, capture of Reichstag was seen as an important symbolic act. For Russians, the Reichstag was a symbol of the Nazi Germany. Nazis, however, never used the building, seeing it as a symbol of the despised democracy.
 
 ![](reichstag2.png)
 
