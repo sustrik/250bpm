@@ -1,7 +1,5 @@
 # Infinite Mirrors and Sexual Selection
 
-
-
 In the [previous blog post](http://250bpm.com/blog:97) I've tried to show that Keynesian beauty contest — which is a terrible name; I will call it "infinite mirrors model" henceforth — is a more general mechanism than it seems to be at the first sight.
 
 I've shown how it applies to pricing in general (not just pricing of stocks) and to natural language ("arbitrariness of the sign"). I've hinted at how it may be applied to political science.
