@@ -32,12 +32,12 @@ It was decided to remove the wall and leave the graffiti at different locations 
 
 ![](reichstag3.png)
 
-I think the fact reveals something about the German political culture. I am having a hard time imagining that, say, Americans would keep such a witness of their defeat in the Capitol. That is, if the soldiers from Pearl Harbor were somehow able to get to Washington and leave japanese inscriptions behind.
+I think the fact reveals something about the German political culture. I am having a hard time imagining that, say, Americans would keep such a witness of their defeat in the Capitol. That is, if the soldiers from Pearl Harbor were somehow able to get to Washington and leave Japanese inscriptions behind.
 
 What I, personally, like about it is its ambiguity.
 
-The inscriptions can be interpreted in a crude way. As a message to german parlamentarians: Mess it up and you'll see the cossacks in the Reichstag again.
+The inscriptions can be interpreted in a crude way. As a message to German parlamentarians: Mess it up and you'll see the cossacks in the Reichstag again.
 
-But there's also a much more subtle, even intimate, interpretation. Note how there's no Stalin's declaration of victory in the building. But there are graffiti from all those Andreys and Georgiys, common boys dragged out of their villages, sent fighting, killing, being killed, seeing their freinds dying, looting and raping along the way until they arrived in Berlin. Those inscriptions are a reminder that Germany is not an island for herself. That those people, whether she wills or not, are part of her fate as much as they are part of the fate of Russia.
+But there's also a much more subtle, even intimate, interpretation. Note how there's no Stalin's declaration of victory in the building. But there are graffiti from all those Andreys and Georgiys, common boys dragged out of their villages, sent fighting, killing, being killed, seeing their friends dying, looting and raping along the way until they arrived in Berlin. Those inscriptions are a reminder that Germany is not an island for herself. That those people, whether she wills or not, are part of her fate as much as they are part of the fate of Russia.
 
 **February 5th, 2012**
