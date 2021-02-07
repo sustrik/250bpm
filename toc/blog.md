@@ -1,4 +1,5 @@
 # All artices
+* [Democracy, Bureaucracy, Central Banking](../blog:171/index.html)
 * [The Story of the Reichstag](../blog:170/index.html)
 * [Musical moment in d minor](../blog:169/index.html)
 * [Political Lottery in Switzerland](../blog:168/index.html)
