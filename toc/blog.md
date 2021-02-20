@@ -1,4 +1,5 @@
 # All artices
+* [On the Nature of Reputation](../blog:172/index.html)
 * [Democracy, Bureaucracy, Central Banking](../blog:171/index.html)
 * [The Story of the Reichstag](../blog:170/index.html)
 * [Musical moment in d minor](../blog:169/index.html)
