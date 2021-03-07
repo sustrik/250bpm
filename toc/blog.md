@@ -1,4 +1,5 @@
 # All artices
+* [Teaching to Compromise](../blog:173/index.html)
 * [On the Nature of Reputation](../blog:172/index.html)
 * [Democracy, Bureaucracy, Central Banking](../blog:171/index.html)
 * [The Story of the Reichstag](../blog:170/index.html)
