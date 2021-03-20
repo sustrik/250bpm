@@ -1,4 +1,5 @@
 # All artices
+* [Jean Monnet: The Guerilla Bureaucrat  ](../blog:174/index.html)
 * [Teaching to Compromise](../blog:173/index.html)
 * [On the Nature of Reputation](../blog:172/index.html)
 * [Democracy, Bureaucracy, Central Banking](../blog:171/index.html)
