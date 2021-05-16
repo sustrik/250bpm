@@ -202,7 +202,7 @@ Who made the proposal was also important. Just few months before Schumann declar
 
 But, in the end, even all of that would not suffice if the procedure of the negotiations were not what it was.
 
-## Two-layered approach
+## Two-layered approach<a name="two-layered"></a>
 
 The problem there, you see, is that if the participants don't agree to the solution of the crucial coordination problem in advance it will become a bargaining token in the subsequent negotiations on the technical issues. That way, it will get gradually watered down if not completely removed.
 

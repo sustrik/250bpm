@@ -31,3 +31,9 @@ Let me finish with few personal observations. I am going to write them down not 
 4. Finally, it's hard not to think about the question in the terms of separation of powers. Why can't the political appointees and the technocrats be formally separated in the same way as the executive, the legislative and the judiciary? Why can't they keep each other in check the same way as the branches of government do? Would there be a benefit of defining the Plimsoll boundary explicitly, making clear what are the responsibilities on each side of the line? Would it be worth devising checks and balances to prevent political dysfunction to trickle down through the Plimsoll line to the technocratic problem solving process and, the other way round, to prevent technocrats running amok, in the direction that the general public doesn't want them to go?
 
 **May 15th, 2021**
+
+Trying to put together my thoughts the next day.
+
+The argument about whether a person should be more political or more technocratic may be besides the point. In organizations and institutions the political layer and technocratic layer tend to be separated. There are people who's job is political, that is to balance the interests of all the stakeholders and decide on what the goals of the organization are. And there are people who's job is technocratic, that is to decide how to achieve those goals. What's more, we probably want it to be that way. There's an inherent conflict of interest between the two roles. If these are merged, technical details of the solution will be used as bargaining chips in the political negotiation, leading to a bad political compromise as well as to a bad technical solution. For an example, [see here](https://250bpm.com/blog:174/index.html#two-layered).
+
+**May 16th, 2021**
