@@ -2,9 +2,19 @@
 
 import html
 import os
+import datetime
+import re
 
-# collect blog titles
-titles = {}
+class Blog:
+  def __init__(self, content):
+    self.title = content.strip().split('\n')[0][2:]
+    date = re.search(r"^\*\*(\w{3})\w* (\d+)\w+, (\d+)\*\*$", content, re.M)
+    if not date:
+      raise Exception("No date found in: %s" % self.title)
+    self.date = datetime.datetime.strptime(' '.join(date.groups()), '%b %d %Y')
+
+# collect blogs
+blogs = {}
 for d in os.listdir():
   if not os.path.isdir(d):
     continue
@@ -13,14 +23,13 @@ for d in os.listdir():
   num = int(d[5:])
   with open(d + '/blog.md', 'r') as f:
     c = f.read()
-  title = c.strip().split('\n')[0][2:]
-  titles[num] = title
+  blogs[num] = Blog(c)
 
-blogs = sorted(titles.items())
+blogs = sorted(blogs.items())
 blogs.reverse()
 
 def fmt(blog, root='.'):
-  return "* [%s](%s/blog:%d/index.html)\n" % (blog[1], root, blog[0])
+  return "* [%s](%s/blog:%d/index.html)\n" % (blog[1].title, root, blog[0])
 
 out = """
 <img class="logo" src="250bpm.png">
@@ -39,15 +48,15 @@ for i in range(0, 5):
 
 out += '### Sociology, Evolution, Coordination Problems\n\n'
 for i in [177, 176, 175, 174, 172, 165, 163, 162, 161, 160, 159, 151, 136, 135, 132, 128, 127, 125, 113, 100, 96, 94, 92, 66]:
-  out += fmt((i, titles[i])) 
+  out += fmt(blogs[-i]) 
 
 out += '### Structured Concurrency\n\n'
 for i in [146, 145, 143, 139, 137, 124, 71, 70, 69, 25]:
-  out += fmt((i, titles[i]))
+  out += fmt(blogs[-i])
 
 out += '### Miscellanea\n\n'
 for i in [153, 152, 149, 133, 121, 119, 102, 95, 93, 91, 88, 81, 68, 65, 55, 51, 50, 49, 48, 45]:
-  out += fmt((i, titles[i]))
+  out += fmt(blogs[-i])
 
 out += """### Software
 * [ØMQ](https://zeromq.org/) - a distributed messaging library
@@ -61,11 +70,11 @@ out += """### Software
 
 out += '### Short Stories\n\n'
 for i in [164, 150, 134, 131, 130, 129, 109]:
-  out += fmt((i, titles[i]))  
+  out += fmt(blogs[-i])  
 
 out += '### Moments Musicaux\n\n'
 for i in [148, 84, 79]:
-  out += fmt((i, titles[i]))
+  out += fmt(blogs[-i])
 
 out += '### All articles\n\n'
 out += '* [All articles](toc/index.html)\n\n'
@@ -87,14 +96,16 @@ rss = """<?xml version="1.0" encoding="UTF-8" ?>
   <description>Martin Sustrik's Blog</description>
 """
 for blog in blogs:
-  desc = html.escape(blog[1])
+  desc = html.escape(blog[1].title)
   link = "http://250bpm.com/blog:%s" % blog[0]
+  date = blog[1].date.strftime('%a, %d %b %Y %H:%M:%S GMT')
   rss += """
   <item>
     <title>%s</title>
     <link>%s</link>
     <description>%s</description>
-  </item>""" % (desc, link, desc)
+    <pubDate>%s</pubDate>
+  </item>""" % (desc, link, desc, date)
 rss += """
 </channel>
 </rss>
