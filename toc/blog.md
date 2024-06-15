@@ -1,4 +1,5 @@
 # All artices
+* [Hemingway Case](../blog:181/index.html)
 * [Dumbing down](../blog:180/index.html)
 * [Moral Illusions](../blog:179/index.html)
 * [The Cage of the Language](../blog:178/index.html)
