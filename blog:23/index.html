@@ -46,5 +46,4 @@ nn_close (s);
 </code></pre>
 <p>Of course, removing the contexts has some repercussions on the semantics of the system. For example, nn_close() becomes a blocking function. It may wait for "linger" period to send any pending outbound data before closing the socket. In ZeroMQ, zmq_close() is completed immediately and waiting is postponed to zmq_ctx_destroy() function which, given the removal of contexts, has no equivalent in nanomsg.</p>
 <p>While that may be considered a drawback in some ways, in other ways it is a desirable behaviour. For example, after socket is closed, the system resources allocated by the socket — such as TCP port or IPC file — are guaranteed to be released and thus ready to be re-used. However, that's a topic for another blog post.</p>
-<p><strong>May 14th, 2013</strong></p><p><b><a href="https://www.reddit.com/r/250bpm">Discussion Forum</a></b></p>
-</body>
+<p><strong>May 14th, 2013</strong></p></body>

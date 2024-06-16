@@ -70,5 +70,4 @@ err = grison.Unmarshal(b, &amp;m2)
 <p>Grison stands for "graph json" (but also happens to be a kind of <a href="https://en.wikipedia.org/wiki/Galictis">south-american wolverine</a>) and the library can be found <a href="https://github.com/sustrik/grison">here</a>.</p>
 <p>Interestingly, the JSON format with "typed" nodes allows for something that standard <code>encoding/json</code> can't do. It can unmarshal interfaces. The problem faced by <code>encoding/json</code> is that when it encounters an interface to unmarshal, it has no idea which concrete type to instantiate. The library just returns an error.</p>
 <p>With grison format, however, the type is right there in the file (e.g. "Person"). And given that name "Person" is bound to type "Person" in the master structure, the library, when it encounters an interface pointer (marshaled as a grison reference) can easily infer the type of node to create.</p>
-<p><strong>October 7th, 2020</strong></p><p><b><a href="https://www.reddit.com/r/250bpm">Discussion Forum</a></b></p>
-</body>
+<p><strong>October 7th, 2020</strong></p></body>

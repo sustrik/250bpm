@@ -22,5 +22,4 @@
 <p>As can be seen REQ/REP protocol doesn't work very well once you want to use nanomsg for active-active reliability.</p>
 <p>Luckily, "survey" pattern has exactly the behaviour we are looking for. It sends the request to all the connected service instances. That guarantees not only that the request will be processed in redundant manner to provide reliability with zero latency impact, but also that the same request won't be sent to the same sevice instance twice, thus avoiding useless overhead. When receiving the responses, unlike with REQ/REP pattern, you can receive all of them, rather than just a single one. However, if you just send the next request after receiving the first reply, all the pending replies for the old request will be silently dropped:</p>
 <p><img class="old" src="surrel2.png"></p>
-<p><strong>March 22nd, 2013</strong></p><p><b><a href="https://www.reddit.com/r/250bpm">Discussion Forum</a></b></p>
-</body>
+<p><strong>March 22nd, 2013</strong></p></body>

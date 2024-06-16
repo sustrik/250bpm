@@ -35,5 +35,4 @@
 <p>Finally, it should be said that pointer table is allocated in one block with the node itself, while in ZeroMQ the two are allocated separately. This is a minor optimisation, but it speeds up some scenarios. Also, memory footprint is slightly better given that there's just one chunk header per node rather than two of them. Also, memory fragmentation tends to be less atrocious when number of allocated chunks drops by 50%.</p>
 <p>The little testing I've done with the new algorithm shows that for typical subscription set it reduces the memory usage below 10% of what ZeroMQ uses.</p>
 <p>Of course, if you've run tests of your own it would be great if you can share the results!</p>
-<p><strong>March 9th, 2013</strong></p><p><b><a href="https://www.reddit.com/r/250bpm">Discussion Forum</a></b></p>
-</body>
+<p><strong>March 9th, 2013</strong></p></body>

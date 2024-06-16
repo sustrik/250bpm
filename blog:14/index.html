@@ -64,5 +64,4 @@ nn_term ();
 <p>To solve this problem nanomsg offers an alternative solution: Create different messaging topologies for different priorities. That way there are multiple TCP connections involved and head-of-line-blocking problem, as described above, simply doesn't happen:</p>
 <p><img class="old" src="prio6.png"></p>
 <p>Topology for "urgent" messages is drawn in red. Topology for "normal" messages is in black. Client sends request to either "urgent" or "normal" REQ socket, depending on the priority level it is interested in. Server polls on both REP sockets and processes messages from the "urgent" one first. Finally, given that the two topologies use two different TCP ports, it is possible to configure network switches and routers is such a way that they treat urgent messages in preference and that they allocate certain amount of bandwidth for them, so that network congestion caused by normal messages won't effect delivery of urgent messages.</p>
-<p><strong>Jan 28th, 2013</strong></p><p><b><a href="https://www.reddit.com/r/250bpm">Discussion Forum</a></b></p>
-</body>
+<p><strong>Jan 28th, 2013</strong></p></body>
