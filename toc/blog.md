@@ -1,4 +1,5 @@
 # All artices
+* [The Wisdom of Living for 200 Years](../blog:182/index.html)
 * [Hemingway Case](../blog:181/index.html)
 * [Dumbing down](../blog:180/index.html)
 * [Moral Illusions](../blog:179/index.html)

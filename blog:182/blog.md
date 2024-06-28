@@ -1,0 +1,61 @@
+# The Wisdom of Living for 200 Years
+
+[Scott Sumner writes](https://www.themoneyillusion.com/double-vision-when-then-was-now/): 
+
+> Old people have a sort of double vision about the past — an ability to see the past from the perspective of today, and also from the perspective of the people who lived through those times. When then was now.
+
+This double vision, according to Scott, brings wisdom, something you gain with age, an attitude that younger people are missing:
+
+> When I read some of my lamer posts from the early days, I cringe at their lack of wisdom. What was I thinking?
+
+It's a little nebulous, but one can see how considering the current issue from multiple cultural perspectives - remember: past is a foreign country! - helps you to get a more balanced view.
+
+Say, the political situation in Slovakia, the country which I am originally from, is not exactly rosy right now. We have a new Orbán or PiS-style government, which is trying hard to weaken the rule of law. Everybody in my social circle goes crazy about it. But there's a difference: While young people are simply horrified, older people do act as if they were horrified, but if you question them in private, they tend to admit that yes, it's not that bad, it used to be worse in 90s, when we used to have severed human heads in flower pots and whatnot.
+
+It's a tacit knowledge that doesn't get passed on. Young people, born in 90s don't remember the severed heads, after all.
+
+Scott further writes:
+
+> Of course this only applies to periods that we ourselves have lived through. I have no feel at all for the 1890s. I know that it was a disgrace for respectable women to show their legs in public, or to go out on the town without an escort, but I don’t actually have much of a feel for why.
+
+Understood. But I have two questions: First, do we need the full experience of the past to get wise? Or would something that goes half the way be good enough? And second, is there a way to convey this tacit knowledge about the past, even if it's not perfect?
+
+People today freak out about the war of the day, the democratic backslide, the conspiration theories, the AI doom. But then you look at someone like Tyler Cowen and it's surprising how equianimous he manages to remain in spite of all that. And it doesn't seem to be only about the age. One has to wonder whether it's simply linked to intimate knowledge of the history, the visceral realization that people are always freaking out about something. "When we run out of guano we are all going to die!" (That's late XIX. century.) The calm comes from understanding that today is just business as usual, not some kind of outlier.
+
+---
+
+I remember, when I was a kid, when the new bridge over Danube was built, how they rode military trucks on it to test whether it structurally sound and can bear the load.
+
+At least that's what I though. Quite late in my life I found out that the bridge was actually finished in 1971, whereas I was born in 1973! I couldn't have possibly seen the trucks on the bridge!
+
+Yet, I do have the tacit knowledge I would have got if I were there. I know how it feels when a bridge is being tested for structural soundness.
+
+It's easy to form false memories. As far as I understand, how it works is that each time you remember a thing you are rewriting the memory by the image you recollect at the moment.
+
+And a thought naturally follows: Can I form this visceral knowledge of 1960's even though I haven't been alive yet? And what about 50s or 20s? Hell, what about XIX. or XVIII. century? Can I live for 250 years? Can I, on my dying bed, nostalgically ruminate about how bad the Napoleonic wars were and how the laughter of young girls sounded back then?
+
+---
+
+So, I have a project to accomplish. A project to get an intrinsic feeling of the past, at least the XIX. and XX. centuries. I do have some feeling about what the 60's were like because there's still a lot of people around who lived through the era, who reference it in passing, who make casual remarks about how the things were back then. But what about 1890s? Do I smell the manure on the streets? And how does all that differ from 1870s?
+
+It's not like I am doing it full time, but it's always on the back of my mind.
+
+Technically, it helps to look at the political and economic history of the era to get the overall framing, but that's not enough.
+
+Going to a museum helps, touching artifacts from back then, trying to actually use them. Spending an evening without electricity, in a candle-lit room. Asking your grandmother. Looking at old paintings or photos. Reading newspapers of yesteryear. Getting excited about the political controversy of the time. Taking a side in a long forgotten dispute.
+
+What helps the most is the contemporary fiction. There's so much of the tacit knowledge you suck up from reading a novel from 1830s. Brief remarks meant as simple literary devices to make the story flow smoother imprint on you. You get unknowingly wiser.
+
+Let's consider Stephan Zweig's "The World of Yesterday". That one is even better than a random novel! It's written by a fiction writer but its explicit purpose is to explain how if felt to live through belle époque to the young people of 1940s who did not remember it. It's a deliberate attempt to transfer the tacit knowledge that Scott writes about.
+
+Consider this part here:
+
+> But what a tragedy when some of those young girls missed their time, when they were not yet married at twenty-five or thirty! [...] Then that tender picture turned into a sharp and haunting caricature. The unmarried girl became an "old maid" and the old maid became a "spinster", whom the satirical magazines constantly mocked in the most disgusting manner. Whoever today opens an old issue of the magazine "Fliegende Blätter" or any other humorous paper of the time, they will be horrified to find the most stupid mockery of aging girls, who, with their destroyed psyche, can no longer hide their natural desire for love."
+
+The fate of spinsters in belle époque is not something I would naturally think of, nor would I get it from reading official history textbooks. Yet, now I feel, at least to some extent, how much it must have sucked. I've got wiser.
+
+---
+
+Is it worth it? I don't know. Is it a kind of wisdom you can take advantage of in the real life? Maybe. In any case, it gets you in touch with larger part of the humanity than what you would manage living only in the present. It widens your understanding of the human condition. And that's not something to dismiss lightly.
+
+**June 28th, 2024**
