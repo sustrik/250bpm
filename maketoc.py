@@ -34,6 +34,8 @@ def fmt(blog, root='.'):
 out = """
 <img class="logo" src="250bpm.png">
 
+<h1><b>THIS BLOG WAS MOVED TO <a href="https://250bpm.substack.com">SUBSTACK</a>.</b></h1>
+
 My name is Martin Sústrik. In the past I have written software projects such as [ØMQ](https://zeromq.org/), [nanomsg](https://nanomsg.org) or [libdill](https://libdill.org). I may have been the first one to use the term [structured concurrency](https://en.wikipedia.org/wiki/Structured_concurrency). These days I blog about random stuff.
 
 All the opinions stated here are my own. Any resemblance to opinions of other people, living or dead, is purely coincidental.
